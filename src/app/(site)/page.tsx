@@ -13,10 +13,15 @@ import { CardGrid, CategoryCard, CompactCard, EditorialCard, iconFor } from "@/c
 import { Cover } from "@/components/media/Media";
 import { ButtonLink, JsonLd, SectionHeader } from "@/components/ui/primitives";
 
+/** Ana sayfa "büyük beden giyim" / "büyük beden" baş terimlerinin sahibi (docs/seo-anahtar-kelime-haritasi.md). */
 export function generateMetadata(): Metadata {
   const s = getSettings();
-  const h = getHomepage();
-  return simpleMetadata({ title: `${s.siteName} – ${s.tagline}`, description: h.hero.lead.length >= 70 ? h.hero.lead : `${h.hero.lead} Kadın ve erkek beden, stil, kumaş ve marka rehberleri.`, path: "/", absoluteTitle: true });
+  return simpleMetadata({
+    title: `Büyük Beden Giyim, Beden ve Stil Rehberi | ${s.siteName}`,
+    description: "Büyük beden giyimde doğru beden, kalıp ve kumaş: kadın ve erkek için ölçüye dayalı beden tabloları, stil, kombin ve marka rehberleri. Satış yapmaz.",
+    path: "/",
+    absoluteTitle: true,
+  });
 }
 
 function rangeLine(): string | null {
