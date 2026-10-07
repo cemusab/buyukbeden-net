@@ -43,7 +43,9 @@
 - Hepsi bitince: `npm run qa` yeşil → TEK push → PR v2→main → merge → canlı smoke test (sitemap URL'leri 200).
 - Açık karar: `kadin-harf-numara-markalara-gore` dönüşüm tablosu kalsın mı (şimdilik kaldı).
 
-## 2026-10-08 – 4. dalga (çalışıyor)
+## 2026-10-08 – 4. dalga YAYINDA (PR #8): 14 yeni marka, toptan hub + Merter/Laleli; 233 URL hepsi 200.
+
+## (eski) 4. dalga planı
 Paralel: (1) ~15–25 yeni marka sayfası (content/markalar + marka listesi rehberleri); (2) toptan genişletme: /alisveris-rehberi/toptan-buyuk-beden-nereden-alinir + Merter/Laleli/Osmanbey sayfaları + doğrulanmış toptancı tabloları (tavsiye değil uyarısıyla). Bitince: qa → tek PR → canlı kontrol. Sahibi: PR'ı kendisi oluşturmayacak, ben yapıyorum.
 
 ## 2026-10-08 – 3. dalga YAYINDA (PR #7)
