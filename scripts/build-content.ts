@@ -726,7 +726,7 @@ for (const d of docs) {
   }
 }
 // Yayımlı hub'ların kısa biçimleri: /kadin/elbise → /kadin/giyim/elbise (+ yaygın takma adlar)
-const HUB_ALIASES: Record<string, string[]> = { tisort: ["tshirt", "t-shirt"] };
+const HUB_ALIASES: Record<string, string[]> = { tisort: ["tshirt", "t-shirt"], "ev-giyimi": ["pijama"] };
 for (const h of hubs.values()) {
   const cat = h.category!;
   if (RESERVED_SEGMENTS.includes(cat)) errors.push(`kategori "${cat}" rezerve bir bölüm adıyla çakışıyor (kısa yönlendirme üretilemez)`);

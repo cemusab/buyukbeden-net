@@ -57,7 +57,7 @@ Uyarılar (build'i durdurmaz ama düzeltin): gövdede < 3 iç link · "büyük b
 ### Kontrollü listeler (`src/lib/taxonomy.ts`)
 
 - **topics** (1–4 adet): `beden-olcu, kalip, kumas, stil, kombin, marka, alisveris, toptan-pazar, trend, bakim, ozel-gun, vucut-tipi, terim`
-- **Kadın kategorileri:** `elbise, tunik, pantolon, jean, tayt, etek, tisort, gomlek, bluz, triko, hirka, sweatshirt, ceket, mont, kaban, abiye, tesettur, mayo-hasema, spor-giyim, ic-giyim, ev-giyimi`
+- **Kadın kategorileri:** `elbise, tunik, pantolon, jean, tayt, etek, sort, tisort, gomlek, bluz, triko, hirka, sweatshirt, ceket, mont, kaban, abiye, tesettur, mayo-hasema, esofman, spor-giyim, ic-giyim, ev-giyimi` (`ev-giyimi` etiketi "Pijama ve Ev Giyimi"; kısa yol `/kadin/pijama` da hub'a yönlenir)
 - **Erkek kategorileri:** `tisort, polo, gomlek, pantolon, jean, esofman, sweatshirt, triko, hirka, mont, takim-elbise, sort-deniz-sortu, spor-giyim, ic-giyim`
 - **occasion** (stil + kombin; landing'ler bu sırayla gruplar): `davet-abiye` (Davet ve Abiye), `ise-uygun` (İşe Uygun), `gunluk` (Günlük), `tatil-deniz` (Tatil ve Deniz), `spor-konfor` (Spor ve Konfor)
 - **season:** `ilkbahar, yaz, sonbahar, kis, 4-mevsim`
