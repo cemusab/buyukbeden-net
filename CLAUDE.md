@@ -2,7 +2,7 @@
 
 # Buyukbeden.net – Proje Kuralları
 
-Bu dosya her oturumun başında okunur. Ana brief: `docs/brief.md` (çelişkide brief geçerli). Mimari: `docs/mimari.md`. Görsel dil: `docs/tasarim-referansi.md` (mimari §T'nin önüne geçer). İçerik planı: `docs/icerik-plani.md`. Oturum notları: `docs/durum.md`.
+Bu dosya her oturumun başında okunur. **Yeni oturumda önce `docs/devam-notu.md` oku** (kaldığımız yer, devam eden işler, sıradaki adımlar). Ana brief: `docs/brief.md` (çelişkide brief geçerli). Mimari: `docs/mimari.md`. Görsel dil: `docs/tasarim-referansi.md` (mimari §T'nin önüne geçer). İçerik planı: `docs/icerik-plani.md`. Oturum notları: `docs/durum.md`.
 
 ## Amaç
 Türkiye'nin büyük beden moda, beden, stil, kombin, kumaş ve marka rehberi. **Satış sitesi değil**: sepet, fiyat, stok, ürün kartı, Product/Offer/AggregateRating schema yok. Buyukbedengiyim.com ileride ticari taraf; ona linkler yalnız doğal ve faydalıysa, `RelatedShoppingCTA` bileşeniyle ve içerikten aç/kapa edilerek. **Site sahibi açmayı söyleyene kadar Buyukbedengiyim.com sitede hiçbir yerde görünmez** (feature flag kapalı; marka listelerinde, metinlerde, linklerde yok).
@@ -41,6 +41,12 @@ Türkiye'nin büyük beden moda, beden, stil, kombin, kumaş ve marka rehberi. *
 7. **Kesinlik dili yasak:** "kesin olarak", "her zaman … bedendir", "tam olarak … bedene denk gelir" gibi ifadeler kullanılmaz; kontrol scripti bunları tarar ve raporlar. Doğru dil: "çoğu markada", "yaklaşık", "markaya göre değişir".
 8. **Tazelik:** Beden tablosu ve marka verisinde `lastVerifiedAt` 6 aydan eskiyse validate uyarı verir; yeniden doğrulanır.
 9. **Kaynak:** Kaynaksız tablo yok; tahmini/editoryal değerler ve inch→cm çevirileri açıkça etiketlenir; zayıf veri (tek kaynak) sayfada belirtilir.
+
+## Yayın ve Vercel kullanımı (site sahibinin isteği – Vercel kotası doldu)
+- **Her küçük değişiklikte push/deploy yok.** İlişkili değişiklikler birleştirilir; önce lokalde `npm run qa` (build + testler) yeşil olur, ancak sonra tek seferde push edilir. Ara commit'ler lokalde kalır.
+- `v2` dalına push önizleme build'i üretmez; Vercel yalnız `main`'de ve yalnız site dosyaları değiştiğinde build eder (`vercel.json > ignoreCommand` → `scripts/vercel-ignore.sh`). `docs/`, `*.md`, `legacy/`, `tests/` değişiklikleri build tetiklemez. Bu dosyalar silinmez/gevşetilmez.
+- Yayın akışı: lokal qa yeşil → v2 push → PR → main merge (tek production build). Gereksiz PR/merge zinciri yapılmaz; acil düzeltmeler de mümkünse bir sonraki toplu yayına eklenir.
+- Vercel hesabında ayar değişikliği veya eski deployment silme yalnız site sahibinin açık onayıyla.
 
 ## Teknoloji
 Next.js 16 App Router + TypeScript + Tailwind v4, tüm sayfalar build'de statik: `cacheComponents` açık olduğu için `dynamicParams` kullanılmaz; `(site)/layout.tsx` içinde `ensureStatic = "navigation"`, `generateStaticParams` + bilinmeyen slug için `notFound()` (bkz. mimari.md K1–K2). İçerik dosya tabanlı, zod ile doğrulanır; erişim yalnız `src/lib/content.ts` üzerinden. Dev server arka planda çalıştırılır, beklenmez.

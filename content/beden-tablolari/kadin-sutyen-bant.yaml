@@ -1,27 +1,32 @@
 title: "Sütyen bant bedeni: göğüs altı çevresine göre"
-caption: Sütyen bant (alt çevre) bedeni – göğüs altı vücut ölçüsü (cm), C&A tablosu
-silo: kadin
-scope: ic-giyim
-kind: olcu-cm
-columns:
-  - { key: bant, label: Bant bedeni }
-  - { key: gogusalti, label: Göğüs altı çevresi, unit: cm }
-rows:
-  - [ "65", 63–67 ]
-  - [ "70", 68–72 ]
-  - [ "75", 73–77 ]
-  - [ "80", 78–82 ]
-  - [ "85", 83–87 ]
-  - [ "90", 88–92 ]
-  - [ "95", 93–97 ]
-  - [ "100", 98–102 ]
-  - [ "105", 103–107 ]
-highlightColumn: bant
+caption: "Sütyen bant (alt çevre) bedeni – göğüs altı vücut ölçüsü (cm), C&A tablosu"
+kind: olcu
+gender: kadin
+brandName: "C&A"
+productType: ic-giyim
+countrySystem: EU
+measurementType: body
+sourceType: official_brand
+sourceUrl: "https://www.c-and-a.com/de/de/shop/bh-groesse-ermitteln"
+unit: cm
+lastVerifiedAt: 2026-10-07
 approximate: true
+fieldLabels: { underbust: "Göğüs altı çevresi" }
+highlight: underbust
+rows:
+  - { numericSize: "65", underbust: { min: 63, max: 67 } }
+  - { numericSize: "70", underbust: { min: 68, max: 72 } }
+  - { numericSize: "75", underbust: { min: 73, max: 77 } }
+  - { numericSize: "80", underbust: { min: 78, max: 82 } }
+  - { numericSize: "85", underbust: { min: 83, max: 87 } }
+  - { numericSize: "90", underbust: { min: 88, max: 92 } }
+  - { numericSize: "95", underbust: { min: 93, max: 97 } }
+  - { numericSize: "100", underbust: { min: 98, max: 102 } }
+  - { numericSize: "105", underbust: { min: 103, max: 107 } }
 notes:
   - "Kural: göğüs altı çevresi en yakın 5 cm adımına yuvarlanır (ör. 73 cm → 75). Aralıklar C&A tablosundan, yuvarlama kuralı C&A ve OTTO rehberlerinden."
-  - C&A'nın yayımladığı tabloda 85 etiketi atlanmış, 83–87 cm ve sonrasındaki aralıklar bir adım kaymış etiketlerle (90, 95 … 110) gösterilmiş. Burada etiketler, aynı kaynağın 5 cm yuvarlama kuralına göre düzeltildi; kaynağın kendi tablosu bu satırlarda farklı görünür.
-  - Büyük bantlarda bazı markalar farklı adım kullanabilir; üründe deneyerek doğrulayın.
+  - "C&A'nın yayımladığı tabloda 85 etiketi atlanmış, 83–87 cm ve sonrasındaki aralıklar bir adım kaymış etiketlerle (90, 95 … 110) gösterilmiş. Burada etiketler, aynı kaynağın 5 cm yuvarlama kuralına göre düzeltildi; kaynağın kendi tablosu bu satırlarda farklı görünür."
+  - "Büyük bantlarda bazı markalar farklı adım kullanabilir; üründe deneyerek doğrulayın."
 sources:
-  - { url: https://www.c-and-a.com/de/de/shop/bh-groesse-ermitteln, type: brand-official, label: C&A – Sütyen bedeni hesaplama rehberi, checkedAt: 2026-10-07 }
-  - { url: https://www.otto.de/mode/waesche/inspiration/bh-groessenberatung/, type: retailer, label: OTTO – Sütyen bedeni danışmanlığı, checkedAt: 2026-10-07 }
+  - { url: "https://www.c-and-a.com/de/de/shop/bh-groesse-ermitteln", type: "brand-official", label: "C&A – Sütyen bedeni hesaplama rehberi", checkedAt: "2026-10-07" }
+  - { url: "https://www.otto.de/mode/waesche/inspiration/bh-groessenberatung/", type: "retailer", label: "OTTO – Sütyen bedeni danışmanlığı", checkedAt: "2026-10-07" }

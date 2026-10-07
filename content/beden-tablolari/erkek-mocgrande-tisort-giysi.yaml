@@ -1,28 +1,31 @@
 title: "MocGrande erkek tişört giysi ölçüleri (2XL–10XL)"
 caption: "MocGrande – GİYSİ ölçüsü (ürünün kendisi, cm), tüm tişörtler için tek tablo"
-silo: erkek
-scope: ust-giyim
-kind: olcu-cm
+kind: olcu
+gender: erkek
 brand: mocgrande
-columns:
-  - { key: harf, label: Beden }
-  - { key: gogus, label: Göğüs (tek taraf, giysi), unit: cm }
-  - { key: boy, label: Ortadan boy (giysi), unit: cm }
+brandName: MocGrande
+productType: tisort
+countrySystem: harf
+measurementType: garment
+sourceType: official_brand
+sourceUrl: "https://www.mocgrande.com/mocgrande-buyuk-beden-erkek-tisort-uzun-kol-bisiklet-yaka-38"
+unit: cm
+lastVerifiedAt: 2026-10-07
+fieldLabels: { length: "Ortadan boy (giysi)" }
+highlight: chestWidth
 rows:
-  - ["2XL", "65", "79"]
-  - ["3XL", "68", "80"]
-  - ["4XL", "71", "81"]
-  - ["5XL", "74", "82"]
-  - ["6XL", "77", "83"]
-  - ["7XL", "80", "84"]
-  - ["8XL", "83", "85"]
-  - ["9XL", "86", "85,5"]
-  - ["10XL", "89", "86"]
-highlightColumn: gogus
-approximate: false
+  - { letterSize: "2XL", chestWidth: { min: 65, max: 65 }, length: { min: 79, max: 79 } }
+  - { letterSize: "3XL", chestWidth: { min: 68, max: 68 }, length: { min: 80, max: 80 } }
+  - { letterSize: "4XL", chestWidth: { min: 71, max: 71 }, length: { min: 81, max: 81 } }
+  - { letterSize: "5XL", chestWidth: { min: 74, max: 74 }, length: { min: 82, max: 82 } }
+  - { letterSize: "6XL", chestWidth: { min: 77, max: 77 }, length: { min: 83, max: 83 } }
+  - { letterSize: "7XL", chestWidth: { min: 80, max: 80 }, length: { min: 84, max: 84 } }
+  - { letterSize: "8XL", chestWidth: { min: 83, max: 83 }, length: { min: 85, max: 85 } }
+  - { letterSize: "9XL", chestWidth: { min: 86, max: 86 }, length: { min: 85.5, max: 85.5 } }
+  - { letterSize: "10XL", chestWidth: { min: 89, max: 89 }, length: { min: 86, max: 86 } }
 notes:
   - "Göğüs, tişört düz serildiğinde koltuk altından koltuk altına ölçülen tek taraf genişliktir; vücut göğüs çevrenizle doğrudan karşılaştırmayın."
   - "Markanın tablosunda kilo aralığı da var; beden kiloyla değil ölçüyle belirlendiği için burada gösterilmedi."
 sources:
-  - { url: https://www.mocgrande.com/mocgrande-buyuk-beden-erkek-tisort-uzun-kol-bisiklet-yaka-38, type: brand-official, label: MocGrande tişört ürün sayfası, checkedAt: 2026-10-07 }
-  - { url: https://static.ticimax.cloud/55768//uploads/images/olcutablosu-yeni-tshirt.jpg, type: brand-official, label: MocGrande tişört ölçü tablosu görseli, checkedAt: 2026-10-07 }
+  - { url: "https://www.mocgrande.com/mocgrande-buyuk-beden-erkek-tisort-uzun-kol-bisiklet-yaka-38", type: "brand-official", label: "MocGrande tişört ürün sayfası", checkedAt: "2026-10-07" }
+  - { url: "https://static.ticimax.cloud/55768//uploads/images/olcutablosu-yeni-tshirt.jpg", type: "brand-official", label: "MocGrande tişört ölçü tablosu görseli", checkedAt: "2026-10-07" }

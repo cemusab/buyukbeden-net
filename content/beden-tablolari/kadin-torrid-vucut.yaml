@@ -1,0 +1,31 @@
+title: "Torrid kadın vücut ölçüleri (US 10–30)"
+caption: "Torrid (ABD) giyim beden tablosu – vücut ölçüsü; kaynak inç"
+kind: olcu
+gender: kadin
+brandName: Torrid
+productType: genel
+countrySystem: US
+measurementType: body
+sourceType: official_brand
+sourceUrl: "https://www.torrid.com/on/demandware.store/Sites-torrid-Site/default/Page-Include?cid=td-size-guide-apparel"
+unit: inch
+lastVerifiedAt: 2026-10-07
+fieldLabels: { hip: "Alt basen" }
+highlight: bust
+rows:
+  - { numericSize: "10", letterSize: "M/L", equivalents: { marka: "00" }, bust: { min: 38, max: 40 }, waist: { min: 32, max: 34 }, hip: { min: 42, max: 44 } }
+  - { numericSize: "12", letterSize: "L", equivalents: { marka: "0" }, bust: { min: 40, max: 42 }, waist: { min: 34, max: 36 }, hip: { min: 44, max: 46 } }
+  - { numericSize: "14", letterSize: "1X", equivalents: { marka: "1" }, bust: { min: 42, max: 44 }, waist: { min: 36, max: 38 }, hip: { min: 46, max: 48 } }
+  - { numericSize: "16", letterSize: "1X", equivalents: { marka: "1" }, bust: { min: 44, max: 46 }, waist: { min: 38, max: 40 }, hip: { min: 48, max: 50 } }
+  - { numericSize: "18", letterSize: "2X", equivalents: { marka: "2" }, bust: { min: 46, max: 48 }, waist: { min: 40, max: 42 }, hip: { min: 50, max: 52 } }
+  - { numericSize: "20", letterSize: "2X", equivalents: { marka: "2" }, bust: { min: 48, max: 50 }, waist: { min: 42, max: 44 }, hip: { min: 52, max: 54 } }
+  - { numericSize: "22", letterSize: "3X", equivalents: { marka: "3" }, bust: { min: 50, max: 52 }, waist: { min: 44, max: 46 }, hip: { min: 54, max: 56 } }
+  - { numericSize: "24", letterSize: "3X", equivalents: { marka: "3" }, bust: { min: 52, max: 54 }, waist: { min: 46, max: 48 }, hip: { min: 56, max: 58 } }
+  - { numericSize: "26", letterSize: "4X", equivalents: { marka: "4" }, bust: { min: 56, max: 58 }, waist: { min: 50, max: 52 }, hip: { min: 60, max: 64 } }
+  - { numericSize: "28", letterSize: "5X", equivalents: { marka: "5" }, bust: { min: 60, max: 64 }, waist: { min: 54, max: 58 }, hip: { min: 66, max: 70 } }
+  - { numericSize: "30", letterSize: "6X", equivalents: { marka: "6" }, bust: { min: 66, max: 70 }, waist: { min: 60, max: 64 }, hip: { min: 72, max: 76 } }
+notes:
+  - "“Markanın kendi bedeni” sütunu Torrid'in 00–6 sistemidir."
+  - "Torrid'in kendi uluslararası çevirmesi ASOS, Simply Be ve Eloquii kuralından iki numara farklıdır; bu yüzden EU karşılığı verilmedi."
+sources:
+  - { url: "https://www.torrid.com/on/demandware.store/Sites-torrid-Site/default/Page-Include?cid=td-size-guide-apparel", type: "brand-official", label: "Torrid beden rehberi (inç)", checkedAt: "2026-10-07" }

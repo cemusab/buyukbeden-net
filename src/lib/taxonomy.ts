@@ -21,6 +21,7 @@ export const CATEGORIES: Record<GenderSilo, readonly CategoryDef[]> = {
     { key: "jean", label: "Jean" },
     { key: "tayt", label: "Tayt" },
     { key: "etek", label: "Etek" },
+    { key: "sort", label: "Şort" },
     { key: "tisort", label: "Tişört" },
     { key: "gomlek", label: "Gömlek" },
     { key: "bluz", label: "Bluz" },
@@ -33,9 +34,10 @@ export const CATEGORIES: Record<GenderSilo, readonly CategoryDef[]> = {
     { key: "abiye", label: "Abiye" },
     { key: "tesettur", label: "Tesettür" },
     { key: "mayo-hasema", label: "Mayo ve Haşema" },
+    { key: "esofman", label: "Eşofman" },
     { key: "spor-giyim", label: "Spor Giyim" },
     { key: "ic-giyim", label: "İç Giyim" },
-    { key: "ev-giyimi", label: "Ev Giyimi" },
+    { key: "ev-giyimi", label: "Pijama ve Ev Giyimi" },
   ],
   erkek: [
     { key: "tisort", label: "Tişört" },
@@ -170,6 +172,8 @@ export const LANDING_PATHS = {
   "erkek-stil": "/erkek/stil",
   "kadin-kombinler": "/kadin/kombinler",
   "erkek-kombinler": "/erkek/kombinler",
+  "kadin-ayakkabi": "/kadin/ayakkabi",
+  "erkek-ayakkabi": "/erkek/ayakkabi",
   "beden-rehberi": "/beden-rehberi",
   stil: "/stil",
   kombinler: "/kombinler",
@@ -201,11 +205,18 @@ export const RESERVED_SEGMENTS = [
   "beden-rehberi",
   "stil",
   "kombinler",
+  "ayakkabi",
   "index",
 ];
 
 /** Ortak (silo dışı) makalelerin yerleşebileceği bölümler. */
 export const SHARED_ARTICLE_SECTIONS = ["rehberler", "beden-rehberi", "kumas-rehberi"] as const;
+/**
+ * Silo (kadın/erkek) makalelerinin giyim hub'ı dışındaki bölümleri: `ayakkabi` → /{silo}/ayakkabi/{segment}.
+ * Ayakkabı giyim dışı ayrı bir silo bölümüdür (CLAUDE.md "Ayakkabı"); bölüm landing'i `sayfalar/{silo}-ayakkabi`.
+ */
+export const SILO_ARTICLE_SECTIONS = ["ayakkabi"] as const;
+export const ARTICLE_SECTIONS = [...SHARED_ARTICLE_SECTIONS, ...SILO_ARTICLE_SECTIONS] as const;
 
 /** Ana navigasyon (brief §3) – hedefi manifest'te olmayan öğe gösterilmez. */
 export const MAIN_NAV: { label: string; path: string; mega?: GenderSilo }[] = [

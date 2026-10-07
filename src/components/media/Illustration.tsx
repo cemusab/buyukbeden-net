@@ -15,12 +15,27 @@ export function GarmentArt({ category, silo, className = "h-full w-auto max-h-fu
   return <Illu.GarmentIllustration silo={silo} category={category} className={className} />;
 }
 
+export function hasCroquisArt(silo: string, category: string): boolean {
+  return Illu.hasGarmentCroquis(silo, category);
+}
+
+/** Kategori krokisi (kıyafeti giyen yüzsüz manken / iç giyim ve ayakkabıda natürmort). Zemin rengi `croquisTile` ile. */
+export function CroquisArt({ silo, category, className = "h-full w-auto max-h-full" }: { silo: "kadin" | "erkek"; category: string; className?: string }) {
+  if (!hasCroquisArt(silo, category)) return null;
+  return <Illu.GarmentCroquis silo={silo} category={category} tile={false} tight className={className} />;
+}
+
+export function croquisTile(silo: "kadin" | "erkek", category: string): string {
+  return Illu.garmentCroquisTile(silo, category);
+}
+
 export function MeasureArt({ silo, className, title, show }: { silo: "kadin" | "erkek"; className?: string; title?: string; show?: readonly string[] }) {
   return <Illu.MeasureFigure silo={silo} className={className} title={title} show={show} />;
 }
 
+/** Vücut tipi figürü (moda krokisi tarzı). Eski `BodyShape` dışa açık kalır ama burada yeni figür kullanılır. */
 export function BodyShapeArt({ silo, shape, className, title }: { silo: "kadin" | "erkek"; shape: string; className?: string; title?: string }) {
-  return <Illu.BodyShape silo={silo} shape={shape} guides className={className} title={title} />;
+  return <Illu.BodyTypeFigure silo={silo} shape={shape} guides className={className} title={title} />;
 }
 
 export function QuickIcon({ name, className }: { name: string; className?: string }) {

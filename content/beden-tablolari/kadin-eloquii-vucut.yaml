@@ -1,0 +1,29 @@
+title: "Eloquii kadın vücut ölçüleri (US 14–32)"
+caption: "Eloquii (ABD) üst giyim ve ceket beden tablosu – vücut ölçüsü; kaynak inç"
+kind: olcu
+gender: kadin
+brandName: Eloquii
+productType: ust-giyim
+countrySystem: US
+measurementType: body
+sourceType: official_brand
+sourceUrl: "https://www.eloquii.com/c/eloquii-size-chart.html"
+unit: inch
+lastVerifiedAt: 2026-10-07
+fieldLabels: { waist: "Doğal bel" }
+highlight: bust
+rows:
+  - { numericSize: "14", bust: { min: 43, max: 45 }, waist: { min: 37, max: 39 }, hip: { min: 46, max: 48 } }
+  - { numericSize: "16", bust: { min: 45, max: 47 }, waist: { min: 39, max: 41 }, hip: { min: 48, max: 50 } }
+  - { numericSize: "18", bust: { min: 47, max: 49 }, waist: { min: 41, max: 43 }, hip: { min: 50, max: 52 } }
+  - { numericSize: "20", bust: { min: 49, max: 51 }, waist: { min: 43, max: 45 }, hip: { min: 52, max: 54 } }
+  - { numericSize: "22", bust: { min: 51, max: 53 }, waist: { min: 45, max: 47 }, hip: { min: 54, max: 56 } }
+  - { numericSize: "24", bust: { min: 53, max: 55 }, waist: { min: 47, max: 49 }, hip: { min: 56, max: 58 } }
+  - { numericSize: "26", bust: { min: 56, max: 58 }, waist: { min: 50, max: 52 }, hip: { min: 59, max: 61 } }
+  - { numericSize: "28", bust: { min: 59, max: 61 }, waist: { min: 53, max: 55 }, hip: { min: 62, max: 64 } }
+  - { numericSize: "30", bust: { min: 62, max: 65 }, waist: { min: 56, max: 59 }, hip: { min: 65, max: 68 } }
+  - { numericSize: "32", bust: { min: 66, max: 69 }, waist: { min: 60, max: 63 }, hip: { min: 70, max: 73 } }
+notes:
+  - "Göğüs, kolların altından ve göğsün en dolgun yerinden ölçülür; sütyen bedeniyle karıştırılmamalı."
+sources:
+  - { url: "https://www.eloquii.com/c/eloquii-size-chart.html", type: "brand-official", label: "Eloquii beden tablosu (inç)", checkedAt: "2026-10-07" }

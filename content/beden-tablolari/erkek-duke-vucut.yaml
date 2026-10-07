@@ -1,0 +1,31 @@
+title: "Duke Clothing erkek vücut ölçüleri (XL–10XL)"
+caption: "Duke Clothing (İngiltere) – gömlek, tişört, polo, sweat ve ceket için vücut göğüs ölçüsü (cm)"
+kind: olcu
+gender: erkek
+brandName: "Duke Clothing"
+productType: ust-giyim
+countrySystem: harf
+measurementType: body
+sourceType: official_brand
+sourceUrl: "https://www.dukeclothing.com/size-fit-guide"
+unit: cm
+lastVerifiedAt: 2026-10-07
+highlight: chest
+rows:
+  - { letterSize: "XL", chest: { min: 107, max: 111 } }
+  - { letterSize: "XXL", chest: { min: 112, max: 117 } }
+  - { letterSize: "1XL", chest: { min: 118, max: 125 } }
+  - { letterSize: "2XL", chest: { min: 126, max: 132 } }
+  - { letterSize: "3XL", chest: { min: 133, max: 140 } }
+  - { letterSize: "4XL", chest: { min: 141, max: 147 } }
+  - { letterSize: "5XL", chest: { min: 148, max: 155 } }
+  - { letterSize: "6XL", chest: { min: 156, max: 163 } }
+  - { letterSize: "7XL", chest: { min: 164, max: 170 } }
+  - { letterSize: "8XL", chest: { min: 171, max: 178 } }
+  - { letterSize: "9XL", chest: { min: 179, max: 186 } }
+  - { letterSize: "10XL", chest: { min: 187, max: 194 } }
+notes:
+  - "Duke'ta normal serinin XXL'i (112–117) ile king serinin 2XL'i (126–132) farklı bedenlerdir."
+  - "Triko tablosu bazı bedenlerde daha dar aralık verir; burada gömlek, tişört, polo, sweat ve ceket tablosu kullanıldı."
+sources:
+  - { url: "https://www.dukeclothing.com/size-fit-guide", type: "brand-official", label: "Duke Clothing beden ve kalıp rehberi", checkedAt: "2026-10-07" }

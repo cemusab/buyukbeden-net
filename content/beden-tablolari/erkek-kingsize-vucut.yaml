@@ -1,0 +1,30 @@
+title: "KingSize erkek vücut ölçüleri (L–10XL)"
+caption: "KingSize (ABD) üst/alt giyim beden tablosu – vücut ölçüsü; kaynak inç"
+kind: olcu
+gender: erkek
+brandName: KingSize
+productType: genel
+countrySystem: harf
+measurementType: body
+sourceType: official_brand
+sourceUrl: "https://www.kingsize.com/on/demandware.store/Sites-oss-Site/default/SizeGuide-Show?cid=ks-sizeguide-topsbottoms"
+unit: inch
+lastVerifiedAt: 2026-10-07
+highlight: chest
+rows:
+  - { letterSize: "L", chest: { min: 42, max: 44 }, waist: { min: 38, max: 40 }, neck: { min: 16, max: 16.5 }, note: "Yalnız Tall serisinde" }
+  - { letterSize: "XL", chest: { min: 46, max: 48 }, waist: { min: 42, max: 44 }, neck: { min: 17, max: 17.5 } }
+  - { letterSize: "2XL", chest: { min: 50, max: 52 }, waist: { min: 46, max: 48 }, neck: { min: 18, max: 18.5 } }
+  - { letterSize: "3XL", chest: { min: 54, max: 56 }, waist: { min: 50, max: 52 }, neck: { min: 19, max: 19.5 } }
+  - { letterSize: "4XL", chest: { min: 58, max: 60 }, waist: { min: 54, max: 56 }, neck: { min: 20, max: 20.5 } }
+  - { letterSize: "5XL", chest: { min: 62, max: 64 }, waist: { min: 58, max: 60 }, neck: { min: 21, max: 21.5 } }
+  - { letterSize: "6XL", chest: { min: 66, max: 68 }, waist: { min: 62, max: 64 }, neck: { min: 22, max: 22.5 } }
+  - { letterSize: "7XL", chest: { min: 70, max: 72 }, waist: { min: 66, max: 68 }, neck: { min: 23, max: 23.5 } }
+  - { letterSize: "8XL", chest: { min: 74, max: 76 }, waist: { min: 70, max: 72 }, neck: { min: 24, max: 24.5 } }
+  - { letterSize: "9XL", chest: { min: 78, max: 80 }, waist: { min: 74, max: 76 }, neck: { min: 25, max: 25.5 } }
+  - { letterSize: "10XL", chest: { min: 82, max: 84 }, waist: { min: 78, max: 80 }, neck: { min: 26, max: 26.5 } }
+notes:
+  - "Big serisi XL–10XL, Tall serisi L–7XL; göğüs ve bel iki seride aynıdır. Marka 6 ft 2 in (≈ 188 cm) ve üstünü Tall sayıyor."
+  - "Markanın cm tablosunda yazım hataları olduğu için inç tablosu esas alındı; cm değerleri bizim çevirimizdir."
+sources:
+  - { url: "https://www.kingsize.com/on/demandware.store/Sites-oss-Site/default/SizeGuide-Show?cid=ks-sizeguide-topsbottoms", type: "brand-official", label: "KingSize beden tablosu (inç)", checkedAt: "2026-10-07" }

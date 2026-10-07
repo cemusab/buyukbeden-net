@@ -1,0 +1,27 @@
+title: "Skechers kadın ayakkabı numara çevirme: US, UK, EU (US 11–13)"
+caption: "Skechers kadın numara çevirme tablosu (US / UK / EU; ayak ölçüsü vermez)"
+kind: donusum
+gender: kadin
+brandName: "Skechers"
+productType: ayakkabi
+countrySystem: US
+sourceType: official_brand
+sourceUrl: "https://skechers.ca/en/size-chart"
+lastVerifiedAt: 2026-10-07
+columns:
+  - { key: "US", label: "US" }
+  - { key: "UK", label: "UK" }
+  - { key: "EU", label: "EU" }
+highlight: EU
+rows:
+  - { systems: { US: "11", UK: "8", EU: "41" } }
+  - { systems: { US: "12", UK: "9", EU: "42" } }
+  - { systems: { US: "13", UK: "10", EU: "43" } }
+notes:
+  - "Kadın tablosu US 13 (EU 43) ile biter; yalnız EU 41 ve üstü satırlar aktarıldı. Kaynak ayak uzunluğu (cm) vermez."
+  - "Aynı US 11, New Balance kadın tablosunda EU 43, burada EU 41'dir: US numarasını EU'ya çevirirken markanın kendi tablosuna bakın."
+  - "Skechers erkek tablosunda bazı küçük numara satırlarında hata var (US 9, 9.5 ve 10'un üçü EU 42.5); kadın satırları bu karşılaştırmada kullanıldı."
+  - "Skechers kadın genişlikleri: B, B/C ve D (Wide Fit). Kadında Extra Wide seçeneği yok."
+sources:
+  - { url: "https://skechers.ca/en/size-chart", type: "brand-official", label: "Skechers Kanada numara tablosu", checkedAt: "2026-10-07" }
+  - { url: "https://skechers.com/stories/the-comfort-lab/skechers-wide-fit-shoes-explained.html", type: "brand-official", label: "Skechers geniş kalıp açıklaması", checkedAt: "2026-10-07" }

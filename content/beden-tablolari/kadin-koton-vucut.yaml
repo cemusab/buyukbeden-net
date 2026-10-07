@@ -1,24 +1,25 @@
-title: Koton kadın beden tablosu (L–4XL)
-caption: Koton kadın beden tablosu – ortalama vücut ölçüsü (cm)
-silo: kadin
-scope: genel
-kind: olcu-cm
-columns:
-  - { key: harf, label: Harf }
-  - { key: beden, label: Beden }
-  - { key: gogus, label: Göğüs, unit: cm }
-  - { key: bel, label: Bel, unit: cm }
-  - { key: basen, label: Basen, unit: cm }
+title: "Koton kadın beden tablosu (L–4XL)"
+caption: "Koton kadın beden tablosu – ortalama vücut ölçüsü (cm)"
+kind: olcu
+gender: kadin
+brand: koton
+brandName: Koton
+productType: genel
+countrySystem: TR
+measurementType: body
+sourceType: official_brand
+sourceUrl: "https://www.koton.com/beden-tablosu/"
+unit: cm
+lastVerifiedAt: 2026-10-07
+highlight: bust
 rows:
-  - [ L, "40", "92", "76", "102" ]
-  - [ XL, "42", "96", "80", "106" ]
-  - [ 2XL, "44", Verilmiyor, Verilmiyor, Verilmiyor ]
-  - [ 3XL, "46", Verilmiyor, Verilmiyor, Verilmiyor ]
-  - [ 4XL, "48", Verilmiyor, Verilmiyor, Verilmiyor ]
-highlightColumn: beden
-approximate: false
+  - { numericSize: "40", letterSize: "L", bust: { min: 92, max: 92 }, waist: { min: 76, max: 76 }, hip: { min: 102, max: 102 } }
+  - { numericSize: "42", letterSize: "XL", bust: { min: 96, max: 96 }, waist: { min: 80, max: 80 }, hip: { min: 106, max: 106 } }
+  - { numericSize: "44", letterSize: "2XL" }
+  - { numericSize: "46", letterSize: "3XL" }
+  - { numericSize: "48", letterSize: "4XL" }
 notes:
-  - Koton 2XL–4XL için cm yerine yalnız kilo aralığı yayımlıyor; kilo bedeni belirlemediği için bu sitede gösterilmez.
-  - Harf ile numara arasındaki tek adımlı eşleme Koton'un kendi tablosundandır.
+  - "Koton 2XL–4XL için cm yerine yalnız kilo aralığı yayımlıyor; kilo bedeni belirlemediği için bu sitede gösterilmez."
+  - "Harf ile numara arasındaki tek adımlı eşleme Koton'un kendi tablosundandır."
 sources:
-  - { url: https://www.koton.com/beden-tablosu/, type: brand-official, label: Koton beden tablosu yazısı, checkedAt: 2026-10-07 }
+  - { url: "https://www.koton.com/beden-tablosu/", type: "brand-official", label: "Koton beden tablosu yazısı", checkedAt: "2026-10-07" }

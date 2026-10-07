@@ -1,0 +1,30 @@
+title: "Kiğılı erkek gömlek yaka ölçüsü (giysi, L–7X)"
+caption: "Kiğılı – regular gömlek yakası, ÜRÜN (giysi) ölçüsü (cm)"
+kind: olcu
+gender: erkek
+brand: kigili
+brandName: "Kiğılı"
+productType: gomlek
+countrySystem: harf
+measurementType: garment
+sourceType: official_brand
+sourceUrl: "https://www.kigili.com/pages/bedenini-bul"
+unit: cm
+lastVerifiedAt: 2026-10-07
+fitType: regular
+fieldLabels: { neck: "Regular gömlek yaka (giysi)" }
+highlight: neck
+rows:
+  - { letterSize: "L", neck: { min: 42.5, max: 42.5 } }
+  - { letterSize: "XL", neck: { min: 44.5, max: 44.5 } }
+  - { letterSize: "2X", neck: { min: 46.5, max: 46.5 } }
+  - { letterSize: "3X", neck: { min: 48.5, max: 48.5 } }
+  - { letterSize: "4X", neck: { min: 51, max: 51 } }
+  - { letterSize: "5X", neck: { min: 53, max: 53 } }
+  - { letterSize: "6X", neck: { min: 55, max: 55 } }
+  - { letterSize: "7X", neck: { min: 56.5, max: 56.5 } }
+notes:
+  - "Bunlar gömleğin kendi yaka ölçüsüdür (giysi); vücut boyun çevresi bundan biraz küçük olur."
+  - "Slim gömlekte 4X 50,5 ve 5X 52,5 cm; diğer bedenler benzer."
+sources:
+  - { url: "https://www.kigili.com/pages/bedenini-bul", type: "brand-official", label: "Kiğılı – Bedenini bul", checkedAt: "2026-10-07" }

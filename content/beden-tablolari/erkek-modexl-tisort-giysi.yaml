@@ -1,0 +1,29 @@
+title: "ModeXL likralı bisiklet yaka tişört giysi ölçüleri (3XL–10XL)"
+caption: "ModeXL (superbattal.com) likralı bisiklet yaka tişört – ÜRÜN (giysi) ölçüsü (cm)"
+kind: olcu
+gender: erkek
+brand: modexl
+brandName: ModeXL
+productType: tisort
+countrySystem: harf
+measurementType: garment
+sourceType: official_brand
+sourceUrl: "https://www.superbattal.com/tr/t-shirt-super-bisiklet-yaka-20149-siyah.html"
+unit: cm
+lastVerifiedAt: 2026-10-07
+fieldLabels: { chestWidth: "Göğüs (giysi)" }
+highlight: chestWidth
+rows:
+  - { letterSize: "3XL", chestWidth: { min: 70, max: 70 }, length: { min: 84, max: 84 } }
+  - { letterSize: "4XL", chestWidth: { min: 73, max: 73 }, length: { min: 85, max: 85 } }
+  - { letterSize: "5XL", chestWidth: { min: 76, max: 76 }, length: { min: 86, max: 86 } }
+  - { letterSize: "6XL", chestWidth: { min: 80, max: 80 }, length: { min: 87, max: 87 } }
+  - { letterSize: "7XL", chestWidth: { min: 84, max: 84 }, length: { min: 88, max: 88 } }
+  - { letterSize: "8XL", chestWidth: { min: 88, max: 88 }, length: { min: 89, max: 89 } }
+  - { letterSize: "9XL", chestWidth: { min: 92, max: 92 }, length: { min: 90, max: 90 } }
+  - { letterSize: "10XL", chestWidth: { min: 96, max: 96 }, length: { min: 91, max: 91 } }
+notes:
+  - "Tabloda göğüs değerinin tek taraf mı çevre mi olduğu yazmıyor; değerler ürün eniyle uyumlu olduğu için tek kat en olarak gösterildi."
+  - "Ürüne özel tablodur (%97 pamuk, %3 likra). Ortalama kilo sütunu, beden kiloyla belirlenmediği için gösterilmedi."
+sources:
+  - { url: "https://www.superbattal.com/tr/t-shirt-super-bisiklet-yaka-20149-siyah.html", type: "brand-official", label: "ModeXL (superbattal.com) bisiklet yaka tişört ürün sayfası", checkedAt: "2026-10-07" }

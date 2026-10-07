@@ -1,28 +1,31 @@
-title: LC Waikiki kadın büyük beden vücut ölçüleri (38–54)
-caption: LC Waikiki kadın beden rehberi – vücut ölçüsü (cm), büyük beden elbise ürünü
-silo: kadin
-scope: elbise
-kind: olcu-cm
-columns:
-  - { key: beden, label: Beden }
-  - { key: boy, label: Boy, unit: cm }
-  - { key: gogus, label: Göğüs, unit: cm }
-  - { key: bel, label: Bel, unit: cm }
-  - { key: basen, label: Basen, unit: cm }
+title: "LC Waikiki kadın büyük beden vücut ölçüleri (38–54)"
+caption: "LC Waikiki kadın beden rehberi – vücut ölçüsü (cm), büyük beden elbise ürünü"
+kind: olcu
+gender: kadin
+brand: lc-waikiki
+brandName: "LC Waikiki"
+productType: elbise
+countrySystem: TR
+measurementType: body
+sourceType: official_brand
+sourceUrl: "https://www.lcw.com/buyuk-beden-bisiklet-yaka-elbise-kahverengi-o-5340792"
+unit: cm
+lastVerifiedAt: 2026-10-07
+heightNote: "Tüm bedenler 160–170 cm boy için tanımlanmıştır."
+heightRange: { min: 160, max: 170 }
+highlight: bust
 rows:
-  - [ 38 / M, 160–170, "90", "74", "98" ]
-  - [ 40 / L, 160–170, "95", "79", "103" ]
-  - [ 42 / XL, 160–170, "100", "84", "108" ]
-  - [ 44 / 2XL, 160–170, "106", "90", "114" ]
-  - [ 46 / 3XL, 160–170, "112", "96", "120" ]
-  - [ 48 / 4XL, 160–170, "118", "102", "126" ]
-  - [ 50 / 5XL, 160–170, "124", "109", "132" ]
-  - [ 52 / 6XL, 160–170, "130", "116", "138" ]
-  - [ 54 / 7XL, 160–170, "136", "123", "144" ]
-highlightColumn: gogus
-approximate: false
+  - { numericSize: "38", letterSize: "M", bust: { min: 90, max: 90 }, waist: { min: 74, max: 74 }, hip: { min: 98, max: 98 } }
+  - { numericSize: "40", letterSize: "L", bust: { min: 95, max: 95 }, waist: { min: 79, max: 79 }, hip: { min: 103, max: 103 } }
+  - { numericSize: "42", letterSize: "XL", bust: { min: 100, max: 100 }, waist: { min: 84, max: 84 }, hip: { min: 108, max: 108 } }
+  - { numericSize: "44", letterSize: "2XL", bust: { min: 106, max: 106 }, waist: { min: 90, max: 90 }, hip: { min: 114, max: 114 } }
+  - { numericSize: "46", letterSize: "3XL", bust: { min: 112, max: 112 }, waist: { min: 96, max: 96 }, hip: { min: 120, max: 120 } }
+  - { numericSize: "48", letterSize: "4XL", bust: { min: 118, max: 118 }, waist: { min: 102, max: 102 }, hip: { min: 126, max: 126 } }
+  - { numericSize: "50", letterSize: "5XL", bust: { min: 124, max: 124 }, waist: { min: 109, max: 109 }, hip: { min: 132, max: 132 } }
+  - { numericSize: "52", letterSize: "6XL", bust: { min: 130, max: 130 }, waist: { min: 116, max: 116 }, hip: { min: 138, max: 138 } }
+  - { numericSize: "54", letterSize: "7XL", bust: { min: 136, max: 136 }, waist: { min: 123, max: 123 }, hip: { min: 144, max: 144 } }
 notes:
-  - Tüm bedenler 160–170 cm boy için tanımlanmış; bu aralığın dışındaki boylarda uzunluk farklı oturabilir.
+  - "Bu boy aralığının dışında çevre ölçüleri aynı kalsa da elbise boyu farklı oturabilir."
   - "Aynı pencerede çift beden karşılıkları: XL–2XL = 42–44, 3XL–4XL = 46–48, 5XL–6XL = 50–52."
 sources:
-  - { url: https://www.lcw.com/buyuk-beden-bisiklet-yaka-elbise-kahverengi-o-5340792, type: brand-official, label: LC Waikiki büyük beden elbise ürün sayfası beden rehberi, checkedAt: 2026-10-07 }
+  - { url: "https://www.lcw.com/buyuk-beden-bisiklet-yaka-elbise-kahverengi-o-5340792", type: "brand-official", label: "LC Waikiki büyük beden elbise ürün sayfası beden rehberi", checkedAt: "2026-10-07" }

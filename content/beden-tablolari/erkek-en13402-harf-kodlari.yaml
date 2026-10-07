@@ -1,0 +1,25 @@
+title: "EN 13402 erkek harf kodları ve göğüs ölçüsü (XL–5XL)"
+caption: "Avrupa beden etiketleme standardı EN 13402 – erkek harf kodlarının göğüs aralıkları (vücut ölçüsü, cm), ikincil özet"
+kind: olcu
+gender: erkek
+brandName: "EN 13402 harf kodları (ikincil özet)"
+productType: genel
+countrySystem: harf
+measurementType: body
+sourceType: generic
+sourceUrl: "https://en.wikipedia.org/wiki/Joint_European_standard_for_size_labelling_of_clothes"
+unit: cm
+lastVerifiedAt: 2026-10-07
+approximate: true
+highlight: chest
+rows:
+  - { letterSize: "XL", chest: { min: 110, max: 118 } }
+  - { letterSize: "XXL", chest: { min: 118, max: 129 } }
+  - { letterSize: "3XL", chest: { min: 129, max: 141 } }
+  - { letterSize: "4XL", chest: { min: 141, max: 154 } }
+  - { letterSize: "5XL", chest: { min: 154, max: 166 } }
+notes:
+  - "Genel ve yaklaşık bir referanstır: standart, harf aralıklarını şirketlere bırakır; markalar kendi tablolarını kullanır."
+  - "Değerler standardın ikincil bir özetinden alınmıştır; standart metni ücretli olduğu için doğrudan okunamadı."
+sources:
+  - { url: "https://en.wikipedia.org/wiki/Joint_European_standard_for_size_labelling_of_clothes", type: "reference", label: "EN 13402 özeti (ikincil kaynak)", checkedAt: "2026-10-07" }

@@ -1,30 +1,34 @@
-title: JP1880 erkek üst giyim vücut ölçüleri (L–10XL)
-caption: "JP1880 erkek beden tablosu – vücut ölçüsü (cm): harf, çift numara, göğüs ve harf bedenli pantolon beli"
-silo: erkek
-scope: ust-giyim
-kind: olcu-cm
-columns:
-  - { key: harf, label: Harf }
-  - { key: numara, label: Numara }
-  - { key: gogus, label: Göğüs, unit: cm }
-  - { key: bel, label: Pantolon beli (harf beden), unit: cm }
+title: "JP1880 erkek üst giyim vücut ölçüleri (L–10XL)"
+caption: "JP1880 erkek beden tablosu – vücut ölçüsü (cm): harf, çift numara, göğüs, harf bedenli pantolon beli ve gömlek yaka"
+kind: olcu
+gender: erkek
+brand: jp1880
+brandName: JP1880
+productType: genel
+countrySystem: DE
+measurementType: body
+sourceType: official_brand
+sourceUrl: "https://www.jp1880.de/de/guides/groessenberater"
+unit: cm
+lastVerifiedAt: 2026-10-07
+fieldLabels: { waist: "Pantolon beli (harf beden)", neck: "Gömlek yaka" }
+highlight: chest
 rows:
-  - [ L, 52/54, 102–109, 90–97 ]
-  - [ XL, 56/58, 110–117, 98–105 ]
-  - [ XXL, 60/62, 118–125, 106–115 ]
-  - [ 3XL, 64/66, 126–133, 116–125 ]
-  - [ 4XL, 68/70, 134–141, 126–135 ]
-  - [ 5XL, 72/74, 142–149, 136–145 ]
-  - [ 6XL, 76/78, 150–157, 146–155 ]
-  - [ 7XL, 80/82, 158–165, 156–165 ]
-  - [ 8XL, 84/86, 166–173, 166–175 ]
-  - [ 9XL, 88/90, 174–181, – ]
-  - [ 10XL, 92/94, 182–189, – ]
-highlightColumn: gogus
-approximate: false
+  - { numericSize: "52/54", letterSize: "L", chest: { min: 102, max: 109 }, waist: { min: 90, max: 97 }, neck: { min: 41, max: 42 } }
+  - { numericSize: "56/58", letterSize: "XL", chest: { min: 110, max: 117 }, waist: { min: 98, max: 105 }, neck: { min: 43, max: 44 } }
+  - { numericSize: "60/62", letterSize: "XXL", chest: { min: 118, max: 125 }, waist: { min: 106, max: 115 }, neck: { min: 45, max: 46 } }
+  - { numericSize: "64/66", letterSize: "3XL", chest: { min: 126, max: 133 }, waist: { min: 116, max: 125 }, neck: { min: 47, max: 48 } }
+  - { numericSize: "68/70", letterSize: "4XL", chest: { min: 134, max: 141 }, waist: { min: 126, max: 135 }, neck: { min: 49, max: 50 } }
+  - { numericSize: "72/74", letterSize: "5XL", chest: { min: 142, max: 149 }, waist: { min: 136, max: 145 }, neck: { min: 51, max: 52 } }
+  - { numericSize: "76/78", letterSize: "6XL", chest: { min: 150, max: 157 }, waist: { min: 146, max: 155 }, neck: { min: 53, max: 54 } }
+  - { numericSize: "80/82", letterSize: "7XL", chest: { min: 158, max: 165 }, waist: { min: 156, max: 165 }, neck: { min: 55, max: 56 } }
+  - { numericSize: "84/86", letterSize: "8XL", chest: { min: 166, max: 173 }, waist: { min: 166, max: 175 }, neck: { min: 57, max: 58 } }
+  - { numericSize: "88/90", letterSize: "9XL", chest: { min: 174, max: 181 }, neck: { min: 59, max: 60 } }
+  - { numericSize: "92/94", letterSize: "10XL", chest: { min: 182, max: 189 }, neck: { min: 61, max: 62 } }
 notes:
-  - Uzun boy serisi (LT–5XT) aynı göğüs aralıklarını kullanır; tişört ve polo 4 cm daha uzundur.
-  - İki beden arasında kalındığında marka büyük olanı öneriyor.
-  - Numara, Alman çift numara sistemidir (numara ≈ göğüs ÷ 2); Türk markalarındaki numaralarla aynı değildir.
+  - "Uzun boy serisi (LT–5XT) aynı göğüs aralıklarını kullanır; tişört ve polo 4 cm daha uzundur."
+  - "İki beden arasında kalındığında marka büyük olanı öneriyor."
+  - "Gömlek yaka, markanın yaka numarasıdır (ör. 41/42 = 41–42 cm boyun çevresi), aynı beden danışmanından."
+  - "Numara, Alman çift numara sistemidir (numara ≈ göğüs ÷ 2); Türk markalarındaki numaralarla aynı değildir."
 sources:
-  - { url: https://www.jp1880.de/de/guides/groessenberater, type: brand-official, label: JP1880 beden danışmanı (erkek), checkedAt: 2026-10-07 }
+  - { url: "https://www.jp1880.de/de/guides/groessenberater", type: "brand-official", label: "JP1880 beden danışmanı (erkek)", checkedAt: "2026-10-07" }

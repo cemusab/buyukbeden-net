@@ -1,0 +1,24 @@
+title: "Target – A New Day kadın plus vücut ölçüleri (XXL–4X)"
+caption: "Target – A New Day (ABD) kadın plus beden tablosu – vücut ölçüsü; kaynak inç"
+kind: olcu
+gender: kadin
+brandName: "Target – A New Day"
+productType: genel
+countrySystem: US
+measurementType: body
+sourceType: official_brand
+sourceUrl: "https://digitalcontent.target.com/itemcontent/sizecharts/htmlfragments/women-clothing/a-new-day/womens.html"
+unit: inch
+lastVerifiedAt: 2026-10-07
+partialRows: true
+highlight: bust
+rows:
+  - { numericSize: "17", letterSize: "XXL", bust: { min: 45.5, max: 45.5 }, waist: { min: 40.5, max: 40.5 }, hip: { min: 48.25, max: 48.25 } }
+  - { numericSize: "18", letterSize: "1X", bust: { min: 47.5, max: 47.5 }, waist: { min: 43, max: 43 }, hip: { min: 50.5, max: 50.5 } }
+  - { numericSize: "20", letterSize: "2X", bust: { min: 49.5, max: 49.5 }, waist: { min: 45, max: 45 }, hip: { min: 52.75, max: 52.75 } }
+  - { numericSize: "24", letterSize: "3X", bust: { min: 53.5, max: 53.5 }, waist: { min: 49, max: 49 }, hip: { min: 57.25, max: 57.25 } }
+  - { numericSize: "28", letterSize: "4X", bust: { min: 57.5, max: 57.5 }, waist: { min: 53, max: 53 }, hip: { min: 61.75, max: 61.75 } }
+notes:
+  - "Tabloda her harf için tek numara satırı gösterildi; Target'ta 1X = US 18, Lane Bryant ve Torrid'de 1X = US 14/16."
+sources:
+  - { url: "https://digitalcontent.target.com/itemcontent/sizecharts/htmlfragments/women-clothing/a-new-day/womens.html", type: "brand-official", label: "Target – A New Day kadın beden tablosu (inç)", checkedAt: "2026-10-07" }

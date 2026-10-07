@@ -1,6 +1,6 @@
 # Beden verisi migrasyon önerisi (CLAUDE.md "Beden Kuralları" 4–5. madde)
 
-Durum: **öneri, site sahibi onayı bekleniyor.** Onaydan sonra uygulanır.
+Durum: **site sahibi onayladı ve 2026-10-07 tarihinde uygulandı** (ayrıntı: `docs/durum.md`, biçim: `docs/icerik-format.md` §6).
 
 ## Mevcut yapı
 `content/beden-tablolari/{id}.yaml` – her dosya bir tablo:

@@ -9,11 +9,23 @@ import {
   LANDING_KINDS,
   OCCASION_KEYS,
   SEASONS,
-  SHARED_ARTICLE_SECTIONS,
+  ARTICLE_SECTIONS,
   SILOS,
   SOURCE_TYPES,
   TOPICS,
 } from "../lib/taxonomy";
+import {
+  CHART_SOURCE_TYPES,
+  COUNTRY_SYSTEMS,
+  EQUIV_KEYS,
+  FIT_TYPES,
+  GENDERS,
+  MEASUREMENT_TYPES,
+  PRODUCT_TYPES,
+  RANGE_FIELDS,
+  STRETCH_LEVELS,
+  UNITS,
+} from "../lib/size-core";
 
 export const Silo = z.enum(SILOS);
 export const Slug = z
@@ -96,13 +108,112 @@ const segmentDoc = { ...base, segment: Slug, hub: Slug.optional(), subtopic: Slu
 
 export const ArticleSchema = z.strictObject({
   ...segmentDoc,
-  section: z.enum(SHARED_ARTICLE_SECTIONS).optional(),
+  /** Ortak: rehberler | beden-rehberi | kumas-rehberi. Kadın/erkek: ayakkabi (hub yerine). */
+  section: z.enum(ARTICLE_SECTIONS).optional(),
+});
+
+/* ---------------- Beden tabloları (docs/beden-veri-migrasyonu.md, CLAUDE.md Beden Kuralları) ---------------- */
+export const SizeRange = z
+  .strictObject({ min: z.number().positive(), max: z.number().positive() })
+  .refine((r) => r.min <= r.max, "min, max'tan büyük olamaz");
+
+const rangeFields = Object.fromEntries(RANGE_FIELDS.map((f) => [f, SizeRange.optional()])) as Record<
+  (typeof RANGE_FIELDS)[number],
+  z.ZodOptional<typeof SizeRange>
+>;
+
+export const SizeChartRowSchema = z.strictObject({
+  /** Tablonun countrySystem'indeki numara (ör. "48", "UK 20" için "20", çift numara "52/54") */
+  numericSize: z.string().min(1).optional(),
+  /** Harf beden, kaynakta yazdığı gibi (ör. "XXL", "4X", "1X") */
+  letterSize: z.string().min(1).optional(),
+  /** Kaynağın aynı satırda verdiği diğer karşılıklar */
+  equivalents: z.partialRecord(z.enum(EQUIV_KEYS), z.string().min(1)).optional(),
+  ...rangeFields,
+  /** Jean bel bedeni (W, inç) ve boy (L, inç) – etiket değeri, ölçü değil */
+  waistInch: z.number().positive().optional(),
+  lengthInch: z.number().positive().optional(),
+  /** Ayakkabı genişlik harfi, markanın yazdığı gibi (ör. "D", "2E", "EE"); harfler markaya ve cinsiyete özgüdür */
+  widthLetter: z.string().min(1).max(4).optional(),
+  /** Esneme (elastan/likra oranına göre, kaynaklı) */
+  stretch: z.enum(STRETCH_LEVELS).nullable().optional(),
+  note: z.string().min(3).optional(),
+});
+
+const chartBase = {
+  title: z.string().min(5),
+  caption: z.string().min(5),
+  gender: z.enum(GENDERS),
+  /** content/markalar/{id} (marka sayfası varsa) */
+  brand: Slug.optional(),
+  /** Tabloda görünen ad (marka ya da referans tablonun adı) */
+  brandName: z.string().min(2),
+  productType: z.enum(PRODUCT_TYPES),
+  countrySystem: z.enum(COUNTRY_SYSTEMS),
+  sourceType: z.enum(CHART_SOURCE_TYPES),
+  /** Tablonun alındığı ana kaynak; sources içinde de yer almalı */
+  sourceUrl: z.url(),
+  lastVerifiedAt: IsoDate,
+  /** true → "Yaklaşık değerler; markaya ve ürüne göre değişir" notu */
+  approximate: z.boolean().default(false),
+  notes: z.array(z.string()).default([]),
+  /** Kaynaktaki tablo kendi içinde tutarsızsa (sayılar satır satır artmıyorsa) açıklama zorunlu; yoksa validate hatası */
+  inconsistencyNote: z.string().min(10).optional(),
+  sources: z.array(Source).min(1, "kaynaksız beden tablosu yayımlanamaz"),
+};
+
+export const SizeMeasureChartSchema = z.strictObject({
+  ...chartBase,
+  kind: z.literal("olcu"),
+  /** body = kişinin vücut ölçüsü, garment = kıyafetin kendi ölçüsü. Asla karıştırılmaz. */
+  measurementType: z.enum(MEASUREMENT_TYPES),
+  /** Kaynak ölçü türünü açıkça yazmıyorsa false: tabloda uyarı rozeti, Beden Bulucu'ya girmez, notes zorunlu */
+  measurementTypeVerified: z.boolean().default(true),
+  /** Kaynağın yalnız bazı satırları aktarıldıysa true (aradaki bedenler eksik): Beden Bulucu'ya girmez */
+  partialRows: z.boolean().default(false),
+  unit: z.enum(UNITS).default("cm"),
+  fitType: z.enum(FIT_TYPES).optional(),
+  heightNote: z.string().min(5).optional(),
+  /** Tablonun tanımlandığı boy aralığı (cm); Beden Bulucu kısa/uzun boy notu için */
+  heightRange: SizeRange.optional(),
+  /** Alan başlığını kaynağın terimiyle değiştirmek için (ör. hip: "Basen (alçak kalça)") */
+  fieldLabels: z.partialRecord(z.enum(RANGE_FIELDS), z.string().min(2)).optional(),
+  highlight: z.enum(RANGE_FIELDS).optional(),
+  rows: z.array(SizeChartRowSchema).min(1),
+});
+
+export const SizeConversionChartSchema = z.strictObject({
+  ...chartBase,
+  kind: z.literal("donusum"),
+  columns: z.array(z.object({ key: z.string().min(1), label: z.string().min(1) })).min(2).max(10),
+  highlight: z.string().optional(),
+  rows: z.array(z.strictObject({ systems: z.record(z.string(), z.string()) })).min(1),
+});
+
+export const SizeChartSchema = z.discriminatedUnion("kind", [SizeMeasureChartSchema, SizeConversionChartSchema]);
+
+/** Türetilmiş karşılaştırma ({% beden-karsilastirma %} ile aynı öznitelikler; virgüllü listeler metin) */
+export const SizeComparisonSchema = z.strictObject({
+  gender: z.enum(GENDERS),
+  measurementType: z.enum(MEASUREMENT_TYPES),
+  olcu: z.string().min(3),
+  size: z.string().optional(),
+  sizes: z.string().optional(),
+  value: z.number().optional(),
+  tolerans: z.number().optional(),
+  values: z.string().optional(),
+  charts: z.string().optional(),
+  productType: z.enum(PRODUCT_TYPES).optional(),
+  cevre: z.boolean().optional(),
+  baslik: z.string().min(5).optional(),
 });
 
 export const SizeGuideSchema = z.strictObject({
   ...segmentDoc,
   sizeSystem: z.array(z.enum(["TR", "EU", "UK", "US", "IT", "harf"])).default([]),
   sizeCharts: z.array(Slug).default([]),
+  /** Sayfa üstünde gösterilen, marka tablolarından türetilen karşılaştırmalar */
+  sizeComparisons: z.array(SizeComparisonSchema).default([]),
   measurementSteps: z
     .array(
       z.object({
@@ -168,8 +279,10 @@ export const HubSchema = z.strictObject({
   category: CategoryKey,
   order: z.number().int().default(100),
   menuLabel: z.string().max(30).optional(),
-  /** Kategori kartı görseli (yoksa kıyafet çizimi) */
+  /** Kategori kartı görseli (yalnız `tileStyle: photo` iken kartta ve hero'da kullanılır) */
   image: Image.optional(),
+  /** Kart/hero görünümü: varsayılan tek tip kroki çizimi; `photo` yalnız açıkça seçilirse */
+  tileStyle: z.enum(["illustration", "photo"]).default("illustration"),
   intro: z.string().min(40).max(600),
   subtopics: z
     .array(z.object({ key: Slug, label: z.string().min(3), description: z.string().optional() }))
@@ -253,26 +366,6 @@ export const FabricSchema = z.strictObject({
   cons: z.array(z.string()).default([]),
   uses: z.array(CategoryKey).default([]),
   plusSizeNotes: z.string().min(20),
-});
-
-export const SizeChartSchema = z.strictObject({
-  title: z.string().min(5),
-  caption: z.string().min(5),
-  silo: Silo,
-  scope: z.enum(["genel", "ust-giyim", "alt-giyim", "elbise", "ic-giyim", "gomlek", "jean"]),
-  kind: z.enum(["donusum", "olcu-cm"]),
-  brand: Slug.optional(),
-  columns: z
-    .array(z.object({ key: z.string(), label: z.string(), unit: z.enum(["cm", "inch"]).optional() }))
-    .min(2)
-    .max(10),
-  rows: z.array(z.array(z.string())).min(1),
-  highlightColumn: z.string().optional(),
-  approximate: z.boolean().default(true),
-  notes: z.array(z.string()).default([]),
-  /** Kaynaktaki tablo kendi içinde tutarsızsa (sayılar satır satır artmıyorsa) açıklama zorunlu; yoksa validate hatası */
-  inconsistencyNote: z.string().min(10).optional(),
-  sources: z.array(Source).min(1, "kaynaksız beden tablosu yayımlanamaz"),
 });
 
 export const AuthorSchema = z.strictObject({
@@ -375,6 +468,8 @@ export type News = z.infer<typeof NewsSchema>;
 export type Brand = z.infer<typeof BrandSchema>;
 export type Fabric = z.infer<typeof FabricSchema>;
 export type SizeChart = z.infer<typeof SizeChartSchema>;
+export type SizeChartRow = z.infer<typeof SizeChartRowSchema>;
+export type SizeComparison = z.infer<typeof SizeComparisonSchema>;
 export type Author = z.infer<typeof AuthorSchema>;
 export type SiteSettings = z.infer<typeof SiteSettingsSchema>;
 export type Homepage = z.infer<typeof HomepageSchema>;

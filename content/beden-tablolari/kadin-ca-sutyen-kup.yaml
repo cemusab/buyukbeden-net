@@ -1,0 +1,26 @@
+title: "C&A sütyen kup harfi: göğüs ile göğüs altı farkı"
+caption: "C&A (Almanya) sütyen kup tablosu – göğüs çevresi eksi göğüs altı çevresi (vücut, cm)"
+kind: olcu
+gender: kadin
+brandName: "C&A"
+productType: ic-giyim
+countrySystem: harf
+measurementType: body
+sourceType: official_brand
+sourceUrl: "https://www.c-and-a.com/de/de/shop/bh-groesse-ermitteln"
+unit: cm
+lastVerifiedAt: 2026-10-07
+approximate: true
+highlight: cupDifference
+rows:
+  - { letterSize: "A", cupDifference: { min: 12, max: 12 } }
+  - { letterSize: "B", cupDifference: { min: 14, max: 14 } }
+  - { letterSize: "C", cupDifference: { min: 16, max: 16 } }
+  - { letterSize: "D", cupDifference: { min: 18, max: 18 } }
+  - { letterSize: "E", cupDifference: { min: 20, max: 20 } }
+  - { letterSize: "F", cupDifference: { min: 22, max: 22 } }
+notes:
+  - "C&A her kup için başlangıç farkını verir ve adımların genellikle 2 cm olduğunu belirtir."
+  - "C&A'nın bu tablosunda DD yoktur; D'den sonra E gelir."
+sources:
+  - { url: "https://www.c-and-a.com/de/de/shop/bh-groesse-ermitteln", type: "brand-official", label: "C&A – Sütyen bedeni hesaplama rehberi", checkedAt: "2026-10-07" }

@@ -1,27 +1,27 @@
-title: DeFacto erkek büyük beden vücut ölçüleri (L–5XL)
-caption: DeFacto erkek büyük beden tişört – standart vücut ölçüsü (cm) ve numara karşılıkları
-silo: erkek
-scope: ust-giyim
-kind: olcu-cm
-columns:
-  - { key: harf, label: Harf }
-  - { key: treu, label: TR/EU }
-  - { key: usuk, label: US/UK }
-  - { key: jean, label: Jean bedeni }
-  - { key: gogus, label: Göğüs, unit: cm }
-  - { key: bel, label: Bel, unit: cm }
-  - { key: basen, label: Basen, unit: cm }
+title: "DeFacto erkek büyük beden vücut ölçüleri (L–5XL)"
+caption: "DeFacto erkek büyük beden tişört – standart vücut ölçüsü (cm) ve numara karşılıkları"
+kind: olcu
+gender: erkek
+brand: defacto
+brandName: DeFacto
+productType: genel
+countrySystem: TR
+measurementType: body
+sourceType: official_brand
+sourceUrl: "https://www.defacto.com.tr/100-pamuk-nefes-alabilen-kumas-buyuk-beden-tisort-3523217"
+unit: cm
+lastVerifiedAt: 2026-10-07
+fieldLabels: { hip: "Basen / kalça" }
+highlight: chest
 rows:
-  - [ L, "52", "40", "34", 105–107, 92–94, "106" ]
-  - [ XL, "54", "42", "36", 112–114, 98–100, "112" ]
-  - [ XXL, "56", "44", "38", 120–122, 104–106, "117" ]
-  - [ 3XL, "58", "46", "40", 128–130, 110–112, "121" ]
-  - [ 4XL, "60", "48", "42", 136–138, 116–118, "125" ]
-  - [ 5XL, "62", "50", "44", 144–147, 122–124, "129" ]
-highlightColumn: gogus
-approximate: false
+  - { numericSize: "52", letterSize: "L", equivalents: { UK: "40", US: "40", jean: "34" }, chest: { min: 105, max: 107 }, waist: { min: 92, max: 94 }, hip: { min: 106, max: 106 } }
+  - { numericSize: "54", letterSize: "XL", equivalents: { UK: "42", US: "42", jean: "36" }, chest: { min: 112, max: 114 }, waist: { min: 98, max: 100 }, hip: { min: 112, max: 112 } }
+  - { numericSize: "56", letterSize: "XXL", equivalents: { UK: "44", US: "44", jean: "38" }, chest: { min: 120, max: 122 }, waist: { min: 104, max: 106 }, hip: { min: 117, max: 117 } }
+  - { numericSize: "58", letterSize: "3XL", equivalents: { UK: "46", US: "46", jean: "40" }, chest: { min: 128, max: 130 }, waist: { min: 110, max: 112 }, hip: { min: 121, max: 121 } }
+  - { numericSize: "60", letterSize: "4XL", equivalents: { UK: "48", US: "48", jean: "42" }, chest: { min: 136, max: 138 }, waist: { min: 116, max: 118 }, hip: { min: 125, max: 125 } }
+  - { numericSize: "62", letterSize: "5XL", equivalents: { UK: "50", US: "50", jean: "44" }, chest: { min: 144, max: 147 }, waist: { min: 122, max: 124 }, hip: { min: 129, max: 129 } }
 notes:
-  - Bu tablodaki jean eşlemesi Mavi'nin jean tablosundan farklıdır; jean seçiminde bel cm değerini esas alın.
-  - DeFacto erkek büyük beden kategorisi 2XL–6XL aralığındadır.
+  - "Bu tablodaki jean eşlemesi Mavi'nin jean tablosundan farklıdır; jean seçiminde bel cm değerini esas alın."
+  - "DeFacto erkek büyük beden kategorisi 2XL–6XL aralığındadır."
 sources:
-  - { url: https://www.defacto.com.tr/100-pamuk-nefes-alabilen-kumas-buyuk-beden-tisort-3523217, type: brand-official, label: DeFacto erkek büyük beden tişört – standart ölçü bilgisi, checkedAt: 2026-10-07 }
+  - { url: "https://www.defacto.com.tr/100-pamuk-nefes-alabilen-kumas-buyuk-beden-tisort-3523217", type: "brand-official", label: "DeFacto erkek büyük beden tişört – standart ölçü bilgisi", checkedAt: "2026-10-07" }

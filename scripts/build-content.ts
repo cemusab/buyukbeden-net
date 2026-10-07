@@ -17,6 +17,8 @@ import {
   SiteSettingsSchema,
   SizeChartSchema,
 } from "../src/content/schema";
+import { buildComparison, FOOT_BODY_ONLY_FIELDS, FOOTWEAR_FIELDS, FRESHNESS_DAYS, GARMENT_ONLY_FIELDS, isFootwear, RANGE_FIELDS, specFromAttrs } from "../src/lib/size-core";
+import { checkLanguage } from "./check-language";
 import { Markdoc, markdocConfig, nodeText, transformMarkdoc } from "../src/content/markdoc.config";
 import type { AuthorEntry, ContentIndex, DocMeta, RouteEntry, TocItem } from "../src/lib/content-types";
 import { buildRouteManifest, computePath } from "../src/lib/routes-core";
@@ -27,6 +29,7 @@ import {
   type GenderSilo,
   LANDING_PATHS,
   RESERVED_SEGMENTS,
+  SILO_ARTICLE_SECTIONS,
   SIZE_LANDING_PATTERN,
 } from "../src/lib/taxonomy";
 
@@ -111,42 +114,101 @@ for (const f of listDir(path.join(CONTENT, "yazarlar"))) {
 const authorIds = new Set(authors.map((a) => a.id));
 
 const sizeCharts: ContentIndex["sizeCharts"] = [];
+/** Keystatic boş aralıkları {min: null} / {} yazabilir: eksik aralık silinir, yalnız min ya da max varsa tek değer sayılır. */
+function cleanChart(raw: unknown): unknown {
+  const c = cleanEmpty(raw) as Record<string, unknown> | undefined;
+  if (!c || !Array.isArray(c.rows)) return c;
+  if (c.kind === "donusum") for (const k of ["measurementType", "measurementTypeVerified", "partialRows", "unit", "fitType", "heightNote", "heightRange", "fieldLabels"]) delete c[k];
+  if (c.heightRange && typeof (c.heightRange as { min?: unknown }).min !== "number") delete c.heightRange;
+  c.rows = (c.rows as Record<string, unknown>[]).map((row) => {
+    const r = { ...row };
+    for (const f of RANGE_FIELDS) {
+      const v = r[f] as { min?: number; max?: number } | undefined;
+      if (v === undefined) continue;
+      const min = typeof v.min === "number" ? v.min : undefined;
+      const max = typeof v.max === "number" ? v.max : undefined;
+      if (min === undefined && max === undefined) delete r[f];
+      else r[f] = { min: min ?? max, max: max ?? min };
+    }
+    if (r.equivalents && !Object.keys(r.equivalents as object).length) delete r.equivalents;
+    return r;
+  });
+  return c;
+}
+const daysSince = (iso: string) => (Date.parse(TODAY) - Date.parse(iso)) / 864e5;
+
 for (const f of listDir(path.join(CONTENT, "beden-tablolari"))) {
   if (!f.endsWith(".yaml")) continue;
   const id = f.replace(/\.yaml$/, "");
   const file = `content/beden-tablolari/${f}`;
-  const r = SizeChartSchema.safeParse(cleanEmpty(readYaml(path.join(CONTENT, "beden-tablolari", f))));
+  if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(id)) err(file, `dosya adı (id) slug olmalı: "${id}"`);
+  const r = SizeChartSchema.safeParse(cleanChart(readYaml(path.join(CONTENT, "beden-tablolari", f))));
   if (!r.success) {
     zodIssues(file, r.error);
     continue;
   }
-  r.data.rows.forEach((row, i) => {
-    if (row.length !== r.data.columns.length)
-      err(file, `rows[${i}] ${row.length} hücre, columns ${r.data.columns.length} sütun`);
-  });
-  // Sayısal tutarlılık: ölçü tablolarında her sayısal sütun satır satır artmalı (kaynak hatalarını yakalar)
-  // Yalnız satırları beden olan tablolar (marka karşılaştırma tablolarında satırlar markadır)
-  if (r.data.kind === "olcu-cm" && !r.data.inconsistencyNote && /^(beden|harf|numara|tr|eu|uk|us|it|yaka|bel|w)/i.test(r.data.columns[0].key) && !r.data.columns.some((c) => /^(kaynak|marka|brand)/i.test(c.key))) {
-    const num = (c: string) => {
-      const m = c.replace(/\s/g, "").match(/^(\d+(?:[.,]\d+)?)(?:[–-](\d+(?:[.,]\d+)?))?/);
-      return m ? { lo: Number(m[1].replace(",", ".")), hi: Number((m[2] ?? m[1]).replace(",", ".")) } : null;
-    };
-    r.data.columns.forEach((col, j) => {
-      if (j === 0 || /^(harf|not|aciklama)/i.test(col.key)) return;
-      let prev: { lo: number; hi: number } | null = null;
-      r.data.rows.forEach((row, i) => {
-        const v = num(row[j] ?? "");
-        if (!v) return;
-        if (v.lo > v.hi) err(file, `rows[${i}].${col.key}: aralık ters ("${row[j]}")`);
-        if (prev && (v.lo < prev.lo || v.hi < prev.hi))
-          err(file, `rows[${i}].${col.key}: değer önceki satırdan küçük ("${row[j]}"); kaynağı kontrol edin veya inconsistencyNote ekleyin`);
-        prev = v;
-      });
+  const c = r.data;
+  if (!c.sources.some((s) => s.url === c.sourceUrl)) err(file, "sourceUrl, sources listesinde de yer almalı");
+  if (c.lastVerifiedAt > TODAY) err(file, "lastVerifiedAt gelecekte olamaz");
+  if (daysSince(c.lastVerifiedAt) > FRESHNESS_DAYS) warn(file, `lastVerifiedAt ${c.lastVerifiedAt}: 6 aydan eski; tabloyu kaynağından yeniden doğrulayın`);
+  if (c.sourceType === "generic" && !c.notes.some((n) => /genel|yaklaşık/i.test(n)))
+    err(file, 'sourceType generic: notes içinde tablonun "genel / yaklaşık" bir referans olduğu yazılmalı');
+  if (c.kind === "donusum") {
+    const keys = new Set(c.columns.map((x) => x.key));
+    c.rows.forEach((row, i) => {
+      for (const k of Object.keys(row.systems)) if (!keys.has(k)) err(file, `rows[${i}].systems.${k}: columns içinde yok`);
+      if (!row.systems[c.columns[0].key]) err(file, `rows[${i}]: ilk sütun (${c.columns[0].key}) boş olamaz`);
     });
+    if (c.highlight && !keys.has(c.highlight)) err(file, `highlight "${c.highlight}" columns içinde yok`);
+  } else {
+    if (!c.measurementTypeVerified && !c.notes.length) err(file, "measurementTypeVerified: false ise notes içinde belirsizlik açıklanmalı");
+    // Cinsiyete göre göğüs alanı: kadında bust, erkekte chest (Beden Kuralları 3)
+    const wrong = c.gender === "kadin" ? "chest" : "bust";
+    const foot = isFootwear(c);
+    c.rows.forEach((row, i) => {
+      // Ayakkabı ve giyim alanları karışmaz; ayak ölçüleri yalnız vücut (ayak) ölçüsü tablosunda
+      for (const x of RANGE_FIELDS) {
+        if (!row[x]) continue;
+        const isFoot = FOOTWEAR_FIELDS.includes(x);
+        if (foot && !isFoot) err(file, `rows[${i}].${x}: ayakkabı tablosunda (productType ${c.productType}) giyim ölçüsü kullanılamaz`);
+        if (!foot && isFoot) err(file, `rows[${i}].${x}: yalnız ayakkabı/çizme tablolarında (productType ayakkabi | cizme) kullanılır`);
+        if (FOOT_BODY_ONLY_FIELDS.includes(x) && c.measurementType !== "body") err(file, `rows[${i}].${x}: ayak ölçüsü yalnız measurementType: body tablosunda`);
+      }
+      if (row.widthLetter && !foot) err(file, `rows[${i}].widthLetter: yalnız ayakkabı tablolarında`);
+      if (row[wrong]) err(file, `rows[${i}].${wrong}: ${c.gender} tablosunda ${wrong === "chest" ? "bust" : "chest"} kullanılır`);
+      if (!row.numericSize && !row.letterSize) err(file, `rows[${i}]: numericSize veya letterSize zorunlu`);
+      for (const g of GARMENT_ONLY_FIELDS) if (row[g] && c.measurementType !== "garment") err(file, `rows[${i}].${g}: yalnız ürün (garment) ölçüsü tablolarında kullanılır`);
+      // Ölçüsüz satır yalnız markanın harf ↔ numara eşlemesini taşıyorsa kabul edilir (ör. Koton 2XL = 44)
+      if (!RANGE_FIELDS.some((x) => row[x]) && !row.waistInch && !(row.numericSize && row.letterSize)) err(file, `rows[${i}]: hiç ölçü yok`);
+    });
+    if (c.highlight && !c.rows.some((row) => row[c.highlight!])) err(file, `highlight "${c.highlight}" hiçbir satırda yok`);
+    // Bedene göre artan: her alan satır satır küçülmemeli (kaynak hatalarını yakalar).
+    // Ayakkabı genişlik tablolarında (widthLetter) her genişlik harfi kendi içinde artmalı.
+    if (!c.inconsistencyNote) {
+      const groups = [...new Set(c.rows.map((r) => r.widthLetter ?? ""))];
+      for (const g of groups) {
+        for (const fld of RANGE_FIELDS) {
+          let prev: { min: number; max: number } | undefined;
+          c.rows.forEach((row, i) => {
+            if ((row.widthLetter ?? "") !== g) return;
+            const v = row[fld];
+            if (!v) return;
+            if (prev && (v.min < prev.min || v.max < prev.max))
+              err(file, `rows[${i}].${fld}: değer önceki satırdan küçük (${v.min}–${v.max}); kaynağı kontrol edin veya inconsistencyNote ekleyin`);
+            prev = v;
+          });
+        }
+      }
+      // Aynı numarada genişlik harfi büyüdükçe genişlik küçülmemeli (sıra kaynaktaki gibi: dar → geniş)
+      const bySize = new Map<string, { min: number; max: number }[]>();
+      c.rows.forEach((row) => {
+        if (row.widthLetter && row.numericSize && row.footWidth) bySize.set(row.numericSize, [...(bySize.get(row.numericSize) ?? []), row.footWidth]);
+      });
+      for (const [size, ws] of bySize)
+        for (let k = 1; k < ws.length; k++) if (ws[k].min < ws[k - 1].min) err(file, `numara ${size}: genişlik harfleri dar → geniş sırada değil ya da değerler azalıyor`);
+    }
   }
-  if (r.data.highlightColumn && !r.data.columns.some((c) => c.key === r.data.highlightColumn))
-    err(file, `highlightColumn "${r.data.highlightColumn}" columns içinde yok`);
-  sizeCharts.push({ ...r.data, id });
+  sizeCharts.push({ ...c, id });
 }
 const chartIds = new Set(sizeCharts.map((c) => c.id));
 
@@ -158,17 +220,19 @@ type Work = {
   links: { href: string; where: string }[];
   images: { src: string; alt?: string }[];
   chartRefs: string[];
+  comparisons: { attrs: Record<string, unknown>; where: string }[];
   bodyLinkCount: number;
 };
 const works: Work[] = [];
 const rawStatusDraft = new Set<string>();
 
-function walkCollect(ast: Node, where: string, w: Pick<Work, "links" | "images" | "chartRefs">) {
+function walkCollect(ast: Node, where: string, w: Pick<Work, "links" | "images" | "chartRefs" | "comparisons">) {
   for (const n of ast.walk()) {
     if (n.type === "link") w.links.push({ href: String(n.attributes.href), where });
     if (n.type === "image") w.images.push({ src: String(n.attributes.src), alt: n.attributes.alt as string | undefined });
     if (n.type === "tag" && n.tag === "ilgili") w.links.push({ href: String(n.attributes.yol), where: `${where} {% ilgili %}` });
     if (n.type === "tag" && n.tag === "beden-tablosu") w.chartRefs.push(String(n.attributes.id));
+    if (n.type === "tag" && n.tag === "beden-karsilastirma") w.comparisons.push({ attrs: n.attributes, where: `${where} satır ${(n.lines?.[0] ?? 0) + 1}` });
   }
 }
 
@@ -234,6 +298,7 @@ for (const collection of Object.keys(COLLECTIONS) as Collection[]) {
       links: [],
       images: [],
       chartRefs: [],
+      comparisons: [],
       bodyLinkCount: 0,
     };
     walkCollect(w.ast, "gövde", w);
@@ -355,9 +420,15 @@ for (const w of works) {
       if (m.subtopic && !subs.some((s) => s.key === m.subtopic)) err(w.file, `subtopic "${m.subtopic}" hub'da tanımlı değil`);
     }
   }
-  if (m.collection === "makaleler" && m.silo !== "ortak" && !m.hub) err(w.file, "kadin/erkek makalede hub zorunlu");
-  if (m.collection === "makaleler" && m.silo === "ortak" && m.hub) err(w.file, "ortak makalede hub olamaz");
-  if (m.collection === "makaleler" && m.silo !== "ortak" && m.fm.section) err(w.file, "section yalnız ortak makalede kullanılır");
+  if (m.collection === "makaleler") {
+    const sec = m.fm.section as string | undefined;
+    const siloSection = !!sec && (SILO_ARTICLE_SECTIONS as readonly string[]).includes(sec);
+    if (m.silo !== "ortak" && !m.hub && !siloSection) err(w.file, "kadin/erkek makalede hub (ya da section: ayakkabi) zorunlu");
+    if (m.silo !== "ortak" && m.hub && sec) err(w.file, "hub'a bağlı makalede section kullanılmaz");
+    if (m.silo !== "ortak" && sec && !siloSection) err(w.file, `section "${sec}" yalnız ortak makalede kullanılır (kadin/erkek: ${SILO_ARTICLE_SECTIONS.join(", ")})`);
+    if (m.silo === "ortak" && m.hub) err(w.file, "ortak makalede hub olamaz");
+    if (m.silo === "ortak" && siloSection) err(w.file, `section "${sec}" yalnız kadin/erkek makalede kullanılır`);
+  }
   if (m.hub && ["kombinler", "alisveris-rehberleri", "trendler", "gundem", "markalar", "kumaslar", "sayfalar"].includes(m.collection))
     err(w.file, "bu koleksiyonda hub alanı kullanılmaz");
   if (m.collection === "kombinler" && m.silo === "ortak") err(w.file, "kombin silosu ortak olamaz (kadin veya erkek)");
@@ -419,6 +490,7 @@ uniq("primaryKeyword", (d) => d.primaryKeyword, normalizeTr);
 // ---------- 5. Ref, link, görsel, kalite kontrolleri ----------
 const brandIds = new Set(docs.filter((d) => d.collection === "markalar").map((d) => d.id));
 const fabricIds = new Set(docs.filter((d) => d.collection === "kumaslar").map((d) => d.id));
+for (const c of sizeCharts) if (c.brand && !brandIds.has(c.brand)) err(`content/beden-tablolari/${c.id}.yaml`, `brand "${c.brand}" content/markalar/ içinde yok`);
 const FORBIDDEN = [/çok yakında/i, /yapım aşamasında/i, /coming soon/i, /lorem ipsum/i, /\bTODO\b/, /href="#"/];
 const shoppingDomain = settings?.shoppingCta?.domain ?? "buyukbedengiyim.com";
 const ctaLabels = new Map<string, number>();
@@ -540,6 +612,20 @@ for (const w of works) {
   // Beden tabloları
   const charts = [...((fm.sizeCharts as string[] | undefined) ?? []), ...w.chartRefs];
   for (const c of charts) if (!chartIds.has(c)) err(f, `beden tablosu "${c}" content/beden-tablolari/ içinde yok`);
+  // Türetilmiş karşılaştırmalar: aynı ölçü türü, kaynaklı satır, boş olmamalı
+  const comparisons = [
+    ...((fm.sizeComparisons as Record<string, unknown>[] | undefined) ?? []).map((attrs, i) => ({ attrs, where: `sizeComparisons[${i}]` })),
+    ...w.comparisons,
+  ];
+  for (const cmp of comparisons) {
+    const { spec, error } = specFromAttrs(cmp.attrs);
+    if (!spec) {
+      err(f, `${cmp.where}: beden karşılaştırması: ${error}`);
+      continue;
+    }
+    for (const e of buildComparison(sizeCharts, spec).errors) err(f, `${cmp.where}: beden karşılaştırması: ${e}`);
+    charts.push(`karsilastirma:${cmp.where}`);
+  }
 
   // CTA
   if (m.shoppingCta) {
@@ -589,8 +675,7 @@ for (const w of works) {
       if (e.platform === "instagram" && host !== "instagram.com") err(f, `socialEmbeds: instagram url'si instagram.com olmalı (${e.url})`);
       if (e.platform === "youtube" && !["youtube.com", "youtu.be"].includes(host)) err(f, `socialEmbeds: youtube url'si youtube.com/youtu.be olmalı (${e.url})`);
     }
-    const daysOld = (Date.parse(TODAY) - Date.parse(fm.lastVerifiedAt as string)) / 864e5;
-    if (daysOld > 365) warn(f, "lastVerifiedAt 365 günden eski; marka bilgilerini yeniden doğrulayın");
+    if (daysSince(fm.lastVerifiedAt as string) > FRESHNESS_DAYS) warn(f, "lastVerifiedAt 6 aydan eski; marka bilgilerini yeniden doğrulayın");
   }
   if (m.collection === "kumaslar" && hasTechnicalFabricValues(fm) && m.sources.length === 0)
     err(f, "kumaş teknik değerleri (esneme, bakım vb.) için sources zorunlu");
@@ -641,7 +726,7 @@ for (const d of docs) {
   }
 }
 // Yayımlı hub'ların kısa biçimleri: /kadin/elbise → /kadin/giyim/elbise (+ yaygın takma adlar)
-const HUB_ALIASES: Record<string, string[]> = { tisort: ["tshirt", "t-shirt"] };
+const HUB_ALIASES: Record<string, string[]> = { tisort: ["tshirt", "t-shirt"], "ev-giyimi": ["pijama"] };
 for (const h of hubs.values()) {
   const cat = h.category!;
   if (RESERVED_SEGMENTS.includes(cat)) errors.push(`kategori "${cat}" rezerve bir bölüm adıyla çakışıyor (kısa yönlendirme üretilemez)`);
@@ -674,6 +759,8 @@ const families: [string, RegExp][] = [
   ["/erkek/stil/[slug]", /^\/erkek\/stil\/[^/]+$/],
   ["/kadin/kombinler/[slug]", /^\/kadin\/kombinler\/[^/]+$/],
   ["/erkek/kombinler/[slug]", /^\/erkek\/kombinler\/[^/]+$/],
+  ["/kadin/ayakkabi/[slug]", /^\/kadin\/ayakkabi\/[^/]+$/],
+  ["/erkek/ayakkabi/[slug]", /^\/erkek\/ayakkabi\/[^/]+$/],
   ["/beden-rehberi/[slug]", /^\/beden-rehberi\/[^/]+$/],
   ["/stil/[slug]", /^\/stil\/[^/]+$/],
   ["/kumas-rehberi/[slug]", /^\/kumas-rehberi\/[^/]+$/],
@@ -787,6 +874,9 @@ const searchDocs = docs
       h: d.toc.filter((t) => t.level === 2).map((t) => t.text).join(" · "),
     };
   });
+
+// ---------- 7b. Kesinlik dili (Beden Kuralları 7) – uyarı düzeyi, dosya:satır ----------
+for (const hit of checkLanguage(CONTENT)) warnings.push(`${hit.file}:${hit.line} → kesinlik dili "${hit.match}" (${hit.rule}); "çoğu markada", "yaklaşık", "markaya göre değişir" gibi yazın`);
 
 // ---------- 8. Çıktı ----------
 const summary: Record<string, number> = {};

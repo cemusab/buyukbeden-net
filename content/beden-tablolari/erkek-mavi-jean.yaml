@@ -1,27 +1,30 @@
-title: Mavi erkek jean beden tablosu (34–50)
-caption: Mavi erkek jean – inç bel bedeni, TR karşılığı ve vücut bel/basen ölçüsü (cm)
-silo: erkek
-scope: jean
-kind: olcu-cm
-columns:
-  - { key: jean, label: Jean (inç) }
-  - { key: tr, label: TR }
-  - { key: bel, label: Bel, unit: cm }
-  - { key: basen, label: Basen, unit: cm }
+title: "Mavi erkek jean beden tablosu (34–50)"
+caption: "Mavi erkek jean – inç bel bedeni, TR karşılığı ve vücut bel/basen ölçüsü (cm)"
+kind: olcu
+gender: erkek
+brand: mavi
+brandName: Mavi
+productType: jean
+countrySystem: TR
+measurementType: body
+sourceType: official_brand
+sourceUrl: "https://www.mavi.com/beden-tablosu"
+unit: cm
+lastVerifiedAt: 2026-10-07
+fieldLabels: { hip: "Basen / kalça" }
+highlight: waist
 rows:
-  - [ "34", "44", "87", "109" ]
-  - [ "36", "46", "91", "113" ]
-  - [ "38", "48", "96", "118" ]
-  - [ "40", "50", "101", "123" ]
-  - [ "42", "52", "106", "128" ]
-  - [ "44", "54", "111", "133" ]
-  - [ "46", "56", "116", "138" ]
-  - [ "48", "58", "121", "143" ]
-  - [ "50", "60", "126", "148" ]
-highlightColumn: bel
-approximate: false
+  - { numericSize: "44", waist: { min: 87, max: 87 }, hip: { min: 109, max: 109 }, waistInch: 34 }
+  - { numericSize: "46", waist: { min: 91, max: 91 }, hip: { min: 113, max: 113 }, waistInch: 36 }
+  - { numericSize: "48", waist: { min: 96, max: 96 }, hip: { min: 118, max: 118 }, waistInch: 38 }
+  - { numericSize: "50", waist: { min: 101, max: 101 }, hip: { min: 123, max: 123 }, waistInch: 40 }
+  - { numericSize: "52", waist: { min: 106, max: 106 }, hip: { min: 128, max: 128 }, waistInch: 42 }
+  - { numericSize: "54", waist: { min: 111, max: 111 }, hip: { min: 133, max: 133 }, waistInch: 44 }
+  - { numericSize: "56", waist: { min: 116, max: 116 }, hip: { min: 138, max: 138 }, waistInch: 46 }
+  - { numericSize: "58", waist: { min: 121, max: 121 }, hip: { min: 143, max: 143 }, waistInch: 48 }
+  - { numericSize: "60", waist: { min: 126, max: 126 }, hip: { min: 148, max: 148 }, waistInch: 50 }
 notes:
   - "Boy (paça) karşılıkları: 30 inç = 76 cm, 32 = 81, 34 = 86, 36 = 91, 38 = 96,5, 40 = 101,5 cm."
-  - Bu tabloda TR = jean bedeni + 10; DeFacto'nun eşlemesi farklıdır.
+  - "Bu tabloda TR = jean bedeni + 10; DeFacto'nun eşlemesi farklıdır."
 sources:
-  - { url: https://www.mavi.com/beden-tablosu, type: brand-official, label: Mavi beden tablosu (erkek jean görseli), checkedAt: 2026-10-07 }
+  - { url: "https://www.mavi.com/beden-tablosu", type: "brand-official", label: "Mavi beden tablosu (erkek jean görseli)", checkedAt: "2026-10-07" }

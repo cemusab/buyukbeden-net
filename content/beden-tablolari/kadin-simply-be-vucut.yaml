@@ -1,0 +1,27 @@
+title: "Simply Be kadın vücut ölçüleri (UK 16–32)"
+caption: "Simply Be (İngiltere) kadın beden tablosu – vücut ölçüsü (cm)"
+kind: olcu
+gender: kadin
+brandName: "Simply Be"
+productType: genel
+countrySystem: UK
+measurementType: body
+sourceType: official_brand
+sourceUrl: "https://support.simplybe.co.uk/hc/en-gb/articles/360019571299-Women-s-size-chart"
+unit: cm
+lastVerifiedAt: 2026-10-07
+highlight: bust
+rows:
+  - { numericSize: "16", letterSize: "XL", equivalents: { EU: "44", US: "12" }, bust: { min: 104, max: 104 }, waist: { min: 89, max: 89 }, hip: { min: 110, max: 110 } }
+  - { numericSize: "18", letterSize: "XXL", equivalents: { EU: "46", US: "14" }, bust: { min: 110, max: 110 }, waist: { min: 95, max: 95 }, hip: { min: 116, max: 116 } }
+  - { numericSize: "20", letterSize: "3XL", equivalents: { EU: "48", US: "16" }, bust: { min: 116, max: 116 }, waist: { min: 101, max: 101 }, hip: { min: 122, max: 122 } }
+  - { numericSize: "22", letterSize: "4XL", equivalents: { EU: "50", US: "18" }, bust: { min: 122, max: 122 }, waist: { min: 107, max: 107 }, hip: { min: 128, max: 128 } }
+  - { numericSize: "24", letterSize: "5XL", equivalents: { EU: "52", US: "20" }, bust: { min: 128, max: 128 }, waist: { min: 113, max: 113 }, hip: { min: 134, max: 134 } }
+  - { numericSize: "26", letterSize: "6XL", equivalents: { EU: "54", US: "22" }, bust: { min: 134, max: 134 }, waist: { min: 119, max: 119 }, hip: { min: 140, max: 140 } }
+  - { numericSize: "28", letterSize: "7XL", equivalents: { EU: "56", US: "24" }, bust: { min: 140, max: 140 }, waist: { min: 125, max: 125 }, hip: { min: 146, max: 146 } }
+  - { numericSize: "30", letterSize: "8XL", equivalents: { EU: "58", US: "26" }, bust: { min: 146, max: 146 }, waist: { min: 131, max: 131 }, hip: { min: 152, max: 152 } }
+  - { numericSize: "32", letterSize: "9XL", equivalents: { EU: "60", US: "28" }, bust: { min: 152, max: 152 }, waist: { min: 137, max: 137 }, hip: { min: 158, max: 158 } }
+notes:
+  - "EU ve US karşılıkları markanın kendi tablosundadır (EU = UK + 28, US = UK − 4)."
+sources:
+  - { url: "https://support.simplybe.co.uk/hc/en-gb/articles/360019571299-Women-s-size-chart", type: "brand-official", label: "Simply Be kadın beden tablosu", checkedAt: "2026-10-07" }

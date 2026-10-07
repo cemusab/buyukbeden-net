@@ -1,0 +1,29 @@
+title: "Jacamo erkek vücut ölçüleri (L–7XL)"
+caption: "Jacamo (İngiltere) kendi markası – vücut göğüs ve bel ölçüsü (cm)"
+kind: olcu
+gender: erkek
+brandName: Jacamo
+productType: genel
+countrySystem: harf
+measurementType: body
+sourceType: official_brand
+sourceUrl: "https://support.jacamo.co.uk/hc/en-gb/articles/9545219384220-Men-s-size-chart"
+unit: cm
+lastVerifiedAt: 2026-10-07
+fieldLabels: { waist: "Bel (çift beden alt giyim)" }
+highlight: chest
+rows:
+  - { letterSize: "L", chest: { min: 107, max: 112 }, waist: { min: 91, max: 97 } }
+  - { letterSize: "XL", chest: { min: 114, max: 119 }, waist: { min: 99, max: 104 } }
+  - { letterSize: "1XL", chest: { min: 122, max: 127 }, waist: { min: 107, max: 112 } }
+  - { letterSize: "2XL", chest: { min: 129, max: 134 }, waist: { min: 114, max: 119 } }
+  - { letterSize: "3XL", chest: { min: 137, max: 142 }, waist: { min: 122, max: 127 } }
+  - { letterSize: "4XL", chest: { min: 145, max: 150 }, waist: { min: 129, max: 134 } }
+  - { letterSize: "5XL", chest: { min: 152, max: 157 }, waist: { min: 137, max: 142 } }
+  - { letterSize: "6XL", chest: { min: 160, max: 165 }, waist: { min: 145, max: 150 } }
+  - { letterSize: "7XL", chest: { min: 167, max: 172 }, waist: { min: 152, max: 157 } }
+notes:
+  - "Jacamo'nun iç bacak tablosunda “XL” bir uzunluk etiketidir (extra long), beden değildir."
+  - "Sayfa her marka için ayrı tablo veriyor; mağazadaki diğer markalarda aynı harf farklı ölçüye denk gelebilir."
+sources:
+  - { url: "https://support.jacamo.co.uk/hc/en-gb/articles/9545219384220-Men-s-size-chart", type: "brand-official", label: "Jacamo erkek beden tablosu", checkedAt: "2026-10-07" }

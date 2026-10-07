@@ -1,0 +1,23 @@
+title: "LAURASØN kadın vücut ölçüleri (48, 52, 56)"
+caption: "LAURASØN (Ulla Popken grubu) kadın beden tablosu – vücut ölçüsü (cm), seçili bedenler"
+kind: olcu
+gender: kadin
+brandName: "LAURASØN (Ulla Popken grubu)"
+productType: genel
+countrySystem: DE
+measurementType: body
+sourceType: official_brand
+sourceUrl: "https://www.ullapopken.at/de/guides/size-guide"
+unit: cm
+lastVerifiedAt: 2026-10-07
+partialRows: true
+highlight: bust
+rows:
+  - { numericSize: "48", letterSize: "XL", bust: { min: 113, max: 118 }, waist: { min: 102, max: 107 }, hip: { min: 120, max: 125 } }
+  - { numericSize: "52", letterSize: "XXL", bust: { min: 125, max: 130 }, waist: { min: 114, max: 119 }, hip: { min: 132, max: 137 } }
+  - { numericSize: "56", letterSize: "3XL", bust: { min: 137, max: 142 }, waist: { min: 126, max: 131 }, hip: { min: 144, max: 149 } }
+notes:
+  - "Markanın tablosu 36–58 arasıdır; burada yalnız kaynak notlarımızda kayıtlı 48, 52 ve 56 satırları verildi (tek kaynak, tam tablo değil)."
+  - "Harf eşlemesi markanın kendisinindir: S = 36/38, M = 40/42, L = 44/46, XL = 48/50, XXL = 52/54, 3XL = 56/58."
+sources:
+  - { url: "https://www.ullapopken.at/de/guides/size-guide", type: "brand-official", label: "Ulla Popken beden rehberi – LAURASØN sekmesi (Avusturya sitesi)", checkedAt: "2026-10-07" }

@@ -64,36 +64,39 @@ export function ArchiveBanner({ doc }: { doc: DocMeta }) {
   );
 }
 
-/** "Bu Yazıda" içindekiler (H2'ler). Mobilde açılır-kapanır. */
-export function Toc({ doc, className = "" }: { doc: DocMeta; className?: string }) {
+/** "Bu Yazıda" içindekiler (H2'ler). Mobilde açılır-kapanır; `top` makale başındaki görselin yanındaki kutu (md+ açık). */
+export function Toc({ doc, className = "", top = false, open, label = "Bu yazıda" }: { doc: DocMeta; className?: string; top?: boolean; open?: boolean; label?: string }) {
   const items = doc.toc.filter((t) => t.level === 2);
   const hasFaq = doc.faq.length > 0;
   if (items.length + (hasFaq ? 1 : 0) < 2) return null;
+  const isTop = top || open;
+  const link = "flex min-h-11 items-center py-1 text-ink-2 hover:text-primary hover:underline underline-offset-4";
   const list = (
-    <ol className="relative mt-3 space-y-1 border-l-2 border-line pl-4 text-sm">
+    <ol className={`relative mt-3 space-y-0.5 border-l-2 border-line text-sm ${isTop ? "pl-0" : "pl-4"}`}>
       {items.map((t) => (
-        <li key={t.id}>
-          <a href={`#${t.id}`} className="flex min-h-11 items-center text-ink-2 hover:text-primary hover:underline underline-offset-4">
+        <li key={t.id} className={isTop ? "relative pl-4 before:absolute before:-left-[5px] before:top-1/2 before:h-2 before:w-2 before:-translate-y-1/2 before:rounded-full before:bg-line-strong" : ""}>
+          <a href={`#${t.id}`} className={link}>
             {t.text}
           </a>
         </li>
       ))}
       {hasFaq ? (
-        <li>
-          <a href="#sss" className="flex min-h-11 items-center text-ink-2 hover:text-primary hover:underline underline-offset-4">
+        <li className={isTop ? "relative pl-4 before:absolute before:-left-[5px] before:top-1/2 before:h-2 before:w-2 before:-translate-y-1/2 before:rounded-full before:bg-line-strong" : ""}>
+          <a href="#sss" className={link}>
             Sık sorulan sorular
           </a>
         </li>
       ) : null}
     </ol>
   );
+  const bp = isTop ? "md" : "lg";
   return (
-    <nav aria-label="Bu yazıda" className={className} data-toc>
-      <details className="rounded-card border border-line bg-surface p-4 lg:hidden">
+    <nav aria-label={label} className={className} data-toc>
+      <details className={`rounded-card border border-line bg-surface p-4 ${bp === "md" ? "md:hidden" : "lg:hidden"}`}>
         <summary className="flex min-h-11 cursor-pointer items-center font-bold text-ink">Bu Yazıda</summary>
         {list}
       </details>
-      <div className="hidden rounded-card border border-line bg-surface p-5 lg:block">
+      <div className={`hidden rounded-card border border-line bg-surface p-5 ${bp === "md" ? "md:block" : "lg:block"}`}>
         <p className="font-bold text-ink">Bu Yazıda</p>
         {list}
       </div>
@@ -273,6 +276,42 @@ export function PageHero({
           ) : null}
         </figure>
       ) : null}
+    </div>
+  );
+}
+
+/**
+ * Kompakt bölüm hero'su (giyim hub'ı, silo ana sayfası): solda başlık + tek satır alt başlık + 1–2 satır metin,
+ * sağda görsel. Kategori ızgarası hemen altından başlar (docs/tasarim-referansi.md).
+ */
+export function CompactHero({
+  eyebrow,
+  title,
+  subtitle,
+  lead,
+  visual,
+  tone = "plain",
+}: {
+  eyebrow?: ReactNode;
+  title: string;
+  subtitle?: string;
+  lead?: ReactNode;
+  visual?: ReactNode;
+  tone?: "plain" | "erkek";
+}) {
+  const dark = tone === "erkek";
+  return (
+    <div
+      className={`relative grid overflow-hidden rounded-card ${dark ? "bg-[#1b2433] text-white" : "bg-[#f6f1ee]"} ${visual ? "md:grid-cols-[minmax(0,1fr)_minmax(0,44%)]" : ""}`}
+      data-compact-hero
+    >
+      <div className="relative px-5 py-6 sm:px-8 sm:py-7 lg:px-10 lg:py-9">
+        {eyebrow ? <div className="mb-2.5">{eyebrow}</div> : null}
+        <h1 className={`text-h1 font-extrabold ${dark ? "text-white" : "text-ink"}`}>{title}</h1>
+        {subtitle ? <p className={`mt-1.5 text-lg font-semibold ${dark ? "text-white/90" : "text-ink-2"}`}>{subtitle}</p> : null}
+        {lead ? <div className={`prose-tight mt-2 line-clamp-3 max-w-xl text-[0.9375rem] ${dark ? "text-white/80 [&_a]:text-white" : "text-muted"}`}>{lead}</div> : null}
+      </div>
+      {visual ? <div className="relative hidden min-h-48 md:block">{visual}</div> : null}
     </div>
   );
 }

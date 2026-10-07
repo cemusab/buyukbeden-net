@@ -1,0 +1,34 @@
+title: "Lane Bryant kadın vücut ölçüleri (US 14–40)"
+caption: "Lane Bryant (ABD) kadın beden tablosu – vücut ölçüsü; kaynak inç"
+kind: olcu
+gender: kadin
+brandName: "Lane Bryant"
+productType: genel
+countrySystem: US
+measurementType: body
+sourceType: official_brand
+sourceUrl: "https://www.lanebryant.com/help/size-chart"
+unit: inch
+lastVerifiedAt: 2026-10-07
+fieldLabels: { waist: "Doğal bel", hip: "Alt basen" }
+highlight: bust
+rows:
+  - { numericSize: "14", letterSize: "1X", bust: { min: 42, max: 42 }, waist: { min: 36, max: 36 }, hip: { min: 44.5, max: 44.5 } }
+  - { numericSize: "16", letterSize: "1X", bust: { min: 44, max: 44 }, waist: { min: 38, max: 38 }, hip: { min: 46.5, max: 46.5 } }
+  - { numericSize: "18", letterSize: "2X", bust: { min: 46, max: 46 }, waist: { min: 40, max: 40 }, hip: { min: 48.5, max: 48.5 } }
+  - { numericSize: "20", letterSize: "2X", bust: { min: 48, max: 48 }, waist: { min: 42, max: 42 }, hip: { min: 50.5, max: 50.5 } }
+  - { numericSize: "22", letterSize: "3X", bust: { min: 50, max: 50 }, waist: { min: 44, max: 44 }, hip: { min: 52.5, max: 52.5 } }
+  - { numericSize: "24", letterSize: "3X", bust: { min: 52, max: 52 }, waist: { min: 46, max: 46 }, hip: { min: 54.5, max: 54.5 } }
+  - { numericSize: "26", letterSize: "4X", bust: { min: 54, max: 54 }, waist: { min: 48, max: 48 }, hip: { min: 56.5, max: 56.5 } }
+  - { numericSize: "28", letterSize: "4X", bust: { min: 56, max: 56 }, waist: { min: 50, max: 50 }, hip: { min: 58.5, max: 58.5 } }
+  - { numericSize: "30", letterSize: "5X", bust: { min: 58, max: 58 }, waist: { min: 52, max: 52 }, hip: { min: 60.5, max: 60.5 } }
+  - { numericSize: "32", letterSize: "5X", bust: { min: 60, max: 60 }, waist: { min: 54, max: 54 }, hip: { min: 62.5, max: 62.5 } }
+  - { numericSize: "34", letterSize: "6X", bust: { min: 62, max: 62 }, waist: { min: 56, max: 56 }, hip: { min: 64.5, max: 64.5 } }
+  - { numericSize: "36", letterSize: "6X", bust: { min: 64, max: 64 }, waist: { min: 58, max: 58 }, hip: { min: 66.5, max: 66.5 } }
+  - { numericSize: "38", letterSize: "7X", bust: { min: 66, max: 66 }, waist: { min: 60, max: 60 }, hip: { min: 68.5, max: 68.5 } }
+  - { numericSize: "40", letterSize: "7X", bust: { min: 68, max: 68 }, waist: { min: 62, max: 62 }, hip: { min: 70.5, max: 70.5 } }
+notes:
+  - "Her numarada göğüs, bel ve basen 2 inç (≈ 5 cm) artar; harf, iki numarayı birlikte kapsar (ör. 18/20 = 2X)."
+  - "Lane Bryant'ta 1X = US 14/16; Target'ta 1X = US 18. Harf, markalar arasında aynı ölçüye denk gelmez."
+sources:
+  - { url: "https://www.lanebryant.com/help/size-chart", type: "brand-official", label: "Lane Bryant beden tablosu (inç)", checkedAt: "2026-10-07" }

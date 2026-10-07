@@ -1,0 +1,42 @@
+title: "New Balance kadın ayakkabı genişlikleri: 2A, B, D, 2E (cm)"
+caption: "New Balance kadın genişlik tablosu – numaraya ve genişlik harfine göre genişlik (cm)"
+kind: olcu
+gender: kadin
+brandName: "New Balance"
+productType: ayakkabi
+countrySystem: US
+measurementType: body
+measurementTypeVerified: false
+partialRows: true
+sourceType: official_brand
+sourceUrl: "https://www.newbalance.com/size-guide.html"
+unit: cm
+lastVerifiedAt: 2026-10-07
+fieldLabels: { footWidth: "Genişlik" }
+rows:
+  - { numericSize: "8", widthLetter: "2A", footWidth: { min: 8.4, max: 8.4 } }
+  - { numericSize: "8", widthLetter: "B", footWidth: { min: 8.8, max: 8.8 } }
+  - { numericSize: "8", widthLetter: "D", footWidth: { min: 9.2, max: 9.2 } }
+  - { numericSize: "8", widthLetter: "2E", footWidth: { min: 9.5, max: 9.5 } }
+  - { numericSize: "10", widthLetter: "2A", footWidth: { min: 8.8, max: 8.8 } }
+  - { numericSize: "10", widthLetter: "B", footWidth: { min: 9.2, max: 9.2 } }
+  - { numericSize: "10", widthLetter: "D", footWidth: { min: 9.6, max: 9.6 } }
+  - { numericSize: "10", widthLetter: "2E", footWidth: { min: 9.9, max: 9.9 } }
+  - { numericSize: "11", widthLetter: "2A", footWidth: { min: 9.0, max: 9.0 } }
+  - { numericSize: "11", widthLetter: "B", footWidth: { min: 9.4, max: 9.4 } }
+  - { numericSize: "11", widthLetter: "D", footWidth: { min: 9.8, max: 9.8 } }
+  - { numericSize: "11", widthLetter: "2E", footWidth: { min: 10.1, max: 10.1 } }
+  - { numericSize: "12", widthLetter: "2A", footWidth: { min: 9.3, max: 9.3 } }
+  - { numericSize: "12", widthLetter: "B", footWidth: { min: 9.6, max: 9.6 } }
+  - { numericSize: "12", widthLetter: "D", footWidth: { min: 10.0, max: 10.0 } }
+  - { numericSize: "12", widthLetter: "2E", footWidth: { min: 10.3, max: 10.3 } }
+  - { numericSize: "13", widthLetter: "2A", footWidth: { min: 9.5, max: 9.5 } }
+  - { numericSize: "13", widthLetter: "B", footWidth: { min: 9.8, max: 9.8 } }
+  - { numericSize: "13", widthLetter: "D", footWidth: { min: 10.2, max: 10.2 } }
+  - { numericSize: "13", widthLetter: "2E", footWidth: { min: 10.5, max: 10.5 } }
+notes:
+  - "New Balance kadında B'yi standart, D'yi geniş, 2E'yi çok geniş olarak adlandırır. Aynı D harfi erkek tablosunda standart genişliktir."
+  - "Sayfa bu değerlerin ayak genişliği mi ayakkabının iç genişliği mi olduğunu açıkça yazmıyor; yaklaşık bir kılavuz olarak kullanın."
+  - "Kaynaktaki numaralardan yalnız bu satırlar aktarıldı."
+sources:
+  - { url: "https://www.newbalance.com/size-guide.html", type: "brand-official", label: "New Balance Size & Width Guide (ABD)", checkedAt: "2026-10-07" }

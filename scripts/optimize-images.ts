@@ -108,6 +108,25 @@ const ITEMS: Item[] = [
   { n: 67, source: "pexels", id: "14366434", slot: "alisveris-pazar", url: px("14366434"), page: "https://www.pexels.com/photo/head-scarf-shop-14366434/", name: "Mick Latter", profile: "https://www.pexels.com/@micklatter/", alt: "İstanbul'da bir pazarda sıra sıra asılı ve katlanmış renkli başörtüleri ile şallar", also: "tesettür alışverişi" },
   { n: 68, source: "pexels", id: "18587721", slot: "alisveris-pazar", url: px("18587721"), page: "https://www.pexels.com/photo/woman-touching-lace-cloth-at-store-retail-display-18587721/", name: "Sevgi LALE", profile: "https://www.pexels.com/@sevgiilale/", alt: "Dantel örtüler ve tekstil ürünleriyle dolu bir dükkânda ürünlere dokunan başörtülü kadın, arkadan" },
   { n: 69, source: "pexels", id: "17293347", slot: "kapak-markalar", url: px("17293347"), page: "https://www.pexels.com/photo/clothes-in-neutral-colors-hanging-on-the-racks-in-a-clothing-store-17293347/", name: "Pew Nguyen", profile: "https://www.pexels.com/@nguyendesigner/", alt: "Bir mağazada ahşap askılarda asılı krem ve bej tonlarında kıyafetler" },
+  // 2. tur (2026-10-07): yalnız kişisiz görseller (site sahibinin kararı: kategori kartlarında manken fotoğrafı yok, illüstrasyon kullanılır)
+  { n: 101, source: "pexels", id: "3143082", slot: "kapak-beden-rehberi", url: px("3143082"), page: "https://www.pexels.com/photo/close-up-photo-of-yellow-tape-measure-3143082/", name: "Marta Longas", profile: "https://www.pexels.com/@marta-longas-1449108/", alt: "Açık gri fonda halka halka kıvrılmış, santim işaretli sarı terzi mezurası" },
+  { n: 102, source: "pexels", id: "31144012", slot: "kapak-beden-rehberi", url: px("31144012"), page: "https://www.pexels.com/photo/blue-measuring-tape-in-heart-shape-on-fabric-31144012/", name: "Beyzaa Yurtkuran", profile: "https://www.pexels.com/@beyzaa-yurtkuran-279977530/", alt: "Buruşuk beyaz kumaşın üzerinde kalp biçiminde duran mavi terzi mezurası" },
+  { n: 103, source: "pexels", id: "31155535", slot: "beden-etiketi", url: px("31155535"), page: "https://www.pexels.com/photo/stacked-clothing-display-in-a-vietnamese-store-31155535/", name: "Dang Hong", profile: "https://www.pexels.com/@dwanghong/", alt: "Mağaza rafında üst üste katlanmış, S ve M beden etiketli kahverengi ve siyah tişörtler" },
+  { n: 104, source: "pexels", id: "6461504", slot: "terzi-araclari", url: px("6461504"), page: "https://www.pexels.com/photo/sewing-material-with-white-background-6461504/", name: "Pavel Danilyuk", profile: "https://www.pexels.com/@pavel-danilyuk/", alt: "Beyaz zeminde yan yana dizilmiş terzi makası, kalem, küçük makas, iplik, söküm aleti, çengelli iğne ve düğme" },
+  { n: 105, source: "pexels", id: "35009367", slot: "terzi-araclari", url: px("35009367"), page: "https://www.pexels.com/photo/blue-scissors-on-mixed-fabric-textures-35009367/", name: "Berna", profile: "https://www.pexels.com/@mibernaa/", alt: "Siyah ve krem fitilli kadife kumaş topları üzerinde mavi saplı terzi makası" },
+  { n: 106, source: "pexels", id: "14642652", slot: "katli-giysi", url: px("14642652"), page: "https://www.pexels.com/photo/a-close-up-shot-of-folded-knitted-clothes-14642652/", name: "Nati", profile: "https://www.pexels.com/@nati-87264186/", alt: "Üst üste katlanmış krem, karamel ve bej tonlarında örgü triko giysiler, yakın plan", also: "kumas-orgu" },
+  { n: 107, source: "pexels", id: "13889763", slot: "katli-giysi", url: px("13889763"), page: "https://www.pexels.com/photo/stack-of-sweaters-13889763/", name: "Büşra İnce", profile: "https://www.pexels.com/@wbusraca/", alt: "Açık gri fonda üst üste katlanmış krem, bej ve kahverengi örgü kazaklar", also: "kadin-triko / erkek-triko kartı (kişisiz)" },
+  { n: 108, source: "pexels", id: "30056472", slot: "ic-giyim-doku", url: px("30056472"), page: "https://www.pexels.com/photo/luxurious-velvet-fabrics-in-open-wooden-drawer-30056472/", name: "Eugenia Remark", profile: "https://www.pexels.com/@eugenia-remark-5767088/", alt: "Açık ahşap çekmecede yumuşak kıvrımlarla duran krem ve bej kadife kumaşlar", also: "iç giyim bölümü kapağı (kişisiz)" },
+  { n: 109, source: "pexels", id: "8553594", slot: "erkek-ayakkabi", url: px("8553594"), page: "https://www.pexels.com/photo/close-up-shot-of-brown-leather-shoes-8553594/", name: "Kurt Panerio", profile: "https://www.pexels.com/@kurt-panerio-75306255/", alt: "Balıksırtı desenli hasır zemin üzerinde bir çift taba rengi deri brogue ayakkabı, üstten" },
+  { n: 110, source: "pexels", id: "6765524", slot: "erkek-ayakkabi", url: px("6765524"), page: "https://www.pexels.com/photo/close-up-photo-of-a-brown-leather-shoes-6765524/", name: "Tima Miroshnichenko", profile: "https://www.pexels.com/@tima-miroshnichenko/", alt: "Mağaza standında ayakkabı kalıbı takılı bir çift kahverengi deri brogue erkek ayakkabısı" },
+  { n: 111, source: "pexels", id: "27256473", slot: "kadin-ayakkabi", url: px("27256473"), page: "https://www.pexels.com/photo/botin-natural-27256473/", name: "José Martin Segura Benites", profile: "https://www.pexels.com/@jose-martin-segura-benites-1422456152/", alt: "Gri fonda beyaz kaideler üzerinde kalın ahşap topuklu taba rengi deri kadın botları", retouch: [{ x: 686, y: 830, w: 212, h: 50, dx: 0, dy: 0, mode: "vinterp", note: "bot konçundaki kabartma marka yazısı çevre deri rengiyle dolduruldu" }] },
+  { n: 112, source: "pexels", id: "10855836", slot: "ayakkabi-detay", url: px("10855836"), page: "https://www.pexels.com/photo/brown-leather-shoes-in-close-up-shot-10855836/", name: "breakermaximus", profile: "https://www.pexels.com/@breakermaximus/", alt: "Kahverengi deri bağcıklı ayakkabının dikiş, metal kopça ve bağcık detayı, yakın plan", also: "erkek-ayakkabi" },
+  { n: 114, source: "pexels", id: "20531149", slot: "alisveris-toptan", url: px("20531149"), page: "https://www.pexels.com/photo/storage-of-carpets-20531149/", name: "Bem Partington", profile: "https://www.pexels.com/@bem-partington-1065018897/", alt: "Bir kumaşçının raflarında boş etiketli, rengârenk top top kumaşlar" },
+  { n: 115, source: "pexels", id: "17329670", slot: "alisveris-toptan", url: px("17329670"), page: "https://www.pexels.com/photo/clothes-in-a-warehouse-17329670/", name: "Kaan Keskin", profile: "https://www.pexels.com/@depthofraw/", alt: "İstanbul'da bir kumaş deposunda üst üste dizilmiş yeşil, gri ve lacivert takım elbiselik kumaş topları", also: "erkek-takim-elbise kartı (kişisiz)" },
+  { n: 117, source: "pexels", id: "5504775", slot: "kumas-genel", url: px("5504775"), page: "https://www.pexels.com/photo/pile-of-colorful-blankets-5504775/", name: "Mike van Schoonderwalt", profile: "https://www.pexels.com/@mike-van-schoonderwalt-1884800/", alt: "Pembe, turuncu, turkuaz ve gri tonlarda rulo yapılmış yumuşak kumaşlar ve şallar", also: "alisveris-pazar" },
+  { n: 118, source: "pexels", id: "27658532", slot: "kadin-ayakkabi", url: px("27658532"), page: "https://www.pexels.com/photo/botin-marron-27658532/", name: "José Martin Segura Benites", profile: "https://www.pexels.com/@jose-martin-segura-benites-1422456152/", alt: "Petrol yeşili fonda kalın tırtıklı tabanlı, alçak kalın topuklu kahverengi deri kadın botları" },
+  { n: 119, source: "pexels", id: "37853534", slot: "kadin-ayakkabi", url: px("37853534"), page: "https://www.pexels.com/photo/brown-leather-ballet-flats-on-display-shelf-37853534/", name: "Muhammad Khawar Nazir", profile: "https://www.pexels.com/@drmkhawarnazir/", alt: "Mağazada ahşap raf üzerinde çapraz lastik bantlı taba rengi deri babet ayakkabılar" },
+  { n: 121, source: "pexels", id: "6461401", slot: "katli-giysi", url: px("6461401"), page: "https://www.pexels.com/photo/folded-clothes-in-close-up-shot-6461401/", name: "Pavel Danilyuk", profile: "https://www.pexels.com/@pavel-danilyuk/", alt: "Üst üste katlanmış haki, krem, kiremit ve hardal tonlarında keten görünümlü giysiler", also: "kumas-keten" },
 ];
 
 const REJECTED: [number, string][] = [
@@ -131,6 +150,9 @@ const REJECTED: [number, string][] = [
   [65, "okunur yazılar (kulüp havluları, fiyat tabelaları)"],
   [66, "okunur dükkân tabelası (işletme adı)"],
   [70, "vitrinde mağaza tabelası yansıması"],
+  [113, "kumaş toplarında okunur marka etiketleri (2. tur)"],
+  [116, "Kapalıçarşı iç mekânı: okunur dükkân tabelaları (2. tur)"],
+  [120, "ayakkabı iç tabanında okunur marka adı (2. tur)"],
 ];
 
 async function ensureRaw(item: Item): Promise<string> {
@@ -248,7 +270,8 @@ Aday listesi ve seçim gerekçeleri: \`docs/gorsel-adaylari.md\`. Kontrol tarihi
 - Hepsi gerçek fotoğraf: \`aiGenerated: false\`. Lisans: Pexels License / Unsplash License (ticari kullanım serbest, atıf zorunlu değil; biz atıf veriyoruz).
 - \`sources\` kaydı için: url = fotoğraf sayfası, type \`stock-photo\`, label = "Atıf" sütunu, checkedAt = ${CHECKED_AT}.
 - Kullanım sınırları: marka/ürün kartında kullanılmaz, kişi bir markayla eşleştirilmez, "gerçek müşteri" gibi sunulmaz; gerçek kişiye vücut tipi etiketi verilmez.
-- Rötuş: görünür marka nakışı/etiketi olan 4 karede logo, komşu kumaş dokusuyla örtüldü (Pexels/Unsplash lisansı değiştirmeye izin verir). Başka değişiklik yok.
+- Rötuş: görünür marka nakışı/etiketi olan 5 karede logo/yazı, komşu kumaş/deri dokusuyla örtüldü (Pexels/Unsplash lisansı değiştirmeye izin verir). Başka değişiklik yok.
+- 2. tur (#101–#121): site sahibinin kararıyla **yalnız kişisiz** görseller (mezura, terzi araçları, katlı giysi, kumaş, ayakkabı, toptan kumaş rafları). Kategori kartlarında manken fotoğrafı yerine illüstrasyon kullanılır; 1. turdaki kişi fotoğrafları yalnız mevcut kullanım yerlerinde kalır.
 
 | Slot | Aday | Dosya | Alt metin | Atıf | Fotoğrafçı profili | Fotoğraf sayfası | Lisans | aiGenerated | Boyut | Not |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -260,9 +283,9 @@ ${rows.join("\n")}
 |---|---|
 ${REJECTED.map(([n, why]) => `| #${n} | ${why} |`).join("\n")}
 
-## Hâlâ boş slotlar (AI görseli veya yeni aday gerekli)
+## Hâlâ boş slotlar
 
-kadin-tayt, kadin-tunik, kadin-mont, erkek-jean, erkek-hirka, erkek-sweatshirt (yalnız #38 triko yedek), erkek-esofman, erkek-takim-elbise, beden rehberinde büyük beden kişide ölçü alma, vücut tipi silüetleri (10), Merter/Laleli/Osmanbey toptan pazar sokakları. Kadın hero tam boy yatay kare yok (#1–#3 belden yukarı).
+Kategori kartları (kadın/erkek giyim alt kategorileri): bilinçli olarak fotoğrafsız, SVG illüstrasyon kullanılır (site sahibinin kararı, 2. tur). İç giyim: kişisiz doku görseli \`ic-giyim-doku\` dışında illüstrasyon. Kapalıçarşı/Merter/Laleli sokak sahneleri: okunur tabelasız uygun kare bulunamadı (yerine \`alisveris-toptan\` kumaş rafları).
 `;
   if (only) return console.log("ONLY verildi: manifest yazılmadı");
   fs.writeFileSync(MANIFEST, md);

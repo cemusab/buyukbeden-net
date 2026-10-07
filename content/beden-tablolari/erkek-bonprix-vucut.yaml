@@ -1,0 +1,25 @@
+title: "Bonprix erkek üst giyim vücut ölçüleri (L–6XL)"
+caption: "Bonprix (Almanya) erkek üst giyim – çift beden, harf ve vücut göğüs ölçüsü (cm)"
+kind: olcu
+gender: erkek
+brandName: Bonprix
+productType: ust-giyim
+countrySystem: DE
+measurementType: body
+sourceType: official_brand
+sourceUrl: "https://www.bonprix.de/service/beratung/groessentabellen/"
+unit: cm
+lastVerifiedAt: 2026-10-07
+highlight: chest
+rows:
+  - { numericSize: "52/54", letterSize: "L", chest: { min: 102, max: 109 } }
+  - { numericSize: "56/58", letterSize: "XL", chest: { min: 110, max: 117 } }
+  - { numericSize: "60/62", letterSize: "XXL", chest: { min: 118, max: 125 } }
+  - { numericSize: "64/66", letterSize: "3XL", chest: { min: 126, max: 133 } }
+  - { numericSize: "68/70", letterSize: "4XL", chest: { min: 134, max: 141 } }
+  - { numericSize: "72/74", letterSize: "5XL", chest: { min: 142, max: 149 } }
+  - { numericSize: "76/78", letterSize: "6XL", chest: { min: 150, max: 157 } }
+notes:
+  - "Tek bedenler 44–78 arasında 4 cm adımla ilerler (ör. 52 = 102–105 cm); burada markanın çift beden ve harf eşlemesi verildi. Dizi JP1880 ile aynıdır."
+sources:
+  - { url: "https://www.bonprix.de/service/beratung/groessentabellen/", type: "brand-official", label: "Bonprix beden tabloları (Herren)", checkedAt: "2026-10-07" }
