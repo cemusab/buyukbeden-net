@@ -1,0 +1,26 @@
+hero:
+  title: Türkiye'nin büyük beden moda ve stil rehberi
+  lead: Beden, kalıp, kumaş, stil ve kombin sorularınıza kaynaklı ve anlaşılır cevaplar.
+  kadin:
+    title: Büyük Beden Kadın Giyim
+    text: Stil, konfor ve özgüven bir arada
+    cta: Kadın Bölümüne Git
+  erkek:
+    title: Büyük Beden Erkek Giyim
+    text: Rahat, şık ve her tarza uygun
+    cta: Erkek Bölümüne Git
+manifesto:
+  title: Her bedende doğru seçim mümkün
+  text: Doğru beden, doğru kalıp ve doğru kumaş bir araya geldiğinde giyinmek kolaylaşır. Rehberlerimiz ölçüden başlar, markaların kendi tablolarına dayanır ve satış yapmaz.
+sections:
+  - key: editorun-sectikleri
+    title: Öne Çıkan İçerikler
+  - key: bedenini-tani
+  - key: stil
+  - key: kombinler
+  - key: kumas
+  - key: marka-dosyalari
+  - key: alisveris
+  - key: trendler
+  - key: yeni-icerikler
+megaMenuFeatured: {}
