@@ -34,7 +34,7 @@
 
 ## Devam eden (bu oturumda başlatıldı; yeni oturumda durumu kontrol et)
 1. **Beden verisi migrasyonu** (`docs/beden-veri-migrasyonu.md`, CLAUDE.md "Beden Kuralları"): body/garment ayrımı, min–max aralıklar, türetilmiş karşılaştırma etiketi, kesinlik dili kontrol scripti (`scripts/check-language.ts`), 6 ay tazelik uyarısı, **Beden Bulucu**. Bir agent v2'de çalışıyordu. Kontrol: `git log --oneline v2 -15`, `git status`, `npm run qa`. Yarım kaldıysa planı tamamla. Bitince qa yeşil → PR → main.
-2. **Ayakkabı araştırması** → `docs/ayakkabi-arastirmasi.md`. Sonra içerik: `/erkek/ayakkabi` (+ `buyuk-numara` 47+, `genis-kalip`), `/kadin/ayakkabi` (+ `buyuk-numara` 42+, `genis-kalip`, `genis-baldirli-cizme`), `/beden-rehberi/ayak-olcusu-nasil-alinir`, `/alisveris-rehberi/buyuk-numara-ayakkabi-markalari`. Taksonomi/rota: ayakkabı giyim dışı ayrı silo bölümü (`/kadin/ayakkabi`, `/erkek/ayakkabi`) – rotalar ve manifest'e eklenmeli.
+2. **Ayakkabı:** araştırma TAMAM (`docs/ayakkabi-arastirmasi.md`, 34 kaynak; §7 açık noktalar). Migrasyon bitince içerik + rotalar: `/erkek/ayakkabi` (+ `buyuk-numara` 47+, `genis-kalip`), `/kadin/ayakkabi` (+ `buyuk-numara` 42+, `genis-kalip`, `genis-baldirli-cizme`), `/beden-rehberi/ayak-olcusu-nasil-alinir`, `/alisveris-rehberi/buyuk-numara-ayakkabi-markalari`. Taksonomi/rota: ayakkabı giyim dışı ayrı silo bölümü (`/kadin/ayakkabi`, `/erkek/ayakkabi`) – rotalar ve manifest'e eklenmeli.
 
 ## Sıradaki işler (öncelik sırası)
 1. Yukarıdaki 1 ve 2'yi bitir, yayınla.
