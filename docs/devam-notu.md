@@ -43,6 +43,14 @@
 - Hepsi bitince: `npm run qa` yeşil → TEK push → PR v2→main → merge → canlı smoke test (sitemap URL'leri 200).
 - Açık karar: `kadin-harf-numara-markalara-gore` dönüşüm tablosu kalsın mı (şimdilik kaldı).
 
+## Güncel (2026-10-07 gece)
+- v2'de hazır (canlı değil): migrasyon + Beden Bulucu + ölçü-önce kartlar, ayakkabı, kadın 2A+2B, erkek 2. dalga, kalıp rehberleri (FitSilhouette), SEO head-term düzeltmeleri + llms.txt (`docs/seo-anahtar-kelime-haritasi.md`), Vercel ignoreCommand.
+- Çalışıyor: vücut tipi figürleri (yeni stil, `docs/design/vucut-tipi-referans.jpg`) + ana sayfa bölümü; 2. stok fotoğraf turu (sahibi onayladı).
+- SIRADA: **Düzen düzeltmesi** – sahibi "site referansa göre boş" dedi: giyim hub hero'su (sol metin/sağ foto, kompakt), kategori ızgarası hemen altta 5 sütun fotoğraflı, kısa cevap/uzun intro ızgara altına; hiçbir kart görselsiz değil (foto yoksa pastel zeminli manken stili çizim); makale: sol görsel + sağ "Bu Yazıda"; ana sayfa yoğunluğu ve sıra referansa göre. Vücut tipi agent'ı bitince başlat. Sonra fotoğrafları içeriğe bağla.
+- Ardından: tam `npm run qa` → TEK yayın (PR v2→main). Vercel: 11 eski deployment silindi (sahibi onayıyla); yalnız canlı olan kaldı.
+- Search Console: https mülkü doğrulandı (HTML dosyası `public/google6bca90a9930b4ada.html` – SİLME), sitemap-index.xml gönderildi ("Getirilemedi" ilk saatlerde normal; 1–2 gün sonra kontrol).
+- Keystatic prod kurulumu yayından sonra (sahibi istedi).
+
 ## Sıradaki işler (öncelik sırası)
 1. Yukarıdaki 1 ve 2'yi bitir, yayınla.
 2. **Veri sorumlusu** bilgisi gelince (sahibi 2–3 gün içinde iletecek; **hatırlat**): `content/ayarlar/site.yaml` (editorialEmail, organization), KVKK/gizlilik metinleri, `/iletisim` yayına.
