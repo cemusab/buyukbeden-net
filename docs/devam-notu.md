@@ -43,6 +43,9 @@
 - Hepsi bitince: `npm run qa` yeşil → TEK push → PR v2→main → merge → canlı smoke test (sitemap URL'leri 200).
 - Açık karar: `kadin-harf-numara-markalara-gore` dönüşüm tablosu kalsın mı (şimdilik kaldı).
 
+## 2026-10-08 – 4. dalga (çalışıyor)
+Paralel: (1) ~15–25 yeni marka sayfası (content/markalar + marka listesi rehberleri); (2) toptan genişletme: /alisveris-rehberi/toptan-buyuk-beden-nereden-alinir + Merter/Laleli/Osmanbey sayfaları + doğrulanmış toptancı tabloları (tavsiye değil uyarısıyla). Bitince: qa → tek PR → canlı kontrol. Sahibi: PR'ı kendisi oluşturmayacak, ben yapıyorum.
+
 ## 2026-10-08 – 3. dalga YAYINDA (PR #7)
 Canlı: 216 URL 200, /cizim/*.svg 200, canlı Lighthouse ana sayfa mobil 90/100/100/100 (LCP 3,2 s). Kişi fotoğrafları kaldırıldı, 9 marka gömmesi, trend/mevzuat/ayakkabı doğrulamaları, Vercel Analytics canlı.
 Sıradaki (onay gerektirenler sahibine sorulacak): Keystatic prod, legacy/ silme, logo indirme, erkek hero yeniden üretim; veri sorumlusu bilgisi hatırlatması (10-09/10-10); ayakkabi-arastirmasi.md §7 listesini güncelle; yeni içerik dalgası fikirleri (54/56 beden, 5XL/6XL sayfaları, daha fazla kombin).
