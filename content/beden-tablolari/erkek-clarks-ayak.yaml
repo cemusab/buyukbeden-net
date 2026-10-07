@@ -1,0 +1,25 @@
+title: "Clarks erkek ayakkabı numaraları ve ayak uzunluğu (UK 11–14)"
+caption: "Clarks erkek ayakkabı numara tablosu – ayak uzunluğu (vücut ölçüsü; kaynak mm), EU 46 ve üstü"
+kind: olcu
+gender: erkek
+brandName: "Clarks"
+productType: ayakkabi
+countrySystem: UK
+measurementType: body
+partialRows: true
+sourceType: official_brand
+sourceUrl: "https://www.clarks.com/en-gb/fitguide"
+unit: mm
+lastVerifiedAt: 2026-10-07
+highlight: footLength
+rows:
+  - { numericSize: "11", equivalents: { EU: "46" }, footLength: { min: 289, max: 289 } }
+  - { numericSize: "12", equivalents: { EU: "47" }, footLength: { min: 298, max: 298 } }
+  - { numericSize: "13", equivalents: { EU: "48" }, footLength: { min: 306, max: 306 } }
+  - { numericSize: "14", equivalents: { EU: "49", marka: "Clarks EU 49½" }, footLength: { min: 314, max: 314 } }
+notes:
+  - "Clarks iki EU sütunu verir: kendi \"Clarks EU\" numarası ve standart EU. Burada standart EU gösterilir; ikisi yarım numara ayrışabilir (ör. UK 10 = Clarks EU 44½, standart EU 45)."
+  - "Clarks, mağazadaki ayak ölçme aletiyle yapılan ölçümün bu mm değerleriyle birebir örtüşmediğini belirtir."
+  - "Clarks erkekte G'yi standart, H'yi geniş genişlik olarak adlandırır."
+sources:
+  - { url: "https://www.clarks.com/en-gb/fitguide", type: "brand-official", label: "Clarks fit guide (Birleşik Krallık)", checkedAt: "2026-10-07" }

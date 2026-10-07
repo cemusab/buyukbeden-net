@@ -1,0 +1,51 @@
+title: "New Balance erkek ayakkabı genişlikleri: B, D, 2E, 4E (cm)"
+caption: "New Balance erkek genişlik tablosu – numaraya ve genişlik harfine göre genişlik (cm)"
+kind: olcu
+gender: erkek
+brandName: "New Balance"
+productType: ayakkabi
+countrySystem: US
+measurementType: body
+measurementTypeVerified: false
+partialRows: true
+sourceType: official_brand
+sourceUrl: "https://www.newbalance.com/size-guide.html"
+unit: cm
+lastVerifiedAt: 2026-10-07
+fieldLabels: { footWidth: "Genişlik" }
+rows:
+  - { numericSize: "8", widthLetter: "B", footWidth: { min: 9.8, max: 9.8 } }
+  - { numericSize: "8", widthLetter: "D", footWidth: { min: 10.1, max: 10.1 } }
+  - { numericSize: "8", widthLetter: "2E", footWidth: { min: 10.5, max: 10.5 } }
+  - { numericSize: "8", widthLetter: "4E", footWidth: { min: 10.8, max: 10.8 } }
+  - { numericSize: "10", widthLetter: "B", footWidth: { min: 10.2, max: 10.2 } }
+  - { numericSize: "10", widthLetter: "D", footWidth: { min: 10.6, max: 10.6 } }
+  - { numericSize: "10", widthLetter: "2E", footWidth: { min: 10.9, max: 10.9 } }
+  - { numericSize: "10", widthLetter: "4E", footWidth: { min: 11.3, max: 11.3 } }
+  - { numericSize: "12", widthLetter: "B", footWidth: { min: 10.6, max: 10.6 } }
+  - { numericSize: "12", widthLetter: "D", footWidth: { min: 11.0, max: 11.0 } }
+  - { numericSize: "12", widthLetter: "2E", footWidth: { min: 11.4, max: 11.4 } }
+  - { numericSize: "12", widthLetter: "4E", footWidth: { min: 11.7, max: 11.7 } }
+  - { numericSize: "13", widthLetter: "B", footWidth: { min: 10.8, max: 10.8 } }
+  - { numericSize: "13", widthLetter: "D", footWidth: { min: 11.2, max: 11.2 } }
+  - { numericSize: "13", widthLetter: "2E", footWidth: { min: 11.6, max: 11.6 } }
+  - { numericSize: "13", widthLetter: "4E", footWidth: { min: 11.9, max: 11.9 } }
+  - { numericSize: "14", widthLetter: "B", footWidth: { min: 11.0, max: 11.0 } }
+  - { numericSize: "14", widthLetter: "D", footWidth: { min: 11.4, max: 11.4 } }
+  - { numericSize: "14", widthLetter: "2E", footWidth: { min: 11.8, max: 11.8 } }
+  - { numericSize: "14", widthLetter: "4E", footWidth: { min: 12.1, max: 12.1 } }
+  - { numericSize: "15", widthLetter: "B", footWidth: { min: 11.3, max: 11.3 } }
+  - { numericSize: "15", widthLetter: "D", footWidth: { min: 11.6, max: 11.6 } }
+  - { numericSize: "15", widthLetter: "2E", footWidth: { min: 12.0, max: 12.0 } }
+  - { numericSize: "15", widthLetter: "4E", footWidth: { min: 12.3, max: 12.3 } }
+  - { numericSize: "16", widthLetter: "B", footWidth: { min: 11.5, max: 11.5 } }
+  - { numericSize: "16", widthLetter: "D", footWidth: { min: 11.8, max: 11.8 } }
+  - { numericSize: "16", widthLetter: "2E", footWidth: { min: 12.2, max: 12.2 } }
+  - { numericSize: "16", widthLetter: "4E", footWidth: { min: 12.5, max: 12.5 } }
+notes:
+  - "New Balance erkekte D'yi standart, 2E'yi geniş, 4E'yi çok geniş olarak adlandırır; bazı modellerde (ör. 608v5) 6E de satılır, ama tabloda 6E için sayı yok."
+  - "Sayfa bu değerlerin ayak genişliği mi ayakkabının iç genişliği mi olduğunu açıkça yazmıyor; ayak genişliğinizle karşılaştırırken yaklaşık bir kılavuz olarak kullanın."
+  - "Kaynaktaki numaralardan yalnız bu satırlar aktarıldı."
+sources:
+  - { url: "https://www.newbalance.com/size-guide.html", type: "brand-official", label: "New Balance Size & Width Guide (ABD)", checkedAt: "2026-10-07" }
+  - { url: "https://www.newbalance.com/pd/mx608v5/MX608WN5-4E-07.html", type: "brand-official", label: "New Balance 608v5 ürün sayfası (6E genişlik, US 18'e kadar)", checkedAt: "2026-10-07" }

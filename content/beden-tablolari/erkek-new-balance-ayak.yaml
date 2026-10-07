@@ -1,0 +1,32 @@
+title: "New Balance erkek ayakkabı numaraları ve ayak uzunluğu (US 11–20)"
+caption: "New Balance erkek ayakkabı numara tablosu – ayak uzunluğu (vücut ölçüsü, cm), EU 45 ve üstü"
+kind: olcu
+gender: erkek
+brandName: "New Balance"
+productType: ayakkabi
+countrySystem: US
+measurementType: body
+partialRows: true
+sourceType: official_brand
+sourceUrl: "https://www.newbalance.com/size-guide.html"
+unit: cm
+lastVerifiedAt: 2026-10-07
+highlight: footLength
+rows:
+  - { numericSize: "11", equivalents: { UK: "10.5", EU: "45" }, footLength: { min: 29, max: 29 } }
+  - { numericSize: "12", equivalents: { UK: "11.5", EU: "46.5" }, footLength: { min: 30, max: 30 } }
+  - { numericSize: "12.5", equivalents: { UK: "12", EU: "47" }, footLength: { min: 30.5, max: 30.5 } }
+  - { numericSize: "13", equivalents: { UK: "12.5", EU: "47.5" }, footLength: { min: 31, max: 31 } }
+  - { numericSize: "13.5", equivalents: { UK: "13", EU: "48.5" }, footLength: { min: 31.5, max: 31.5 } }
+  - { numericSize: "14", equivalents: { UK: "13.5", EU: "49" }, footLength: { min: 32, max: 32 } }
+  - { numericSize: "15", equivalents: { UK: "14.5", EU: "50" }, footLength: { min: 33, max: 33 } }
+  - { numericSize: "16", equivalents: { UK: "15.5", EU: "51" }, footLength: { min: 34, max: 34 } }
+  - { numericSize: "17", equivalents: { UK: "16.5", EU: "52" }, footLength: { min: 35, max: 35 } }
+  - { numericSize: "18", equivalents: { UK: "17.5", EU: "53" }, footLength: { min: 36, max: 36 } }
+  - { numericSize: "19", equivalents: { UK: "18.5", EU: "54" }, footLength: { min: 37, max: 37 } }
+  - { numericSize: "20", equivalents: { UK: "19.5", EU: "55" }, footLength: { min: 38, max: 38 } }
+notes:
+  - "Kaynak tablonun yalnız EU 45 ve üstü satırları aktarıldı; küçük numaralar ve bazı yarım numaralar (ör. US 11.5) markanın sayfasında."
+  - "Tablonun en büyük numaraları her modelde üretilmez; ürün sayfasında hangi numaraların satıldığını kontrol edin."
+sources:
+  - { url: "https://www.newbalance.com/size-guide.html", type: "brand-official", label: "New Balance Size & Width Guide (ABD)", checkedAt: "2026-10-07" }

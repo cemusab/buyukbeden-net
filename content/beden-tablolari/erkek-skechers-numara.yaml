@@ -1,0 +1,29 @@
+title: "Skechers erkek ayakkabı numara çevirme: US, UK, EU (US 12.5–16)"
+caption: "Skechers erkek numara çevirme tablosu (US / UK / EU; ayak ölçüsü vermez)"
+kind: donusum
+gender: erkek
+brandName: "Skechers"
+productType: ayakkabi
+countrySystem: US
+sourceType: official_brand
+sourceUrl: "https://skechers.ca/en/size-chart"
+lastVerifiedAt: 2026-10-07
+columns:
+  - { key: "US", label: "US" }
+  - { key: "UK", label: "UK" }
+  - { key: "EU", label: "EU" }
+highlight: EU
+rows:
+  - { systems: { US: "12.5", UK: "11.5", EU: "47" } }
+  - { systems: { US: "13", UK: "12", EU: "47.5" } }
+  - { systems: { US: "13.5", UK: "12.5", EU: "48" } }
+  - { systems: { US: "14", UK: "13", EU: "48.5" } }
+  - { systems: { US: "15", UK: "14", EU: "49.5" } }
+  - { systems: { US: "16", UK: "15", EU: "50.5" } }
+notes:
+  - "Yalnız EU 47 ve üstü satırlar aktarıldı. Kaynak tablo ayak uzunluğu (cm) vermez; bu yüzden yalnız numara çevirmesi olarak gösterilir."
+  - "Kaynak hatası: aynı tabloda erkek US 9, 9.5 ve 10'un üçü de EU 42.5 olarak yazılmış. Bu satırlar büyük olasılıkla hatalı olduğu için kullanılmadı; büyük numara satırları kendi içinde tutarlı."
+  - "Skechers erkek genişlikleri: D (Classic), D/E (Relaxed Fit), 2E/3E (Wide Fit), 4E/5E (Extra Wide Fit)."
+sources:
+  - { url: "https://skechers.ca/en/size-chart", type: "brand-official", label: "Skechers Kanada numara tablosu", checkedAt: "2026-10-07" }
+  - { url: "https://skechers.com/stories/the-comfort-lab/skechers-wide-fit-shoes-explained.html", type: "brand-official", label: "Skechers geniş kalıp açıklaması", checkedAt: "2026-10-07" }

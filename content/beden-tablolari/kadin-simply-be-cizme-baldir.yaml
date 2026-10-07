@@ -1,0 +1,22 @@
+title: "Simply Be çizme baldır kalıbı: Super Curvy konç çevresi"
+caption: "Simply Be geniş baldırlı çizme – Super Curvy kalıbının baldır (konç) çevresi (kaynak mm)"
+kind: olcu
+gender: kadin
+brandName: "Simply Be"
+productType: cizme
+countrySystem: marka
+measurementType: garment
+measurementTypeVerified: false
+partialRows: true
+sourceType: official_brand
+sourceUrl: "https://www.simplybe.co.uk/pages/boots-fit-guide"
+unit: mm
+lastVerifiedAt: 2026-10-07
+rows:
+  - { letterSize: "Super Curvy", calf: { min: 468, max: 526 }, note: "Ayak numarası ve genişliğine göre değişir" }
+notes:
+  - "Simply Be çizmelerini dört baldır kalıbında sunar; tabloda yalnız sayfada sayısal olarak verilen Super Curvy kalıbı var. Kalıbın baldır çevresi ayak numarası ve genişliği büyüdükçe artar."
+  - "Sayfa bu değerin çizmenin konç çevresi mi, uygun gelen baldır ölçüsü mü olduğunu ayrıca belirtmiyor; ürün (çizme) ölçüsü olarak işaretlendi ve yaklaşık kılavuz olarak verilir."
+  - "Simply Be, baldırı yaklaşık 16 inçten (yaklaşık 40,6 cm, çeviri bizim) geniş olanlara geniş baldır modellerini önerir."
+sources:
+  - { url: "https://www.simplybe.co.uk/pages/boots-fit-guide", type: "brand-official", label: "Simply Be çizme kalıp rehberi", checkedAt: "2026-10-07" }

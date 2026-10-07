@@ -1,0 +1,26 @@
+title: "ECCO erkek ayakkabı numaraları ve ayak uzunluğu (EU 46–50)"
+caption: "ECCO erkek ayakkabı numara tablosu – ayak uzunluğu (vücut ölçüsü, cm), EU 46 ve üstü"
+kind: olcu
+gender: erkek
+brandName: "ECCO"
+productType: ayakkabi
+countrySystem: EU
+measurementType: body
+partialRows: true
+sourceType: official_brand
+sourceUrl: "https://us.ecco.com/explore-ecco/guide/mens-size-guide-shoes.html"
+unit: cm
+lastVerifiedAt: 2026-10-07
+highlight: footLength
+rows:
+  - { numericSize: "46", equivalents: { US: "12/12.5" }, footLength: { min: 29.7, max: 29.7 } }
+  - { numericSize: "47", equivalents: { US: "13/13.5" }, footLength: { min: 30.3, max: 30.3 } }
+  - { numericSize: "48", equivalents: { US: "14/14.5" }, footLength: { min: 31.0, max: 31.0 } }
+  - { numericSize: "49", equivalents: { US: "15/15.5" }, footLength: { min: 31.6, max: 31.6 } }
+  - { numericSize: "50", equivalents: { US: "16/16.5" }, footLength: { min: 32.3, max: 32.3 } }
+notes:
+  - "ECCO tablosu EU 50'de biter ve ayrı bir genişlik (harf) sistemi kullanmaz."
+  - "Değerler markanın ABD sitesindeki tablo görselinden okundu; yalnız EU 46 ve üstü satırlar aktarıldı."
+sources:
+  - { url: "https://us.ecco.com/explore-ecco/guide/mens-size-guide-shoes.html", type: "brand-official", label: "ECCO erkek ayakkabı numara rehberi (ABD)", checkedAt: "2026-10-07" }
+  - { url: "https://gb.ecco.com/guides/size-guide/men", type: "brand-official", label: "ECCO erkek numara rehberi ve ölçme talimatı (Birleşik Krallık)", checkedAt: "2026-10-07" }
