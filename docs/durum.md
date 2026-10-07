@@ -27,4 +27,7 @@
 - Keystatic prod (GitHub App) kurulumu site sahibinin onayıyla yapılacak (env değişkenleri). Bazı karmaşık alanlar (kombin parçaları, alışveriş kriterleri/seçimleri, marka künyesi, tablo satırları) panelde düzenlenemez, dosyadan düzenlenir.
 - Lighthouse ölçümü (P5) ve axe a11y testi henüz eklenmedi (`@axe-core/playwright` kurulu).
 - Markdoc `{% table %}` tablolarında mobil kart görünümü yok (yatay kaydırma + yapışkan ilk sütun var); kart görünümü yalnız `beden-tablolari` tablolarında.
-- Paralel içerik yazımı sürerken `content/` doğrulaması kırmızı olabilir (yazarların henüz yayımlanmamış sayfalara linkleri). Frontend testleri bu sürede `CONTENT_DIR` ile filtrelenmiş kopya üzerinde koşuldu; son `npm run qa` gerçek içerikle yeşil olmalı.
+- Hub kartı / hub hero fotoğrafları içerikte `image` alanıyla bağlanır (henüz çoğu hub'da yok → kıyafet çizimi gösteriliyor). Ana sayfa hero ve beden rehberi bandı stok fotoğraflarla bağlandı (`content/ayarlar/anasayfa.yaml`).
+
+### QA
+- 2026-10-07: `npm run qa` gerçek içerikle **yeşil** – validate (156 belge, 33 beden tablosu, 159 URL) + lint + build (194 statik sayfa) + Playwright **73 passed, 37 skipped** (skip = proje kapsamı: masaüstü-only testler mobilde ve tersi).
