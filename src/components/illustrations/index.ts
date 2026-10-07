@@ -15,3 +15,7 @@ export { CareSymbol, CARE_SYMBOL_NAMES, CARE_SYMBOL_LABELS } from "./care";
 export type { CareSymbolProps, CareSymbolName } from "./care";
 export { TONES, C as ILLU_COLORS } from "./shared";
 export type { Silo, Tone } from "./shared";
+export { FitSilhouette } from "./fits";
+export type { FitSilhouetteProps } from "./fits";
+export { FIT_KEYS, FIT_LABELS, FIT_SUMMARY, isFitKey, fitLabel, fitSummary } from "./fit-keys";
+export type { KadinFit, ErkekFit } from "./fit-keys";

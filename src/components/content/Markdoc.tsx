@@ -11,6 +11,8 @@ import { eyebrowFor } from "@/lib/present";
 import { Badge } from "@/components/ui/primitives";
 import { SizeChartTable } from "./SizeChartTable";
 import { SizeComparisonTable } from "./SizeComparisonTable";
+import { FitSilhouette } from "@/components/illustrations/fits";
+import { fitLabel, fitSummary } from "@/components/illustrations/fit-keys";
 
 /** {% beden-karsilastirma %} ve beden rehberi `sizeComparisons` alanı: marka tablolarından türetilir. */
 export function SizeComparison({ headingLevel, gorunum, ...attrs }: Record<string, unknown> & { headingLevel?: "h2" | "h3"; gorunum?: string }) {
@@ -161,6 +163,53 @@ export function InlineRelated({ yol }: { yol: string }) {
   );
 }
 
+/** {% kalip %}: tek kalıp çizimi + etiket + kısa ölçü özeti. */
+function FitCard({ silo, fit, compact = false }: { silo: "kadin" | "erkek"; fit: string; compact?: boolean }) {
+  const label = fitLabel(silo, fit);
+  if (!label) return null;
+  return (
+    <figure className="m-0 flex flex-col items-center rounded-card border border-line bg-surface p-3 text-center">
+      <FitSilhouette silo={silo} fit={fit} aria-hidden className={compact ? "h-auto w-full max-w-[9rem]" : "h-auto w-full max-w-[11rem]"} />
+      <figcaption className="mt-2">
+        <span className={compact ? "block text-sm font-bold text-ink" : "block font-bold text-ink"}>{label}</span>
+        <span className="mt-0.5 block text-xs leading-snug text-muted">{fitSummary(silo, fit)}</span>
+      </figcaption>
+    </figure>
+  );
+}
+
+const FIT_LEGEND = "Kesikli çizgi bacak hattı, sol ayraç ön ağ (bel yüksekliği), paçadaki kalın çizgi paça genişliği, kesikli yatay çizgi doğal bel.";
+
+export function FitFigure({ silo, fit, baslik }: { silo: "kadin" | "erkek"; fit: string; baslik?: string }) {
+  if (!fitLabel(silo, fit)) return null;
+  return (
+    <div className="not-prose my-6 max-w-[15rem]">
+      {baslik ? <p className="mb-2 font-bold text-ink">{baslik}</p> : null}
+      <FitCard silo={silo} fit={fit} />
+      <p className="mt-2 text-xs text-muted">{FIT_LEGEND}</p>
+    </div>
+  );
+}
+
+export function FitGrid({ silo, fits, baslik }: { silo: "kadin" | "erkek"; fits: string; baslik?: string }) {
+  const list = fits
+    .split(",")
+    .map((f) => f.trim())
+    .filter((f) => fitLabel(silo, f));
+  if (!list.length) return null;
+  return (
+    <section className="not-prose my-6" aria-label={baslik ?? "Kalıp çizimleri"}>
+      {baslik ? <p className="mb-2 font-bold text-ink">{baslik}</p> : null}
+      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+        {list.map((f) => (
+          <FitCard key={f} silo={silo} fit={f} compact />
+        ))}
+      </div>
+      <p className="mt-2 text-xs text-muted">{FIT_LEGEND}</p>
+    </section>
+  );
+}
+
 function BodyImage({ src, alt }: { src: string; alt?: string }) {
   return (
     <span className="not-prose my-6 block">
@@ -186,6 +235,8 @@ export function MarkdocContent({ tree, doc, inline = false }: { tree: Tree; doc?
       return chart ? <SizeChartTable chart={chart} /> : null;
     },
     SizeComparison,
+    FitFigure,
+    FitGrid,
     FaqSlot: () => (doc && doc.faq.length ? <FaqList doc={doc} /> : null),
     ShoppingCtaSlot: () => (doc ? <RelatedShoppingCTA doc={doc} /> : null),
   };

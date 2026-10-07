@@ -4,6 +4,7 @@
  */
 import Markdoc, { type Config, type Node, type Schema, Tag } from "@markdoc/markdoc";
 import { slugifyTr } from "../lib/slugify";
+import { FIT_KEYS, isFitKey } from "../components/illustrations/fit-keys";
 
 export function nodeText(node: Node): string {
   let out = "";
@@ -118,6 +119,47 @@ export const markdocConfig: Config = {
         baslik: { type: String },
         /** "olcu" (varsayılan): ölçü öncelikli kartlar; "marka": marka öncelikli (amacı marka karşılaştırması olan sayfalar) */
         gorunum: { type: String, matches: ["olcu", "marka"] },
+      },
+    },
+    /** Pantolon kalıbı çizimi + etiket (src/components/illustrations/fits.tsx). */
+    kalip: {
+      render: "FitFigure",
+      selfClosing: true,
+      attributes: {
+        silo: { type: String, required: true, matches: ["kadin", "erkek"] },
+        fit: { type: String, required: true },
+        baslik: { type: String },
+      },
+      validate(node) {
+        const { silo, fit } = node.attributes as { silo?: string; fit?: string };
+        if (silo && fit && !isFitKey(silo, fit)) {
+          const keys = (FIT_KEYS as Record<string, readonly string[]>)[silo] ?? [];
+          return [{ id: "kalip-bilinmeyen", level: "error", message: `{% kalip %}: "${fit}" ${silo} için tanımlı değil. Geçerli: ${keys.join(", ")}` }];
+        }
+        return [];
+      },
+    },
+    /** Kalıp ızgarası: fits="mom,palazzo,wide-leg" (virgülle). */
+    kaliplar: {
+      render: "FitGrid",
+      selfClosing: true,
+      attributes: {
+        silo: { type: String, required: true, matches: ["kadin", "erkek"] },
+        fits: { type: String, required: true },
+        baslik: { type: String },
+      },
+      validate(node) {
+        const { silo, fits } = node.attributes as { silo?: string; fits?: string };
+        if (!silo || !fits) return [];
+        const list = fits.split(",").map((f) => f.trim()).filter(Boolean);
+        const bad = list.filter((f) => !isFitKey(silo, f));
+        const errs = [];
+        if (!list.length) errs.push({ id: "kaliplar-bos", level: "error" as const, message: "{% kaliplar %}: fits boş olamaz." });
+        if (bad.length) {
+          const keys = (FIT_KEYS as Record<string, readonly string[]>)[silo] ?? [];
+          errs.push({ id: "kaliplar-bilinmeyen", level: "error" as const, message: `{% kaliplar %}: ${bad.join(", ")} ${silo} için tanımlı değil. Geçerli: ${keys.join(", ")}` });
+        }
+        return errs;
       },
     },
   },
