@@ -229,6 +229,14 @@ export default config({
       order: fields.integer({ label: "Sıra", defaultValue: 100 }),
       menuLabel: fields.text({ label: "Menü etiketi" }),
       image: image("hublar", "Kategori kartı görseli"),
+      tileStyle: fields.select({
+        label: "Kart görünümü",
+        options: [
+          { label: "Çizim (varsayılan, tek tip kroki)", value: "illustration" },
+          { label: "Fotoğraf (yukarıdaki görsel)", value: "photo" },
+        ],
+        defaultValue: "illustration",
+      }),
       intro: fields.text({ label: "Giriş (40–600)", multiline: true }),
       subtopics: fields.array(
         fields.object({ key: fields.text({ label: "Anahtar", validation: { pattern: slugRule } }), label: fields.text({ label: "Etiket" }), description: fields.text({ label: "Açıklama" }) }),

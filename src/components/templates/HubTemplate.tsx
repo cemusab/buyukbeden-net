@@ -8,7 +8,7 @@ import { MarkdocContent } from "@/components/content/Markdoc";
 import { FaqList } from "@/components/content/Faq";
 import { AuthorBox, DocEyebrow, ShortAnswer, SourcesList, Toc } from "@/components/content/DocParts";
 import { RelatedShoppingCTA } from "@/components/content/RelatedShoppingCTA";
-import { GarmentArt } from "@/components/media/Illustration";
+import { CroquisArt, croquisTile, GarmentArt, hasCroquisArt } from "@/components/media/Illustration";
 import { DocImage } from "@/components/media/Media";
 import { CardGrid, EditorialCard } from "@/components/ui/Cards";
 import { JsonLd } from "@/components/ui/primitives";
@@ -82,8 +82,12 @@ export async function HubTemplate({ doc }: { doc: DocMeta }) {
           </div>
         </div>
         <div className="hidden md:block">
-          {fm.image ? (
+          {fm.image && doc.fm.tileStyle === "photo" ? (
             <DocImage image={fm.image} sizes="240px" ratio="1/1" priority captionClassName={silo === "erkek" ? "text-white/85" : "text-ink-2"} />
+          ) : hasCroquisArt(silo, cat) ? (
+            <div className="mx-auto flex aspect-square w-52 items-end justify-center overflow-hidden rounded-card pt-2" style={{ backgroundColor: croquisTile(silo, cat) }} aria-hidden="true">
+              <CroquisArt silo={silo} category={cat} className="h-full w-auto" />
+            </div>
           ) : (
             <div className="mx-auto aspect-square w-52 rounded-card bg-white/90 p-4" aria-hidden="true">
               <GarmentArt silo={silo} category={cat} className="h-full w-full" />

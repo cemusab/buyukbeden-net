@@ -22,6 +22,7 @@ import {
   Toc,
 } from "@/components/content/DocParts";
 import { JsonLd } from "@/components/ui/primitives";
+import { BodyTypeHero, BodyTypeTiles, BODY_TYPE_OVERVIEW, bodyTypeOf } from "@/components/content/BodyTypeTiles";
 
 const ROLE_LABEL: Record<string, string> = {
   ust: "Üst",
@@ -38,11 +39,14 @@ export async function DocShell({
   beforeBody,
   afterBody,
   extraLd,
+  figure,
 }: {
   doc: DocMeta;
   beforeBody?: ReactNode;
   afterBody?: ReactNode;
   extraLd?: Record<string, unknown>;
+  /** Kapak görseli yoksa yerine gösterilen illüstrasyon */
+  figure?: ReactNode;
 }) {
   const s = getSettings();
   const body = await getBody(doc.key);
@@ -63,7 +67,7 @@ export async function DocShell({
           <div className="mt-5 space-y-5">
             <ArchiveBanner doc={doc} />
             <ShortAnswer doc={doc} />
-            {doc.featuredImage ? <DocImage image={doc.featuredImage} sizes="(min-width: 1024px) 720px, 100vw" priority /> : null}
+            {doc.featuredImage ? <DocImage image={doc.featuredImage} sizes="(min-width: 1024px) 720px, 100vw" priority /> : (figure ?? null)}
             <Toc doc={doc} className="lg:hidden" />
           </div>
           {beforeBody ? <div className="mt-8">{beforeBody}</div> : null}
@@ -235,6 +239,15 @@ function ShoppingBlock({ doc }: { doc: DocMeta }) {
 
 export async function ArticleTemplate({ doc }: { doc: DocMeta }) {
   const before = doc.type === "OUTFIT_GUIDE" ? <OutfitBlock doc={doc} /> : doc.type === "SHOPPING_GUIDE" ? <ShoppingBlock doc={doc} /> : null;
-  return <DocShell doc={doc} beforeBody={before} />;
+  return <DocShell doc={doc} beforeBody={before} figure={doc.type === "STYLE_GUIDE" ? <BodyTypeFigureFor doc={doc} /> : undefined} />;
+}
+
+/** Vücut tipi stil rehberleri: tek tip sayfasında iki figür, genel "vücut tipleri" sayfasında tüm tiplerin karoları. */
+function BodyTypeFigureFor({ doc }: { doc: DocMeta }) {
+  const silo = doc.silo === "kadin" || doc.silo === "erkek" ? doc.silo : null;
+  if (!silo) return null;
+  if (doc.path === BODY_TYPE_OVERVIEW[silo]) return <BodyTypeTiles silo={silo} wide={false} />;
+  const t = bodyTypeOf(doc);
+  return t ? <BodyTypeHero silo={t.silo} shape={t.shape} /> : null;
 }
 

@@ -12,6 +12,7 @@ import { FaqList } from "@/components/content/Faq";
 import { AuthorBox, PageHero, ShortAnswer, SourcesList } from "@/components/content/DocParts";
 import { SizeChartTable } from "@/components/content/SizeChartTable";
 import { BedenBulucuSection } from "@/components/content/BedenBulucuSection";
+import { SizeRangeStrip } from "@/components/content/SizeRangeStrip";
 import { isMeasure } from "@/lib/size-core";
 import { FabricArt, MeasureArt, QuickIcon } from "@/components/media/Illustration";
 import { CardGrid, CategoryCard, CompactCard, EditorialCard } from "@/components/ui/Cards";
@@ -302,6 +303,7 @@ function SectionLanding({ doc, type }: { doc: DocMeta; type: "SIZE_GUIDE" | "STY
         </div>
       ) : null}
       {type === "SIZE_GUIDE" ? <BedenBulucuSection gender={silo} /> : null}
+      {type === "SIZE_GUIDE" ? <SizeRangeStrip silo={silo} /> : null}
       <div className="mt-10">
         {type === "SIZE_GUIDE" ? (
           docs.length ? (

@@ -279,8 +279,10 @@ export const HubSchema = z.strictObject({
   category: CategoryKey,
   order: z.number().int().default(100),
   menuLabel: z.string().max(30).optional(),
-  /** Kategori kartı görseli (yoksa kıyafet çizimi) */
+  /** Kategori kartı görseli (yalnız `tileStyle: photo` iken kartta ve hero'da kullanılır) */
   image: Image.optional(),
+  /** Kart/hero görünümü: varsayılan tek tip kroki çizimi; `photo` yalnız açıkça seçilirse */
+  tileStyle: z.enum(["illustration", "photo"]).default("illustration"),
   intro: z.string().min(40).max(600),
   subtopics: z
     .array(z.object({ key: Slug, label: z.string().min(3), description: z.string().optional() }))

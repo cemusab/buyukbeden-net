@@ -12,6 +12,7 @@ import { GarmentArt, MeasureArt, QuickIcon } from "@/components/media/Illustrati
 import { CardGrid, CategoryCard, CompactCard, EditorialCard, iconFor } from "@/components/ui/Cards";
 import { Cover } from "@/components/media/Media";
 import { ButtonLink, JsonLd, SectionHeader } from "@/components/ui/primitives";
+import { BodyTypeSwitch } from "@/components/content/BodyTypeTiles";
 
 /** Ana sayfa "büyük beden giyim" / "büyük beden" baş terimlerinin sahibi (docs/seo-anahtar-kelime-haritasi.md). */
 export function generateMetadata(): Metadata {
@@ -288,6 +289,8 @@ export default function HomePage() {
           ))}
         </ul>
       </nav>
+
+      <BodyTypeSwitch />
 
       {sections.slice(0, 1).map((x) => (
         <div key={x.key}>{x.node}</div>

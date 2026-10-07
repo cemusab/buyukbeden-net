@@ -1,7 +1,7 @@
 import Image from "next/image";
 import type { ReactNode } from "react";
 import type { Image as ImageT } from "@/content/schema";
-import { GarmentArt, hasGarmentArt, QuickIcon } from "./Illustration";
+import { CroquisArt, croquisTile, GarmentArt, hasCroquisArt, hasGarmentArt, QuickIcon } from "./Illustration";
 
 /** Görsel + (varsa) yapay zekâ şeffaflık notu ve kredi. */
 export function DocImage({
@@ -78,6 +78,13 @@ export function Cover({
 }): ReactNode {
   if (image) return <DocImage image={image} sizes={sizes} ratio={ratio} priority={priority} caption={false} />;
   const tone = silo === "kadin" ? "kadin" : silo === "erkek" ? "erkek" : "neutral";
+  if (category && (silo === "kadin" || silo === "erkek") && hasCroquisArt(silo, category)) {
+    return (
+      <div aria-hidden="true" className="flex items-end justify-center overflow-hidden rounded-card pt-2" style={{ aspectRatio: ratio, backgroundColor: croquisTile(silo, category) }}>
+        <CroquisArt category={category} silo={silo} className="h-full w-auto" />
+      </div>
+    );
+  }
   if (category && (silo === "kadin" || silo === "erkek") && hasGarmentArt(silo, category)) {
     return (
       <div aria-hidden="true" className="flex items-center justify-center overflow-hidden rounded-card bg-soft p-4" style={{ aspectRatio: ratio }}>

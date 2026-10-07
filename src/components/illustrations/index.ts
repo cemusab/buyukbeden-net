@@ -19,3 +19,7 @@ export { FitSilhouette } from "./fits";
 export type { FitSilhouetteProps } from "./fits";
 export { FIT_KEYS, FIT_LABELS, FIT_SUMMARY, isFitKey, fitLabel, fitSummary } from "./fit-keys";
 export type { KadinFit, ErkekFit } from "./fit-keys";
+export { BodyTypeFigure, ScaledBodyFigure, BODY_TYPES, BODY_TYPE_LABELS, BODY_TYPE_SWATCHES, BODY_TYPE_GARMENTS, bodyTypeSwatch } from "./body-type";
+export type { BodyTypeFigureProps, ScaledBodyFigureProps, BodyTypeKey, KadinBodyType, ErkekBodyType, BodyTypeSwatch } from "./body-type";
+export { GarmentCroquis, GARMENT_CROQUIS_KEYS, hasGarmentCroquis, garmentCroquisTile } from "./garment-croquis";
+export type { GarmentCroquisProps } from "./garment-croquis";

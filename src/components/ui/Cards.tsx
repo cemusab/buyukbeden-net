@@ -82,7 +82,7 @@ export function CategoryCard({ hub, label, count, as: H = "h3" }: { hub: DocMeta
   return (
     <article className="group relative flex h-full flex-col overflow-hidden rounded-card border border-line bg-surface transition-shadow hover:shadow-panel">
       <Cover
-        image={hub.fm.image as DocMeta["featuredImage"]}
+        image={hub.fm.tileStyle === "photo" ? (hub.fm.image as DocMeta["featuredImage"]) : undefined}
         title={label}
         silo={hub.silo}
         category={hub.category}
