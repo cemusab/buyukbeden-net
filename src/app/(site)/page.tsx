@@ -234,7 +234,11 @@ export default function HomePage() {
                   <>
                     <Image src={c.image.src} alt={c.image.alt} fill priority sizes="(min-width: 768px) 50vw, 100vw" className="object-cover transition-transform duration-500 group-hover:scale-[1.02]" />
                     <span aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/25 to-transparent" />
-                    {c.image.aiGenerated ? <span className="absolute right-3 top-3 rounded bg-black/50 px-2 py-0.5 text-[0.6875rem] text-white">Yapay zekâ ile üretilmiş görsel</span> : null}
+                    {c.image.aiGenerated || c.image.credit ? (
+                      <span className="absolute right-3 top-3 rounded bg-black/45 px-2 py-0.5 text-[0.6875rem] text-white/90">
+                        {[c.image.aiGenerated ? "Yapay zekâ ile üretilmiş görsel" : null, c.image.credit].filter(Boolean).join(" · ")}
+                      </span>
+                    ) : null}
                   </>
                 ) : (
                   <div aria-hidden="true" className="absolute -right-6 top-4 h-[85%] w-1/2 opacity-90 sm:right-2">

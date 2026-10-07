@@ -5,17 +5,41 @@ hero:
     title: Büyük Beden Kadın Giyim
     text: Stil, konfor ve özgüven bir arada
     cta: Kadın Bölümüne Git
+    image:
+      src: /images/stok/hero-kadin/pexels-7535475.jpg
+      alt: Parkta beyaz tişört ve açık mavi jean giymiş, gülümseyen kadın
+      credit: "Fotoğraf: Los Muertos Crew / Pexels"
   erkek:
     title: Büyük Beden Erkek Giyim
     text: Rahat, şık ve her tarza uygun
     cta: Erkek Bölümüne Git
+    image:
+      src: /images/stok/hero-erkek/unsplash-LpjpApXzB3M.jpg
+      alt: Aydınlık bir ortak çalışma alanında yeşil polo yaka tişört giymiş, gözlüklü, gülümseyen adam
+      credit: "Fotoğraf: AllGo - An App For Plus Size People / Unsplash"
+sizeBand:
+  kadinImage:
+    src: /images/stok/kapak-beden-rehberi-kadin/pexels-4622403.jpg
+    alt: Moda atölyesinde boynuna terzi mezurası asmış, haki örgü tişörtlü kişi
+    credit: "Fotoğraf: cottonbro studio / Pexels"
+  erkekImage:
+    src: /images/stok/kapak-beden-rehberi-erkek/pexels-6766234.jpg
+    alt: Terzi atölyesinde bir terzinin müşterinin kol ve göğüs ölçüsünü mezurayla alması
+    credit: "Fotoğraf: Tima Miroshnichenko / Pexels"
 manifesto:
   title: Her bedende doğru seçim mümkün
   text: Doğru beden, doğru kalıp ve doğru kumaş bir araya geldiğinde giyinmek kolaylaşır. Rehberlerimiz ölçüden başlar, markaların kendi tablolarına dayanır ve satış yapmaz.
 sections:
   - key: editorun-sectikleri
     title: Öne Çıkan İçerikler
+    items:
+      - /beden-rehberi/olcu-alma-rehberi
+      - /beden-rehberi/harf-beden-karsiliklari
+      - /rehberler/bakim-etiketi-nasil-okunur
+      - /alisveris-rehberi/online-alisveriste-beden-secimi
   - key: bedenini-tani
+  - key: temel-rehberler
+    title: Temel Rehberler
   - key: stil
   - key: kombinler
   - key: kumas
@@ -23,4 +47,6 @@ sections:
   - key: alisveris
   - key: trendler
   - key: yeni-icerikler
-megaMenuFeatured: {}
+megaMenuFeatured:
+  kadin: /kadin/giyim/elbise/nasil-secilir
+  erkek: /erkek/giyim/tisort/nasil-secilir
