@@ -1,0 +1,27 @@
+title: "Bonprix kadın vücut ölçüleri (44–58)"
+caption: "Bonprix (Almanya) kadın beden tablosu – vücut ölçüsü (cm)"
+kind: olcu
+gender: kadin
+brandName: Bonprix
+productType: genel
+countrySystem: DE
+measurementType: body
+sourceType: official_brand
+sourceUrl: "https://www.bonprix.de/service/beratung/groessentabellen/"
+unit: cm
+lastVerifiedAt: 2026-10-07
+highlight: bust
+rows:
+  - { numericSize: "44", letterSize: "L", bust: { min: 98, max: 102 }, waist: { min: 84, max: 88 }, hip: { min: 104, max: 106 } }
+  - { numericSize: "46", letterSize: "L", bust: { min: 103, max: 107 }, waist: { min: 89, max: 93 }, hip: { min: 107, max: 110 } }
+  - { numericSize: "48", letterSize: "XL", bust: { min: 108, max: 113 }, waist: { min: 94, max: 98 }, hip: { min: 111, max: 114 } }
+  - { numericSize: "50", letterSize: "XL", bust: { min: 114, max: 119 }, waist: { min: 99, max: 104 }, hip: { min: 115, max: 119 } }
+  - { numericSize: "52", letterSize: "XXL", bust: { min: 120, max: 125 }, waist: { min: 105, max: 110 }, hip: { min: 120, max: 124 } }
+  - { numericSize: "54", letterSize: "XXL", bust: { min: 126, max: 131 }, waist: { min: 111, max: 116 }, hip: { min: 125, max: 130 } }
+  - { numericSize: "56", letterSize: "3XL", bust: { min: 132, max: 137 }, waist: { min: 117, max: 122 }, hip: { min: 131, max: 136 } }
+  - { numericSize: "58", letterSize: "3XL", bust: { min: 138, max: 143 }, waist: { min: 123, max: 128 }, hip: { min: 137, max: 142 } }
+notes:
+  - "Harf, markanın çift beden eşlemesidir: 44/46 = L, 48/50 = XL, 52/54 = XXL, 56/58 = 3XL."
+  - "Markada kısa (155–163 cm), normal (164–172 cm) ve uzun (173–181 cm) boy serileri ayrıca var."
+sources:
+  - { url: "https://www.bonprix.de/service/beratung/groessentabellen/", type: "brand-official", label: "Bonprix beden tabloları (Damen)", checkedAt: "2026-10-07" }

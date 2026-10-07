@@ -1,0 +1,26 @@
+title: "Marks & Spencer erkek resmi gömlek vücut ölçüleri (XL–5XL)"
+caption: "Marks & Spencer erkek resmi gömlek beden rehberi – vücut ölçüsü (cm): yaka ve göğüs"
+kind: olcu
+gender: erkek
+brand: marks-spencer
+brandName: "Marks & Spencer"
+productType: gomlek
+countrySystem: harf
+measurementType: body
+sourceType: official_brand
+sourceUrl: "https://www.marksandspencer.com/us/sizeguides/?cid=sizeguidemens-formalshirts"
+unit: cm
+lastVerifiedAt: 2026-10-07
+fieldLabels: { neck: "Gömlek yaka", chest: "Gömlek göğüs" }
+highlight: neck
+rows:
+  - { letterSize: "XL", chest: { min: 117, max: 117 }, neck: { min: 43, max: 43 } }
+  - { letterSize: "2XL", chest: { min: 122, max: 127 }, neck: { min: 44, max: 46 } }
+  - { letterSize: "3XL", chest: { min: 132, max: 137 }, neck: { min: 47, max: 48 } }
+  - { letterSize: "4XL", chest: { min: 142, max: 147 }, neck: { min: 49, max: 50 } }
+  - { letterSize: "5XL", chest: { min: 152, max: 157 }, neck: { min: 52, max: 53 } }
+notes:
+  - "M&S'nin gömlek ve üst giyim tabloları 3XL–4XL'de birbirinden farklıdır; aynı markada bile ürün grubuna göre tablo değişir."
+  - "“Big & Tall – Longer” ürünlerde gövde ve kol 2 inç (yaklaşık 5 cm) daha uzundur."
+sources:
+  - { url: "https://www.marksandspencer.com/us/sizeguides/?cid=sizeguidemens-formalshirts", type: "brand-official", label: "Marks & Spencer erkek resmi gömlek beden rehberi", checkedAt: "2026-10-07" }

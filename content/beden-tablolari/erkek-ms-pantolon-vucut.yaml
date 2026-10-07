@@ -1,0 +1,24 @@
+title: "Marks & Spencer erkek günlük pantolon vücut ölçüleri (XL–5XL)"
+caption: "Marks & Spencer erkek günlük pantolon beden rehberi – vücut bel ölçüsü (cm)"
+kind: olcu
+gender: erkek
+brand: marks-spencer
+brandName: "Marks & Spencer"
+productType: pantolon
+countrySystem: harf
+measurementType: body
+sourceType: official_brand
+sourceUrl: "https://www.marksandspencer.com/us/sizeguides/?cid=sizeguidemens-casualtrousers"
+unit: cm
+lastVerifiedAt: 2026-10-07
+fieldLabels: { waist: "Pantolon bel" }
+highlight: waist
+rows:
+  - { letterSize: "XL", waist: { min: 99, max: 104 } }
+  - { letterSize: "2XL", waist: { min: 107, max: 112 } }
+  - { letterSize: "3XL", waist: { min: 114, max: 119 } }
+  - { letterSize: "4XL", waist: { min: 122, max: 127 } }
+  - { letterSize: "5XL", waist: { min: 130, max: 135 } }
+notes: []
+sources:
+  - { url: "https://www.marksandspencer.com/us/sizeguides/?cid=sizeguidemens-casualtrousers", type: "brand-official", label: "Marks & Spencer erkek günlük pantolon beden rehberi", checkedAt: "2026-10-07" }

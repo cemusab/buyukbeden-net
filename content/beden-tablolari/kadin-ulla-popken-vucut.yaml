@@ -1,34 +1,36 @@
-title: Ulla Popken kadın vücut ölçüleri (42–68)
-caption: Ulla Popken kadın beden tablosu – vücut ölçüsü (cm), kısa ve uzun boy karşılıklarıyla
-silo: kadin
-scope: genel
-kind: olcu-cm
-columns:
-  - { key: beden, label: Beden }
-  - { key: gogus, label: Göğüs, unit: cm }
-  - { key: bel, label: Bel, unit: cm }
-  - { key: basen, label: Basen, unit: cm }
-  - { key: kisa, label: Kısa boy bedeni }
-  - { key: uzun, label: Uzun boy bedeni }
+title: "Ulla Popken kadın vücut ölçüleri (42–68)"
+caption: "Ulla Popken kadın beden tablosu – vücut ölçüsü (cm), kısa ve uzun boy karşılıklarıyla"
+kind: olcu
+gender: kadin
+brand: ulla-popken
+brandName: "Ulla Popken"
+productType: genel
+countrySystem: DE
+measurementType: body
+sourceType: official_brand
+sourceUrl: "https://www.ullapopken.at/de/guides/size-guide"
+unit: cm
+lastVerifiedAt: 2026-10-07
+heightNote: "Normal bedenler 167–174 cm boy içindir."
+heightRange: { min: 167, max: 174 }
+highlight: bust
 rows:
-  - [ "42", 99–102, 82–85, 105–108, "21", "84" ]
-  - [ "44", 103–106, 86–89, 109–112, "22", "88" ]
-  - [ "46", 107–110, 90–93, 113–116, "23", "92" ]
-  - [ "48", 111–116, 94–99, 117–122, "24", "96" ]
-  - [ "50", 117–122, 100–105, 123–128, "25", "100" ]
-  - [ "52", 123–128, 106–111, 129–134, "26", "104" ]
-  - [ "54", 129–134, 112–118, 135–140, "27", "108" ]
-  - [ "56", 135–140, 119–125, 141–146, "28", "112" ]
-  - [ "58", 141–146, 126–132, 147–152, "29", "116" ]
-  - [ "60", 147–152, 133–139, 153–158, "30", "120" ]
-  - [ "62", 153–158, 140–146, 159–164, "31", "124" ]
-  - [ "64", 159–164, 147–153, 165–170, "32", "128" ]
-  - [ "66", 165–170, 154–160, 171–176, "33", "132" ]
-  - [ "68", 171–176, 161–167, 177–182, "34", "136" ]
-highlightColumn: gogus
-approximate: false
+  - { numericSize: "42", letterSize: "S", equivalents: { kisa: "21", uzun: "84" }, bust: { min: 99, max: 102 }, waist: { min: 82, max: 85 }, hip: { min: 105, max: 108 } }
+  - { numericSize: "44", letterSize: "S", equivalents: { kisa: "22", uzun: "88" }, bust: { min: 103, max: 106 }, waist: { min: 86, max: 89 }, hip: { min: 109, max: 112 } }
+  - { numericSize: "46", letterSize: "M", equivalents: { kisa: "23", uzun: "92" }, bust: { min: 107, max: 110 }, waist: { min: 90, max: 93 }, hip: { min: 113, max: 116 } }
+  - { numericSize: "48", letterSize: "M", equivalents: { kisa: "24", uzun: "96" }, bust: { min: 111, max: 116 }, waist: { min: 94, max: 99 }, hip: { min: 117, max: 122 } }
+  - { numericSize: "50", letterSize: "L", equivalents: { kisa: "25", uzun: "100" }, bust: { min: 117, max: 122 }, waist: { min: 100, max: 105 }, hip: { min: 123, max: 128 } }
+  - { numericSize: "52", letterSize: "L", equivalents: { kisa: "26", uzun: "104" }, bust: { min: 123, max: 128 }, waist: { min: 106, max: 111 }, hip: { min: 129, max: 134 } }
+  - { numericSize: "54", letterSize: "XL", equivalents: { kisa: "27", uzun: "108" }, bust: { min: 129, max: 134 }, waist: { min: 112, max: 118 }, hip: { min: 135, max: 140 } }
+  - { numericSize: "56", letterSize: "XL", equivalents: { kisa: "28", uzun: "112" }, bust: { min: 135, max: 140 }, waist: { min: 119, max: 125 }, hip: { min: 141, max: 146 } }
+  - { numericSize: "58", letterSize: "XXL", equivalents: { kisa: "29", uzun: "116" }, bust: { min: 141, max: 146 }, waist: { min: 126, max: 132 }, hip: { min: 147, max: 152 } }
+  - { numericSize: "60", letterSize: "XXL", equivalents: { kisa: "30", uzun: "120" }, bust: { min: 147, max: 152 }, waist: { min: 133, max: 139 }, hip: { min: 153, max: 158 } }
+  - { numericSize: "62", letterSize: "3XL", equivalents: { kisa: "31", uzun: "124" }, bust: { min: 153, max: 158 }, waist: { min: 140, max: 146 }, hip: { min: 159, max: 164 } }
+  - { numericSize: "64", letterSize: "3XL", equivalents: { kisa: "32", uzun: "128" }, bust: { min: 159, max: 164 }, waist: { min: 147, max: 153 }, hip: { min: 165, max: 170 } }
+  - { numericSize: "66", equivalents: { kisa: "33", uzun: "132" }, bust: { min: 165, max: 170 }, waist: { min: 154, max: 160 }, hip: { min: 171, max: 176 } }
+  - { numericSize: "68", equivalents: { kisa: "34", uzun: "136" }, bust: { min: 171, max: 176 }, waist: { min: 161, max: 167 }, hip: { min: 177, max: 182 } }
 notes:
-  - Normal bedenler 167–174 cm boy içindir. Kısa boy bedeni normal bedenin yarısı, uzun boy bedeni iki katıdır; çevre ölçüleri üç seride aynıdır.
+  - "Kısa boy bedeni normal bedenin yarısı, uzun boy bedeni iki katıdır; çevre ölçüleri üç seride aynıdır."
   - "Harf karşılıkları markanın kendi eşlemesidir: S = 42/44, M = 46/48, L = 50/52, XL = 54/56, XXL = 58/60, 3XL = 62/64."
 sources:
-  - { url: https://www.ullapopken.at/de/guides/size-guide, type: brand-official, label: Ulla Popken beden rehberi (Avusturya sitesi), checkedAt: 2026-10-07 }
+  - { url: "https://www.ullapopken.at/de/guides/size-guide", type: "brand-official", label: "Ulla Popken beden rehberi (Avusturya sitesi)", checkedAt: "2026-10-07" }

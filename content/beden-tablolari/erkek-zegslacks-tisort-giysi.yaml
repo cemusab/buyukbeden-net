@@ -1,0 +1,24 @@
+title: "ZegSlacks V yaka penye tişört giysi ölçüleri (4XL–7XL)"
+caption: "ZegSlacks V yaka penye tişört – ÜRÜN (giysi) ölçüsü (cm)"
+kind: olcu
+gender: erkek
+brand: zegslacks
+brandName: ZegSlacks
+productType: tisort
+countrySystem: harf
+measurementType: garment
+sourceType: official_brand
+sourceUrl: "https://www.zegslacks.com/yeni-v-yaka-penye-tshirt-ts2804-siyah"
+unit: cm
+lastVerifiedAt: 2026-10-07
+fieldLabels: { chestWidth: "Göğüs eni (koltuk altından koltuk altına)", shoulder: "Omuz (giysi)" }
+highlight: chestWidth
+rows:
+  - { letterSize: "4XL", chestWidth: { min: 68, max: 68 }, shoulder: { min: 56, max: 56 }, length: { min: 78, max: 78 } }
+  - { letterSize: "5XL", chestWidth: { min: 70, max: 70 }, shoulder: { min: 56, max: 56 }, length: { min: 80, max: 80 } }
+  - { letterSize: "6XL", chestWidth: { min: 74, max: 74 }, shoulder: { min: 60, max: 60 }, length: { min: 80, max: 80 } }
+  - { letterSize: "7XL", chestWidth: { min: 78, max: 78 }, shoulder: { min: 60, max: 60 }, length: { min: 82, max: 82 } }
+notes:
+  - "Ürüne özel tablodur; göğüs, ürün düz serildiğinde koltuk altından bir yan dikişten diğerine ölçülür."
+sources:
+  - { url: "https://www.zegslacks.com/yeni-v-yaka-penye-tshirt-ts2804-siyah", type: "brand-official", label: "ZegSlacks V yaka penye tişört ürün sayfası", checkedAt: "2026-10-07" }

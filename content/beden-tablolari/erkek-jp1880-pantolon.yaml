@@ -1,28 +1,31 @@
-title: JP1880 erkek pantolon vücut ölçüleri – normal bedenler (52–74)
-caption: JP1880 erkek pantolon – normal bedenler, vücut bel ve iç bacak ölçüsü (cm)
-silo: erkek
-scope: alt-giyim
-kind: olcu-cm
-columns:
-  - { key: beden, label: Beden }
-  - { key: bel, label: Bel, unit: cm }
-  - { key: icbacak, label: İç bacak, unit: cm }
+title: "JP1880 erkek pantolon vücut ölçüleri – normal bedenler (52–74)"
+caption: "JP1880 erkek pantolon – normal bedenler, vücut bel ve iç bacak ölçüsü (cm)"
+kind: olcu
+gender: erkek
+brand: jp1880
+brandName: JP1880
+productType: pantolon
+countrySystem: DE
+measurementType: body
+sourceType: official_brand
+sourceUrl: "https://www.jp1880.de/de/guides/groessenberater"
+unit: cm
+lastVerifiedAt: 2026-10-07
+highlight: waist
 rows:
-  - [ "52", 90–93, "84" ]
-  - [ "54", 94–97, "85" ]
-  - [ "56", 98–101, "86" ]
-  - [ "58", 102–105, "87" ]
-  - [ "60", 106–110, "88" ]
-  - [ "62", 111–115, "88,5" ]
-  - [ "64", 116–120, "89" ]
-  - [ "66", 121–125, "89,5" ]
-  - [ "68", 126–130, "89,5" ]
-  - [ "70", 131–135, "89,5" ]
-  - [ "72", 136–140, "89,5" ]
-  - [ "74", 141–145, "89,5" ]
-highlightColumn: bel
-approximate: false
+  - { numericSize: "52", waist: { min: 90, max: 93 }, inseam: { min: 84, max: 84 } }
+  - { numericSize: "54", waist: { min: 94, max: 97 }, inseam: { min: 85, max: 85 } }
+  - { numericSize: "56", waist: { min: 98, max: 101 }, inseam: { min: 86, max: 86 } }
+  - { numericSize: "58", waist: { min: 102, max: 105 }, inseam: { min: 87, max: 87 } }
+  - { numericSize: "60", waist: { min: 106, max: 110 }, inseam: { min: 88, max: 88 } }
+  - { numericSize: "62", waist: { min: 111, max: 115 }, inseam: { min: 88.5, max: 88.5 } }
+  - { numericSize: "64", waist: { min: 116, max: 120 }, inseam: { min: 89, max: 89 } }
+  - { numericSize: "66", waist: { min: 121, max: 125 }, inseam: { min: 89.5, max: 89.5 } }
+  - { numericSize: "68", waist: { min: 126, max: 130 }, inseam: { min: 89.5, max: 89.5 } }
+  - { numericSize: "70", waist: { min: 131, max: 135 }, inseam: { min: 89.5, max: 89.5 } }
+  - { numericSize: "72", waist: { min: 136, max: 140 }, inseam: { min: 89.5, max: 89.5 } }
+  - { numericSize: "74", waist: { min: 141, max: 145 }, inseam: { min: 89.5, max: 89.5 } }
 notes:
-  - Uzun boy bedenleri (102–134) aynı bel ölçüsüyle daha uzun iç bacak sunar.
+  - "Uzun boy bedenleri (102–134) aynı bel ölçüsüyle daha uzun iç bacak sunar."
 sources:
-  - { url: https://www.jp1880.de/de/guides/groessenberater, type: brand-official, label: JP1880 beden danışmanı (erkek), checkedAt: 2026-10-07 }
+  - { url: "https://www.jp1880.de/de/guides/groessenberater", type: "brand-official", label: "JP1880 beden danışmanı (erkek)", checkedAt: "2026-10-07" }

@@ -1,0 +1,24 @@
+title: "Büyüksünabi likralı bisiklet yaka tişört giysi ölçüleri (3XL–7XL)"
+caption: "Büyüksünabi likralı bisiklet yaka tişört – ÜRÜN (giysi) ölçüsü (cm)"
+kind: olcu
+gender: erkek
+brand: buyuksunabi
+brandName: "Büyüksünabi"
+productType: tisort
+countrySystem: harf
+measurementType: garment
+sourceType: official_brand
+sourceUrl: "https://www.buyuksunabi.com.tr/products/buyuk-beden-likrali-bisiklet-yaka-tshirt"
+unit: cm
+lastVerifiedAt: 2026-10-07
+highlight: chestWidth
+rows:
+  - { letterSize: "3XL", chestWidth: { min: 68, max: 68 } }
+  - { letterSize: "4XL", chestWidth: { min: 72, max: 72 } }
+  - { letterSize: "5XL", chestWidth: { min: 76, max: 76 } }
+  - { letterSize: "6XL", chestWidth: { min: 80, max: 80 } }
+  - { letterSize: "7XL", chestWidth: { min: 84, max: 84 } }
+notes:
+  - "Ürüne özel tablodur (%97 pamuk, %3 likra). Markanın tablosundaki kilo aralığı, beden kiloyla belirlenmediği için burada gösterilmedi."
+sources:
+  - { url: "https://www.buyuksunabi.com.tr/products/buyuk-beden-likrali-bisiklet-yaka-tshirt", type: "brand-official", label: "Büyüksünabi likralı bisiklet yaka tişört ürün sayfası", checkedAt: "2026-10-07" }

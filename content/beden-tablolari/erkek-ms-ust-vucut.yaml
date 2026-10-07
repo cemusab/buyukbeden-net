@@ -1,0 +1,24 @@
+title: "Marks & Spencer erkek üst giyim vücut ölçüleri (XL–4XL)"
+caption: "Marks & Spencer erkek üst giyim beden rehberi – vücut ölçüsü (cm), göğüs"
+kind: olcu
+gender: erkek
+brand: marks-spencer
+brandName: "Marks & Spencer"
+productType: ust-giyim
+countrySystem: harf
+measurementType: body
+sourceType: official_brand
+sourceUrl: "https://www.marksandspencer.com/us/sizeguides/?cid=sizeguidemens-tops"
+unit: cm
+lastVerifiedAt: 2026-10-07
+highlight: chest
+rows:
+  - { letterSize: "XL", chest: { min: 112, max: 117 } }
+  - { letterSize: "2XL", chest: { min: 119, max: 125 } }
+  - { letterSize: "3XL", chest: { min: 126, max: 132 } }
+  - { letterSize: "4XL", chest: { min: 132, max: 137 } }
+notes:
+  - "Üst giyim tablosu 4XL'de bitiyor; 5XL yalnız gömlek ve pantolon tablolarında var."
+  - "M&S'nin gömlek ve üst giyim tabloları 3XL–4XL'de birbirinden farklıdır."
+sources:
+  - { url: "https://www.marksandspencer.com/us/sizeguides/?cid=sizeguidemens-tops", type: "brand-official", label: "Marks & Spencer erkek üst giyim beden rehberi", checkedAt: "2026-10-07" }

@@ -1,27 +1,30 @@
-title: TuvidXXL kadın beden tablosu (42–54)
-caption: TuvidXXL kadın beden tablosu (cm) – ölçü türü kaynakta belirtilmemiş
-silo: kadin
-scope: genel
-kind: olcu-cm
-columns:
-  - { key: harf, label: Harf }
-  - { key: beden, label: Beden }
-  - { key: gogus, label: Göğüs, unit: cm }
-  - { key: bel, label: Bel, unit: cm }
-  - { key: basen, label: Basen, unit: cm }
-  - { key: kol, label: Üst kol, unit: cm }
-rows:
-  - [ XS, "42", 105–110, 90–95, 115–120, "41,5" ]
-  - [ S, "44", 110–115, 95–100, 120–125, "43" ]
-  - [ M, "46", 115–120, 100–105, 125–130, "44,5" ]
-  - [ L, "48", 120–125, 105–110, 130–135, "46" ]
-  - [ XL, "50", 125–130, 110–115, 135–140, "47,5" ]
-  - [ 2XL, "52", 130–135, 115–120, 140–145, "49" ]
-  - [ 3XL, "54", 135–140, 120–125, 145–150, "50,5" ]
-highlightColumn: gogus
+title: "TuvidXXL kadın beden tablosu (42–54)"
+caption: "TuvidXXL kadın beden tablosu (cm) – ölçü türü kaynakta belirtilmemiş"
+kind: olcu
+gender: kadin
+brand: tuvidxxl
+brandName: TuvidXXL
+productType: genel
+countrySystem: TR
+measurementType: body
+measurementTypeVerified: false
+sourceType: official_brand
+sourceUrl: "https://www.tuvidxxl.com/buyuk-beden-112143-biyeli-elbise-kirmizi-7704"
+unit: cm
+lastVerifiedAt: 2026-10-07
 approximate: true
+highlight: bust
+rows:
+  - { numericSize: "42", letterSize: "XS", bust: { min: 105, max: 110 }, waist: { min: 90, max: 95 }, hip: { min: 115, max: 120 }, upperArm: { min: 41.5, max: 41.5 } }
+  - { numericSize: "44", letterSize: "S", bust: { min: 110, max: 115 }, waist: { min: 95, max: 100 }, hip: { min: 120, max: 125 }, upperArm: { min: 43, max: 43 } }
+  - { numericSize: "46", letterSize: "M", bust: { min: 115, max: 120 }, waist: { min: 100, max: 105 }, hip: { min: 125, max: 130 }, upperArm: { min: 44.5, max: 44.5 } }
+  - { numericSize: "48", letterSize: "L", bust: { min: 120, max: 125 }, waist: { min: 105, max: 110 }, hip: { min: 130, max: 135 }, upperArm: { min: 46, max: 46 } }
+  - { numericSize: "50", letterSize: "XL", bust: { min: 125, max: 130 }, waist: { min: 110, max: 115 }, hip: { min: 135, max: 140 }, upperArm: { min: 47.5, max: 47.5 } }
+  - { numericSize: "52", letterSize: "2XL", bust: { min: 130, max: 135 }, waist: { min: 115, max: 120 }, hip: { min: 140, max: 145 }, upperArm: { min: 49, max: 49 } }
+  - { numericSize: "54", letterSize: "3XL", bust: { min: 135, max: 140 }, waist: { min: 120, max: 125 }, hip: { min: 145, max: 150 }, upperArm: { min: 50.5, max: 50.5 } }
 notes:
-  - Marka harf ölçeğini 42 = XS'ten başlatıyor.
-  - Aynı numarada değerler diğer markalardan yaklaşık 5–10 cm yüksek; tabloda giysi bolluk payı olup olmadığı belirtilmiyor.
+  - "Marka harf ölçeğini 42 = XS'ten başlatıyor."
+  - "Kaynak, değerlerin vücut ölçüsü mü yoksa bolluk payı içeren ürün ölçüsü mü olduğunu belirtmiyor; tablo vücut ölçüsü olarak işaretlendi ama Beden Bulucu'ya alınmadı."
+  - "Aynı numarada değerler diğer markalardan yaklaşık 5–10 cm yüksek."
 sources:
-  - { url: https://www.tuvidxxl.com/buyuk-beden-112143-biyeli-elbise-kirmizi-7704, type: brand-official, label: TuvidXXL ürün sayfasındaki beden tablosu görseli, checkedAt: 2026-10-07 }
+  - { url: "https://www.tuvidxxl.com/buyuk-beden-112143-biyeli-elbise-kirmizi-7704", type: "brand-official", label: "TuvidXXL ürün sayfasındaki beden tablosu görseli", checkedAt: "2026-10-07" }

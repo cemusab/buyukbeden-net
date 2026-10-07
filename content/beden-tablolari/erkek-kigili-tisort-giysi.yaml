@@ -1,0 +1,30 @@
+title: "Kiğılı erkek tişört giysi ölçüleri (L–7X)"
+caption: "Kiğılı – regular tişört yarım göğüs, ÜRÜN (giysi) ölçüsü (cm)"
+kind: olcu
+gender: erkek
+brand: kigili
+brandName: "Kiğılı"
+productType: tisort
+countrySystem: harf
+measurementType: garment
+sourceType: official_brand
+sourceUrl: "https://www.kigili.com/pages/bedenini-bul"
+unit: cm
+lastVerifiedAt: 2026-10-07
+fitType: regular
+fieldLabels: { chestWidth: "Regular tişört ½ göğüs (giysi)" }
+highlight: chestWidth
+rows:
+  - { letterSize: "L", chestWidth: { min: 56, max: 56 } }
+  - { letterSize: "XL", chestWidth: { min: 58, max: 58 } }
+  - { letterSize: "2X", chestWidth: { min: 60, max: 60 } }
+  - { letterSize: "3X", chestWidth: { min: 62, max: 62 } }
+  - { letterSize: "4X", chestWidth: { min: 64, max: 64 } }
+  - { letterSize: "5X", chestWidth: { min: 66, max: 66 } }
+  - { letterSize: "6X", chestWidth: { min: 68, max: 68 } }
+  - { letterSize: "7X", chestWidth: { min: 70, max: 70 } }
+notes:
+  - "Bunlar vücut değil giysi ölçüleridir: tişört düz serilip koltuk altından koltuk altına ölçülür (yarım genişlik). Vücut göğsünüzle doğrudan karşılaştırmayın."
+  - "Kiğılı'da eşofman etiketlerindeki eşleme: 52 = L, 54 = XL, 56 = 2X, 58 = 3X."
+sources:
+  - { url: "https://www.kigili.com/pages/bedenini-bul", type: "brand-official", label: "Kiğılı – Bedenini bul", checkedAt: "2026-10-07" }

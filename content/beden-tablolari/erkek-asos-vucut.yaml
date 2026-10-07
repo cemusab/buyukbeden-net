@@ -1,0 +1,24 @@
+title: "ASOS erkek tişört ve polo vücut ölçüleri (S–XXXL)"
+caption: "ASOS erkek tişört ve polo beden tablosu – vücut göğüs ölçüsü (cm)"
+kind: olcu
+gender: erkek
+brandName: ASOS
+productType: tisort
+countrySystem: harf
+measurementType: body
+sourceType: official_brand
+sourceUrl: "https://www.asos.com/discover/size-charts/men/tshirts-polo-shirts/"
+unit: cm
+lastVerifiedAt: 2026-10-07
+highlight: chest
+rows:
+  - { letterSize: "S", chest: { min: 91, max: 96 } }
+  - { letterSize: "M", chest: { min: 96, max: 101 } }
+  - { letterSize: "L", chest: { min: 101, max: 106 } }
+  - { letterSize: "XL", chest: { min: 106, max: 111 } }
+  - { letterSize: "XXL", chest: { min: 111, max: 116 } }
+  - { letterSize: "XXXL", chest: { min: 116, max: 121 } }
+notes:
+  - "Tablo XXXL'de bitiyor; ASOS'un XXL'i büyük beden mağazalarının L–XL'ine yakındır."
+sources:
+  - { url: "https://www.asos.com/discover/size-charts/men/tshirts-polo-shirts/", type: "brand-official", label: "ASOS erkek tişört ve polo beden tablosu", checkedAt: "2026-10-07" }

@@ -1,32 +1,37 @@
-title: Kadın uluslararası beden çevirme (UK, EU/TR, US, IT)
-caption: Kadın numaralı bedenlerde UK, EU/TR, US ve İtalyan karşılıkları (beden çevirme, ölçü değil)
-silo: kadin
-scope: genel
+title: "Kadın uluslararası beden çevirme (UK, EU/TR, US, IT)"
+caption: "Kadın numaralı bedenlerde UK, EU/TR, US ve İtalyan karşılıkları (beden çevirme, ölçü değil)"
 kind: donusum
-columns:
-  - { key: uk, label: UK }
-  - { key: eu, label: EU / TR }
-  - { key: us, label: US }
-  - { key: it, label: İtalya (IT) }
-rows:
-  - [ "14", "42", "10", "46" ]
-  - [ "16", "44", "12", "48" ]
-  - [ "18", "46", "14", "50" ]
-  - [ "20", "48", "16", "52" ]
-  - [ "22", "50", "18", "54" ]
-  - [ "24", "52", "20", "56" ]
-  - [ "26", "54", "22", "58" ]
-  - [ "28", "56", "24", "60" ]
-  - [ "30", "58", "26", "62" ]
-highlightColumn: eu
+gender: kadin
+brandName: "ASOS ve Marks & Spencer (ortak kural)"
+productType: genel
+countrySystem: EU
+sourceType: official_brand
+sourceUrl: "https://www.asos.com/discover/size-charts/women/dresses/"
+lastVerifiedAt: 2026-10-07
 approximate: true
+columns:
+  - { key: "uk", label: "UK" }
+  - { key: "eu", label: "EU / TR" }
+  - { key: "us", label: "US" }
+  - { key: "it", label: "İtalya (IT)" }
+highlight: eu
+rows:
+  - { systems: { uk: "14", eu: "42", us: "10", it: "46" } }
+  - { systems: { uk: "16", eu: "44", us: "12", it: "48" } }
+  - { systems: { uk: "18", eu: "46", us: "14", it: "50" } }
+  - { systems: { uk: "20", eu: "48", us: "16", it: "52" } }
+  - { systems: { uk: "22", eu: "50", us: "18", it: "54" } }
+  - { systems: { uk: "24", eu: "52", us: "20", it: "56" } }
+  - { systems: { uk: "26", eu: "54", us: "22", it: "58" } }
+  - { systems: { uk: "28", eu: "56", us: "24", it: "60" } }
+  - { systems: { uk: "30", eu: "58", us: "26", it: "62" } }
 notes:
   - "Kural ASOS ve Marks & Spencer tablolarında tutarlıdır: EU = UK + 28, US = UK − 4 (kadın, numaralı bedenler)."
-  - İtalyan karşılığı yalnız ASOS tablosunda verilir (EU + 4).
-  - Bu tablo beden adlarını çevirir; vücut ölçüsü markadan markaya değişir. Satın almadan önce markanın cm tablosuna bakın.
-  - Simply Be'nin tablosu da aynı kuralı izler. Torrid'in kendi çevirme tablosu ise iki numara farklıdır (US 14 = UK 16 = EU 42); markalar arası çevirme bile tek kaynağa dayandırılmamalı.
+  - "İtalyan karşılığı yalnız ASOS tablosunda verilir (EU + 4)."
+  - "Bu tablo beden adlarını çevirir; vücut ölçüsü markadan markaya değişir. Satın almadan önce markanın cm tablosuna bakın."
+  - "Simply Be'nin tablosu da aynı kuralı izler. Torrid'in kendi çevirme tablosu ise iki numara farklıdır (US 14 = UK 16 = EU 42); markalar arası çevirme bile tek kaynağa dayandırılmamalı."
 sources:
-  - { url: https://www.asos.com/discover/size-charts/women/dresses/, type: brand-official, label: ASOS kadın elbise beden tablosu (Curve dahil), checkedAt: 2026-10-07 }
-  - { url: https://www.marksandspencer.com/en-at/sizeguides/?cid=sizeguidewomens-general, type: brand-official, label: Marks & Spencer kadın genel beden rehberi, checkedAt: 2026-10-07 }
-  - { url: https://support.simplybe.co.uk/hc/en-gb/articles/360019571299-Women-s-size-chart, type: brand-official, label: Simply Be kadın beden tablosu, checkedAt: 2026-10-07 }
-  - { url: https://www.torrid.com/on/demandware.store/Sites-torrid-Site/default/Page-Include?cid=td-size-guide-apparel, type: brand-official, label: Torrid beden rehberi (inçten çevrildi), checkedAt: 2026-10-07 }
+  - { url: "https://www.asos.com/discover/size-charts/women/dresses/", type: "brand-official", label: "ASOS kadın elbise beden tablosu (Curve dahil)", checkedAt: "2026-10-07" }
+  - { url: "https://www.marksandspencer.com/en-at/sizeguides/?cid=sizeguidewomens-general", type: "brand-official", label: "Marks & Spencer kadın genel beden rehberi", checkedAt: "2026-10-07" }
+  - { url: "https://support.simplybe.co.uk/hc/en-gb/articles/360019571299-Women-s-size-chart", type: "brand-official", label: "Simply Be kadın beden tablosu", checkedAt: "2026-10-07" }
+  - { url: "https://www.torrid.com/on/demandware.store/Sites-torrid-Site/default/Page-Include?cid=td-size-guide-apparel", type: "brand-official", label: "Torrid beden rehberi (inçten çevrildi)", checkedAt: "2026-10-07" }

@@ -1,26 +1,27 @@
-title: ASOS Curve kadın vücut ölçüleri (UK 18–30)
-caption: ASOS Curve kadın beden tablosu – vücut ölçüsü (cm)
-silo: kadin
-scope: elbise
-kind: olcu-cm
-columns:
-  - { key: uk, label: UK }
-  - { key: eu, label: EU }
-  - { key: gogus, label: Göğüs, unit: cm }
-  - { key: bel, label: Bel, unit: cm }
-  - { key: basen, label: Basen, unit: cm }
+title: "ASOS Curve kadın vücut ölçüleri (UK 18–30)"
+caption: "ASOS Curve kadın beden tablosu – vücut ölçüsü (cm)"
+kind: olcu
+gender: kadin
+brand: asos-curve
+brandName: "ASOS Curve"
+productType: elbise
+countrySystem: UK
+measurementType: body
+sourceType: official_brand
+sourceUrl: "https://www.asos.com/discover/size-charts/women/dresses/"
+unit: cm
+lastVerifiedAt: 2026-10-07
+highlight: bust
 rows:
-  - [ "18", "46", "109", "91", "116,5" ]
-  - [ "20", "48", "116", "98", "123,5" ]
-  - [ "22", "50", "123", "105", "130,5" ]
-  - [ "24", "52", "130", "112", "137,5" ]
-  - [ "26", "54", "137", "119", "144,5" ]
-  - [ "28", "56", "144", "126", "151,5" ]
-  - [ "30", "58", "151", "133", "158,5" ]
-highlightColumn: gogus
-approximate: false
+  - { numericSize: "18", equivalents: { EU: "46" }, bust: { min: 109, max: 109 }, waist: { min: 91, max: 91 }, hip: { min: 116.5, max: 116.5 } }
+  - { numericSize: "20", equivalents: { EU: "48" }, bust: { min: 116, max: 116 }, waist: { min: 98, max: 98 }, hip: { min: 123.5, max: 123.5 } }
+  - { numericSize: "22", equivalents: { EU: "50" }, bust: { min: 123, max: 123 }, waist: { min: 105, max: 105 }, hip: { min: 130.5, max: 130.5 } }
+  - { numericSize: "24", equivalents: { EU: "52" }, bust: { min: 130, max: 130 }, waist: { min: 112, max: 112 }, hip: { min: 137.5, max: 137.5 } }
+  - { numericSize: "26", equivalents: { EU: "54" }, bust: { min: 137, max: 137 }, waist: { min: 119, max: 119 }, hip: { min: 144.5, max: 144.5 } }
+  - { numericSize: "28", equivalents: { EU: "56" }, bust: { min: 144, max: 144 }, waist: { min: 126, max: 126 }, hip: { min: 151.5, max: 151.5 } }
+  - { numericSize: "30", equivalents: { EU: "58" }, bust: { min: 151, max: 151 }, waist: { min: 133, max: 133 }, hip: { min: 158.5, max: 158.5 } }
 notes:
-  - ASOS'ta basen belin 20 cm altından ölçülür.
-  - EU sütunu ASOS'un kendi UK–EU çevirmesidir (EU = UK + 28).
+  - "ASOS'ta basen belin 20 cm altından ölçülür."
+  - "EU sütunu ASOS'un kendi UK–EU çevirmesidir (EU = UK + 28)."
 sources:
-  - { url: https://www.asos.com/discover/size-charts/women/dresses/, type: brand-official, label: ASOS kadın elbise beden tablosu (Curve dahil), checkedAt: 2026-10-07 }
+  - { url: "https://www.asos.com/discover/size-charts/women/dresses/", type: "brand-official", label: "ASOS kadın elbise beden tablosu (Curve dahil)", checkedAt: "2026-10-07" }

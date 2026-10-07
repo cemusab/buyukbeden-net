@@ -1,0 +1,29 @@
+title: "DXL erkek üst giyim vücut ölçüleri (XL–8XL)"
+caption: "DXL (ABD) Tops & Outerwear beden tablosu – vücut ölçüsü; kaynak inç"
+kind: olcu
+gender: erkek
+brandName: DXL
+productType: ust-giyim
+countrySystem: harf
+measurementType: body
+sourceType: official_brand
+sourceUrl: "https://www.dxl.com/p/synrgy-performance-solid-dress-shirt-p5397"
+unit: inch
+lastVerifiedAt: 2026-10-07
+highlight: chest
+rows:
+  - { letterSize: "XL", chest: { min: 42, max: 44 }, neck: { min: 16, max: 16.5 } }
+  - { letterSize: "1XL", chest: { min: 46, max: 48 }, neck: { min: 17, max: 17.5 } }
+  - { letterSize: "2XL", chest: { min: 50, max: 52 }, neck: { min: 18, max: 18.5 } }
+  - { letterSize: "3XL", chest: { min: 54, max: 56 }, neck: { min: 19, max: 19.5 } }
+  - { letterSize: "4XL", chest: { min: 58, max: 60 }, neck: { min: 20, max: 20.5 } }
+  - { letterSize: "5XL", chest: { min: 62, max: 64 }, neck: { min: 21, max: 22 } }
+  - { letterSize: "6XL", chest: { min: 66, max: 68 }, neck: { min: 23, max: 24 } }
+  - { letterSize: "7XL", chest: { min: 70, max: 72 }, neck: { min: 25, max: 26 } }
+  - { letterSize: "8XL", chest: { min: 74, max: 76 }, neck: { min: 27, max: 28 } }
+notes:
+  - "Tall serisi (XLT–8XLT) göğüs ve boyunda aynıdır; yalnız kol yaklaşık 2 inç (≈ 5 cm) uzundur."
+  - "DXL eski XL'in adını 1XL yaptığını, yeni XL'in daha dar kesildiğini belirtiyor."
+  - "Tabloda 44–46 inç (≈ 112–117 cm) göğse denk gelen beden yok."
+sources:
+  - { url: "https://www.dxl.com/p/synrgy-performance-solid-dress-shirt-p5397", type: "brand-official", label: "DXL ürün sayfası beden tablosu (inç)", checkedAt: "2026-10-07" }

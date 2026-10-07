@@ -1,23 +1,24 @@
-title: H&M erkek vücut ölçüleri (L–3XL)
-caption: H&M erkek beden rehberi – vücut ölçüsü (cm), Regular tişört ürünü
-silo: erkek
-scope: ust-giyim
-kind: olcu-cm
-columns:
-  - { key: harf, label: Harf }
-  - { key: eur, label: EUR }
-  - { key: gogus, label: Göğüs, unit: cm }
-  - { key: bel, label: Bel, unit: cm }
-  - { key: yaka, label: Yaka, unit: cm }
-  - { key: kol, label: Kol, unit: cm }
+title: "H&M erkek vücut ölçüleri (L–3XL)"
+caption: "H&M erkek beden rehberi – vücut ölçüsü (cm), Regular tişört ürünü"
+kind: olcu
+gender: erkek
+brand: hm
+brandName: "H&M"
+productType: tisort
+countrySystem: EU
+measurementType: body
+sourceType: official_brand
+sourceUrl: "https://www2.hm.com/en_gb/productpage.1216851036.html"
+unit: cm
+lastVerifiedAt: 2026-10-07
+fitType: regular
+highlight: chest
 rows:
-  - [ L, 52–54, 102–110, "90–98,5", 40–41, 64–65 ]
-  - [ XL, 56–58, 110–118, "98,5–107,5", 42–43, "65–65,5" ]
-  - [ XXL, 60–62, 118–126, "107,5–116,5", 44–45, "65,5–66" ]
-  - [ 3XL, 64–66, 126–134, "116,5–125,5", 46–47, "66" ]
-highlightColumn: gogus
-approximate: false
+  - { numericSize: "52–54", letterSize: "L", chest: { min: 102, max: 110 }, waist: { min: 90, max: 98.5 }, neck: { min: 40, max: 41 }, sleeve: { min: 64, max: 65 } }
+  - { numericSize: "56–58", letterSize: "XL", chest: { min: 110, max: 118 }, waist: { min: 98.5, max: 107.5 }, neck: { min: 42, max: 43 }, sleeve: { min: 65, max: 65.5 } }
+  - { numericSize: "60–62", letterSize: "XXL", chest: { min: 118, max: 126 }, waist: { min: 107.5, max: 116.5 }, neck: { min: 44, max: 45 }, sleeve: { min: 65.5, max: 66 } }
+  - { numericSize: "64–66", letterSize: "3XL", chest: { min: 126, max: 134 }, waist: { min: 116.5, max: 125.5 }, neck: { min: 46, max: 47 }, sleeve: { min: 66, max: 66 } }
 notes:
-  - H&M'nin “Long” varyantlarında göğüs ve bel aynı, kol yaklaşık 3 cm daha uzundur.
+  - "H&M'nin “Long” varyantlarında göğüs ve bel aynı, kol yaklaşık 3 cm daha uzundur."
 sources:
-  - { url: https://www2.hm.com/en_gb/productpage.1216851036.html, type: brand-official, label: H&M erkek Regular tişört ürün sayfası beden rehberi, checkedAt: 2026-10-07 }
+  - { url: "https://www2.hm.com/en_gb/productpage.1216851036.html", type: "brand-official", label: "H&M erkek Regular tişört ürün sayfası beden rehberi", checkedAt: "2026-10-07" }

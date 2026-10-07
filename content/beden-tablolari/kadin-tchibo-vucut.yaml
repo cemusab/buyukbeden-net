@@ -1,24 +1,26 @@
-title: Tchibo kadın vücut ölçüleri (44–54)
+title: "Tchibo kadın vücut ölçüleri (44–54)"
 caption: "Tchibo – kadın vücut ölçüsü (cm), kıyafet kalıbı rehberi"
-silo: kadin
-scope: genel
-kind: olcu-cm
+kind: olcu
+gender: kadin
 brand: tchibo
-columns:
-  - { key: beden, label: Beden }
-  - { key: gogus, label: Göğüs, unit: cm }
-  - { key: bel, label: Bel, unit: cm }
-  - { key: kalca, label: Kalça, unit: cm }
+brandName: Tchibo
+productType: genel
+countrySystem: TR
+measurementType: body
+sourceType: official_brand
+sourceUrl: "https://www.tchibo.com.tr/c/rehber-kiyafet-kalibi-rehberi-kadinlar"
+unit: cm
+lastVerifiedAt: 2026-10-07
+fieldLabels: { hip: "Kalça" }
+highlight: bust
 rows:
-  - ["44 (L)", "102–107", "88–93", "105–109"]
-  - ["46", "107–113", "93–99", "109–113"]
-  - ["48 (XL)", "113–119", "99–106", "113–118"]
-  - ["50", "119–125", "106–112", "118–123"]
-  - ["52 (XXL)", "125–131", "112–119", "123–128"]
-  - ["54", "131–137", "119–126", "128–133"]
-highlightColumn: gogus
-approximate: false
+  - { numericSize: "44", letterSize: "L", bust: { min: 102, max: 107 }, waist: { min: 88, max: 93 }, hip: { min: 105, max: 109 } }
+  - { numericSize: "46", bust: { min: 107, max: 113 }, waist: { min: 93, max: 99 }, hip: { min: 109, max: 113 } }
+  - { numericSize: "48", letterSize: "XL", bust: { min: 113, max: 119 }, waist: { min: 99, max: 106 }, hip: { min: 113, max: 118 } }
+  - { numericSize: "50", bust: { min: 119, max: 125 }, waist: { min: 106, max: 112 }, hip: { min: 118, max: 123 } }
+  - { numericSize: "52", letterSize: "XXL", bust: { min: 125, max: 131 }, waist: { min: 112, max: 119 }, hip: { min: 123, max: 128 } }
+  - { numericSize: "54", bust: { min: 131, max: 137 }, waist: { min: 119, max: 126 }, hip: { min: 128, max: 133 } }
 notes:
   - "Tchibo harf bedenlerini çift numara grubuyla eşler: 44 = L, 48 = XL, 52 = XXL."
 sources:
-  - { url: https://www.tchibo.com.tr/c/rehber-kiyafet-kalibi-rehberi-kadinlar, type: brand-official, label: Tchibo kadın kıyafet kalıbı rehberi, checkedAt: 2026-10-07 }
+  - { url: "https://www.tchibo.com.tr/c/rehber-kiyafet-kalibi-rehberi-kadinlar", type: "brand-official", label: "Tchibo kadın kıyafet kalıbı rehberi", checkedAt: "2026-10-07" }

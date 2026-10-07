@@ -1,28 +1,31 @@
-title: Alman DOB kadın beden tablosu (1994 seri ölçüm)
-caption: Alman kadın konfeksiyon bedenleri (DOB, 1994 seri ölçümü, boy 168 cm) – vücut ölçüsü (cm), referans tablo
-silo: kadin
-scope: genel
-kind: olcu-cm
-columns:
-  - { key: beden, label: Beden }
-  - { key: gogus, label: Göğüs, unit: cm }
-  - { key: bel, label: Bel, unit: cm }
-  - { key: basen, label: Basen, unit: cm }
+title: "Alman DOB kadın beden tablosu (1994 seri ölçüm)"
+caption: "Alman kadın konfeksiyon bedenleri (DOB, 1994 seri ölçümü, boy 168 cm) – vücut ölçüsü (cm), referans tablo"
+kind: olcu
+gender: kadin
+brandName: "DOB 1994 (Alman referans tablosu)"
+productType: genel
+countrySystem: DE
+measurementType: body
+sourceType: generic
+sourceUrl: "https://www.europa-lehrmittel.de/media/dc/ce/g0/1756301265/DOB%20Groentabelle%201994%20+%20Internationale.pdf"
+unit: cm
+lastVerifiedAt: 2026-10-07
+heightNote: "Tablo 168 cm boy için tanımlanmıştır."
+heightRange: { min: 168, max: 168 }
+highlight: bust
 rows:
-  - [ "42", "96", "80", "103" ]
-  - [ "44", "100", "84", "106" ]
-  - [ "46", "104", "88", "109" ]
-  - [ "48", "110", "94,5", "114" ]
-  - [ "50", "116", "101", "119" ]
-  - [ "52", "122", "107,5", "124" ]
-  - [ "54", "128", "114", "129" ]
-  - [ "56", "134", "120,5", "134" ]
-  - [ "58", "140", "127", "139" ]
-  - [ "60", "146", "133,5", "144" ]
-highlightColumn: gogus
-approximate: false
+  - { numericSize: "42", bust: { min: 96, max: 96 }, waist: { min: 80, max: 80 }, hip: { min: 103, max: 103 } }
+  - { numericSize: "44", bust: { min: 100, max: 100 }, waist: { min: 84, max: 84 }, hip: { min: 106, max: 106 } }
+  - { numericSize: "46", bust: { min: 104, max: 104 }, waist: { min: 88, max: 88 }, hip: { min: 109, max: 109 } }
+  - { numericSize: "48", bust: { min: 110, max: 110 }, waist: { min: 94.5, max: 94.5 }, hip: { min: 114, max: 114 } }
+  - { numericSize: "50", bust: { min: 116, max: 116 }, waist: { min: 101, max: 101 }, hip: { min: 119, max: 119 } }
+  - { numericSize: "52", bust: { min: 122, max: 122 }, waist: { min: 107.5, max: 107.5 }, hip: { min: 124, max: 124 } }
+  - { numericSize: "54", bust: { min: 128, max: 128 }, waist: { min: 114, max: 114 }, hip: { min: 129, max: 129 } }
+  - { numericSize: "56", bust: { min: 134, max: 134 }, waist: { min: 120.5, max: 120.5 }, hip: { min: 134, max: 134 } }
+  - { numericSize: "58", bust: { min: 140, max: 140 }, waist: { min: 127, max: 127 }, hip: { min: 139, max: 139 } }
+  - { numericSize: "60", bust: { min: 146, max: 146 }, waist: { min: 133.5, max: 133.5 }, hip: { min: 144, max: 144 } }
 notes:
-  - Bu bir marka tablosu değil, Alman konfeksiyon sektörünün referans tablosudur; güncel markalar kendi ölçülerini kullanır.
-  - Aynı kaynağın UK karşılık satırı güncel marka tablolarından iki beden kaydığı için kullanılmadı.
+  - "Bu bir marka tablosu değil, Alman konfeksiyon sektörünün genel referans tablosudur; değerler yaklaşık bir başlangıçtır, güncel markalar kendi ölçülerini kullanır."
+  - "Aynı kaynağın UK karşılık satırı güncel marka tablolarından iki beden kaydığı için kullanılmadı."
 sources:
-  - { url: https://www.europa-lehrmittel.de/media/dc/ce/g0/1756301265/DOB%20Groentabelle%201994%20+%20Internationale.pdf, type: reference, label: Europa-Lehrmittel – DOB kadın konfeksiyon beden tablosu (Reihenmessung 1994), checkedAt: 2026-10-07 }
+  - { url: "https://www.europa-lehrmittel.de/media/dc/ce/g0/1756301265/DOB%20Groentabelle%201994%20+%20Internationale.pdf", type: "reference", label: "Europa-Lehrmittel – DOB kadın konfeksiyon beden tablosu (Reihenmessung 1994)", checkedAt: "2026-10-07" }

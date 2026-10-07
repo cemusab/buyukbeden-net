@@ -1,28 +1,30 @@
-title: Miraggio kadın vücut ölçüleri (44–60)
+title: "Miraggio kadın vücut ölçüleri (44–60)"
 caption: "Miraggio – vücut ölçüsü (cm); markanın tüm ürünlerde gösterdiği tek tablo"
-silo: kadin
-scope: genel
-kind: olcu-cm
+kind: olcu
+gender: kadin
 brand: miraggio
-columns:
-  - { key: beden, label: Beden }
-  - { key: gogus, label: Göğüs, unit: cm }
-  - { key: basen, label: Basen, unit: cm }
+brandName: Miraggio
+productType: genel
+countrySystem: TR
+measurementType: body
+sourceType: official_brand
+sourceUrl: "https://miraggiobuyukbeden.com/miraggio-buyuk-beden-elbise-4908?renk=siyah&beden=44"
+unit: cm
+lastVerifiedAt: 2026-10-07
+highlight: bust
 rows:
-  - ["44", "100–105", "110–115"]
-  - ["46", "105–110", "115–120"]
-  - ["48", "110–115", "120–125"]
-  - ["50", "115–120", "125–130"]
-  - ["52", "120–125", "130–135"]
-  - ["54", "125–130", "135–140"]
-  - ["56", "130–135", "140–145"]
-  - ["58", "140–145", "145–150"]
-  - ["60", "145–150", "155–160"]
-highlightColumn: gogus
-approximate: false
+  - { numericSize: "44", bust: { min: 100, max: 105 }, hip: { min: 110, max: 115 } }
+  - { numericSize: "46", bust: { min: 105, max: 110 }, hip: { min: 115, max: 120 } }
+  - { numericSize: "48", bust: { min: 110, max: 115 }, hip: { min: 120, max: 125 } }
+  - { numericSize: "50", bust: { min: 115, max: 120 }, hip: { min: 125, max: 130 } }
+  - { numericSize: "52", bust: { min: 120, max: 125 }, hip: { min: 130, max: 135 } }
+  - { numericSize: "54", bust: { min: 125, max: 130 }, hip: { min: 135, max: 140 } }
+  - { numericSize: "56", bust: { min: 130, max: 135 }, hip: { min: 140, max: 145 } }
+  - { numericSize: "58", bust: { min: 140, max: 145 }, hip: { min: 145, max: 150 } }
+  - { numericSize: "60", bust: { min: 145, max: 150 }, hip: { min: 155, max: 160 } }
 notes:
   - "Tabloda bel ölçüsü yok. 56'dan 58'e göğüste, 58'den 60'a basende 10 cm'lik adım var; değerler kaynakta olduğu gibi aktarıldı."
   - "Tablo ürün sayfasında görsel olarak açılıyor ve ürüne özel değil; kalıbı farklı ürünlerde sonuç değişebilir."
 sources:
-  - { url: https://miraggiobuyukbeden.com/miraggio-buyuk-beden-elbise-4908?renk=siyah&beden=44, type: brand-official, label: Miraggio ürün sayfası (beden tablosu penceresi), checkedAt: 2026-10-07 }
-  - { url: https://s13.gifyu.com/images/bmPGB.jpg, type: brand-official, label: Miraggio beden tablosu görseli, checkedAt: 2026-10-07 }
+  - { url: "https://miraggiobuyukbeden.com/miraggio-buyuk-beden-elbise-4908?renk=siyah&beden=44", type: "brand-official", label: "Miraggio ürün sayfası (beden tablosu penceresi)", checkedAt: "2026-10-07" }
+  - { url: "https://s13.gifyu.com/images/bmPGB.jpg", type: "brand-official", label: "Miraggio beden tablosu görseli", checkedAt: "2026-10-07" }

@@ -1,34 +1,39 @@
-title: Erkek harf bedenlerin numara karşılığı, markalara göre
+title: "Erkek harf bedenlerin numara karşılığı, markalara göre"
 caption: "Erkek: aynı harf beden hangi numaraya denk geliyor? (tek adımlı ve Alman çift numara sistemi, beden çevirme)"
-silo: erkek
-scope: genel
 kind: donusum
-columns:
-  - { key: harf, label: Harf }
-  - { key: defacto, label: DeFacto (TR/EU) }
-  - { key: tommy, label: Tommy Hilfiger dış giyim (EU) }
-  - { key: kigili, label: Kiğılı eşofman }
-  - { key: jp, label: JP1880 }
-  - { key: hm, label: H&M (EUR) }
-rows:
-  - [ L, "52", –, "52", 52/54, 52–54 ]
-  - [ XL, "54", "54", "54", 56/58, 56–58 ]
-  - [ 2XL, "56", "56", "56", 60/62, 60–62 ]
-  - [ 3XL, "58", "58", "58", 64/66, 64–66 ]
-  - [ 4XL, "60", "60", –, 68/70, – ]
-  - [ 5XL, "62", "62", –, 72/74, – ]
-  - [ 6XL, –, –, –, 76/78, – ]
-  - [ 7XL, –, –, –, 80/82, – ]
-  - [ 8XL, –, –, –, 84/86, – ]
-highlightColumn: harf
+gender: erkek
+brandName: "Markaların kendi tabloları"
+productType: genel
+countrySystem: harf
+sourceType: official_brand
+sourceUrl: "https://www.defacto.com.tr/100-pamuk-nefes-alabilen-kumas-buyuk-beden-tisort-3523217"
+lastVerifiedAt: 2026-10-07
 approximate: true
+columns:
+  - { key: "harf", label: "Harf" }
+  - { key: "defacto", label: "DeFacto (TR/EU)" }
+  - { key: "tommy", label: "Tommy Hilfiger dış giyim (EU)" }
+  - { key: "kigili", label: "Kiğılı eşofman" }
+  - { key: "jp", label: "JP1880" }
+  - { key: "hm", label: "H&M (EUR)" }
+highlight: harf
+rows:
+  - { systems: { harf: "L", defacto: "52", kigili: "52", jp: "52/54", hm: "52–54" } }
+  - { systems: { harf: "XL", defacto: "54", tommy: "54", kigili: "54", jp: "56/58", hm: "56–58" } }
+  - { systems: { harf: "2XL", defacto: "56", tommy: "56", kigili: "56", jp: "60/62", hm: "60–62" } }
+  - { systems: { harf: "3XL", defacto: "58", tommy: "58", kigili: "58", jp: "64/66", hm: "64–66" } }
+  - { systems: { harf: "4XL", defacto: "60", tommy: "60", jp: "68/70" } }
+  - { systems: { harf: "5XL", defacto: "62", tommy: "62", jp: "72/74" } }
+  - { systems: { harf: "6XL", jp: "76/78" } }
+  - { systems: { harf: "7XL", jp: "80/82" } }
+  - { systems: { harf: "8XL", jp: "84/86" } }
 notes:
   - "“–”: markanın kaynak tablosunda bu harf yok."
-  - Harfler göğüs ölçüsünde kabaca uyuşur, ama numara etiketleri iki sistem arasında 6–8 numara ayrışır.
-  - Erkekte 52 numara çoğu markada L'dir; kadın 52 bedenle karıştırılmamalıdır.
+  - "Harfler göğüs ölçüsünde kabaca uyuşur, ama numara etiketleri iki sistem arasında 6–8 numara ayrışır."
+  - "Erkekte 52 numara çoğu markada L'dir; kadın 52 bedenle karıştırılmamalıdır."
 sources:
-  - { url: https://www.defacto.com.tr/100-pamuk-nefes-alabilen-kumas-buyuk-beden-tisort-3523217, type: brand-official, label: DeFacto erkek büyük beden tişört – standart ölçü bilgisi, checkedAt: 2026-10-07 }
-  - { url: https://usa.tommy.com/en/size-guide-men.html, type: brand-official, label: Tommy Hilfiger ABD erkek beden rehberi, checkedAt: 2026-10-07 }
-  - { url: https://www.kigili.com/pages/bedenini-bul, type: brand-official, label: Kiğılı – Bedenini bul, checkedAt: 2026-10-07 }
-  - { url: https://www.jp1880.de/de/guides/groessenberater, type: brand-official, label: JP1880 beden danışmanı (erkek), checkedAt: 2026-10-07 }
-  - { url: https://www2.hm.com/en_gb/productpage.1216851036.html, type: brand-official, label: H&M erkek Regular tişört ürün sayfası beden rehberi, checkedAt: 2026-10-07 }
+  - { url: "https://www.defacto.com.tr/100-pamuk-nefes-alabilen-kumas-buyuk-beden-tisort-3523217", type: "brand-official", label: "DeFacto erkek büyük beden tişört – standart ölçü bilgisi", checkedAt: "2026-10-07" }
+  - { url: "https://usa.tommy.com/en/size-guide-men.html", type: "brand-official", label: "Tommy Hilfiger ABD erkek beden rehberi", checkedAt: "2026-10-07" }
+  - { url: "https://www.kigili.com/pages/bedenini-bul", type: "brand-official", label: "Kiğılı – Bedenini bul", checkedAt: "2026-10-07" }
+  - { url: "https://www.jp1880.de/de/guides/groessenberater", type: "brand-official", label: "JP1880 beden danışmanı (erkek)", checkedAt: "2026-10-07" }
+  - { url: "https://www2.hm.com/en_gb/productpage.1216851036.html", type: "brand-official", label: "H&M erkek Regular tişört ürün sayfası beden rehberi", checkedAt: "2026-10-07" }
