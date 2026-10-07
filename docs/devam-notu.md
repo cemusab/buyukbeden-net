@@ -22,7 +22,7 @@
 | `rapor-notlari.md` | Sahibinin e-ticaret raporundan bilgi sitesine uyan dersler |
 | `gorsel-adaylari.md`, `gorsel-manifest.md` | Stok fotoğraf adayları / indirilen 50 fotoğraf + krediler + AI prompt listesi |
 | `beden-veri-migrasyonu.md` | Onaylı beden verisi migrasyonu planı |
-| `ayakkabi-arastirmasi.md` | (yazılıyor) büyük numara + geniş kalıp ayakkabı araştırması |
+| `ayakkabi-arastirmasi.md` | Büyük numara + geniş kalıp ayakkabı araştırması (34 kaynak; ayakkabı bölümünün veri kaynağı) |
 | `sahibi-bekleyenler.md` | Site sahibinden beklenenler listesi |
 | `durum.md` | Teknik durum notları |
 
@@ -34,7 +34,7 @@
 
 ## Devam eden (bu oturumda başlatıldı; yeni oturumda durumu kontrol et)
 1. **Beden verisi migrasyonu** (`docs/beden-veri-migrasyonu.md`, CLAUDE.md "Beden Kuralları"): body/garment ayrımı, min–max aralıklar, türetilmiş karşılaştırma etiketi, kesinlik dili kontrol scripti (`scripts/check-language.ts`), 6 ay tazelik uyarısı, **Beden Bulucu**. Bir agent v2'de çalışıyordu. Kontrol: `git log --oneline v2 -15`, `git status`, `npm run qa`. Yarım kaldıysa planı tamamla. Bitince qa yeşil → PR → main.
-2. **Ayakkabı:** araştırma TAMAM (`docs/ayakkabi-arastirmasi.md`, 34 kaynak; §7 açık noktalar). Migrasyon bitince içerik + rotalar: `/erkek/ayakkabi` (+ `buyuk-numara` 47+, `genis-kalip`), `/kadin/ayakkabi` (+ `buyuk-numara` 42+, `genis-kalip`, `genis-baldirli-cizme`), `/beden-rehberi/ayak-olcusu-nasil-alinir`, `/alisveris-rehberi/buyuk-numara-ayakkabi-markalari`. Taksonomi/rota: ayakkabı giyim dışı ayrı silo bölümü (`/kadin/ayakkabi`, `/erkek/ayakkabi`) – rotalar ve manifest'e eklenmeli.
+2. **Ayakkabı: TAMAM (v2'de, push edilmedi).** Rotalar `/kadin/ayakkabi`, `/erkek/ayakkabi` (+ `[slug]`; `sayfalar/{silo}-ayakkabi` landing, alt sayfalar `makaleler` + `section: ayakkabi`), `ayakkabi` rezerve segment, mega menü/footer/silo kapısında "Ayakkabı". 9 sayfa: erkek hub + `buyuk-numara` (47+) + `genis-kalip`; kadın hub + `buyuk-numara` (42+) + `genis-kalip` + `genis-baldirli-cizme`; `/beden-rehberi/ayak-olcusu-nasil-alinir`; `/alisveris-rehberi/buyuk-numara-ayakkabi-markalari`. Beden tablosu şeması ayakkabıyı destekliyor (`productType: ayakkabi | cizme`, `footLength/footWidth/footGirth/calf`, `widthLetter`, `unit: mm`); 11 marka tablosu (New Balance ×4, Clarks ×2, ECCO, Skechers ×2 çevirme, DuoBoots, Simply Be). Açık: araştırma §7 (Türk satıcılarda ürün bazında numara doğrulaması, Greyder aralığı, Türk markalarında cm/baldır tablosu, NB/Skechers TR genişlik satışı, NHS ödem sayfası).
 
 ## Oturum 1 sonu durumu (2026-10-07, akşam)
 - Beden migrasyonu TAMAM (v2, lokal; qa yeşil 85 passed) – henüz canlı değil.

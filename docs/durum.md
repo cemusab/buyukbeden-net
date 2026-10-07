@@ -1,5 +1,17 @@
 # Durum notları
 
+## 2026-10-07 – Ayakkabı bölümü (büyük numara, geniş kalıp, geniş baldırlı çizme)
+
+### Yapılanlar
+- **Rotalar:** `/kadin/ayakkabi`, `/erkek/ayakkabi` (landing anahtarları `kadin-ayakkabi`, `erkek-ayakkabi`) ve `/{silo}/ayakkabi/[slug]` (`makaleler` + `section: ayakkabi`, hub yok; `SILO_ARTICLE_SECTIONS`). `ayakkabi` rezerve segment (kategori olamaz, kısa yönlendirmeyle çakışmaz). Sitemap grubu women/men, breadcrumb manifest'ten. Mega menü "Rehberler" sütunu, footer silo sütunu ve silo ana sayfası kapısı yalnız sayfa yayımlıysa "Ayakkabı" gösterir. Şablon: `FootwearLanding` (silo içi ayakkabı rehberleri + öne çıkan ortak ölçü/marka rehberleri). Eyebrow "Kadın · Ayakkabı".
+- **Beden tablosu şeması:** `productType: ayakkabi | cizme`; aralık alanları `footLength` (ayak uzunluğu), `footWidth`, `footGirth` (top çevresi), `calf` (baldır/konç); satırda `widthLetter`; `unit: cm | inch | mm` (mm cm olarak gösterilir). Validate: ayakkabı ve giyim alanları karışmaz, ayak ölçüleri yalnız `measurementType: body`, genişlik tablosunda her harf kendi içinde artan ve aynı numarada dar → geniş. Genişlik tabloları numara × harf olarak döndürülür, "harfler markaya özgüdür" notu. Ayakkabı tabloları Beden Bulucu'ya girmez. Karşılaştırma etiketi `olcu="footLength"` + EU numarasıyla çalışır.
+- **Veri (11 tablo, hepsi resmi marka sayfası, 2026-10-07):** New Balance kadın/erkek ayak uzunluğu + genişlik (genişlikte ölçü türü kaynakta belirsiz → `measurementTypeVerified: false`), Clarks kadın/erkek (mm, standart EU; Clarks EU notu), ECCO erkek, Skechers kadın/erkek (`donusum`; erkek US 9–10 = EU 42.5 kaynak hatası notlu, kullanılmadı), DuoBoots (uzunluk + top çevresi, mm), Simply Be çizme Super Curvy baldır (garment, belirsiz). Hepsi `partialRows: true` (büyük numara satırları).
+- **İçerik (9 sayfa):** erkek/kadın hub, erkek `buyuk-numara` (47+) ve `genis-kalip`, kadın `buyuk-numara` (42+), `genis-kalip`, `genis-baldirli-cizme`, `/beden-rehberi/ayak-olcusu-nasil-alinir`, `/alisveris-rehberi/buyuk-numara-ayakkabi-markalari` (Türk uzman siteler "orta güven", uluslararası markalar; sıralama/sponsorluk yok). Tüm sayılar `docs/ayakkabi-arastirmasi.md` kaynaklarından; görsel yok (manifestte ayakkabı fotoğrafı yok).
+- **Test:** `tests/ayakkabi.spec.ts` (landing silo listesi + breadcrumb, mega menü linki, mm → cm tablo ve karşılaştırma, genişlik matrisi, mobil taşma). Yeni rotalar crawler'a manifest üzerinden girer.
+
+### QA
+- 2026-10-07: `npm run qa` yeşil (temiz worktree'de, commit 7a572eb): validate (168 belge, 57 beden tablosu, 171 URL) + lint + build + Playwright 97 passed, 45 skipped (proje kapsamı). Not: aynı anda çalışan diğer ajanların commit edilmemiş içerikleri ana çalışma dizininde validate hatası veriyordu; QA bu yüzden ayrı worktree'de koşuldu.
+
 ## 2026-10-07 – Beden verisi migrasyonu (docs/beden-veri-migrasyonu.md uygulandı)
 
 ### Yapılanlar
