@@ -18,6 +18,9 @@ function build(initial = false) {
   return ok;
 }
 
+// Kroki SVG dosyaları (public/cizim/) içerikten bağımsızdır; başlangıçta bir kez üretilir.
+spawnSync("npx", ["tsx", "scripts/build-illustrations.tsx"], { cwd: ROOT, stdio: "inherit", env: process.env });
+
 if (!build(true) && !fs.existsSync(path.join(ROOT, "src", "generated", "content-index.json"))) {
   console.error("[içerik] Hiç geçerli üretim yok; hataları düzeltin.");
   process.exit(1);

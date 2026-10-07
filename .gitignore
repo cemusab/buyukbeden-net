@@ -43,6 +43,7 @@ next-env.d.ts
 # içerik üretimi (scripts/build-content.ts)
 /src/generated/
 /public/search-index.json
+/public/cizim/
 /test-results/
 /playwright-report/
 

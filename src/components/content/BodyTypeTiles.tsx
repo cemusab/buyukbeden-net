@@ -2,6 +2,7 @@ import Link from "next/link";
 import { hasRoute } from "@/lib/content";
 import type { DocMeta } from "@/lib/content-types";
 import { BODY_TYPES, BODY_TYPE_LABELS, BodyTypeFigure, bodyTypeSwatch } from "@/components/illustrations";
+import { BodyTypeArt } from "@/components/media/Illustration";
 
 type Silo = "kadin" | "erkek";
 
@@ -55,7 +56,7 @@ export function BodyTypeTiles({ silo, exclude, className = "", wide = true }: { 
             className="group flex h-full flex-col items-center rounded-card px-2 pb-3 pt-2 outline-offset-2 transition-shadow hover:shadow-card"
             style={{ backgroundColor: bodyTypeSwatch(silo, t.shape).tile }}
           >
-            <BodyTypeFigure silo={silo} shape={t.shape} tile={false} className="aspect-[1/2] h-auto w-full max-w-[8.5rem]" />
+            <BodyTypeArt silo={silo} shape={t.shape} className="aspect-[1/2] h-auto w-full max-w-[8.5rem]" />
             <span className="mt-1 text-center text-xs font-bold leading-tight text-ink sm:text-sm">{t.label}</span>
             <span aria-hidden="true" className="mt-2 hidden h-7 w-7 sm:inline-flex items-center justify-center rounded-full bg-white text-sm text-ink shadow-sm group-hover:bg-primary group-hover:text-white">
               →
@@ -80,8 +81,13 @@ export function BodyTypeHero({ silo, shape }: { silo: Silo; shape: string }) {
   return (
     <figure className="overflow-hidden rounded-card" style={{ backgroundColor: sw.tile }}>
       <div className="mx-auto grid max-w-md grid-cols-2 gap-2 px-4 pt-4">
-        <BodyTypeFigure silo={silo} shape={shape} garment={garments[0]} tile={false} className="h-auto w-full" title={`${name}, ${wear[0]}`} />
-        <BodyTypeFigure silo={silo} shape={shape} garment={garments[1]} tile={false} guides={!isHeight} className="h-auto w-full" title={isHeight ? `${name}, ${wear[1]}` : `${name}, ${wear[1]}, ${lines}`} />
+        <BodyTypeArt silo={silo} shape={shape} garment={garments[0]} eager className="h-auto w-full" title={`${name}, ${wear[0]}`} />
+        {isHeight ? (
+          <BodyTypeArt silo={silo} shape={shape} garment={garments[1]} eager className="h-auto w-full" title={`${name}, ${wear[1]}`} />
+        ) : (
+          // yardımcı çizgiler metin etiketi içerir (site yazı tipi) → satır içi kalır
+          <BodyTypeFigure silo={silo} shape={shape} garment={garments[1]} tile={false} guides className="h-auto w-full" title={`${name}, ${wear[1]}, ${lines}`} />
+        )}
       </div>
       <figcaption className="px-4 pb-3 pt-1 text-center text-xs text-ink-2">
         {isHeight ? "İllüstrasyondur; boy farkı, figürün karo içindeki yüksekliğiyle gösterilmiştir." : "İllüstrasyondur; gerçek bedenler çok çeşitlidir ve çoğu kişi iki tipin arasındadır."}

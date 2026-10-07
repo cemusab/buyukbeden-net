@@ -198,7 +198,7 @@ export default function HomePage() {
               >
                 {c.image ? (
                   <>
-                    <Image src={c.image.src} alt={c.image.alt} fill priority sizes="(min-width: 768px) 50vw, 100vw" className="object-cover transition-transform duration-500 group-hover:scale-[1.02]" />
+                    <Image src={c.image.src} alt={c.image.alt} fill preload fetchPriority="high" sizes="(min-width: 1240px) 600px, (min-width: 768px) 50vw, calc(100vw - 32px)" className="object-cover transition-transform duration-500 group-hover:scale-[1.02]" />
                     <span aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/25 to-transparent" />
                     {c.image.aiGenerated || c.image.credit ? (
                       <span className="absolute right-3 top-3 rounded bg-black/45 px-2 py-0.5 text-[0.6875rem] text-white/90">
