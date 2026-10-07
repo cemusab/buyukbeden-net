@@ -18,11 +18,12 @@ const TYPE_LABEL: Record<string, string> = {
   LANDING: "Rehber",
 };
 
-export function eyebrowFor(d: Pick<DocMeta, "type" | "silo" | "category" | "collection">): { label: string; tone: BadgeTone } {
+export function eyebrowFor(d: Pick<DocMeta, "type" | "silo" | "category" | "collection"> & { path?: string }): { label: string; tone: BadgeTone } {
   const silo = d.silo === "kadin" ? "Kadın" : d.silo === "erkek" ? "Erkek" : null;
   let kind = TYPE_LABEL[d.type] ?? "Rehber";
   if ((d.type === "ARTICLE" || d.type === "CATEGORY_HUB") && d.category && d.silo !== "ortak")
     kind = categoryLabel(d.silo as GenderSilo, d.category);
+  if (d.path && /^\/(kadin|erkek)\/ayakkabi(\/|$)/.test(d.path)) kind = "Ayakkabı";
   const tone: BadgeTone =
     d.type === "SIZE_GUIDE"
       ? "beden"

@@ -31,6 +31,7 @@ export function computePath(doc: PathInput, hubCategory: (hubId: string) => stri
       return `/${silo}/giyim/${fm.category as string}`;
     case "makaleler":
       if (silo === "ortak") return `/${(fm.section as string) ?? "rehberler"}/${seg}`;
+      if (fm.section === "ayakkabi") return `/${silo}/ayakkabi/${seg}`;
       return inHub();
     case "beden-rehberleri":
       if (hubId) return inHub();

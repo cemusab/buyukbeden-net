@@ -25,12 +25,24 @@ export const RANGE_FIELDS = [
   "upperArm",
   "chestWidth",
   "length",
+  // Ayakkabı (yalnız productType ayakkabi | cizme): ayak uzunluğu, ayak genişliği, top çevresi, baldır çevresi
+  "footLength",
+  "footWidth",
+  "footGirth",
+  "calf",
 ] as const;
 export type RangeField = (typeof RANGE_FIELDS)[number];
 export type Range = { min: number; max: number };
 
 /** Yalnız ürün (giysi) ölçüsü tablolarında anlamlı alanlar. */
 export const GARMENT_ONLY_FIELDS: readonly RangeField[] = ["chestWidth", "length"];
+
+/** Ayakkabı tablolarına özgü alanlar; giyim tablolarında kullanılamaz (ve tersi). */
+export const FOOTWEAR_FIELDS: readonly RangeField[] = ["footLength", "footWidth", "footGirth", "calf"];
+/** Ayak ölçüleri yalnız vücut (ayak) ölçüsü tablolarında; baldır (calf) çizmenin konç çevresi de olabilir. */
+export const FOOT_BODY_ONLY_FIELDS: readonly RangeField[] = ["footLength", "footWidth", "footGirth"];
+export const FOOTWEAR_PRODUCT_TYPES: readonly string[] = ["ayakkabi", "cizme"];
+export const isFootwear = (c: { productType: string }) => FOOTWEAR_PRODUCT_TYPES.includes(c.productType);
 
 export const FIELD_LABEL: Record<RangeField, { kadin: string; erkek: string }> = {
   bust: { kadin: "Göğüs", erkek: "Göğüs" },
@@ -46,9 +58,13 @@ export const FIELD_LABEL: Record<RangeField, { kadin: string; erkek: string }> =
   upperArm: { kadin: "Üst kol", erkek: "Üst kol" },
   chestWidth: { kadin: "Göğüs eni (tek kat)", erkek: "Göğüs eni (tek kat)" },
   length: { kadin: "Boy (giysi)", erkek: "Boy (giysi)" },
+  footLength: { kadin: "Ayak uzunluğu", erkek: "Ayak uzunluğu" },
+  footWidth: { kadin: "Ayak genişliği", erkek: "Ayak genişliği" },
+  footGirth: { kadin: "Top çevresi", erkek: "Top çevresi" },
+  calf: { kadin: "Baldır çevresi", erkek: "Baldır çevresi" },
 };
 
-export const PRODUCT_TYPES = ["genel", "ust-giyim", "alt-giyim", "elbise", "pantolon", "jean", "gomlek", "ceket", "triko", "tisort", "ic-giyim"] as const;
+export const PRODUCT_TYPES = ["genel", "ust-giyim", "alt-giyim", "elbise", "pantolon", "jean", "gomlek", "ceket", "triko", "tisort", "ic-giyim", "ayakkabi", "cizme"] as const;
 export const PRODUCT_TYPE_LABEL: Record<(typeof PRODUCT_TYPES)[number], string> = {
   genel: "Genel",
   "ust-giyim": "Üst giyim",
@@ -61,6 +77,8 @@ export const PRODUCT_TYPE_LABEL: Record<(typeof PRODUCT_TYPES)[number], string> 
   triko: "Triko",
   tisort: "Tişört",
   "ic-giyim": "İç giyim",
+  ayakkabi: "Ayakkabı",
+  cizme: "Çizme",
 };
 
 /** Satırdaki numerik bedenin sistemi. */
@@ -115,6 +133,9 @@ export const STRETCH_LEVELS = ["none", "low", "high"] as const;
 export const STRETCH_LABEL: Record<(typeof STRETCH_LEVELS)[number], string> = { none: "Esnemez", low: "Az esner", high: "Çok esner" };
 
 export const INCH_CM = 2.54;
+/** Kaynak birimi olduğu gibi saklanır; arayüz cm'ye çevirir (inç çevirisi "bizim" notuyla, mm yalnız birim değişimi). */
+export const UNITS = ["cm", "inch", "mm"] as const;
+export type Unit = (typeof UNITS)[number];
 /** Kaynak tarihi bu kadar günden eskiyse validate uyarır (≈ 6 ay). */
 export const FRESHNESS_DAYS = 183;
 
@@ -125,10 +146,10 @@ export type MeasureChartWithId = MeasureChart & { id: string };
 
 export const isMeasure = (c: ChartWithId): c is MeasureChartWithId => c.kind === "olcu";
 
-export function toCm(v: number, unit: "cm" | "inch"): number {
-  return unit === "inch" ? v * INCH_CM : v;
+export function toCm(v: number, unit: Unit): number {
+  return unit === "inch" ? v * INCH_CM : unit === "mm" ? v / 10 : v;
 }
-export function rangeCm(r: Range, unit: "cm" | "inch"): Range {
+export function rangeCm(r: Range, unit: Unit): Range {
   return { min: toCm(r.min, unit), max: toCm(r.max, unit) };
 }
 
@@ -140,13 +161,13 @@ export function fmtNum(n: number, digits = 1): string {
 }
 
 /** "118–122" (tek değerse "118"); inç kaynak cm'ye yuvarlanır. */
-export function fmtRangeValue(r: Range, unit: "cm" | "inch" = "cm"): string {
+export function fmtRangeValue(r: Range, unit: Unit = "cm"): string {
   const digits = unit === "inch" ? 0 : 1;
   const a = fmtNum(toCm(r.min, unit), digits);
   const b = fmtNum(toCm(r.max, unit), digits);
   return a === b ? a : `${a}–${b}`;
 }
-export function fmtRange(r: Range, unit: "cm" | "inch" = "cm"): string {
+export function fmtRange(r: Range, unit: Unit = "cm"): string {
   return `${fmtRangeValue(r, unit)} cm`;
 }
 export function fmtInch(r: Range): string {
@@ -159,12 +180,12 @@ export function fieldLabel(chart: Pick<MeasureChart, "gender" | "fieldLabels">, 
   return chart.fieldLabels?.[f] ?? FIELD_LABEL[f][chart.gender];
 }
 
-/** Satırın kısa adı: "48 / 4XL", "UK 20", "4XL". */
-export function rowLabel(chart: Pick<MeasureChart, "countrySystem">, row: Pick<ChartRow, "numericSize" | "letterSize">): string {
+/** Satırın kısa adı: "48 / 4XL", "UK 20", "4XL", ayakkabıda "US 10 · 2E". */
+export function rowLabel(chart: Pick<MeasureChart, "countrySystem">, row: Pick<ChartRow, "numericSize" | "letterSize"> & { widthLetter?: string }): string {
   const prefix = chart.countrySystem === "UK" || chart.countrySystem === "US" || chart.countrySystem === "IT" ? `${chart.countrySystem} ` : "";
   const num = row.numericSize ? `${prefix}${row.numericSize}` : "";
-  if (num && row.letterSize) return `${num} / ${row.letterSize}`;
-  return num || row.letterSize || "–";
+  const base = num && row.letterSize ? `${num} / ${row.letterSize}` : num || row.letterSize || "–";
+  return row.widthLetter ? `${base} · ${row.widthLetter}` : base;
 }
 
 /** Harf bedeni karşılaştırma için normalleştirir: XXL ≡ 2XL, XXXL ≡ 3XL; erkekte "4X" ≡ 4XL (Kiğılı yazımı). */
@@ -243,7 +264,7 @@ export type ComparisonSpec = {
   baslik?: string;
 };
 
-export type ComparisonSource = { n: number; chartId: string; brandName: string; label: string; url: string; sourceType: ChartSourceType; lastVerifiedAt: string; unit: "cm" | "inch" };
+export type ComparisonSource = { n: number; chartId: string; brandName: string; label: string; url: string; sourceType: ChartSourceType; lastVerifiedAt: string; unit: Unit };
 export type ComparisonCell = { field: RangeField; range: Range; text: string; inch?: string };
 export type ComparisonListRow = {
   chartId: string;
@@ -461,7 +482,7 @@ export type FinderChart = {
   brandName: string;
   gender: Gender;
   productType: string;
-  unit: "cm" | "inch";
+  unit: Unit;
   heightRange?: Range;
   heightNote?: string;
   sourceUrl: string;
@@ -475,7 +496,7 @@ export type FinderChart = {
 export function finderCharts(all: ChartWithId[]): FinderChart[] {
   const out: FinderChart[] = [];
   for (const c of all) {
-    if (!isMeasure(c) || c.measurementType !== "body" || !c.measurementTypeVerified || c.partialRows || c.productType === "ic-giyim") continue;
+    if (!isMeasure(c) || c.measurementType !== "body" || !c.measurementTypeVerified || c.partialRows || c.productType === "ic-giyim" || isFootwear(c)) continue;
     const fields: FinderField[] = c.gender === "kadin" ? ["bust", "waist", "hip"] : ["chest", "waist", "hip"];
     const rows = c.rows
       .map((r) => ({

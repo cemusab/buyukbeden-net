@@ -25,7 +25,7 @@
 | Referanslar | `author`, `hub`, `brands`, `fabrics`, `sizeCharts`, `relatedHubs`, `alternatives` → var olan id olmalı. |
 | Görseller | `/images/{koleksiyon}/{id}/dosya.webp` (`public/` altında gerçekten olmalı), `alt` ≥ 5 karakter. Rakip/stok görsel yok. Görsel yoksa tipografik kapak otomatik. |
 | İnce içerik | Kategori hub'ı: gövde ≥ 600 kelime **veya** ≥ 3 yayımlı alt içerik. Kategori beden landing'i (`/kadin/giyim/elbise/52-beden`): ≥ 900 kelime, ≥ 1 kaynaklı beden tablosu, ≥ 3 SSS, ≥ 5 iç link. |
-| Rezerve segmentler | `sayfa, etiket, arama, api, keystatic, giyim, beden-rehberi, stil, kombinler, index` ve aynı silodaki kategori adları. |
+| Rezerve segmentler | `sayfa, etiket, arama, api, keystatic, giyim, beden-rehberi, stil, kombinler, ayakkabi, index` ve aynı silodaki kategori adları (`ayakkabi` kategori olamaz; `/kadin/ayakkabi` kısa yönlendirmesiyle çakışmasın diye). |
 | Beden landing deseni | Kategori altında `52-beden` (kadın 42–66) veya `4xl`/`xl`…`8xl` (erkek) segmenti **yalnız** `beden-rehberleri` koleksiyonunda olabilir. |
 | Taslak | `status: draft` → hiç üretilmez, link verilemez. `archived` → sayfa kalır, öneri/ana sayfa dışı. |
 
@@ -38,6 +38,7 @@ Uyarılar (build'i durdurmaz ama düzeltin): gövdede < 3 iç link · "büyük b
 | `sayfalar/{key}` | Statik sayfa | sabit (aşağıda `key` listesi) |
 | `hublar/{silo}-{kategori}` | Kategori hub | `/{silo}/giyim/{kategori}` |
 | `makaleler/{id}` silo kadin/erkek (+`hub` zorunlu) | Makale | `/{silo}/giyim/{kategori}/{segment}` |
+| `makaleler/{id}` silo kadin/erkek + `section: ayakkabi` (hub yok) | Ayakkabı makalesi | `/{silo}/ayakkabi/{segment}` (bölüm landing'i `sayfalar/{silo}-ayakkabi` → `/{silo}/ayakkabi`) |
 | `makaleler/{id}` silo ortak | Makale | `/{section}/{segment}` — `section`: `rehberler` (varsayılan) \| `beden-rehberi` \| `kumas-rehberi` |
 | `beden-rehberleri/{id}` + `hub` | Beden landing | `/{silo}/giyim/{kategori}/{segment}` |
 | `beden-rehberleri/{id}` silo kadin/erkek | Beden rehberi | `/{silo}/beden-rehberi/{segment}` |
@@ -61,7 +62,7 @@ Uyarılar (build'i durdurmaz ama düzeltin): gövdede < 3 iç link · "büyük b
 - **occasion** (stil + kombin; landing'ler bu sırayla gruplar): `davet-abiye` (Davet ve Abiye), `ise-uygun` (İşe Uygun), `gunluk` (Günlük), `tatil-deniz` (Tatil ve Deniz), `spor-konfor` (Spor ve Konfor)
 - **season:** `ilkbahar, yaz, sonbahar, kis, 4-mevsim`
 - **sources[].type:** `brand-official, standard, regulation, reference, academic, retailer, editorial` (Türkçe eşdeğerleri de kabul: `resmi-marka, standart, uretici, arastirma, perakende, editoryal-olcum, diger`)
-- **sayfalar key:** `kadin, erkek, kadin-giyim, erkek-giyim, kadin-beden-rehberi, erkek-beden-rehberi, kadin-stil, erkek-stil, kadin-kombinler, erkek-kombinler, beden-rehberi, stil, kombinler, kumas-rehberi, markalar, alisveris-rehberi, trendler, rehberler, hakkimizda, iletisim, editoryal-ilkeler, gizlilik, cerez-politikasi, kvkk`
+- **sayfalar key:** `kadin, erkek, kadin-giyim, erkek-giyim, kadin-beden-rehberi, erkek-beden-rehberi, kadin-stil, erkek-stil, kadin-kombinler, erkek-kombinler, kadin-ayakkabi, erkek-ayakkabi, beden-rehberi, stil, kombinler, kumas-rehberi, markalar, alisveris-rehberi, trendler, rehberler, hakkimizda, iletisim, editoryal-ilkeler, gizlilik, cerez-politikasi, kvkk`
 
 Yeni kategori gerekiyorsa önce `taxonomy.ts`'e eklenir (frontend). Hub'ı yayımlanmayan kategori menüde görünmez.
 
@@ -220,6 +221,18 @@ section: beden-rehberi       # rehberler (varsayılan) | beden-rehberi | kumas-r
 
 Örn. `/kumas-rehberi/viskon-mu-pamuk-mu` = `makaleler/viskon-mu-pamuk-mu`, `silo: ortak`, `section: kumas-rehberi`, `segment: viskon-mu-pamuk-mu`.
 
+Ayakkabı (giyim dışı ayrı silo bölümü; CLAUDE.md "Ayakkabı") – hub yerine `section: ayakkabi`:
+
+```yaml
+---
+title: "Geniş Kalıp Erkek Ayakkabı: 2E, 4E, 6E ve H Ne Demek?"
+segment: genis-kalip         # → /erkek/ayakkabi/genis-kalip
+section: ayakkabi            # yalnız kadin/erkek; hub ile birlikte kullanılmaz
+silo: erkek
+…
+---
+```
+
 ---
 
 ## 5. Beden rehberi – `content/beden-rehberleri/{id}/index.mdoc`
@@ -285,6 +298,8 @@ notes: []
 sources:                     # en az 1 – kaynaksız tablo yok
   - { url: https://www.ullapopken.at/de/guides/size-guide, type: brand-official, label: Ulla Popken beden rehberi, checkedAt: 2026-10-07 }
 ```
+
+**Ayakkabı tabloları:** `productType: ayakkabi | cizme`, `countrySystem: EU | UK | US`, `unit: cm | mm | inch` (kaynaktaki gibi; mm arayüzde cm gösterilir). Satırda `footLength` (ayak uzunluğu), `footWidth` (ayak genişliği), `footGirth` (top çevresi) yalnız `measurementType: body`; `calf` (baldır/konç çevresi) çizmede body veya garment olabilir. `widthLetter` (ör. `2E`, `EE`) markaya özgü genişlik harfi; aynı numaranın satırları dar → geniş sırada yazılır, tablo numara × harf olarak döndürülür. Ayakkabı alanları giyim tablolarında, giyim alanları ayakkabı tablolarında kullanılamaz (validate hatası). Ayak ölçüsü vermeyen marka tabloları (ör. yalnız US/UK/EU) `kind: donusum` olarak açılır. Ayakkabı tabloları Beden Bulucu'ya girmez. Karşılaştırma: `{% beden-karsilastirma gender="erkek" measurementType="body" olcu="footLength" size="47" /%}` (EU numarası; US/UK tablolarında `equivalents.EU` ile eşleşir).
 
 **Satır alanları:** `numericSize`, `letterSize`, `equivalents` (TR, EU, DE, UK, US, IT, jean, kisa, uzun, normal, marka), aralıklar `bust` (yalnız kadın), `chest` (yalnız erkek), `underbust`, `cupDifference`, `waist`, `hip`, `neck`, `shoulder`, `sleeve`, `inseam`, `upperArm`, `chestWidth` ve `length` (yalnız `garment`), jean etiketi `waistInch` / `lengthInch` (W/L, inç), `stretch` (none | low | high, kaynaklı), `note`.
 

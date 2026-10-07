@@ -68,6 +68,7 @@ function mega(silo: GenderSilo): MegaData | undefined {
     { label: `${label} Beden Rehberi`, href: `/${silo}/beden-rehberi` },
     { label: `${label} Stil`, href: `/${silo}/stil` },
     { label: `${label} Kombinler`, href: `/${silo}/kombinler` },
+    { label: `${label} Ayakkabı`, href: `/${silo}/ayakkabi` },
   ].filter((g) => hasRoute(g.href));
   const fp = getHomepage().megaMenuFeatured[silo];
   const fd = fp ? getByPath(fp) : undefined;
@@ -99,6 +100,7 @@ export function footerColumns(): { title: string; links: NavLink[] }[] {
     { label: "Beden rehberi", href: `/${s}/beden-rehberi` },
     { label: "Stil", href: `/${s}/stil` },
     { label: "Kombinler", href: `/${s}/kombinler` },
+    { label: "Ayakkabı", href: `/${s}/ayakkabi` },
   ];
   return [
     { title: "Kadın", links: pick(silo("kadin", "Kadın")) },

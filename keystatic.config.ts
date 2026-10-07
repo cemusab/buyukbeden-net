@@ -14,7 +14,7 @@ import {
   OCCASIONS,
   SEASONS,
   SEASON_LABEL,
-  SHARED_ARTICLE_SECTIONS,
+  ARTICLE_SECTIONS,
   SOURCE_TYPES,
   TOPICS,
   TOPIC_LABEL,
@@ -34,6 +34,7 @@ import {
   RANGE_FIELDS,
   STRETCH_LABEL,
   STRETCH_LEVELS,
+  UNITS,
 } from "./src/lib/size-core";
 
 const opt = (values: readonly string[], labels?: Record<string, string>) => values.map((v) => ({ label: labels?.[v] ?? v, value: v }));
@@ -237,7 +238,7 @@ export default config({
       sizeGuides: paths("Beden rehberleri"),
       relatedHubs: fields.multiRelationship({ label: "İlgili hub'lar (aynı silo)", collection: "hublar" }),
     }),
-    makaleler: doc("Makaleler", "makaleler", { ...segmented("makaleler"), section: fields.select({ label: "Ortak bölüm", options: opt(SHARED_ARTICLE_SECTIONS), defaultValue: "rehberler" }) }),
+    makaleler: doc("Makaleler", "makaleler", { ...segmented("makaleler"), section: fields.select({ label: "Bölüm (ortak: rehberler/beden-rehberi/kumas-rehberi; kadın/erkek: ayakkabi)", options: opt(ARTICLE_SECTIONS), defaultValue: "rehberler" }) }),
     bedenRehberleri: doc("Beden Rehberleri", "beden-rehberleri", {
       ...segmented("beden-rehberleri"),
       sizeSystem: fields.multiselect({ label: "Beden sistemleri", options: opt(["TR", "EU", "UK", "US", "IT", "harf"]) }),
@@ -338,7 +339,7 @@ export default config({
         partialRows: fields.checkbox({ label: "Kaynağın yalnız bazı satırları aktarıldı", defaultValue: false }),
         sourceType: fields.select({ label: "Kaynak türü", options: opt(CHART_SOURCE_TYPES, CHART_SOURCE_TYPE_LABEL), defaultValue: "official_brand" }),
         sourceUrl: fields.url({ label: "Ana kaynak URL'si (kaynaklarda da olmalı)" }),
-        unit: fields.select({ label: "Kaynaktaki birim", options: opt(["cm", "inch"]), defaultValue: "cm" }),
+        unit: fields.select({ label: "Kaynaktaki birim", options: opt(UNITS), defaultValue: "cm" }),
         lastVerifiedAt: fields.date({ label: "Son doğrulama" }),
         approximate: fields.checkbox({ label: "Yaklaşık değerler notu", defaultValue: false }),
         fitType: fields.select({ label: "Kalıp", options: [{ label: "—", value: "" }, ...opt(FIT_TYPES, FIT_TYPE_LABEL)], defaultValue: "" }),
@@ -358,6 +359,7 @@ export default config({
                 fields.object({ min: fields.number({ label: "En az", step: 0.5 }), max: fields.number({ label: "En çok (tek değerse boş bırakın)", step: 0.5 }) }, { label: FIELD_LABEL[f].kadin + ` (${f})`, layout: [6, 6] }),
               ]),
             ),
+            widthLetter: fields.text({ label: "Ayakkabı genişlik harfi (ör. D, 2E; markaya özgü)" }),
             waistInch: fields.number({ label: "Jean bel W (inç)" }),
             lengthInch: fields.number({ label: "Jean boy L (inç)" }),
             stretch: fields.select({ label: "Esneme (kaynaklı)", options: [{ label: "—", value: "" }, ...opt(STRETCH_LEVELS, STRETCH_LABEL)], defaultValue: "" }),

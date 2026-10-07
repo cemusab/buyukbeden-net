@@ -17,7 +17,7 @@ import {
   SiteSettingsSchema,
   SizeChartSchema,
 } from "../src/content/schema";
-import { buildComparison, FRESHNESS_DAYS, GARMENT_ONLY_FIELDS, RANGE_FIELDS, specFromAttrs } from "../src/lib/size-core";
+import { buildComparison, FOOT_BODY_ONLY_FIELDS, FOOTWEAR_FIELDS, FRESHNESS_DAYS, GARMENT_ONLY_FIELDS, isFootwear, RANGE_FIELDS, specFromAttrs } from "../src/lib/size-core";
 import { checkLanguage } from "./check-language";
 import { Markdoc, markdocConfig, nodeText, transformMarkdoc } from "../src/content/markdoc.config";
 import type { AuthorEntry, ContentIndex, DocMeta, RouteEntry, TocItem } from "../src/lib/content-types";
@@ -29,6 +29,7 @@ import {
   type GenderSilo,
   LANDING_PATHS,
   RESERVED_SEGMENTS,
+  SILO_ARTICLE_SECTIONS,
   SIZE_LANDING_PATTERN,
 } from "../src/lib/taxonomy";
 
@@ -163,7 +164,17 @@ for (const f of listDir(path.join(CONTENT, "beden-tablolari"))) {
     if (!c.measurementTypeVerified && !c.notes.length) err(file, "measurementTypeVerified: false ise notes içinde belirsizlik açıklanmalı");
     // Cinsiyete göre göğüs alanı: kadında bust, erkekte chest (Beden Kuralları 3)
     const wrong = c.gender === "kadin" ? "chest" : "bust";
+    const foot = isFootwear(c);
     c.rows.forEach((row, i) => {
+      // Ayakkabı ve giyim alanları karışmaz; ayak ölçüleri yalnız vücut (ayak) ölçüsü tablosunda
+      for (const x of RANGE_FIELDS) {
+        if (!row[x]) continue;
+        const isFoot = FOOTWEAR_FIELDS.includes(x);
+        if (foot && !isFoot) err(file, `rows[${i}].${x}: ayakkabı tablosunda (productType ${c.productType}) giyim ölçüsü kullanılamaz`);
+        if (!foot && isFoot) err(file, `rows[${i}].${x}: yalnız ayakkabı/çizme tablolarında (productType ayakkabi | cizme) kullanılır`);
+        if (FOOT_BODY_ONLY_FIELDS.includes(x) && c.measurementType !== "body") err(file, `rows[${i}].${x}: ayak ölçüsü yalnız measurementType: body tablosunda`);
+      }
+      if (row.widthLetter && !foot) err(file, `rows[${i}].widthLetter: yalnız ayakkabı tablolarında`);
       if (row[wrong]) err(file, `rows[${i}].${wrong}: ${c.gender} tablosunda ${wrong === "chest" ? "bust" : "chest"} kullanılır`);
       if (!row.numericSize && !row.letterSize) err(file, `rows[${i}]: numericSize veya letterSize zorunlu`);
       for (const g of GARMENT_ONLY_FIELDS) if (row[g] && c.measurementType !== "garment") err(file, `rows[${i}].${g}: yalnız ürün (garment) ölçüsü tablolarında kullanılır`);
@@ -171,18 +182,30 @@ for (const f of listDir(path.join(CONTENT, "beden-tablolari"))) {
       if (!RANGE_FIELDS.some((x) => row[x]) && !row.waistInch && !(row.numericSize && row.letterSize)) err(file, `rows[${i}]: hiç ölçü yok`);
     });
     if (c.highlight && !c.rows.some((row) => row[c.highlight!])) err(file, `highlight "${c.highlight}" hiçbir satırda yok`);
-    // Bedene göre artan: her alan satır satır küçülmemeli (kaynak hatalarını yakalar)
+    // Bedene göre artan: her alan satır satır küçülmemeli (kaynak hatalarını yakalar).
+    // Ayakkabı genişlik tablolarında (widthLetter) her genişlik harfi kendi içinde artmalı.
     if (!c.inconsistencyNote) {
-      for (const fld of RANGE_FIELDS) {
-        let prev: { min: number; max: number } | undefined;
-        c.rows.forEach((row, i) => {
-          const v = row[fld];
-          if (!v) return;
-          if (prev && (v.min < prev.min || v.max < prev.max))
-            err(file, `rows[${i}].${fld}: değer önceki satırdan küçük (${v.min}–${v.max}); kaynağı kontrol edin veya inconsistencyNote ekleyin`);
-          prev = v;
-        });
+      const groups = [...new Set(c.rows.map((r) => r.widthLetter ?? ""))];
+      for (const g of groups) {
+        for (const fld of RANGE_FIELDS) {
+          let prev: { min: number; max: number } | undefined;
+          c.rows.forEach((row, i) => {
+            if ((row.widthLetter ?? "") !== g) return;
+            const v = row[fld];
+            if (!v) return;
+            if (prev && (v.min < prev.min || v.max < prev.max))
+              err(file, `rows[${i}].${fld}: değer önceki satırdan küçük (${v.min}–${v.max}); kaynağı kontrol edin veya inconsistencyNote ekleyin`);
+            prev = v;
+          });
+        }
       }
+      // Aynı numarada genişlik harfi büyüdükçe genişlik küçülmemeli (sıra kaynaktaki gibi: dar → geniş)
+      const bySize = new Map<string, { min: number; max: number }[]>();
+      c.rows.forEach((row) => {
+        if (row.widthLetter && row.numericSize && row.footWidth) bySize.set(row.numericSize, [...(bySize.get(row.numericSize) ?? []), row.footWidth]);
+      });
+      for (const [size, ws] of bySize)
+        for (let k = 1; k < ws.length; k++) if (ws[k].min < ws[k - 1].min) err(file, `numara ${size}: genişlik harfleri dar → geniş sırada değil ya da değerler azalıyor`);
     }
   }
   sizeCharts.push({ ...c, id });
@@ -397,9 +420,15 @@ for (const w of works) {
       if (m.subtopic && !subs.some((s) => s.key === m.subtopic)) err(w.file, `subtopic "${m.subtopic}" hub'da tanımlı değil`);
     }
   }
-  if (m.collection === "makaleler" && m.silo !== "ortak" && !m.hub) err(w.file, "kadin/erkek makalede hub zorunlu");
-  if (m.collection === "makaleler" && m.silo === "ortak" && m.hub) err(w.file, "ortak makalede hub olamaz");
-  if (m.collection === "makaleler" && m.silo !== "ortak" && m.fm.section) err(w.file, "section yalnız ortak makalede kullanılır");
+  if (m.collection === "makaleler") {
+    const sec = m.fm.section as string | undefined;
+    const siloSection = !!sec && (SILO_ARTICLE_SECTIONS as readonly string[]).includes(sec);
+    if (m.silo !== "ortak" && !m.hub && !siloSection) err(w.file, "kadin/erkek makalede hub (ya da section: ayakkabi) zorunlu");
+    if (m.silo !== "ortak" && m.hub && sec) err(w.file, "hub'a bağlı makalede section kullanılmaz");
+    if (m.silo !== "ortak" && sec && !siloSection) err(w.file, `section "${sec}" yalnız ortak makalede kullanılır (kadin/erkek: ${SILO_ARTICLE_SECTIONS.join(", ")})`);
+    if (m.silo === "ortak" && m.hub) err(w.file, "ortak makalede hub olamaz");
+    if (m.silo === "ortak" && siloSection) err(w.file, `section "${sec}" yalnız kadin/erkek makalede kullanılır`);
+  }
   if (m.hub && ["kombinler", "alisveris-rehberleri", "trendler", "gundem", "markalar", "kumaslar", "sayfalar"].includes(m.collection))
     err(w.file, "bu koleksiyonda hub alanı kullanılmaz");
   if (m.collection === "kombinler" && m.silo === "ortak") err(w.file, "kombin silosu ortak olamaz (kadin veya erkek)");
@@ -730,6 +759,8 @@ const families: [string, RegExp][] = [
   ["/erkek/stil/[slug]", /^\/erkek\/stil\/[^/]+$/],
   ["/kadin/kombinler/[slug]", /^\/kadin\/kombinler\/[^/]+$/],
   ["/erkek/kombinler/[slug]", /^\/erkek\/kombinler\/[^/]+$/],
+  ["/kadin/ayakkabi/[slug]", /^\/kadin\/ayakkabi\/[^/]+$/],
+  ["/erkek/ayakkabi/[slug]", /^\/erkek\/ayakkabi\/[^/]+$/],
   ["/beden-rehberi/[slug]", /^\/beden-rehberi\/[^/]+$/],
   ["/stil/[slug]", /^\/stil\/[^/]+$/],
   ["/kumas-rehberi/[slug]", /^\/kumas-rehberi\/[^/]+$/],

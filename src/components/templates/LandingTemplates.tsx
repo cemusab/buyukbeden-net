@@ -124,6 +124,7 @@ function SiloHome({ doc }: { doc: DocMeta }) {
     { path: `/${silo}/beden-rehberi`, title: `${L} beden rehberi`, text: "Beden tabloları ve ölçü alma", filter: (d: DocMeta) => d.silo === silo && d.type === "SIZE_GUIDE", icon: "beden-rehberi" },
     { path: `/${silo}/stil`, title: `${L} stil`, text: "Kalıp, oran ve tarz önerileri", filter: (d: DocMeta) => d.silo === silo && d.type === "STYLE_GUIDE", icon: "stil" },
     { path: `/${silo}/kombinler`, title: `${L} kombinler`, text: "Ortama ve mevsime göre kombinler", filter: (d: DocMeta) => d.silo === silo && d.type === "OUTFIT_GUIDE", icon: "kombin" },
+    { path: `/${silo}/ayakkabi`, title: `${L} ayakkabı`, text: "Büyük numara, geniş kalıp ve ayak ölçüsü", filter: (d: DocMeta) => d.silo === silo && isFootwearDoc(d), icon: "rehber" },
   ].filter((g) => hasRoute(g.path));
   const hubs = getHubs(silo);
   return (
@@ -317,6 +318,43 @@ function SectionLanding({ doc, type }: { doc: DocMeta; type: "SIZE_GUIDE" | "STY
         <section aria-labelledby="ortak-rehberler" className="mt-12">
           <SectionHeader id="ortak-rehberler" title="Herkes için temel rehberler" />
           <Grid docs={shared} compact />
+        </section>
+      ) : null}
+      <Body doc={doc} className="mt-12" />
+      <Tail doc={doc} />
+    </Shell>
+  );
+}
+
+/* ---------------- /kadin/ayakkabi, /erkek/ayakkabi (giyim dışı ayrı bölüm) ---------------- */
+const isFootwearDoc = (d: DocMeta) => d.collection === "makaleler" && d.fm.section === "ayakkabi";
+
+function FootwearLanding({ doc }: { doc: DocMeta }) {
+  const silo = doc.silo as GenderSilo;
+  const docs = listLive((d) => d.silo === silo && isFootwearDoc(d)).sort((a, b) => a.title.localeCompare(b.title, "tr"));
+  // Öne çıkanlar: ölçü ve marka rehberleri gibi ortak sayfalar (silo içi belgeler zaten yukarıda)
+  const featured = ((doc.fm.featured as string[]) ?? [])
+    .map((p) => getByPath(p))
+    .filter((d): d is DocMeta => !!d && !docs.some((x) => x.key === d.key));
+  return (
+    <Shell
+      doc={doc}
+      hero={<PageHero image={heroImage(doc)} tone={siloTone(doc)} eyebrow={<Badge tone={silo}>{`${SILO_LABEL[silo]} · Ayakkabı`}</Badge>} title={doc.title} lead={<Lead doc={doc} />} />}
+      ld={[itemListLd(getSettings(), docs.map((d) => ({ path: d.path, title: d.title })))]}
+    >
+      <div className="mt-6 max-w-prose">
+        <ShortAnswer doc={doc} />
+      </div>
+      {docs.length ? (
+        <section aria-labelledby="ayakkabi-rehberleri" className="mt-10" data-footwear-guides>
+          <SectionHeader id="ayakkabi-rehberleri" title={`${SILO_LABEL[silo]} ayakkabı rehberleri`} />
+          <Grid docs={docs} />
+        </section>
+      ) : null}
+      {featured.length ? (
+        <section aria-labelledby="olcu-ve-markalar" className="mt-12">
+          <SectionHeader id="olcu-ve-markalar" title="Ölçü ve marka rehberleri" />
+          <Grid docs={featured} compact />
         </section>
       ) : null}
       <Body doc={doc} className="mt-12" />
@@ -669,6 +707,9 @@ export function LandingTemplate({ doc }: { doc: DocMeta }) {
     case "kadin-kombinler":
     case "erkek-kombinler":
       return <SectionLanding doc={doc} type="OUTFIT_GUIDE" />;
+    case "kadin-ayakkabi":
+    case "erkek-ayakkabi":
+      return <FootwearLanding doc={doc} />;
     case "beden-rehberi":
       return <SharedSizeLanding doc={doc} />;
     case "stil":

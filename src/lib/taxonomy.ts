@@ -170,6 +170,8 @@ export const LANDING_PATHS = {
   "erkek-stil": "/erkek/stil",
   "kadin-kombinler": "/kadin/kombinler",
   "erkek-kombinler": "/erkek/kombinler",
+  "kadin-ayakkabi": "/kadin/ayakkabi",
+  "erkek-ayakkabi": "/erkek/ayakkabi",
   "beden-rehberi": "/beden-rehberi",
   stil: "/stil",
   kombinler: "/kombinler",
@@ -201,11 +203,18 @@ export const RESERVED_SEGMENTS = [
   "beden-rehberi",
   "stil",
   "kombinler",
+  "ayakkabi",
   "index",
 ];
 
 /** Ortak (silo dışı) makalelerin yerleşebileceği bölümler. */
 export const SHARED_ARTICLE_SECTIONS = ["rehberler", "beden-rehberi", "kumas-rehberi"] as const;
+/**
+ * Silo (kadın/erkek) makalelerinin giyim hub'ı dışındaki bölümleri: `ayakkabi` → /{silo}/ayakkabi/{segment}.
+ * Ayakkabı giyim dışı ayrı bir silo bölümüdür (CLAUDE.md "Ayakkabı"); bölüm landing'i `sayfalar/{silo}-ayakkabi`.
+ */
+export const SILO_ARTICLE_SECTIONS = ["ayakkabi"] as const;
+export const ARTICLE_SECTIONS = [...SHARED_ARTICLE_SECTIONS, ...SILO_ARTICLE_SECTIONS] as const;
 
 /** Ana navigasyon (brief §3) – hedefi manifest'te olmayan öğe gösterilmez. */
 export const MAIN_NAV: { label: string; path: string; mega?: GenderSilo }[] = [

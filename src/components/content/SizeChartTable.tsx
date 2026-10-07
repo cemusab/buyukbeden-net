@@ -46,6 +46,7 @@ function measureColumns(chart: Extract<Chart, { kind: "olcu" }>): Col[] {
   const hasLetter = rows.some((r) => r.letterSize);
   if (hasNum) cols.push({ key: "numericSize", label: NUMERIC_LABEL[chart.countrySystem], cell: (i) => rows[i].numericSize ?? "–", text: (i) => rows[i].numericSize ?? "–" });
   if (hasLetter) cols.push({ key: "letterSize", label: hasNum ? "Harf" : "Beden", cell: (i) => rows[i].letterSize ?? "–", text: (i) => rows[i].letterSize ?? "–" });
+  if (rows.some((r) => r.widthLetter)) cols.push({ key: "widthLetter", label: "Genişlik", cell: (i) => rows[i].widthLetter ?? "–", text: (i) => rows[i].widthLetter ?? "–" });
   for (const k of EQUIV_KEYS) {
     if (rows.some((r) => r.equivalents?.[k]))
       cols.push({ key: `eq-${k}`, label: EQUIV_LABEL[k], cell: (i) => rows[i].equivalents?.[k] ?? "–", text: (i) => rows[i].equivalents?.[k] ?? "–" });
@@ -81,6 +82,29 @@ function measureColumns(chart: Extract<Chart, { kind: "olcu" }>): Col[] {
   return cols;
 }
 
+/**
+ * Ayakkabı genişlik tablosu (her satırda widthLetter): numaralar satır, genişlik harfleri sütun olacak biçimde
+ * döndürülür (ör. New Balance US 10 × B / D / 2E / 4E). Harfler kaynaktaki sırayla (dar → geniş) kalır.
+ */
+function widthPivot(chart: Extract<Chart, { kind: "olcu" }>): { cols: Col[]; n: number } | null {
+  const rows = chart.rows;
+  if (!rows.length || !rows.every((r) => r.widthLetter && r.numericSize)) return null;
+  const sizes = [...new Set(rows.map((r) => r.numericSize!))];
+  const letters = [...new Set(rows.map((r) => r.widthLetter!))];
+  const field = (["footWidth", "footGirth", "footLength"] as const).find((f) => rows.some((r) => r[f]));
+  if (!field) return null;
+  const at = (i: number, l: string) => rows.find((r) => r.numericSize === sizes[i] && r.widthLetter === l)?.[field];
+  const cols: Col[] = [{ key: "numericSize", label: NUMERIC_LABEL[chart.countrySystem], cell: (i) => sizes[i], text: (i) => sizes[i] }];
+  for (const l of letters) {
+    const text = (i: number) => {
+      const v = at(i, l);
+      return v ? fmtRange(v, chart.unit) : "–";
+    };
+    cols.push({ key: `w-${l}`, label: `${l} · ${fieldLabel(chart, field).toLocaleLowerCase("tr")}`, cell: text, text });
+  }
+  return { cols, n: sizes.length };
+}
+
 function conversionColumns(chart: Extract<Chart, { kind: "donusum" }>): Col[] {
   return chart.columns.map((c) => ({
     key: c.key,
@@ -94,8 +118,9 @@ function conversionColumns(chart: Extract<Chart, { kind: "donusum" }>): Col[] {
 /** Kaynaklı beden tablosu: ölçü türü rozeti, aralıklar "118–122 cm", mobilde kart görünümü, kaynak türü ve son doğrulama tarihi. */
 export function SizeChartTable({ chart, headingLevel }: { chart: Chart; headingLevel?: "h2" | "h3" }) {
   const H = headingLevel;
-  const cols = chart.kind === "olcu" ? measureColumns(chart) : conversionColumns(chart);
-  const n = chart.rows.length;
+  const pivot = chart.kind === "olcu" ? widthPivot(chart) : null;
+  const cols = pivot ? pivot.cols : chart.kind === "olcu" ? measureColumns(chart) : conversionColumns(chart);
+  const n = pivot ? pivot.n : chart.rows.length;
   const wide = cols.length > 4;
   const measure = chart.kind === "olcu" ? chart : undefined;
   return (
@@ -106,6 +131,8 @@ export function SizeChartTable({ chart, headingLevel }: { chart: Chart; headingL
         <span className="inline-flex items-center rounded-full border border-line px-2.5 py-1">{PRODUCT_TYPE_LABEL[chart.productType]}</span>
         {measure?.fitType ? <span className="inline-flex items-center rounded-full border border-line px-2.5 py-1">{FIT_TYPE_LABEL[measure.fitType]}</span> : null}
         {measure?.unit === "inch" ? <span className="inline-flex items-center rounded-full border border-line px-2.5 py-1">Kaynak inç; cm çevirisi bizim</span> : null}
+        {measure?.unit === "mm" ? <span className="inline-flex items-center rounded-full border border-line px-2.5 py-1">Kaynak mm; cm olarak gösteriliyor</span> : null}
+        {measure?.partialRows ? <span className="inline-flex items-center rounded-full border border-line px-2.5 py-1">Tablonun yalnız bir bölümü</span> : null}
       </div>
       {wide ? (
         <ul className="space-y-2 sm:hidden" aria-label={chart.caption} data-chart-cards>
@@ -169,6 +196,8 @@ export function SizeChartTable({ chart, headingLevel }: { chart: Chart; headingL
         {measure?.heightNote ? <span className="block">{measure.heightNote}</span> : null}
         {chart.approximate ? <span className="block">Yaklaşık değerler; markaya ve ürüne göre değişir. Satın almadan önce ürünün kendi tablosunu kontrol edin.</span> : null}
         {measure?.unit === "inch" ? <span className="block">Kaynak tablo inç (in) cinsindendir; cm değerleri bizim çevirimizdir (1 inç = 2,54 cm, yuvarlanmış).</span> : null}
+        {measure?.unit === "mm" ? <span className="block">Kaynak tablo milimetre (mm) cinsindendir; değerler cm olarak gösterilir (10 mm = 1 cm).</span> : null}
+        {measure && pivot ? <span className="block">Genişlik harfleri bu markaya ve cinsiyete özgüdür; başka markanın aynı harfi aynı genişlik anlamına gelmeyebilir.</span> : null}
         {chart.notes.map((note, i) => (
           <span key={i} className="block">
             {note}

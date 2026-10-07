@@ -9,7 +9,7 @@ import {
   LANDING_KINDS,
   OCCASION_KEYS,
   SEASONS,
-  SHARED_ARTICLE_SECTIONS,
+  ARTICLE_SECTIONS,
   SILOS,
   SOURCE_TYPES,
   TOPICS,
@@ -24,6 +24,7 @@ import {
   PRODUCT_TYPES,
   RANGE_FIELDS,
   STRETCH_LEVELS,
+  UNITS,
 } from "../lib/size-core";
 
 export const Silo = z.enum(SILOS);
@@ -107,7 +108,8 @@ const segmentDoc = { ...base, segment: Slug, hub: Slug.optional(), subtopic: Slu
 
 export const ArticleSchema = z.strictObject({
   ...segmentDoc,
-  section: z.enum(SHARED_ARTICLE_SECTIONS).optional(),
+  /** Ortak: rehberler | beden-rehberi | kumas-rehberi. Kadın/erkek: ayakkabi (hub yerine). */
+  section: z.enum(ARTICLE_SECTIONS).optional(),
 });
 
 /* ---------------- Beden tabloları (docs/beden-veri-migrasyonu.md, CLAUDE.md Beden Kuralları) ---------------- */
@@ -131,6 +133,8 @@ export const SizeChartRowSchema = z.strictObject({
   /** Jean bel bedeni (W, inç) ve boy (L, inç) – etiket değeri, ölçü değil */
   waistInch: z.number().positive().optional(),
   lengthInch: z.number().positive().optional(),
+  /** Ayakkabı genişlik harfi, markanın yazdığı gibi (ör. "D", "2E", "EE"); harfler markaya ve cinsiyete özgüdür */
+  widthLetter: z.string().min(1).max(4).optional(),
   /** Esneme (elastan/likra oranına göre, kaynaklı) */
   stretch: z.enum(STRETCH_LEVELS).nullable().optional(),
   note: z.string().min(3).optional(),
@@ -167,7 +171,7 @@ export const SizeMeasureChartSchema = z.strictObject({
   measurementTypeVerified: z.boolean().default(true),
   /** Kaynağın yalnız bazı satırları aktarıldıysa true (aradaki bedenler eksik): Beden Bulucu'ya girmez */
   partialRows: z.boolean().default(false),
-  unit: z.enum(["cm", "inch"]).default("cm"),
+  unit: z.enum(UNITS).default("cm"),
   fitType: z.enum(FIT_TYPES).optional(),
   heightNote: z.string().min(5).optional(),
   /** Tablonun tanımlandığı boy aralığı (cm); Beden Bulucu kısa/uzun boy notu için */
