@@ -85,7 +85,7 @@ export async function HubTemplate({ doc }: { doc: DocMeta }) {
               <DocImage image={fm.image} sizes="(min-width: 768px) 44vw, 100vw" ratio="auto" priority className="absolute inset-0 [&>div]:h-full" rounded={false} />
             ) : (
               <div aria-hidden="true" className="absolute inset-0 flex items-end justify-center overflow-hidden pt-4" style={{ backgroundColor: croquisTile(silo, cat) }}>
-                {hasCroquisArt(silo, cat) ? <CroquisArt silo={silo} category={cat} className="h-full w-auto" /> : <GarmentArt silo={silo} category={cat} className="h-full w-auto p-6" />}
+                {hasCroquisArt(silo, cat) ? <CroquisArt silo={silo} category={cat} eager className="h-full w-auto" /> : <GarmentArt silo={silo} category={cat} className="h-full w-auto p-6" />}
               </div>
             )
           }

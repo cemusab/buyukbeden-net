@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "content": "tsx scripts/build-content.ts",
+    "content": "tsx scripts/build-content.ts && tsx scripts/build-illustrations.tsx",
     "validate": "tsx scripts/build-content.ts --check",
     "dev": "tsx scripts/dev.ts",
     "prebuild": "npm run content",

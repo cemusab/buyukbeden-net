@@ -31,7 +31,8 @@ export function DocImage({
           alt={image.alt}
           fill
           sizes={sizes}
-          priority={priority}
+          preload={priority}
+          fetchPriority={priority ? "high" : undefined}
           loading={priority ? undefined : "lazy"}
           className="object-cover"
         />
@@ -83,7 +84,7 @@ export function Cover({
   if (category && (silo === "kadin" || silo === "erkek") && hasCroquisArt(silo, category)) {
     return (
       <div aria-hidden="true" className="flex items-end justify-center overflow-hidden rounded-card pt-2" style={{ aspectRatio: ratio, backgroundColor: croquisTile(silo, category) }}>
-        <CroquisArt category={category} silo={silo} className="h-full w-auto" />
+        <CroquisArt category={category} silo={silo} eager={priority} className="h-full w-auto" />
       </div>
     );
   }

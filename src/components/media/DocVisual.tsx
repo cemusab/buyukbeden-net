@@ -6,9 +6,9 @@
 import type { ReactNode } from "react";
 import { getDocByKey } from "@/lib/content";
 import type { DocMeta } from "@/lib/content-types";
-import { BodyTypeFigure, bodyTypeSwatch, CareSymbol, FabricSwatch, FitSilhouette, MeasureFigure } from "@/components/illustrations";
+import { bodyTypeSwatch, CareSymbol, FabricSwatch, FitSilhouette, MeasureFigure } from "@/components/illustrations";
 import { bodyTypeOf, BODY_TYPE_OVERVIEW } from "@/components/content/BodyTypeTiles";
-import { CroquisArt, croquisTile, hasCroquisArt, hasFabricSwatch, QuickIcon } from "./Illustration";
+import { BodyTypeArt, CroquisArt, croquisTile, hasCroquisArt, hasFabricSwatch, QuickIcon } from "./Illustration";
 import { DocImage } from "./Media";
 
 type Silo = "kadin" | "erkek";
@@ -110,19 +110,19 @@ const FIT_PAIR: Record<Silo, [string, string]> = { kadin: ["wide-leg", "slim"], 
 const CARE: string[] = ["yikama-30", "agartma-yok", "utu-2", "asarak-kurutma"];
 
 /** İllüstrasyon karosu (fotoğrafsız). Tüm karolar dekoratiftir. */
-export function VisualTile({ v, ratio = "4/3", className = "", rounded = true }: { v: VisualKind; ratio?: string; className?: string; rounded?: boolean }) {
+export function VisualTile({ v, ratio = "4/3", className = "", rounded = true, eager = false }: { v: VisualKind; ratio?: string; className?: string; rounded?: boolean; eager?: boolean }) {
   switch (v.kind) {
     case "body":
       return (
         <Tile bg={bodyTypeSwatch(v.silo, v.shape).tile} ratio={ratio} rounded={rounded} className={className}>
-          <BodyTypeFigure silo={v.silo} shape={v.shape} tile={false} className="h-full w-auto" />
+          <BodyTypeArt silo={v.silo} shape={v.shape} eager={eager} className="h-full w-auto" />
         </Tile>
       );
     case "body-group":
       return (
         <Tile bg={bodyTypeSwatch(v.silo, BODY_GROUP[v.silo][1]).tile} ratio={ratio} rounded={rounded} className={`gap-[2%] px-[4%] ${className}`}>
           {BODY_GROUP[v.silo].map((s) => (
-            <BodyTypeFigure key={s} silo={v.silo} shape={s} tile={false} className="h-full w-auto" />
+            <BodyTypeArt key={s} silo={v.silo} shape={s} eager={eager} className="h-full w-auto" />
           ))}
         </Tile>
       );
@@ -137,7 +137,7 @@ export function VisualTile({ v, ratio = "4/3", className = "", rounded = true }:
     case "croquis":
       return (
         <Tile bg={croquisTile(v.silo, v.category)} ratio={ratio} rounded={rounded} className={className}>
-          <CroquisArt silo={v.silo} category={v.category} className="h-full w-auto" />
+          <CroquisArt silo={v.silo} category={v.category} eager={eager} className="h-full w-auto" />
         </Tile>
       );
     case "measure":
@@ -205,5 +205,5 @@ export function DocVisual({
   rounded?: boolean;
 }) {
   if (doc.featuredImage) return <DocImage image={doc.featuredImage} sizes={sizes} ratio={ratio} priority={priority} caption={caption} className={className} rounded={rounded} />;
-  return <VisualTile v={visualKindOf(doc)} ratio={ratio} className={className} rounded={rounded} />;
+  return <VisualTile v={visualKindOf(doc)} ratio={ratio} className={className} rounded={rounded} eager={priority} />;
 }

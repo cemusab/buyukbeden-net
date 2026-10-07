@@ -112,3 +112,43 @@ Aday listesi ve seçim gerekçeleri: `docs/gorsel-adaylari.md`. Kontrol tarihi (
 ## Hâlâ boş slotlar
 
 Kategori kartları (kadın/erkek giyim alt kategorileri): bilinçli olarak fotoğrafsız, SVG illüstrasyon kullanılır (site sahibinin kararı, 2. tur). İç giyim: kişisiz doku görseli `ic-giyim-doku` dışında illüstrasyon. Kapalıçarşı/Merter/Laleli sokak sahneleri: okunur tabelasız uygun kare bulunamadı (yerine `alisveris-toptan` kumaş rafları).
+
+## Kullanılmayan (kişi fotoğrafı, 2026-10-08)
+
+Site sahibinin kararıyla kişi içeren stok fotoğraflar içerikten kaldırıldı (kartlar ve hero'lar illüstrasyon sistemine düşer). Ana sayfadaki iki AI hero (`/images/ai/...`) korunur. Aşağıdaki dosyalar `public/` içinde duruyor ama hiçbir içerikte kullanılmıyor (.jpg + .webp + .avif); sonraki temizlikte silinebilir. Not: bu bölüm `scripts/optimize-images.ts` tarafından üretilmez; script yeniden çalıştırılırsa korunmalı.
+
+- `/images/stok/alisveris-kabin/pexels-8388311.jpg`
+- `/images/stok/alisveris-pazar/pexels-18587721.jpg`
+- `/images/stok/erkek-gomlek/pexels-19456413.jpg`
+- `/images/stok/erkek-gomlek/pexels-4728882.jpg`
+- `/images/stok/erkek-gomlek/unsplash-J-vLwmivhww.jpg`
+- `/images/stok/erkek-gomlek/unsplash-Ld9fQtZl_pc.jpg`
+- `/images/stok/erkek-mont/pexels-10802716.jpg`
+- `/images/stok/erkek-pantolon/unsplash-VXHnkrf_9lU.jpg`
+- `/images/stok/erkek-polo/pexels-16962363.jpg`
+- `/images/stok/erkek-tisort/pexels-17756848.jpg`
+- `/images/stok/erkek-triko/pexels-20036211.jpg`
+- `/images/stok/hero-erkek/unsplash-LpjpApXzB3M.jpg`
+- `/images/stok/hero-kadin/pexels-7535450.jpg`
+- `/images/stok/hero-kadin/pexels-7535475.jpg`
+- `/images/stok/kadin-abiye/pexels-12780763.jpg`
+- `/images/stok/kadin-abiye/pexels-15502167.jpg`
+- `/images/stok/kadin-ceket/pexels-7388874.jpg`
+- `/images/stok/kadin-elbise/pexels-25630878.jpg`
+- `/images/stok/kadin-elbise/pexels-4689903.jpg`
+- `/images/stok/kadin-elbise/unsplash-m3peW4Kq6oc.jpg`
+- `/images/stok/kadin-etek/unsplash-ZAbdSzJnFtQ.jpg`
+- `/images/stok/kadin-gomlek/pexels-9164742.jpg`
+- `/images/stok/kadin-hirka/unsplash-ixQ_d82n41A.jpg`
+- `/images/stok/kadin-jean/pexels-7535437.jpg`
+- `/images/stok/kadin-jean/unsplash-A20aMVzsYkU.jpg`
+- `/images/stok/kadin-kaban/pexels-17153115.jpg`
+- `/images/stok/kadin-sweatshirt/pexels-7240263.jpg`
+- `/images/stok/kadin-tesettur/pexels-17086214.jpg`
+- `/images/stok/kadin-tisort/pexels-9164765.jpg`
+- `/images/stok/kadin-triko/pexels-6975619.jpg`
+- `/images/stok/kapak-beden-rehberi-erkek/pexels-6766234.jpg`
+- `/images/stok/kapak-beden-rehberi-kadin/pexels-4622403.jpg`
+- `/images/stok/kapak-stil/pexels-4982854.jpg`
+
+Kişi var ama korunan: `/images/stok/alisveris-pazar/pexels-35178088.jpg` (İstanbul'da dükkân cephesi; kapı önünde oturan esnaf küçük ve ikincil, model fotoğrafı değil; toptan pazar rehberinde kullanılıyor).

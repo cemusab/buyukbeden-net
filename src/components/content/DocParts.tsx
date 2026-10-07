@@ -268,7 +268,7 @@ export function PageHero({
       </div>
       {image ? (
         <figure className="relative min-h-56 md:min-h-full">
-          <Image src={image.src} alt={image.alt} fill priority sizes="(min-width: 768px) 42vw, 100vw" className="object-cover" />
+          <Image src={image.src} alt={image.alt} fill preload fetchPriority="high" sizes="(min-width: 768px) 42vw, 100vw" className="object-cover" />
           {image.credit || image.aiGenerated ? (
             <figcaption className="absolute bottom-2 right-2 rounded bg-black/45 px-2 py-0.5 text-[0.6875rem] text-white/90">
               {[image.aiGenerated ? "Yapay zekâ ile üretilmiş görsel" : null, image.credit].filter(Boolean).join(" · ")}

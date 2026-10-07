@@ -122,7 +122,7 @@ function ByOccasion({ docs, idPrefix }: { docs: DocMeta[]; idPrefix: string }) {
 function HeroPhoto({ image }: { image: NonNullable<DocMeta["featuredImage"]> }) {
   return (
     <figure className="absolute inset-0">
-      <Image src={image.src} alt={image.alt} fill priority sizes="(min-width: 768px) 44vw, 100vw" className="object-cover object-[50%_25%]" />
+      <Image src={image.src} alt={image.alt} fill preload fetchPriority="high" sizes="(min-width: 768px) 44vw, 100vw" className="object-cover object-[50%_25%]" />
       {image.aiGenerated || image.credit ? (
         <figcaption className="absolute bottom-2 right-2 rounded bg-black/50 px-2 py-0.5 text-[0.6875rem] text-white">
           {[image.aiGenerated ? "Yapay zekâ ile üretilmiş görsel" : null, image.credit].filter(Boolean).join(" · ")}
@@ -141,7 +141,7 @@ function CroquisGroup({ silo }: { silo: GenderSilo }) {
     <div aria-hidden="true" className="absolute inset-0 grid grid-cols-3 gap-2 p-3 lg:gap-3 lg:p-4">
       {cats.map((c) => (
         <div key={c} className="flex items-end justify-center overflow-hidden rounded-card pt-2" style={{ backgroundColor: croquisTile(silo, c) }}>
-          <CroquisArt silo={silo} category={c} className="h-full w-auto" />
+          <CroquisArt silo={silo} category={c} eager className="h-full w-auto" />
         </div>
       ))}
     </div>
