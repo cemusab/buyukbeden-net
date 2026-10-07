@@ -2,7 +2,7 @@
 
 # Buyukbeden.net – Proje Kuralları
 
-Bu dosya her oturumun başında okunur. Ana brief: `docs/brief.md` (çelişkide brief geçerli). Mimari: `docs/mimari.md`. Görsel dil: `docs/tasarim-referansi.md` (mimari §T'nin önüne geçer). İçerik planı: `docs/icerik-plani.md`. Oturum notları: `docs/durum.md`.
+Bu dosya her oturumun başında okunur. **Yeni oturumda önce `docs/devam-notu.md` oku** (kaldığımız yer, devam eden işler, sıradaki adımlar). Ana brief: `docs/brief.md` (çelişkide brief geçerli). Mimari: `docs/mimari.md`. Görsel dil: `docs/tasarim-referansi.md` (mimari §T'nin önüne geçer). İçerik planı: `docs/icerik-plani.md`. Oturum notları: `docs/durum.md`.
 
 ## Amaç
 Türkiye'nin büyük beden moda, beden, stil, kombin, kumaş ve marka rehberi. **Satış sitesi değil**: sepet, fiyat, stok, ürün kartı, Product/Offer/AggregateRating schema yok. Buyukbedengiyim.com ileride ticari taraf; ona linkler yalnız doğal ve faydalıysa, `RelatedShoppingCTA` bileşeniyle ve içerikten aç/kapa edilerek. **Site sahibi açmayı söyleyene kadar Buyukbedengiyim.com sitede hiçbir yerde görünmez** (feature flag kapalı; marka listelerinde, metinlerde, linklerde yok).
