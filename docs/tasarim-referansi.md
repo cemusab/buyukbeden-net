@@ -1,5 +1,7 @@
 # Tasarım referansı (site sahibinin paylaştığı görsel, 2026-10-07)
 
+Görsel: `docs/design/reference.webp` (içindeki fotoğraflar, tarih ve rakamlar örnektir).
+
 Site sahibi 8 ekranlık bir referans mockup paylaştı. **Bu belge mimari.md §T'nin önüne geçer** (görsel dil burada tanımlanır; puan/rakam/fotoğraflar örnektir, birebir kopyalanmaz).
 
 ## Genel dil
