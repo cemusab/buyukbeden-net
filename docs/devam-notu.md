@@ -43,6 +43,10 @@
 - Hepsi bitince: `npm run qa` yeşil → TEK push → PR v2→main → merge → canlı smoke test (sitemap URL'leri 200).
 - Açık karar: `kadin-harf-numara-markalara-gore` dönüşüm tablosu kalsın mı (şimdilik kaldı).
 
+## Oturum sonu – 2026-10-07 gece (yarın buradan devam)
+- **Vercel Web Analytics** eklendi ve yayına alındı (PR #6): çerezsiz, `src/components/analytics/SiteAnalytics.tsx`, yalnız `VERCEL=1` iken; sorgu parametreleri silinir. Gizlilik/çerez/KVKK metinleri güncellendi. Sahibi panelde Enable etti. Ücret: Pro'da 0,03 $/1K olay (Pro kredisinden düşer); sahibi "şimdilik dursun" dedi – maliyeti izlenecek. GA4 eklenmedi (istenirse Consent Mode ile).
+- **Yarın ilk iş:** (1) canlıda analitik isteğinin (`/_vercel/insights` veya benzersiz yol `/view`) gittiğini ve Vercel panelinde verinin göründüğünü doğrula; (2) Search Console sitemap durumu ("Başarılı" + ~216 keşfedilen sayfa); (3) sahibine veri sorumlusu bilgisi hatırlat; (4) sıradaki işler listesinden devam: Keystatic prod kurulumu, Lighthouse, kişi fotoğraflı eski kartları çizime çevirme, erkek hero (sahibi onaylarsa 1 görsel), marka logoları/gömmeler, kaynak doğrulamaları, legacy/ silme onayı. Sahibine API anahtarını yenilemesini hatırlat.
+
 ## YAYINDA – 2. dalga (2026-10-07 gece, PR #5, tek build)
 - Canlı: 214 belge, 216 sitemap URL'si hepsi 200; kısa yönlendirmeler, llms.txt, GSC dosyası çalışıyor.
 - Yayına girenler: migrasyon + Beden Bulucu + ölçü-önce kartlar, ayakkabı, kadın/erkek 2. dalga + kadın eşofman/şort/pijama, kalıp rehberleri, SEO, manken stili çizimler (GarmentCroquis, BodyTypeFigure, SizeRangeStrip), referansa göre yoğun düzen (DocVisual), 2 AI hero (Gemini, `.env.local` – git dışı; sahibi en fazla 1–2 görsel izni verdi, kullanıldı), Vercel ignoreCommand.
