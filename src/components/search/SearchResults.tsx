@@ -9,19 +9,20 @@ import { groupHits, loadEngine, runSearch, type SearchHit } from "@/lib/search-c
 export function SearchResults({ popular }: { popular: string[] }) {
   const params = useSearchParams();
   const q = (params.get("q") ?? "").trim();
-  const [hits, setHits] = useState<SearchHit[] | null>(null);
+  const [result, setResult] = useState<{ q: string; hits: SearchHit[] } | null>(null);
   const [err, setErr] = useState(false);
+  const hits: SearchHit[] | null = !q ? [] : result && result.q === q ? result.hits : null;
 
   useEffect(() => {
     let cancel = false;
-    if (!q) {
-      setHits([]);
-      return;
-    }
-    setHits(null);
+    if (!q) return;
     loadEngine()
-      .then((ms) => !cancel && setHits(runSearch(ms, q, 60)))
-      .catch(() => !cancel && setErr(true));
+      .then((ms) => {
+        if (!cancel) setResult({ q, hits: runSearch(ms, q, 60) });
+      })
+      .catch(() => {
+        if (!cancel) setErr(true);
+      });
     return () => {
       cancel = true;
     };

@@ -21,9 +21,12 @@ export function DesktopNav({ items }: { items: NavItem[] }) {
     if (focusButton) navRef.current?.querySelector<HTMLButtonElement>(`[data-mega-btn="${focusButton}"]`)?.focus();
   }, []);
 
-  useEffect(() => {
+  // Sayfa değişince menüyü kapat (render sırasında türetilmiş durum)
+  const [prevPath, setPrevPath] = useState(pathname);
+  if (prevPath !== pathname) {
+    setPrevPath(pathname);
     setOpen(null);
-  }, [pathname]);
+  }
 
   useEffect(() => {
     if (!open) return;

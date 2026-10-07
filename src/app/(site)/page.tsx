@@ -84,8 +84,6 @@ export default function HomePage() {
     }
     return out;
   };
-  const cfg = (key: string) => h.sections.find((x) => x.key === key);
-  const on = (key: string) => cfg(key)?.enabled !== false && !!cfg(key);
 
   const doors = (["kadin", "erkek"] as const).filter((x) => hasRoute(`/${x}`));
   const popular = [
@@ -248,7 +246,7 @@ export default function HomePage() {
                   </div>
                 )}
                 <p className="relative text-h2 font-extrabold leading-tight">{c.title}</p>
-                <p className="relative mt-1 max-w-[60%] text-white/90">{c.text}</p>
+                <p className="relative mt-1 max-w-md text-white/90">{c.text}</p>
                 <span className="relative mt-4 inline-flex min-h-11 w-fit items-center gap-2 rounded-full bg-white px-5 text-sm font-semibold text-ink group-hover:bg-soft">
                   {c.cta} <span aria-hidden="true">→</span>
                 </span>

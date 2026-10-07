@@ -11,7 +11,8 @@ export function SearchBox({ className = "", inputId }: { className?: string; inp
   const router = useRouter();
   const listId = useId();
   const [q, setQ] = useState("");
-  const [hits, setHits] = useState<SearchHit[]>([]);
+  const [result, setResult] = useState<{ q: string; hits: SearchHit[] }>({ q: "", hits: [] });
+  const hits = useMemo(() => (q.trim() && result.q === q ? result.hits : []), [q, result]);
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState(-1);
   const [ready, setReady] = useState(false);
@@ -22,18 +23,15 @@ export function SearchBox({ className = "", inputId }: { className?: string; inp
 
   useEffect(() => {
     let cancelled = false;
-    if (!q.trim()) {
-      setHits([]);
-      return;
-    }
+    if (!q.trim()) return;
     loadEngine()
       .then((ms) => {
         if (cancelled) return;
         setReady(true);
-        setHits(runSearch(ms, q, 30));
+        setResult({ q, hits: runSearch(ms, q, 30) });
         setActive(-1);
       })
-      .catch(() => setHits([]));
+      .catch(() => setResult({ q, hits: [] }));
     return () => {
       cancelled = true;
     };

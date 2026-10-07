@@ -12,7 +12,7 @@
     "lint": "eslint",
     "images": "tsx scripts/optimize-images.ts",
     "test:e2e": "playwright test",
-    "qa": "npm run validate && npm run build && playwright test"
+    "qa": "npm run validate && npm run lint && npm run build && playwright test"
   },
   "dependencies": {
     "@keystatic/core": "^0.6.9",
