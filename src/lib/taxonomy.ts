@@ -227,4 +227,4 @@ export const SIZE_LANDING_PATTERN: Record<GenderSilo, RegExp> = {
   erkek: /^([2-8]?xl|\d{2}-beden)$/,
 };
 
-export const SITE_URL_FALLBACK = "https://buyukbeden.net";
+export const SITE_URL_FALLBACK = "https://www.buyukbeden.net";
