@@ -83,7 +83,7 @@ export async function HubTemplate({ doc }: { doc: DocMeta }) {
         </div>
         <div className="hidden md:block">
           {fm.image ? (
-            <DocImage image={fm.image} sizes="240px" ratio="1/1" priority />
+            <DocImage image={fm.image} sizes="240px" ratio="1/1" priority captionClassName={silo === "erkek" ? "text-white/85" : "text-ink-2"} />
           ) : (
             <div className="mx-auto aspect-square w-52 rounded-card bg-white/90 p-4" aria-hidden="true">
               <GarmentArt silo={silo} category={cat} className="h-full w-full" />

@@ -199,7 +199,9 @@ for (const collection of Object.keys(COLLECTIONS) as Collection[]) {
     const file = `content/${collection}/${id}/index.mdoc`;
     const abs = path.join(dir, "index.mdoc");
     if (!fs.existsSync(abs)) {
-      err(file, "index.mdoc bulunamadı");
+      // Boş klasör (git'te zaten yer almaz) içerik sayılmaz; içinde başka dosya varsa hata
+      if (fs.readdirSync(dir).filter((f) => !f.startsWith(".")).length === 0) warn(file, "boş klasör atlandı");
+      else err(file, "index.mdoc bulunamadı");
       continue;
     }
     if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(id)) err(file, `klasör adı (id) slug olmalı: "${id}"`);

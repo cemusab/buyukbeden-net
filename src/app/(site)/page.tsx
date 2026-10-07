@@ -134,7 +134,7 @@ export default function HomePage() {
                       <Cover image={d.featuredImage} title={d.title} silo={d.silo} category={d.category} ratio="4/3" icon={iconFor(d)} sizes="(min-width: 1024px) 16vw, 50vw" />
                       <h3 className="p-3 text-sm font-bold leading-snug text-ink">
                         <Link href={d.path} className="after:absolute after:inset-0 group-hover:underline underline-offset-4">
-                          {d.label}
+                          {d.title}
                         </Link>
                       </h3>
                     </li>

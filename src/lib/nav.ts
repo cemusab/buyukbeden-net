@@ -16,31 +16,43 @@ export type MegaData = {
 };
 export type NavItem = { label: string; href: string; mega?: MegaData };
 
-const SIZE_ORDER = ["xl", "2xl", "3xl", "4xl", "5xl", "6xl", "7xl", "8xl", "9xl", "10xl"];
-function sizeRank(s: string): number {
-  const n = Number(s);
-  if (!Number.isNaN(n)) return n;
-  const i = SIZE_ORDER.indexOf(s.toLowerCase());
-  return i === -1 ? 999 : 1000 + i;
-}
+const LETTERS = ["xl", "2xl", "3xl", "4xl", "5xl", "6xl", "7xl", "8xl"];
 
-/** "Bedene göre" kısayolları: yalnız gerçek beden rehberi sayfası olan bedenler. */
+/** Ham `sizes` değerini kanonik bedene indirger; kanonik değilse null. */
+function canonicalSize(raw: string, silo: GenderSilo): string | null {
+  const s = raw.trim().toLowerCase().replace(/\s+/g, "").replace(/beden$/, "");
+  const l = s === "xxl" ? "2xl" : s === "xxxl" ? "3xl" : s;
+  if (LETTERS.includes(l)) return l;
+  if (/^\d{2}$/.test(s)) {
+    const n = Number(s);
+    if (n % 2) return null;
+    if (silo === "kadin" && n >= 42 && n <= 66) return s;
+    if (silo === "erkek" && n >= 46 && n <= 70) return s;
+  }
+  return null;
+}
+const rank = (k: string) => (LETTERS.includes(k) ? 1000 + LETTERS.indexOf(k) : Number(k));
+
+/**
+ * "Bedene göre" kısayolları: yalnız kanonik bedenler (kadın 42–66 + XL…8XL, erkek XL…8XL + 46–70),
+ * her biri o bedeni en özel biçimde anlatan mevcut beden rehberine gider (silo sayfası önce, az bedenli sayfa önce).
+ */
 export function sizeLinks(silo: GenderSilo): NavLink[] {
   const guides = listLive((d) => d.type === "SIZE_GUIDE" && d.index && (d.silo === silo || d.silo === "ortak"));
-  // Önce silonun kendi rehberleri, sonra ortak
-  guides.sort((a, b) => (a.silo === silo ? 0 : 1) - (b.silo === silo ? 0 : 1));
-  const seen = new Map<string, NavLink>();
+  const best = new Map<string, { href: string; score: number }>();
   for (const g of guides) {
-    for (const raw of g.sizes) {
-      const s = raw.trim();
-      const isLetter = /xl$/i.test(s);
-      if (silo === "kadin" && isLetter && g.silo === "ortak") continue; // kadında numara kısayolları
-      if (silo === "erkek" && !isLetter && g.silo === "ortak") continue;
-      const key = s.toLowerCase();
-      if (!seen.has(key)) seen.set(key, { label: isLetter ? s.toUpperCase() : `${s} beden`, href: g.path });
+    const keys = [...new Set(g.sizes.map((x) => canonicalSize(x, silo)).filter((x): x is string => !!x))];
+    for (const k of keys) {
+      // ortak sayfa kadında yalnız harf, erkekte yalnız harf bedenleri için kullanılır
+      if (g.silo === "ortak" && !LETTERS.includes(k)) continue;
+      const score = (g.silo === silo ? 0 : 100) + (g.hub ? 50 : 0) + keys.length;
+      const cur = best.get(k);
+      if (!cur || score < cur.score) best.set(k, { href: g.path, score });
     }
   }
-  return [...seen.entries()].sort(([a], [b]) => sizeRank(a) - sizeRank(b)).map(([, v]) => v);
+  return [...best.entries()]
+    .sort(([a], [b]) => rank(a) - rank(b))
+    .map(([k, v]) => ({ label: LETTERS.includes(k) ? k.toUpperCase() : `${k} beden`, href: v.href }));
 }
 
 function mega(silo: GenderSilo): MegaData | undefined {

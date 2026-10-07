@@ -11,6 +11,7 @@ export function DocImage({
   ratio = "16/9",
   className = "",
   caption = true,
+  captionClassName = "text-muted",
 }: {
   image: ImageT;
   sizes: string;
@@ -18,6 +19,7 @@ export function DocImage({
   ratio?: string;
   className?: string;
   caption?: boolean;
+  captionClassName?: string;
 }) {
   return (
     <figure className={className}>
@@ -33,7 +35,7 @@ export function DocImage({
         />
       </div>
       {caption && (image.aiGenerated || image.credit) ? (
-        <figcaption className="mt-1.5 text-xs text-muted">
+        <figcaption className={`mt-1.5 text-xs ${captionClassName}`}>
           {image.aiGenerated ? "Yapay zekâ ile üretilmiş görsel" : null}
           {image.aiGenerated && image.credit ? " · " : null}
           {image.credit ?? null}
