@@ -2,7 +2,7 @@
 
 > Kural: her baş ve orta terim **tek bir kanonik sayfaya** atanır; başka sayfalar o terimle yarışmaz, gerekirse o sayfaya doğal bir anchor ile link verir. `primaryKeyword` site genelinde benzersizdir (validate). Yeni sayfa açmadan önce bu tabloya bakın; terim zaten bir sayfanındıysa yeni sayfa o terimi hedeflemez.
 >
-> Son güncelleme: 2026-10-07 · Sahibi: SEO/GEO
+> Son güncelleme: 2026-10-08 · Sahibi: SEO/GEO · Rakip analizi: `docs/rakip-seo-analizi.md`
 
 ## 0. Konumlandırma ve niyet
 
@@ -51,6 +51,10 @@ Başlık kuralı: `seo.title` (yoksa `title`) şablonla `"%s | Buyukbeden.net"` 
 | 52 beden kaç xl, 54 / 56 beden kaç xl | B | `/kadin/beden-rehberi/52-beden-kac-xl` |
 | sütyen bedeni nasıl ölçülür, büyük beden sütyen kaç numara | B | `/kadin/beden-rehberi/sutyen-beden-olcusu` |
 | büyük beden kadın kombinleri | K | `/kadin/kombinler` |
+| büyük beden tesettür kombin, tesettür kombin önerileri | B/K | `/kadin/kombinler/tesettur` |
+| büyük beden kadınlar nasıl giyinmeli, büyük beden nasıl giyinmeli | B | `/kadin/stil/nasil-giyinmeli` |
+| büyük beden pijama, büyük beden pijama takımı | T/B | `/kadin/giyim/ev-giyimi` (hub, başlıkta "pijama"); "pijama takımı seçimi" → `/kadin/giyim/ev-giyimi/pijama-takimi-secimi` makalesi (pk: büyük beden pijama takımı) |
+| büyük beden ayakkabı (kadın) | K | `/kadin/ayakkabi` (SSS: numara + genişlik) |
 | büyük beden kadın stil önerileri, vücut tipleri | B | `/kadin/stil`, `/kadin/stil/vucut-tipleri` |
 
 ## 3. Erkek silosu
@@ -58,9 +62,10 @@ Başlık kuralı: `seo.title` (yoksa `title`) şablonla `"%s | Buyukbeden.net"` 
 | Terim(ler) | Niyet | Kanonik sayfa |
 |---|---|---|
 | büyük beden erkek, erkek büyük beden | K | `/erkek` |
-| büyük beden erkek giyim, battal beden erkek giyim, erkek büyük beden giyim | K | `/erkek/giyim` |
+| büyük beden erkek giyim, battal beden erkek giyim, erkek büyük beden giyim, 4xl erkek giyim (→ 4XL sayfasına link) | K | `/erkek/giyim` |
+| büyük beden ayakkabı (erkek) | K | `/erkek/ayakkabi` |
 | büyük beden erkek giyim markaları / mağazaları | T | `/alisveris-rehberi/erkek-giyim-markalari` |
-| battal beden, battal beden nedir, süper battal, big & tall | B | `/erkek/beden-rehberi/battal-beden` |
+| battal beden, battal beden nedir, battal beden kaç xl, süper battal, big & tall | B | `/erkek/beden-rehberi/battal-beden` |
 | büyük beden erkek tişört, battal beden tişört | T | `/erkek/giyim/tisort` |
 | 4xl tişört, 4xl erkek tişört | T | `/erkek/giyim/tisort/4xl` |
 | 4xl erkek tişört nereden alınır | T | `/alisveris-rehberi/4xl-erkek-tisort-nereden-alinir` |
@@ -80,11 +85,13 @@ Başlık kuralı: `seo.title` (yoksa `title`) şablonla `"%s | Buyukbeden.net"` 
 |---|---|---|
 | büyük beden kaç bedenden başlar, büyük beden kaçtan başlar, büyük beden kaç oluyor | B | `/beden-rehberi/buyuk-beden-kac-bedenden-baslar` |
 | büyük beden kaç kilodan başlar, kaç kilo kaç beden | B | `/beden-rehberi/boy-kilo-beden-neden-yaniltir` (kilo eşiği verilmez; ölçüye yönlendirir) |
-| xl kaç beden, 2xl / 3xl / 5xl kaç beden, en büyük beden kaç xl, 4xl kaç beden kadın | B | `/beden-rehberi/harf-beden-karsiliklari` |
+| xl kaç beden, xxl / xxxl kaç beden, 2xl / 3xl / 5xl kaç beden, en büyük beden kaç xl, 4xl kaç beden kadın | B | `/beden-rehberi/harf-beden-karsiliklari` |
 | beden çevirme tr eu uk us | B | `/beden-rehberi/beden-sistemleri` |
 | vücut ölçüsü nasıl alınır | B | `/beden-rehberi/olcu-alma-rehberi` |
 | beden neden markadan markaya değişir, markalara göre beden farkı | B | `/beden-rehberi/beden-neden-markadan-markaya-degisir`, `/alisveris-rehberi/markalar-arasi-beden-farki` |
 | oversize ne demek | B | `/stil/oversize-ne-demek` |
+| büyük gelen kıyafet nasıl küçültülür, elbise / pantolon nasıl küçültülür, terzi daraltma | B | `/rehberler/buyuk-gelen-kiyafet-nasil-kucultulur` |
+| büyük beden kombin önerileri | K | `/kombinler` |
 | viskon / akrilik / polyester … nedir | B | `/kumas-rehberi/{kumas}` |
 
 ## 5. SERP kontrolü (2026-10-07)
