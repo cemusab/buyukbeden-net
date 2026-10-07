@@ -31,7 +31,7 @@ import {
 } from "../src/lib/taxonomy";
 
 const ROOT = path.resolve(__dirname, "..");
-const CONTENT = path.join(ROOT, "content");
+const CONTENT = process.env.CONTENT_DIR ? path.resolve(process.env.CONTENT_DIR) : path.join(ROOT, "content");
 const GENERATED = path.join(ROOT, "src", "generated");
 const PUBLIC = path.join(ROOT, "public");
 const CHECK_ONLY = process.argv.includes("--check");
@@ -57,6 +57,28 @@ function readYaml(file: string): unknown {
   }
 }
 
+/**
+ * Keystatic boş alanları "" / null / { src: null } olarak yazabilir: şemadan önce temizlenir.
+ * Anlamlı null'lar (doğrulanamayan marka/kumaş alanları) korunur.
+ */
+const NULL_OK = new Set(["website", "country", "sizeRange", "priceSegment", "fitNotes", "origin", "stretch", "breathability", "warmth", "wrinkle", "washMaxC", "tumbleDry", "iron", "online", "stores", "email", "ga4Id", "editorialEmail"]);
+function cleanEmpty(v: unknown): unknown {
+  if (Array.isArray(v)) return v.map(cleanEmpty).filter((x) => x !== undefined);
+  if (v && typeof v === "object") {
+    const o = v as Record<string, unknown>;
+    if ("src" in o && (o.src === null || o.src === "" || o.src === undefined)) return undefined;
+    const out: Record<string, unknown> = {};
+    for (const [k, val] of Object.entries(o)) {
+      if (val === "") continue;
+      if (val === null && !NULL_OK.has(k)) continue;
+      const c = cleanEmpty(val);
+      if (c !== undefined) out[k] = c;
+    }
+    return out;
+  }
+  return v;
+}
+
 function splitFrontmatter(src: string): { fm: string; body: string } | null {
   const m = src.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?([\s\S]*)$/);
   if (!m) return null;
@@ -65,12 +87,12 @@ function splitFrontmatter(src: string): { fm: string; body: string } | null {
 
 // ---------- 1. Ayarlar, yazarlar, tablolar ----------
 const settingsRaw = readYaml(path.join(CONTENT, "ayarlar", "site.yaml"));
-const settingsParsed = SiteSettingsSchema.safeParse(settingsRaw);
+const settingsParsed = SiteSettingsSchema.safeParse(cleanEmpty(settingsRaw));
 if (!settingsParsed.success) zodIssues("content/ayarlar/site.yaml", settingsParsed.error);
 const settings = settingsParsed.success ? settingsParsed.data : (null as never);
 
 const homeRaw = readYaml(path.join(CONTENT, "ayarlar", "anasayfa.yaml"));
-const homeParsed = HomepageSchema.safeParse(homeRaw);
+const homeParsed = HomepageSchema.safeParse(cleanEmpty(homeRaw));
 if (!homeParsed.success) zodIssues("content/ayarlar/anasayfa.yaml", homeParsed.error);
 const homepage = homeParsed.success ? homeParsed.data : (null as never);
 
@@ -82,7 +104,7 @@ const authors: AuthorEntry[] = [];
 for (const f of listDir(path.join(CONTENT, "yazarlar"))) {
   if (!f.endsWith(".yaml")) continue;
   const id = f.replace(/\.yaml$/, "");
-  const r = AuthorSchema.safeParse(readYaml(path.join(CONTENT, "yazarlar", f)));
+  const r = AuthorSchema.safeParse(cleanEmpty(readYaml(path.join(CONTENT, "yazarlar", f))));
   if (!r.success) zodIssues(`content/yazarlar/${f}`, r.error);
   else authors.push({ ...r.data, id, path: `/yazar/${id}` });
 }
@@ -93,7 +115,7 @@ for (const f of listDir(path.join(CONTENT, "beden-tablolari"))) {
   if (!f.endsWith(".yaml")) continue;
   const id = f.replace(/\.yaml$/, "");
   const file = `content/beden-tablolari/${f}`;
-  const r = SizeChartSchema.safeParse(readYaml(path.join(CONTENT, "beden-tablolari", f)));
+  const r = SizeChartSchema.safeParse(cleanEmpty(readYaml(path.join(CONTENT, "beden-tablolari", f))));
   if (!r.success) {
     zodIssues(file, r.error);
     continue;
@@ -102,6 +124,26 @@ for (const f of listDir(path.join(CONTENT, "beden-tablolari"))) {
     if (row.length !== r.data.columns.length)
       err(file, `rows[${i}] ${row.length} hücre, columns ${r.data.columns.length} sütun`);
   });
+  // Sayısal tutarlılık: ölçü tablolarında her sayısal sütun satır satır artmalı (kaynak hatalarını yakalar)
+  // Yalnız satırları beden olan tablolar (marka karşılaştırma tablolarında satırlar markadır)
+  if (r.data.kind === "olcu-cm" && !r.data.inconsistencyNote && /^(beden|harf|numara|tr|eu|uk|us|it|yaka|bel|w)/i.test(r.data.columns[0].key) && !r.data.columns.some((c) => /^(kaynak|marka|brand)/i.test(c.key))) {
+    const num = (c: string) => {
+      const m = c.replace(/\s/g, "").match(/^(\d+(?:[.,]\d+)?)(?:[–-](\d+(?:[.,]\d+)?))?/);
+      return m ? { lo: Number(m[1].replace(",", ".")), hi: Number((m[2] ?? m[1]).replace(",", ".")) } : null;
+    };
+    r.data.columns.forEach((col, j) => {
+      if (j === 0 || /^(harf|not|aciklama)/i.test(col.key)) return;
+      let prev: { lo: number; hi: number } | null = null;
+      r.data.rows.forEach((row, i) => {
+        const v = num(row[j] ?? "");
+        if (!v) return;
+        if (v.lo > v.hi) err(file, `rows[${i}].${col.key}: aralık ters ("${row[j]}")`);
+        if (prev && (v.lo < prev.lo || v.hi < prev.hi))
+          err(file, `rows[${i}].${col.key}: değer önceki satırdan küçük ("${row[j]}"); kaynağı kontrol edin veya inconsistencyNote ekleyin`);
+        prev = v;
+      });
+    });
+  }
   if (r.data.highlightColumn && !r.data.columns.some((c) => c.key === r.data.highlightColumn))
     err(file, `highlightColumn "${r.data.highlightColumn}" columns içinde yok`);
   sizeCharts.push({ ...r.data, id });
@@ -177,7 +219,7 @@ for (const collection of Object.keys(COLLECTIONS) as Collection[]) {
       rawStatusDraft.add(`${collection}/${id}`);
       continue;
     }
-    const parsed = (schema as z.ZodType).safeParse(fmRaw);
+    const parsed = (schema as z.ZodType).safeParse(cleanEmpty(fmRaw));
     if (!parsed.success) {
       zodIssues(file, parsed.error as z.ZodError);
       continue;
@@ -459,7 +501,7 @@ for (const w of works) {
   if (shortAnswerRequired.includes(m.type) && !m.inline.shortAnswer) err(f, "shortAnswer zorunlu (sayfanın üstündeki kısa cevap)");
 
   // Metin yasakları
-  const allText = fs.readFileSync(path.join(ROOT, f), "utf8");
+  const allText = fs.readFileSync(path.join(CONTENT, f.replace(/^content\//, "")), "utf8");
   for (const re of FORBIDDEN) if (re.test(allText)) err(f, `yasak ifade: ${re.source}`);
   const ctaFree = allText.replace(/shoppingCta:[\s\S]*?(?=\n\S|\n---)/, "");
   if (/buyukbedengiyim/i.test(ctaFree) && !settings?.shoppingCta?.enabled)
@@ -536,6 +578,12 @@ for (const w of works) {
     if (fm.sizeRange && m.sources.length === 0) err(f, "sizeRange yazıldıysa sources zorunlu");
     if (fm.priceSegment && m.sources.length === 0 && !fm.priceBasis) err(f, "priceSegment için sources veya priceBasis zorunlu");
     for (const a of (fm.alternatives as string[]) ?? []) if (!brandIds.has(a)) err(f, `alternatives: "${a}" yok`);
+    if (fm.logo) checkImage(f, fm.logo as { src: string; alt?: string }, "logo");
+    for (const e of (fm.socialEmbeds as { platform: string; url: string }[]) ?? []) {
+      const host = new URL(e.url).hostname.replace(/^www\./, "");
+      if (e.platform === "instagram" && host !== "instagram.com") err(f, `socialEmbeds: instagram url'si instagram.com olmalı (${e.url})`);
+      if (e.platform === "youtube" && !["youtube.com", "youtu.be"].includes(host)) err(f, `socialEmbeds: youtube url'si youtube.com/youtu.be olmalı (${e.url})`);
+    }
     const daysOld = (Date.parse(TODAY) - Date.parse(fm.lastVerifiedAt as string)) / 864e5;
     if (daysOld > 365) warn(f, "lastVerifiedAt 365 günden eski; marka bilgilerini yeniden doğrulayın");
   }
@@ -573,6 +621,8 @@ if (homepage) {
       err("content/ayarlar/anasayfa.yaml", "buyukbedengiyim-secimler bölümü site bayrağı kapalıyken açılamaz");
   }
   for (const [k, p] of Object.entries(homepage.megaMenuFeatured)) if (p) checkLink("content/ayarlar/anasayfa.yaml", p, `megaMenuFeatured.${k}`);
+  const homeImgs = [homepage.hero.kadin.image, homepage.hero.erkek.image, homepage.sizeBand.kadinImage, homepage.sizeBand.erkekImage];
+  for (const img of homeImgs) if (img) checkImage("content/ayarlar/anasayfa.yaml", img, "görsel");
 }
 
 // Redirect döngüsü / çakışması
@@ -585,7 +635,24 @@ for (const d of docs) {
     redirects.push({ source: r, destination: d.path });
   }
 }
+// Yayımlı hub'ların kısa biçimleri: /kadin/elbise → /kadin/giyim/elbise (+ yaygın takma adlar)
+const HUB_ALIASES: Record<string, string[]> = { tisort: ["tshirt", "t-shirt"] };
+for (const h of hubs.values()) {
+  const cat = h.category!;
+  if (RESERVED_SEGMENTS.includes(cat)) errors.push(`kategori "${cat}" rezerve bir bölüm adıyla çakışıyor (kısa yönlendirme üretilemez)`);
+  for (const alias of [cat, ...(HUB_ALIASES[cat] ?? [])]) {
+    const source = `/${h.silo}/${alias}`;
+    if (byPath.has(source)) {
+      errors.push(`kısa yönlendirme ${source} yayımlı bir sayfayla çakışıyor`);
+      continue;
+    }
+    if (redirectSources.has(source)) continue;
+    redirectSources.add(source);
+    redirects.push({ source, destination: h.path });
+  }
+}
 for (const r of redirects) if (redirectSources.has(r.destination)) errors.push(`redirect zinciri: ${r.source} → ${r.destination}`);
+for (const r of redirects) if (!byPath.has(r.destination)) errors.push(`redirect hedefi yayımlı değil: ${r.source} → ${r.destination}`);
 
 // Rota aileleri ve statik sayfa içerikleri
 const appDir = path.join(ROOT, "src", "app", "(site)");

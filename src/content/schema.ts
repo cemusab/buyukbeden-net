@@ -218,6 +218,13 @@ export const BrandSchema = z.strictObject({
   cons: z.array(z.string()).default([]),
   alternatives: z.array(Slug).default([]),
   relatedGuides: z.array(Path).default([]),
+  /** Marka logosu (yalnız izinli/resmi dosya); yoksa tipografik kart */
+  logo: Image.optional(),
+  /** Resmi hesap gömmeleri – tıklayana kadar üçüncü taraf isteği yapılmaz */
+  socialEmbeds: z
+    .array(z.object({ platform: z.enum(["instagram", "youtube"]), url: z.url(), title: z.string().optional() }))
+    .max(6)
+    .default([]),
   unverified: z.array(z.string()).default([]),
   lastVerifiedAt: IsoDate,
 });
@@ -263,6 +270,8 @@ export const SizeChartSchema = z.strictObject({
   highlightColumn: z.string().optional(),
   approximate: z.boolean().default(true),
   notes: z.array(z.string()).default([]),
+  /** Kaynaktaki tablo kendi içinde tutarsızsa (sayılar satır satır artmıyorsa) açıklama zorunlu; yoksa validate hatası */
+  inconsistencyNote: z.string().min(10).optional(),
   sources: z.array(Source).min(1, "kaynaksız beden tablosu yayımlanamaz"),
 });
 
@@ -310,6 +319,7 @@ export const HOME_SECTION_KEYS = [
   "kumas",
   "alisveris",
   "yeni-icerikler",
+  "temel-rehberler",
   "buyukbedengiyim-secimler",
 ] as const;
 
@@ -317,9 +327,11 @@ export const HomepageSchema = z.strictObject({
   hero: z.object({
     title: z.string().min(10),
     lead: z.string().min(20),
-    kadin: z.object({ title: z.string(), text: z.string(), cta: z.string() }),
-    erkek: z.object({ title: z.string(), text: z.string(), cta: z.string() }),
+    kadin: z.object({ title: z.string(), text: z.string(), cta: z.string(), image: Image.optional() }),
+    erkek: z.object({ title: z.string(), text: z.string(), cta: z.string(), image: Image.optional() }),
   }),
+  /** Orta bant beden rehberi kart görselleri (yoksa ölçü çizimi) */
+  sizeBand: z.object({ kadinImage: Image.optional(), erkekImage: Image.optional() }).default({}),
   manifesto: z.object({ title: z.string(), text: z.string() }).optional(),
   sections: z
     .array(

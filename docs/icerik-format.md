@@ -398,6 +398,10 @@ pros: []
 cons: []
 alternatives: []             # marka slug'ları
 relatedGuides: []            # yayımlı yollar
+# logo: { src: /images/markalar/kigili/logo.svg, alt: "Kiğılı logosu" }   # yalnız izinli dosya; yoksa tipografik
+# socialEmbeds:                 # resmi hesaplar; tıklanınca yüklenir (youtube-nocookie)
+#   - { platform: youtube, url: "https://www.youtube.com/watch?v=XXXX", title: "…" }
+#   - { platform: instagram, url: "https://www.instagram.com/p/XXXX/" }
 unverified: [stores, priceSegment]
 lastVerifiedAt: 2026-10-07
 excerpt: "…"
