@@ -43,6 +43,15 @@
 - Hepsi bitince: `npm run qa` yeşil → TEK push → PR v2→main → merge → canlı smoke test (sitemap URL'leri 200).
 - Açık karar: `kadin-harf-numara-markalara-gore` dönüşüm tablosu kalsın mı (şimdilik kaldı).
 
+## 2026-10-08 – 3. dalga (çalışıyor; sahibi "devam" deyince buradan sürdür)
+Sahibi kuralı: limit/oturum biterse her şey kayıtlı kalsın; "devam" denince bu nottan aynen devam.
+Paralel 3 iş başlatıldı (v2'ye commit eder, push etmez):
+1. **Lighthouse** – canlıda 8 sayfa ölç, src/ düzelt, rapor `docs/lighthouse.md`. Bitti mi? → `git log v2 --oneline | grep -i lighthouse`, dosya var mı.
+2. **Kişi fotoğraflarını kaldır** – content/ içindeki round-1 kişi fotoğrafları (featuredImage/image/ogImage) kalkacak, çizim yedeği görünecek; AI hero'lar kalır; kullanılmayanlar `docs/gorsel-manifest.md` sonunda listelenir. Kontrol: `grep -rl "images/stok/kadin-\|images/stok/erkek-\|hero-kadin/pexels\|hero-erkek/unsplash" content`.
+3. **Marka gömmeleri + kaynak doğrulama** – markalara resmi Instagram/YouTube `socialEmbeds`; trend kaynakları doğrulama; iade rehberi güncel mevzuat; büyük numara ayakkabı ürün düzeyi kontrol.
+Yarım kaldıysa: `git status`, `git log origin/main..v2 --oneline`, eksik kısmı tamamla → `npm run qa` yeşil → TEK PR v2→main → canlı smoke test (sitemap URL'leri 200) → sahibine rapor.
+Onay bekleyenler (yapma): Keystatic prod, legacy/ silme, logo indirme, erkek hero yeniden üretim.
+
 ## Oturum sonu – 2026-10-07 gece (yarın buradan devam)
 - **Vercel Web Analytics** eklendi ve yayına alındı (PR #6): çerezsiz, `src/components/analytics/SiteAnalytics.tsx`, yalnız `VERCEL=1` iken; sorgu parametreleri silinir. Gizlilik/çerez/KVKK metinleri güncellendi. Sahibi panelde Enable etti. Ücret: Pro'da 0,03 $/1K olay (Pro kredisinden düşer); sahibi "şimdilik dursun" dedi – maliyeti izlenecek. GA4 eklenmedi (istenirse Consent Mode ile).
 - **Yarın ilk iş:** (1) canlıda analitik isteğinin (`/_vercel/insights` veya benzersiz yol `/view`) gittiğini ve Vercel panelinde verinin göründüğünü doğrula; (2) Search Console sitemap durumu ("Başarılı" + ~216 keşfedilen sayfa); (3) sahibine veri sorumlusu bilgisi hatırlat; (4) sıradaki işler listesinden devam: Keystatic prod kurulumu, Lighthouse, kişi fotoğraflı eski kartları çizime çevirme, erkek hero (sahibi onaylarsa 1 görsel), marka logoları/gömmeler, kaynak doğrulamaları, legacy/ silme onayı. Sahibine API anahtarını yenilemesini hatırlat.
