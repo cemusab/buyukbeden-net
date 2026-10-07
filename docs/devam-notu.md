@@ -43,7 +43,11 @@
 - Hepsi bitince: `npm run qa` yeşil → TEK push → PR v2→main → merge → canlı smoke test (sitemap URL'leri 200).
 - Açık karar: `kadin-harf-numara-markalara-gore` dönüşüm tablosu kalsın mı (şimdilik kaldı).
 
-## 2026-10-08 – 3. dalga (çalışıyor; sahibi "devam" deyince buradan sürdür)
+## 2026-10-08 – 3. dalga YAYINDA (PR #7)
+Canlı: 216 URL 200, /cizim/*.svg 200, canlı Lighthouse ana sayfa mobil 90/100/100/100 (LCP 3,2 s). Kişi fotoğrafları kaldırıldı, 9 marka gömmesi, trend/mevzuat/ayakkabı doğrulamaları, Vercel Analytics canlı.
+Sıradaki (onay gerektirenler sahibine sorulacak): Keystatic prod, legacy/ silme, logo indirme, erkek hero yeniden üretim; veri sorumlusu bilgisi hatırlatması (10-09/10-10); ayakkabi-arastirmasi.md §7 listesini güncelle; yeni içerik dalgası fikirleri (54/56 beden, 5XL/6XL sayfaları, daha fazla kombin).
+
+## (eski) 3. dalga planı
 Sahibi kuralı: limit/oturum biterse her şey kayıtlı kalsın; "devam" denince bu nottan aynen devam.
 Paralel 3 iş başlatıldı (v2'ye commit eder, push etmez):
 1. **Lighthouse** – canlıda 8 sayfa ölç, src/ düzelt, rapor `docs/lighthouse.md`. Bitti mi? → `git log v2 --oneline | grep -i lighthouse`, dosya var mı.
