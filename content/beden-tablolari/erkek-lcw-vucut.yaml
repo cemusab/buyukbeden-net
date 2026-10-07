@@ -1,0 +1,24 @@
+title: LC Waikiki erkek geniş beden vücut ölçüleri (56–62)
+caption: "LC Waikiki – erkek vücut ölçüsü (cm), geniş beden ölçü tablosu yazısı"
+silo: erkek
+scope: genel
+kind: olcu-cm
+brand: lc-waikiki
+columns:
+  - { key: beden, label: Beden }
+  - { key: boyun, label: Boyun, unit: cm }
+  - { key: gogus, label: Göğüs, unit: cm }
+  - { key: bel, label: Bel, unit: cm }
+  - { key: basen, label: Basen, unit: cm }
+  - { key: icboy, label: İç boy, unit: cm }
+rows:
+  - ["56/XXL", "45–46", "118", "112", "120", "82"]
+  - ["58/3XL", "47–48", "126", "120", "126", "82"]
+  - ["60/4XL", "49–50", "134", "128", "132", "82"]
+  - ["62/5XL", "50–51", "142", "136", "138", "82"]
+highlightColumn: gogus
+approximate: false
+notes:
+  - "Tablo 176 cm boy için verilmiştir."
+sources:
+  - { url: https://www.lcw.com/blog/buyuk-beden-olcu-tablosu-kactan-baslar-hangi-bedenler-buyuk-beden/, type: brand-official, label: LC Waikiki geniş beden ölçü tablosu yazısı, checkedAt: 2026-10-07 }

@@ -1,0 +1,26 @@
+title: ASOS Curve kadın vücut ölçüleri (UK 18–30)
+caption: ASOS Curve kadın beden tablosu – vücut ölçüsü (cm)
+silo: kadin
+scope: elbise
+kind: olcu-cm
+columns:
+  - { key: uk, label: UK }
+  - { key: eu, label: EU }
+  - { key: gogus, label: Göğüs, unit: cm }
+  - { key: bel, label: Bel, unit: cm }
+  - { key: basen, label: Basen, unit: cm }
+rows:
+  - [ "18", "46", "109", "91", "116,5" ]
+  - [ "20", "48", "116", "98", "123,5" ]
+  - [ "22", "50", "123", "105", "130,5" ]
+  - [ "24", "52", "130", "112", "137,5" ]
+  - [ "26", "54", "137", "119", "144,5" ]
+  - [ "28", "56", "144", "126", "151,5" ]
+  - [ "30", "58", "151", "133", "158,5" ]
+highlightColumn: gogus
+approximate: false
+notes:
+  - ASOS'ta basen belin 20 cm altından ölçülür.
+  - EU sütunu ASOS'un kendi UK–EU çevirmesidir (EU = UK + 28).
+sources:
+  - { url: https://www.asos.com/discover/size-charts/women/dresses/, type: brand-official, label: ASOS kadın elbise beden tablosu (Curve dahil), checkedAt: 2026-10-07 }

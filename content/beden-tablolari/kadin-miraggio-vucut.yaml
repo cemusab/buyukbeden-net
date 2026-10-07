@@ -1,0 +1,28 @@
+title: Miraggio kadın vücut ölçüleri (44–60)
+caption: "Miraggio – vücut ölçüsü (cm); markanın tüm ürünlerde gösterdiği tek tablo"
+silo: kadin
+scope: genel
+kind: olcu-cm
+brand: miraggio
+columns:
+  - { key: beden, label: Beden }
+  - { key: gogus, label: Göğüs, unit: cm }
+  - { key: basen, label: Basen, unit: cm }
+rows:
+  - ["44", "100–105", "110–115"]
+  - ["46", "105–110", "115–120"]
+  - ["48", "110–115", "120–125"]
+  - ["50", "115–120", "125–130"]
+  - ["52", "120–125", "130–135"]
+  - ["54", "125–130", "135–140"]
+  - ["56", "130–135", "140–145"]
+  - ["58", "140–145", "145–150"]
+  - ["60", "145–150", "155–160"]
+highlightColumn: gogus
+approximate: false
+notes:
+  - "Tabloda bel ölçüsü yok. 56'dan 58'e göğüste, 58'den 60'a basende 10 cm'lik adım var; değerler kaynakta olduğu gibi aktarıldı."
+  - "Tablo ürün sayfasında görsel olarak açılıyor ve ürüne özel değil; kalıbı farklı ürünlerde sonuç değişebilir."
+sources:
+  - { url: https://miraggiobuyukbeden.com/miraggio-buyuk-beden-elbise-4908?renk=siyah&beden=44, type: brand-official, label: Miraggio ürün sayfası (beden tablosu penceresi), checkedAt: 2026-10-07 }
+  - { url: https://s13.gifyu.com/images/bmPGB.jpg, type: brand-official, label: Miraggio beden tablosu görseli, checkedAt: 2026-10-07 }

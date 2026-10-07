@@ -1,0 +1,110 @@
+/**
+ * Markdoc gövde sözleşmesi (mimari §6.4). Build tarafı: validate + transform.
+ * Render tarafı: src/components/content/MarkdocRenderer.tsx aynı bileşen adlarını eşler.
+ */
+import Markdoc, { type Config, type Node, type Schema, Tag } from "@markdoc/markdoc";
+import { slugifyTr } from "../lib/slugify";
+
+export function nodeText(node: Node): string {
+  let out = "";
+  for (const child of node.walk()) {
+    if (child.type === "text" && typeof child.attributes.content === "string") out += child.attributes.content;
+    if (child.type === "code" && typeof child.attributes.content === "string") out += child.attributes.content;
+  }
+  return out;
+}
+
+const heading: Schema = {
+  children: ["inline"],
+  attributes: { level: { type: Number, required: true, render: false } },
+  validate(node) {
+    const level = node.attributes.level as number;
+    if (level === 1) {
+      return [{ id: "h1-yasak", level: "error", message: "Gövdede '#' (H1) kullanılamaz; H1 başlıktan gelir. '##' kullanın." }];
+    }
+    return [];
+  },
+  transform(node, config) {
+    const level = node.attributes.level as number;
+    const text = nodeText(node);
+    return new Tag("Heading", { level, id: slugifyTr(text) }, node.transformChildren(config));
+  },
+};
+
+const link: Schema = {
+  render: "SmartLink",
+  children: ["strong", "em", "s", "code", "text", "tag"],
+  attributes: { href: { type: String, required: true }, title: { type: String } },
+};
+
+const image: Schema = {
+  render: "BodyImage",
+  attributes: { src: { type: String, required: true }, alt: { type: String }, title: { type: String } },
+};
+
+const tableNode: Schema = {
+  render: "ResponsiveTable",
+  attributes: { caption: { type: String }, kaynak: { type: String } },
+};
+
+export const markdocConfig: Config = {
+  nodes: {
+    heading,
+    link,
+    image,
+    table: tableNode,
+    document: { ...Markdoc.nodes.document, render: undefined },
+  },
+  tags: {
+    table: {
+      ...Markdoc.tags.table,
+      attributes: { caption: { type: String }, kaynak: { type: String } },
+    },
+    not: {
+      render: "Callout",
+      attributes: {
+        tip: { type: String, default: "bilgi", matches: ["bilgi", "ipucu", "dikkat"] },
+        baslik: { type: String },
+      },
+    },
+    "arti-eksi": {
+      render: "ProsCons",
+      attributes: { artiBaslik: { type: String }, eksiBaslik: { type: String } },
+      validate(node) {
+        const lists = node.children.filter((c) => c.type === "list");
+        if (lists.length !== 2) {
+          return [{ id: "arti-eksi", level: "error", message: "{% arti-eksi %} içinde tam 2 liste olmalı (önce artılar, sonra eksiler)." }];
+        }
+        return [];
+      },
+    },
+    adimlar: {
+      render: "Steps",
+      validate(node) {
+        if (!node.children.some((c) => c.type === "list" && c.attributes.ordered)) {
+          return [{ id: "adimlar", level: "error", message: "{% adimlar %} içinde numaralı liste (1. 2. 3.) olmalı." }];
+        }
+        return [];
+      },
+    },
+    ilgili: {
+      render: "InlineRelated",
+      selfClosing: true,
+      attributes: { yol: { type: String, required: true } },
+    },
+    sss: { render: "FaqSlot", selfClosing: true },
+    "alisveris-cta": { render: "ShoppingCtaSlot", selfClosing: true },
+    "beden-tablosu": {
+      render: "SizeChartTable",
+      selfClosing: true,
+      attributes: { id: { type: String, required: true } },
+    },
+  },
+};
+
+/** Gövde + satır içi alanlar için ortak transform. Döndürülen ağaç JSON-serileştirilebilir. */
+export function transformMarkdoc(ast: Node) {
+  return Markdoc.transform(ast, markdocConfig);
+}
+
+export { Markdoc };

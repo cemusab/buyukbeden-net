@@ -1,0 +1,30 @@
+title: JP1880 erkek üst giyim vücut ölçüleri (L–10XL)
+caption: "JP1880 erkek beden tablosu – vücut ölçüsü (cm): harf, çift numara, göğüs ve harf bedenli pantolon beli"
+silo: erkek
+scope: ust-giyim
+kind: olcu-cm
+columns:
+  - { key: harf, label: Harf }
+  - { key: numara, label: Numara }
+  - { key: gogus, label: Göğüs, unit: cm }
+  - { key: bel, label: Pantolon beli (harf beden), unit: cm }
+rows:
+  - [ L, 52/54, 102–109, 90–97 ]
+  - [ XL, 56/58, 110–117, 98–105 ]
+  - [ XXL, 60/62, 118–125, 106–115 ]
+  - [ 3XL, 64/66, 126–133, 116–125 ]
+  - [ 4XL, 68/70, 134–141, 126–135 ]
+  - [ 5XL, 72/74, 142–149, 136–145 ]
+  - [ 6XL, 76/78, 150–157, 146–155 ]
+  - [ 7XL, 80/82, 158–165, 156–165 ]
+  - [ 8XL, 84/86, 166–173, 166–175 ]
+  - [ 9XL, 88/90, 174–181, – ]
+  - [ 10XL, 92/94, 182–189, – ]
+highlightColumn: gogus
+approximate: false
+notes:
+  - Uzun boy serisi (LT–5XT) aynı göğüs aralıklarını kullanır; tişört ve polo 4 cm daha uzundur.
+  - İki beden arasında kalındığında marka büyük olanı öneriyor.
+  - Numara, Alman çift numara sistemidir (numara ≈ göğüs ÷ 2); Türk markalarındaki numaralarla aynı değildir.
+sources:
+  - { url: https://www.jp1880.de/de/guides/groessenberater, type: brand-official, label: JP1880 beden danışmanı (erkek), checkedAt: 2026-10-07 }

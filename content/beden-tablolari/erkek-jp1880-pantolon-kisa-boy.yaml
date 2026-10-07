@@ -1,0 +1,29 @@
+title: JP1880 erkek pantolon – kısa boy, geniş bel kalıbı (26–36)
+caption: JP1880 erkek pantolon – kısa boy ve geniş bel bedenleri (Almanca “untersetzt”), vücut ölçüsü (cm)
+silo: erkek
+scope: alt-giyim
+kind: olcu-cm
+columns:
+  - { key: beden, label: Kısa boy bedeni }
+  - { key: normal, label: Normal beden karşılığı }
+  - { key: bel, label: Bel, unit: cm }
+  - { key: icbacak, label: İç bacak, unit: cm }
+rows:
+  - [ "26", "52", 94–97, "80" ]
+  - [ "27", "54", 98–101, "81" ]
+  - [ "28", "56", 102–105, "82" ]
+  - [ "29", "58", 106–109, "83" ]
+  - [ "30", "60", 110–114, "84" ]
+  - [ "31", "62", 115–119, "84,5" ]
+  - [ "32", "64", 120–124, "85" ]
+  - [ "33", "66", 125–129, "85,5" ]
+  - [ "34", "68", 130–134, "85,5" ]
+  - [ "35", "70", 135–139, "85,5" ]
+  - [ "36", "72", 140–144, "85,5" ]
+highlightColumn: bel
+approximate: false
+notes:
+  - Bu seride bel, karşılık gelen normal bedenden bir adım geniş, iç bacak yaklaşık 4 cm kısadır.
+  - Almanca adı “untersetzt” (kısa ve geniş gövdeli) bedenlerdir.
+sources:
+  - { url: https://www.jp1880.de/de/guides/groessenberater, type: brand-official, label: JP1880 beden danışmanı (erkek), checkedAt: 2026-10-07 }

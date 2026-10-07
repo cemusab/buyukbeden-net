@@ -1,0 +1,27 @@
+title: DeFacto erkek büyük beden vücut ölçüleri (L–5XL)
+caption: DeFacto erkek büyük beden tişört – standart vücut ölçüsü (cm) ve numara karşılıkları
+silo: erkek
+scope: ust-giyim
+kind: olcu-cm
+columns:
+  - { key: harf, label: Harf }
+  - { key: treu, label: TR/EU }
+  - { key: usuk, label: US/UK }
+  - { key: jean, label: Jean bedeni }
+  - { key: gogus, label: Göğüs, unit: cm }
+  - { key: bel, label: Bel, unit: cm }
+  - { key: basen, label: Basen, unit: cm }
+rows:
+  - [ L, "52", "40", "34", 105–107, 92–94, "106" ]
+  - [ XL, "54", "42", "36", 112–114, 98–100, "112" ]
+  - [ XXL, "56", "44", "38", 120–122, 104–106, "117" ]
+  - [ 3XL, "58", "46", "40", 128–130, 110–112, "121" ]
+  - [ 4XL, "60", "48", "42", 136–138, 116–118, "125" ]
+  - [ 5XL, "62", "50", "44", 144–147, 122–124, "129" ]
+highlightColumn: gogus
+approximate: false
+notes:
+  - Bu tablodaki jean eşlemesi Mavi'nin jean tablosundan farklıdır; jean seçiminde bel cm değerini esas alın.
+  - DeFacto erkek büyük beden kategorisi 2XL–6XL aralığındadır.
+sources:
+  - { url: https://www.defacto.com.tr/100-pamuk-nefes-alabilen-kumas-buyuk-beden-tisort-3523217, type: brand-official, label: DeFacto erkek büyük beden tişört – standart ölçü bilgisi, checkedAt: 2026-10-07 }

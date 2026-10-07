@@ -1,0 +1,34 @@
+title: Erkek harf bedenlerin numara karşılığı, markalara göre
+caption: "Erkek: aynı harf beden hangi numaraya denk geliyor? (tek adımlı ve Alman çift numara sistemi, beden çevirme)"
+silo: erkek
+scope: genel
+kind: donusum
+columns:
+  - { key: harf, label: Harf }
+  - { key: defacto, label: DeFacto (TR/EU) }
+  - { key: tommy, label: Tommy Hilfiger dış giyim (EU) }
+  - { key: kigili, label: Kiğılı eşofman }
+  - { key: jp, label: JP1880 }
+  - { key: hm, label: H&M (EUR) }
+rows:
+  - [ L, "52", –, "52", 52/54, 52–54 ]
+  - [ XL, "54", "54", "54", 56/58, 56–58 ]
+  - [ 2XL, "56", "56", "56", 60/62, 60–62 ]
+  - [ 3XL, "58", "58", "58", 64/66, 64–66 ]
+  - [ 4XL, "60", "60", –, 68/70, – ]
+  - [ 5XL, "62", "62", –, 72/74, – ]
+  - [ 6XL, –, –, –, 76/78, – ]
+  - [ 7XL, –, –, –, 80/82, – ]
+  - [ 8XL, –, –, –, 84/86, – ]
+highlightColumn: harf
+approximate: true
+notes:
+  - "“–”: markanın kaynak tablosunda bu harf yok."
+  - Harfler göğüs ölçüsünde kabaca uyuşur, ama numara etiketleri iki sistem arasında 6–8 numara ayrışır.
+  - Erkekte 52 numara çoğu markada L'dir; kadın 52 bedenle karıştırılmamalıdır.
+sources:
+  - { url: https://www.defacto.com.tr/100-pamuk-nefes-alabilen-kumas-buyuk-beden-tisort-3523217, type: brand-official, label: DeFacto erkek büyük beden tişört – standart ölçü bilgisi, checkedAt: 2026-10-07 }
+  - { url: https://usa.tommy.com/en/size-guide-men.html, type: brand-official, label: Tommy Hilfiger ABD erkek beden rehberi, checkedAt: 2026-10-07 }
+  - { url: https://www.kigili.com/pages/bedenini-bul, type: brand-official, label: Kiğılı – Bedenini bul, checkedAt: 2026-10-07 }
+  - { url: https://www.jp1880.de/de/guides/groessenberater, type: brand-official, label: JP1880 beden danışmanı (erkek), checkedAt: 2026-10-07 }
+  - { url: https://www2.hm.com/en_gb/productpage.1216851036.html, type: brand-official, label: H&M erkek Regular tişört ürün sayfası beden rehberi, checkedAt: 2026-10-07 }

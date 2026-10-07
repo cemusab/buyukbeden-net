@@ -1,0 +1,21 @@
+siteName: Buyukbeden.net
+siteUrl: https://buyukbeden.net
+tagline: Türkiye'nin Büyük Beden Moda ve Stil Rehberi
+organization:
+  name: Buyukbeden.net
+  sameAs: []
+  email: null
+shoppingCta:
+  enabled: false
+  domain: buyukbedengiyim.com
+  homepageSection: false
+popularSearches:
+  - 52 beden kaç XL
+  - 4XL kaç beden
+  - viskon nedir
+  - ölçü nasıl alınır
+  - büyük beden elbise
+  - erkek gömlek yaka ölçüsü
+analytics:
+  ga4Id: null
+editorialEmail: null

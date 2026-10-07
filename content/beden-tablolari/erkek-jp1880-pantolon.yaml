@@ -1,0 +1,28 @@
+title: JP1880 erkek pantolon vücut ölçüleri – normal bedenler (52–74)
+caption: JP1880 erkek pantolon – normal bedenler, vücut bel ve iç bacak ölçüsü (cm)
+silo: erkek
+scope: alt-giyim
+kind: olcu-cm
+columns:
+  - { key: beden, label: Beden }
+  - { key: bel, label: Bel, unit: cm }
+  - { key: icbacak, label: İç bacak, unit: cm }
+rows:
+  - [ "52", 90–93, "84" ]
+  - [ "54", 94–97, "85" ]
+  - [ "56", 98–101, "86" ]
+  - [ "58", 102–105, "87" ]
+  - [ "60", 106–110, "88" ]
+  - [ "62", 111–115, "88,5" ]
+  - [ "64", 116–120, "89" ]
+  - [ "66", 121–125, "89,5" ]
+  - [ "68", 126–130, "89,5" ]
+  - [ "70", 131–135, "89,5" ]
+  - [ "72", 136–140, "89,5" ]
+  - [ "74", 141–145, "89,5" ]
+highlightColumn: bel
+approximate: false
+notes:
+  - Uzun boy bedenleri (102–134) aynı bel ölçüsüyle daha uzun iç bacak sunar.
+sources:
+  - { url: https://www.jp1880.de/de/guides/groessenberater, type: brand-official, label: JP1880 beden danışmanı (erkek), checkedAt: 2026-10-07 }

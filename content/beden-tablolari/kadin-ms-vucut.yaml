@@ -1,0 +1,25 @@
+title: Marks & Spencer kadın vücut ölçüleri (UK 14–24)
+caption: Marks & Spencer kadın beden rehberi – vücut ölçüsü (cm), standart boy 168 cm
+silo: kadin
+scope: genel
+kind: olcu-cm
+columns:
+  - { key: uk, label: UK }
+  - { key: eu, label: EU }
+  - { key: us, label: US }
+  - { key: gogus, label: Göğüs, unit: cm }
+  - { key: bel, label: Bel, unit: cm }
+  - { key: basen, label: Basen, unit: cm }
+rows:
+  - [ "14", "42", "10", "97", "80,5", "105" ]
+  - [ "16", "44", "12", "102,5", "86", "110" ]
+  - [ "18", "46", "14", "108", "92", "115" ]
+  - [ "20", "48", "16", "114", "98", "121" ]
+  - [ "22", "50", "18", "120", "104", "127" ]
+  - [ "24", "52", "20", "126", "110", "133" ]
+highlightColumn: gogus
+approximate: false
+notes:
+  - "Harf karşılıkları (çift beden): L = UK 16–18, XL = UK 20–22, XXL = UK 24–26, XXXL = UK 28–30."
+sources:
+  - { url: https://www.marksandspencer.com/en-at/sizeguides/?cid=sizeguidewomens-general, type: brand-official, label: Marks & Spencer kadın genel beden rehberi, checkedAt: 2026-10-07 }

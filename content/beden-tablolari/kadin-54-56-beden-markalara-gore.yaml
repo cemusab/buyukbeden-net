@@ -1,0 +1,36 @@
+title: "Kadın 54 ve 56 beden: markalara göre harf ve vücut ölçüleri"
+caption: "Kadın 54 ve 56 beden marka marka: harf karşılığı ve vücut ölçüsü (cm)"
+silo: kadin
+scope: genel
+kind: olcu-cm
+columns:
+  - { key: numara, label: Numara }
+  - { key: kaynak, label: Kaynak }
+  - { key: harf, label: Harf karşılığı }
+  - { key: gogus, label: Göğüs, unit: cm }
+  - { key: bel, label: Bel, unit: cm }
+  - { key: basen, label: Basen, unit: cm }
+rows:
+  - [ "54", LC Waikiki, 7XL, "136", "123", "144" ]
+  - [ "54", H&M Türkiye, XXL (52–54), 119–131, "105–117,5", "120,5–131" ]
+  - [ "54", ASOS Curve (UK 26), Numaralı, "137", "119", "144,5" ]
+  - [ "54", Ulla Popken, XL (54/56), 129–134, 112–118, 135–140 ]
+  - [ "54", TuvidXXL, 3XL, 135–140, 120–125, 145–150 ]
+  - [ "54", DOB 1994 (referans), XXXL (48–54), "128", "114", "129" ]
+  - [ "56", H&M Türkiye, 3XL (56–58), 131–143, "117,5–131,5", 131–143 ]
+  - [ "56", ASOS Curve (UK 28), Numaralı, "144", "126", "151,5" ]
+  - [ "56", Ulla Popken, XL (54/56), 135–140, 119–125, 141–146 ]
+  - [ "56", LAURASØN, 3XL (56/58), 137–142, 126–131, 144–149 ]
+  - [ "56", DOB 1994 (referans), –, "134", "120,5", "134" ]
+highlightColumn: gogus
+approximate: true
+notes:
+  - Marks & Spencer 54'ü hem XXL hem XXXL satırında gösteriyor ve cm tablosu UK 24'te (EU 52) bitiyor; bu yüzden tabloya alınmadı.
+  - H&M satırları iki numarayı birlikte kapsayan harf aralıklarıdır.
+sources:
+  - { url: https://www.lcw.com/buyuk-beden-bisiklet-yaka-elbise-kahverengi-o-5340792, type: brand-official, label: LC Waikiki büyük beden elbise ürün sayfası beden rehberi, checkedAt: 2026-10-07 }
+  - { url: https://www2.hm.com/tr_tr/productpage.1350700004.html, type: brand-official, label: "H&M Türkiye kadın ürün sayfası beden rehberi (üstler, bluzlar)", checkedAt: 2026-10-07 }
+  - { url: https://www.asos.com/discover/size-charts/women/dresses/, type: brand-official, label: ASOS kadın elbise beden tablosu (Curve dahil), checkedAt: 2026-10-07 }
+  - { url: https://www.ullapopken.at/de/guides/size-guide, type: brand-official, label: Ulla Popken beden rehberi (Avusturya sitesi), checkedAt: 2026-10-07 }
+  - { url: https://www.tuvidxxl.com/buyuk-beden-112143-biyeli-elbise-kirmizi-7704, type: brand-official, label: TuvidXXL ürün sayfasındaki beden tablosu görseli, checkedAt: 2026-10-07 }
+  - { url: https://www.europa-lehrmittel.de/media/dc/ce/g0/1756301265/DOB%20Groentabelle%201994%20+%20Internationale.pdf, type: reference, label: Europa-Lehrmittel – DOB kadın konfeksiyon beden tablosu (Reihenmessung 1994), checkedAt: 2026-10-07 }

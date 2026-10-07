@@ -1,0 +1,28 @@
+title: Alman DOB kadın beden tablosu (1994 seri ölçüm)
+caption: Alman kadın konfeksiyon bedenleri (DOB, 1994 seri ölçümü, boy 168 cm) – vücut ölçüsü (cm), referans tablo
+silo: kadin
+scope: genel
+kind: olcu-cm
+columns:
+  - { key: beden, label: Beden }
+  - { key: gogus, label: Göğüs, unit: cm }
+  - { key: bel, label: Bel, unit: cm }
+  - { key: basen, label: Basen, unit: cm }
+rows:
+  - [ "42", "96", "80", "103" ]
+  - [ "44", "100", "84", "106" ]
+  - [ "46", "104", "88", "109" ]
+  - [ "48", "110", "94,5", "114" ]
+  - [ "50", "116", "101", "119" ]
+  - [ "52", "122", "107,5", "124" ]
+  - [ "54", "128", "114", "129" ]
+  - [ "56", "134", "120,5", "134" ]
+  - [ "58", "140", "127", "139" ]
+  - [ "60", "146", "133,5", "144" ]
+highlightColumn: gogus
+approximate: false
+notes:
+  - Bu bir marka tablosu değil, Alman konfeksiyon sektörünün referans tablosudur; güncel markalar kendi ölçülerini kullanır.
+  - Aynı kaynağın UK karşılık satırı güncel marka tablolarından iki beden kaydığı için kullanılmadı.
+sources:
+  - { url: https://www.europa-lehrmittel.de/media/dc/ce/g0/1756301265/DOB%20Groentabelle%201994%20+%20Internationale.pdf, type: reference, label: Europa-Lehrmittel – DOB kadın konfeksiyon beden tablosu (Reihenmessung 1994), checkedAt: 2026-10-07 }

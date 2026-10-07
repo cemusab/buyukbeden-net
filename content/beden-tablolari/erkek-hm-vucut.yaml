@@ -1,0 +1,23 @@
+title: H&M erkek vücut ölçüleri (L–3XL)
+caption: H&M erkek beden rehberi – vücut ölçüsü (cm), Regular tişört ürünü
+silo: erkek
+scope: ust-giyim
+kind: olcu-cm
+columns:
+  - { key: harf, label: Harf }
+  - { key: eur, label: EUR }
+  - { key: gogus, label: Göğüs, unit: cm }
+  - { key: bel, label: Bel, unit: cm }
+  - { key: yaka, label: Yaka, unit: cm }
+  - { key: kol, label: Kol, unit: cm }
+rows:
+  - [ L, 52–54, 102–110, "90–98,5", 40–41, 64–65 ]
+  - [ XL, 56–58, 110–118, "98,5–107,5", 42–43, "65–65,5" ]
+  - [ XXL, 60–62, 118–126, "107,5–116,5", 44–45, "65,5–66" ]
+  - [ 3XL, 64–66, 126–134, "116,5–125,5", 46–47, "66" ]
+highlightColumn: gogus
+approximate: false
+notes:
+  - H&M'nin “Long” varyantlarında göğüs ve bel aynı, kol yaklaşık 3 cm daha uzundur.
+sources:
+  - { url: https://www2.hm.com/en_gb/productpage.1216851036.html, type: brand-official, label: H&M erkek Regular tişört ürün sayfası beden rehberi, checkedAt: 2026-10-07 }
