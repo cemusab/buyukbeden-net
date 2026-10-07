@@ -43,6 +43,9 @@
 - Hepsi bitince: `npm run qa` yeşil → TEK push → PR v2→main → merge → canlı smoke test (sitemap URL'leri 200).
 - Açık karar: `kadin-harf-numara-markalara-gore` dönüşüm tablosu kalsın mı (şimdilik kaldı).
 
+## 2026-10-08 – 5. dalga (çalışıyor): rakip SEO analizi
+Sahibi: "ilk 20 siteyi araştır, SEO'larını al". Kopya YOK (kopya içerik + telif) – yapı/kelime/eksik konu analizi, kendi metnimizle uygulama. Agent: `docs/rakip-seo-analizi.md` yazar, eşlenen sayfaların title/description/H2/SSS'ini günceller, gerekirse yeni boşluk sayfaları açar, qa yeşil, v2'ye commit. Sonra: tek PR → canlı kontrol.
+
 ## 2026-10-08 – 4. dalga YAYINDA (PR #8): 14 yeni marka, toptan hub + Merter/Laleli; 233 URL hepsi 200.
 
 ## (eski) 4. dalga planı
