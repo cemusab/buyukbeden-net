@@ -45,3 +45,6 @@ next-env.d.ts
 /public/search-index.json
 /test-results/
 /playwright-report/
+
+# stok görsel ham indirmeleri (scripts/optimize-images.ts)
+/.cache/

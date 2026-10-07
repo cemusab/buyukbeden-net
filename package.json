@@ -10,6 +10,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "images": "tsx scripts/optimize-images.ts",
     "test:e2e": "playwright test",
     "qa": "npm run validate && npm run build && playwright test"
   },
@@ -34,6 +35,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.4.0",
+    "sharp": "^0.35.5",
     "tailwindcss": "^4",
     "tsx": "^4.23.15",
     "typescript": "^5"
