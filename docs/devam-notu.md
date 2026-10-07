@@ -36,6 +36,13 @@
 1. **Beden verisi migrasyonu** (`docs/beden-veri-migrasyonu.md`, CLAUDE.md "Beden Kuralları"): body/garment ayrımı, min–max aralıklar, türetilmiş karşılaştırma etiketi, kesinlik dili kontrol scripti (`scripts/check-language.ts`), 6 ay tazelik uyarısı, **Beden Bulucu**. Bir agent v2'de çalışıyordu. Kontrol: `git log --oneline v2 -15`, `git status`, `npm run qa`. Yarım kaldıysa planı tamamla. Bitince qa yeşil → PR → main.
 2. **Ayakkabı:** araştırma TAMAM (`docs/ayakkabi-arastirmasi.md`, 34 kaynak; §7 açık noktalar). Migrasyon bitince içerik + rotalar: `/erkek/ayakkabi` (+ `buyuk-numara` 47+, `genis-kalip`), `/kadin/ayakkabi` (+ `buyuk-numara` 42+, `genis-kalip`, `genis-baldirli-cizme`), `/beden-rehberi/ayak-olcusu-nasil-alinir`, `/alisveris-rehberi/buyuk-numara-ayakkabi-markalari`. Taksonomi/rota: ayakkabı giyim dışı ayrı silo bölümü (`/kadin/ayakkabi`, `/erkek/ayakkabi`) – rotalar ve manifest'e eklenmeli.
 
+## Oturum 1 sonu durumu (2026-10-07, akşam)
+- Beden migrasyonu TAMAM (v2, lokal; qa yeşil 85 passed) – henüz canlı değil.
+- Vercel: sahibi Pro'ya geçti; yine de toplu yayın kuralı geçerli (CLAUDE.md). `vercel.json ignoreCommand` lokal commit'te.
+- Paralel çalışanlar (v2'ye commit eder, push etmez): ayakkabı bölümü (rota + içerik), kadın 2. dalga A (tayt, etek, bluz, tunik, tesettür, sweatshirt + tişört/oversize), kadın 2. dalga B (ceket, mont, kaban, iç giyim + sütyen/set/külot, ev giyimi, mayo-haşema, spor), erkek 2. dalga (polo, eşofman, sweatshirt, takım elbise + düğün, şort/deniz şortu, spor, iç giyim + boxer).
+- Hepsi bitince: `npm run qa` yeşil → TEK push → PR v2→main → merge → canlı smoke test (sitemap URL'leri 200).
+- Açık karar: `kadin-harf-numara-markalara-gore` dönüşüm tablosu kalsın mı (şimdilik kaldı).
+
 ## Sıradaki işler (öncelik sırası)
 1. Yukarıdaki 1 ve 2'yi bitir, yayınla.
 2. **Veri sorumlusu** bilgisi gelince (sahibi 2–3 gün içinde iletecek; **hatırlat**): `content/ayarlar/site.yaml` (editorialEmail, organization), KVKK/gizlilik metinleri, `/iletisim` yayına.
