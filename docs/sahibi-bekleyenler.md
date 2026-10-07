@@ -11,3 +11,4 @@
 | 7 | Google Search Console doğrulama + sitemap gönderimi | **Tamam (sahibi, 2026-10-07)** | Sitemap: https://www.buyukbeden.net/sitemap-index.xml |
 | 8 | Keystatic prod (GitHub App) kurulumu | Bekleniyor | Birlikte yapılacak |
 | 9 | Önceki "Beden Sistemleri ve Kalıp Farkları" brief'i | Bana ulaşmadı | Gönderilirse CLAUDE.md Beden Kuralları'na eklenecek |
+| 10 | Analitik (Vercel Web Analytics – çerezsiz, önerilen – veya GA4 + Consent Mode) | Karar bekleniyor | Seçilirse önce gizlilik/KVKK metni güncellenir, sonra toplu yayınla eklenir |

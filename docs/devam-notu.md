@@ -43,7 +43,12 @@
 - Hepsi bitince: `npm run qa` yeşil → TEK push → PR v2→main → merge → canlı smoke test (sitemap URL'leri 200).
 - Açık karar: `kadin-harf-numara-markalara-gore` dönüşüm tablosu kalsın mı (şimdilik kaldı).
 
-## Güncel (2026-10-07 gece)
+## YAYINDA – 2. dalga (2026-10-07 gece, PR #5, tek build)
+- Canlı: 214 belge, 216 sitemap URL'si hepsi 200; kısa yönlendirmeler, llms.txt, GSC dosyası çalışıyor.
+- Yayına girenler: migrasyon + Beden Bulucu + ölçü-önce kartlar, ayakkabı, kadın/erkek 2. dalga + kadın eşofman/şort/pijama, kalıp rehberleri, SEO, manken stili çizimler (GarmentCroquis, BodyTypeFigure, SizeRangeStrip), referansa göre yoğun düzen (DocVisual), 2 AI hero (Gemini, `.env.local` – git dışı; sahibi en fazla 1–2 görsel izni verdi, kullanıldı), Vercel ignoreCommand.
+- Sonraki adaylar: Keystatic prod kurulumu (sahibiyle), Lighthouse, kalan kişi fotoğraflı kartların (round-1) gözden geçirilmesi, erkek hero görseli daha iri yapılı yeniden üretim (sahibi onaylarsa), veri sorumlusu bilgisi (hatırlat), trend kaynakları yeniden doğrulama, ayakkabı araştırması §7 açıkları.
+
+## (eski) Güncel (2026-10-07 gece)
 - v2'de hazır (canlı değil): migrasyon + Beden Bulucu + ölçü-önce kartlar, ayakkabı, kadın 2A+2B, erkek 2. dalga, kalıp rehberleri (FitSilhouette), SEO head-term düzeltmeleri + llms.txt (`docs/seo-anahtar-kelime-haritasi.md`), Vercel ignoreCommand.
 - Çalışıyor: vücut tipi figürleri (yeni stil, `docs/design/vucut-tipi-referans.jpg`) + ana sayfa bölümü; 2. stok fotoğraf turu (sahibi onayladı).
 - SIRADA: **Düzen düzeltmesi** – sahibi "site referansa göre boş" dedi: giyim hub hero'su (sol metin/sağ foto, kompakt), kategori ızgarası hemen altta 5 sütun fotoğraflı, kısa cevap/uzun intro ızgara altına; hiçbir kart görselsiz değil (foto yoksa pastel zeminli manken stili çizim); makale: sol görsel + sağ "Bu Yazıda"; ana sayfa yoğunluğu ve sıra referansa göre. Vücut tipi agent'ı bitince başlat. Sonra fotoğrafları içeriğe bağla.
