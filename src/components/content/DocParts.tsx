@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { getAuthor, getDocByKey, getManualRelated, getRelated, listLive } from "@/lib/content";
@@ -237,15 +238,41 @@ export function BackToParent({ href, label }: { href: string; label: string }) {
   );
 }
 
-export function PageHero({ eyebrow, title, lead, children, tone = "plain" }: { eyebrow?: ReactNode; title: string; lead?: ReactNode; children?: ReactNode; tone?: "plain" | "kadin" | "erkek" }) {
+export function PageHero({
+  eyebrow,
+  title,
+  lead,
+  children,
+  tone = "plain",
+  image,
+}: {
+  eyebrow?: ReactNode;
+  title: string;
+  lead?: ReactNode;
+  children?: ReactNode;
+  tone?: "plain" | "kadin" | "erkek";
+  image?: DocMeta["featuredImage"];
+}) {
   const bg = tone === "erkek" ? "bg-primary text-white" : tone === "kadin" ? "bg-badge-kadin-bg/60" : "bg-soft";
   const leadCls = tone === "erkek" ? "text-white/85" : "text-ink-2";
   return (
-    <div className={`rounded-card ${bg} px-5 py-8 sm:px-8 sm:py-10 lg:px-12 lg:py-14`}>
-      {eyebrow ? <div className="mb-3">{eyebrow}</div> : null}
-      <h1 className={`text-h1 font-extrabold ${tone === "erkek" ? "text-white" : "text-ink"}`}>{title}</h1>
-      {lead ? <div className={`prose-tight mt-3 max-w-2xl text-lg ${leadCls}`}>{lead}</div> : null}
-      {children}
+    <div className={`relative grid overflow-hidden rounded-card ${bg} ${image ? "md:grid-cols-[minmax(0,1fr)_minmax(0,42%)]" : ""}`}>
+      <div className="px-5 py-8 sm:px-8 sm:py-10 lg:px-12 lg:py-14">
+        {eyebrow ? <div className="mb-3">{eyebrow}</div> : null}
+        <h1 className={`text-h1 font-extrabold ${tone === "erkek" ? "text-white" : "text-ink"}`}>{title}</h1>
+        {lead ? <div className={`prose-tight mt-3 max-w-2xl text-lg ${leadCls} ${tone === "erkek" ? "[&_a]:text-white" : ""}`}>{lead}</div> : null}
+        {children}
+      </div>
+      {image ? (
+        <figure className="relative min-h-56 md:min-h-full">
+          <Image src={image.src} alt={image.alt} fill priority sizes="(min-width: 768px) 42vw, 100vw" className="object-cover" />
+          {image.credit || image.aiGenerated ? (
+            <figcaption className="absolute bottom-2 right-2 rounded bg-black/45 px-2 py-0.5 text-[0.6875rem] text-white/90">
+              {[image.aiGenerated ? "Yapay zekâ ile üretilmiş görsel" : null, image.credit].filter(Boolean).join(" · ")}
+            </figcaption>
+          ) : null}
+        </figure>
+      ) : null}
     </div>
   );
 }

@@ -189,7 +189,7 @@ export default function HomePage() {
                   <div className="relative flex items-center gap-4 overflow-hidden rounded-card bg-primary p-6 text-white">
                     <div className="min-w-0">
                       <h3 className="text-h3 font-bold text-white">Erkek Beden Rehberi</h3>
-                      <p className="mt-1 text-sm text-white/80">XL’den 8XL’e ölçüler</p>
+                      <p className="mt-1 text-sm text-white/80">Harf bedenler ve ölçüler</p>
                       <ButtonLink href="/erkek/beden-rehberi" variant="light" className="mt-4">
                         Bedeni Keşfet
                       </ButtonLink>
@@ -228,7 +228,7 @@ export default function HomePage() {
               <Link
                 key={x}
                 href={`/${x}`}
-                className={`group relative flex min-h-[15rem] flex-col justify-end overflow-hidden rounded-card p-6 sm:min-h-[19rem] sm:p-8 ${x === "kadin" ? "bg-[#7a3550]" : "bg-primary"} text-white`}
+                className={`group relative flex min-h-[17rem] flex-col justify-end overflow-hidden rounded-card p-6 sm:min-h-[22rem] sm:p-8 lg:min-h-[27rem] ${x === "kadin" ? "bg-[#7a3550]" : "bg-primary"} text-white`}
               >
                 {c.image ? (
                   <>

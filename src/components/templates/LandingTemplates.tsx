@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { getBody, getByPath, getHubChildren, getHubs, getSettings, getSizeCharts, listLive } from "@/lib/content";
+import { getBody, getByPath, getHomepage, getHubChildren, getHubs, getSettings, getSizeCharts, listLive } from "@/lib/content";
 import type { DocMeta } from "@/lib/content-types";
 import { faqLd, itemListLd } from "@/lib/jsonld";
 import { sizeLinks } from "@/lib/nav";
@@ -16,6 +16,17 @@ import { CardGrid, CategoryCard, CompactCard, EditorialCard } from "@/components
 import { Badge, ButtonLink, JsonLd, SectionHeader } from "@/components/ui/primitives";
 
 const SILO_LABEL = { kadin: "Kadın", erkek: "Erkek" } as const;
+
+/** Landing hero görseli: belgenin görseli; silo giyim/ana sayfalarında ana sayfa hero fotoğrafı yedektir. */
+function heroImage(doc: DocMeta): DocMeta["featuredImage"] {
+  if (doc.featuredImage) return doc.featuredImage;
+  const key = String(doc.fm.key);
+  if (["kadin", "kadin-giyim"].includes(key)) return getHomepage().hero.kadin.image;
+  if (["erkek", "erkek-giyim"].includes(key)) return getHomepage().hero.erkek.image;
+  if (key === "kadin-beden-rehberi") return getHomepage().sizeBand.kadinImage;
+  if (key === "erkek-beden-rehberi") return getHomepage().sizeBand.erkekImage;
+  return undefined;
+}
 
 function Shell({ doc, children, hero, ld = [] }: { doc: DocMeta; children?: ReactNode; hero?: ReactNode; ld?: object[] }) {
   const all = [...ld];
@@ -116,7 +127,7 @@ function SiloHome({ doc }: { doc: DocMeta }) {
   return (
     <Shell
       doc={doc}
-      hero={<PageHero tone={siloTone(doc)} eyebrow={<Badge tone={silo}>{L}</Badge>} title={doc.title} lead={<Lead doc={doc} />} />}
+      hero={<PageHero image={heroImage(doc)} tone={siloTone(doc)} eyebrow={<Badge tone={silo}>{L}</Badge>} title={doc.title} lead={<Lead doc={doc} />} />}
       ld={[itemListLd(getSettings(), gates.map((g) => ({ path: g.path, title: g.title })))]}
     >
       <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -274,7 +285,7 @@ function SectionLanding({ doc, type }: { doc: DocMeta; type: "SIZE_GUIDE" | "STY
   return (
     <Shell
       doc={doc}
-      hero={<PageHero tone={siloTone(doc)} eyebrow={<Badge tone={type === "SIZE_GUIDE" ? "beden" : "stil"}>{`${SILO_LABEL[silo]} · ${type === "SIZE_GUIDE" ? "Beden Rehberi" : type === "STYLE_GUIDE" ? "Stil" : "Kombinler"}`}</Badge>} title={doc.title} lead={<Lead doc={doc} />} />}
+      hero={<PageHero image={heroImage(doc)} tone={siloTone(doc)} eyebrow={<Badge tone={type === "SIZE_GUIDE" ? "beden" : "stil"}>{`${SILO_LABEL[silo]} · ${type === "SIZE_GUIDE" ? "Beden Rehberi" : type === "STYLE_GUIDE" ? "Stil" : "Kombinler"}`}</Badge>} title={doc.title} lead={<Lead doc={doc} />} />}
       ld={[itemListLd(getSettings(), docs.map((d) => ({ path: d.path, title: d.title })))]}
     >
       <div className="mt-6 max-w-prose">
@@ -319,7 +330,7 @@ function SplitLanding({ doc, type }: { doc: DocMeta; type: "STYLE_GUIDE" | "OUTF
     .filter((d) => hasRoute(d.path));
   const shared = listLive((d) => d.type === type && d.silo === "ortak");
   return (
-    <Shell doc={doc} hero={<PageHero eyebrow={<Badge tone="stil">{type === "STYLE_GUIDE" ? "Stil" : "Kombinler"}</Badge>} title={doc.title} lead={<Lead doc={doc} />} />} ld={[itemListLd(getSettings(), doors.map((d) => ({ path: d.path, title: `${SILO_LABEL[d.silo]} ${seg}` })))]}>
+    <Shell doc={doc} hero={<PageHero image={heroImage(doc)} eyebrow={<Badge tone="stil">{type === "STYLE_GUIDE" ? "Stil" : "Kombinler"}</Badge>} title={doc.title} lead={<Lead doc={doc} />} />} ld={[itemListLd(getSettings(), doors.map((d) => ({ path: d.path, title: `${SILO_LABEL[d.silo]} ${seg}` })))]}>
       <div className="mt-8 grid gap-5 md:grid-cols-2">
         {doors.map((d) => (
           <section key={d.silo} className={`rounded-card p-6 ${d.silo === "erkek" ? "bg-primary text-white" : "bg-soft"}`}>
@@ -370,7 +381,7 @@ function SharedSizeLanding({ doc }: { doc: DocMeta }) {
   const articles = listLive((d) => d.collection === "makaleler" && d.fm.section === "beden-rehberi");
   const measure = guides.find((g) => (g.fm.measurementSteps as unknown[]).length);
   return (
-    <Shell doc={doc} hero={<PageHero eyebrow={<Badge tone="beden">Beden Rehberi</Badge>} title={doc.title} lead={<Lead doc={doc} />} />} ld={[itemListLd(getSettings(), guides.map((g) => ({ path: g.path, title: g.title })))]}>
+    <Shell doc={doc} hero={<PageHero image={heroImage(doc)} eyebrow={<Badge tone="beden">Beden Rehberi</Badge>} title={doc.title} lead={<Lead doc={doc} />} />} ld={[itemListLd(getSettings(), guides.map((g) => ({ path: g.path, title: g.title })))]}>
       <div className="mt-6 max-w-prose">
         <ShortAnswer doc={doc} />
       </div>
@@ -449,7 +460,7 @@ function FabricDirectory({ doc }: { doc: DocMeta }) {
   const fabrics = listLive((d) => d.type === "FABRIC_GUIDE").sort((a, b) => a.label.localeCompare(b.label, "tr"));
   const articles = listLive((d) => d.collection === "makaleler" && d.fm.section === "kumas-rehberi");
   return (
-    <Shell doc={doc} hero={<PageHero eyebrow={<Badge tone="kumas">Kumaş Rehberi</Badge>} title={doc.title} lead={<Lead doc={doc} />} />} ld={[itemListLd(getSettings(), fabrics.map((d) => ({ path: d.path, title: d.title })))]}>
+    <Shell doc={doc} hero={<PageHero image={heroImage(doc)} eyebrow={<Badge tone="kumas">Kumaş Rehberi</Badge>} title={doc.title} lead={<Lead doc={doc} />} />} ld={[itemListLd(getSettings(), fabrics.map((d) => ({ path: d.path, title: d.title })))]}>
       <div className="mt-6 max-w-prose">
         <ShortAnswer doc={doc} />
       </div>
@@ -494,7 +505,7 @@ function BrandDirectory({ doc }: { doc: DocMeta }) {
     { id: "uluslararasi", label: "Uluslararası Markalar", match: "intl" },
   ].filter((f) => !f.match || brands.some((b) => tagsOf(b).includes(f.match!)));
   return (
-    <Shell doc={doc} hero={<PageHero eyebrow={<Badge tone="marka">Markalar</Badge>} title={doc.title} lead={<Lead doc={doc} />} />} ld={[itemListLd(getSettings(), brands.map((d) => ({ path: d.path, title: d.label })))]}>
+    <Shell doc={doc} hero={<PageHero image={heroImage(doc)} eyebrow={<Badge tone="marka">Markalar</Badge>} title={doc.title} lead={<Lead doc={doc} />} />} ld={[itemListLd(getSettings(), brands.map((d) => ({ path: d.path, title: d.label })))]}>
       <div className="mt-6 max-w-prose">
         <ShortAnswer doc={doc} />
       </div>
@@ -553,7 +564,7 @@ function SimpleDirectory({ doc, filter, title, badge }: { doc: DocMeta; filter: 
   const toptan = docs.filter((d) => d.topics.includes("toptan-pazar"));
   const rest = docs.filter((d) => !toptan.includes(d));
   return (
-    <Shell doc={doc} hero={<PageHero eyebrow={<Badge tone={badge}>{title}</Badge>} title={doc.title} lead={<Lead doc={doc} />} />} ld={[itemListLd(getSettings(), docs.map((d) => ({ path: d.path, title: d.title })))]}>
+    <Shell doc={doc} hero={<PageHero image={heroImage(doc)} eyebrow={<Badge tone={badge}>{title}</Badge>} title={doc.title} lead={<Lead doc={doc} />} />} ld={[itemListLd(getSettings(), docs.map((d) => ({ path: d.path, title: d.title })))]}>
       <div className="mt-6 max-w-prose">
         <ShortAnswer doc={doc} />
       </div>
@@ -586,7 +597,7 @@ function GuidesDirectory({ doc }: { doc: DocMeta }) {
   ].filter((s) => s.docs.length);
   const all = sections.flatMap((s) => s.docs);
   return (
-    <Shell doc={doc} hero={<PageHero eyebrow={<Badge tone="marka">Rehberler</Badge>} title={doc.title} lead={<Lead doc={doc} />} />} ld={[itemListLd(getSettings(), all.map((d) => ({ path: d.path, title: d.title })))]}>
+    <Shell doc={doc} hero={<PageHero image={heroImage(doc)} eyebrow={<Badge tone="marka">Rehberler</Badge>} title={doc.title} lead={<Lead doc={doc} />} />} ld={[itemListLd(getSettings(), all.map((d) => ({ path: d.path, title: d.title })))]}>
       {sections.length > 1 ? (
         <nav aria-label="Bölümler" className="scroll-strip -mx-4 mt-6 px-4">
           <ul className="flex w-max gap-2">
