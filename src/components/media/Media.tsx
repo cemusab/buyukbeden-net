@@ -12,6 +12,7 @@ export function DocImage({
   className = "",
   caption = true,
   captionClassName = "text-muted",
+  rounded = true,
 }: {
   image: ImageT;
   sizes: string;
@@ -20,10 +21,11 @@ export function DocImage({
   className?: string;
   caption?: boolean;
   captionClassName?: string;
+  rounded?: boolean;
 }) {
   return (
     <figure className={className}>
-      <div className="relative overflow-hidden rounded-card bg-soft" style={{ aspectRatio: ratio }}>
+      <div className={`relative overflow-hidden bg-soft ${rounded ? "rounded-card" : ""}`} style={{ aspectRatio: ratio }}>
         <Image
           src={image.src}
           alt={image.alt}

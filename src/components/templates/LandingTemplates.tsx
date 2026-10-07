@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { getBody, getByPath, getHomepage, getHubChildren, getHubs, getSettings, getSizeCharts, listLive } from "@/lib/content";
@@ -9,13 +10,13 @@ import { categoryLabel, OCCASIONS, type GenderSilo } from "@/lib/taxonomy";
 import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
 import { MarkdocContent } from "@/components/content/Markdoc";
 import { FaqList } from "@/components/content/Faq";
-import { AuthorBox, PageHero, ShortAnswer, SourcesList } from "@/components/content/DocParts";
+import { AuthorBox, CompactHero, PageHero, ShortAnswer, SourcesList } from "@/components/content/DocParts";
 import { SizeChartTable } from "@/components/content/SizeChartTable";
 import { BedenBulucuSection } from "@/components/content/BedenBulucuSection";
 import { SizeRangeStrip } from "@/components/content/SizeRangeStrip";
 import { isMeasure } from "@/lib/size-core";
-import { FabricArt, MeasureArt, QuickIcon } from "@/components/media/Illustration";
-import { CardGrid, CategoryCard, CompactCard, EditorialCard } from "@/components/ui/Cards";
+import { CroquisArt, croquisTile, FabricArt, hasCroquisArt, MeasureArt, QuickIcon } from "@/components/media/Illustration";
+import { CardGrid, CategoryCard, CategoryGrid, CompactCard, EditorialCard, FootwearCard, SizeBandCard, ThumbLink } from "@/components/ui/Cards";
 import { Badge, ButtonLink, JsonLd, SectionHeader } from "@/components/ui/primitives";
 
 const SILO_LABEL = { kadin: "Kadın", erkek: "Erkek" } as const;
@@ -116,6 +117,60 @@ function ByOccasion({ docs, idPrefix }: { docs: DocMeta[]; idPrefix: string }) {
   );
 }
 
+/* ---------------- ortak: kompakt hero görselleri + kategori ızgarası ---------------- */
+/** Hero fotoğrafı (yapay zekâ notu / kredi köşede). */
+function HeroPhoto({ image }: { image: NonNullable<DocMeta["featuredImage"]> }) {
+  return (
+    <figure className="absolute inset-0">
+      <Image src={image.src} alt={image.alt} fill priority sizes="(min-width: 768px) 44vw, 100vw" className="object-cover object-[50%_25%]" />
+      {image.aiGenerated || image.credit ? (
+        <figcaption className="absolute bottom-2 right-2 rounded bg-black/50 px-2 py-0.5 text-[0.6875rem] text-white">
+          {[image.aiGenerated ? "Yapay zekâ ile üretilmiş görsel" : null, image.credit].filter(Boolean).join(" · ")}
+        </figcaption>
+      ) : null}
+    </figure>
+  );
+}
+
+const HERO_CROQUIS: Record<GenderSilo, string[]> = { kadin: ["elbise", "jean", "kaban"], erkek: ["gomlek", "takim-elbise", "mont"] };
+
+/** Üç kategori krokisi yan yana (dekoratif). */
+function CroquisGroup({ silo }: { silo: GenderSilo }) {
+  const cats = HERO_CROQUIS[silo].filter((c) => hasCroquisArt(silo, c));
+  return (
+    <div aria-hidden="true" className="absolute inset-0 grid grid-cols-3 gap-2 p-3 lg:gap-3 lg:p-4">
+      {cats.map((c) => (
+        <div key={c} className="flex items-end justify-center overflow-hidden rounded-card pt-2" style={{ backgroundColor: croquisTile(silo, c) }}>
+          <CroquisArt silo={silo} category={c} className="h-full w-auto" />
+        </div>
+      ))}
+    </div>
+  );
+}
+
+/** Yayımlanmış her kategori + (sayfası varsa) Ayakkabı karosu. */
+function CategorySection({ silo, id = "kategoriler", title = "Kategoriler", counts = false, more, className = "mt-6" }: { silo: GenderSilo; id?: string; title?: string; counts?: boolean; more?: { href: string; label: string }; className?: string }) {
+  const hubs = getHubs(silo);
+  if (!hubs.length) return null;
+  const shoes = `/${silo}/ayakkabi`;
+  return (
+    <section aria-labelledby={id} className={className} data-category-grid>
+      <SectionHeader id={id} title={title} more={more} />
+      <CategoryGrid>
+        {hubs.map((h) => (
+          <CategoryCard key={h.key} hub={h} label={(h.fm.menuLabel as string) ?? categoryLabel(silo, h.category!)} count={counts ? getHubChildren(h.id).length : undefined} />
+        ))}
+        {hasRoute(shoes) ? <FootwearCard silo={silo} href={shoes} /> : null}
+      </CategoryGrid>
+    </section>
+  );
+}
+
+const SILO_SUBTITLE: Record<GenderSilo, string> = { kadin: "kadin", erkek: "erkek" };
+function siloSubtitle(silo: GenderSilo): string {
+  return getHomepage().hero[SILO_SUBTITLE[silo] as "kadin" | "erkek"].text;
+}
+
 /* ---------------- /kadin, /erkek ---------------- */
 function SiloHome({ doc }: { doc: DocMeta }) {
   const silo = doc.silo as GenderSilo;
@@ -127,14 +182,24 @@ function SiloHome({ doc }: { doc: DocMeta }) {
     { path: `/${silo}/kombinler`, title: `${L} kombinler`, text: "Ortama ve mevsime göre kombinler", filter: (d: DocMeta) => d.silo === silo && d.type === "OUTFIT_GUIDE", icon: "kombin" },
     { path: `/${silo}/ayakkabi`, title: `${L} ayakkabı`, text: "Büyük numara, geniş kalıp ve ayak ölçüsü", filter: (d: DocMeta) => d.silo === silo && isFootwearDoc(d), icon: "rehber" },
   ].filter((g) => hasRoute(g.path));
-  const hubs = getHubs(silo);
+  const img = heroImage(doc);
   return (
     <Shell
       doc={doc}
-      hero={<PageHero image={heroImage(doc)} tone={siloTone(doc)} eyebrow={<Badge tone={silo}>{L}</Badge>} title={doc.title} lead={<Lead doc={doc} />} />}
+      hero={
+        <CompactHero
+          tone={silo === "erkek" ? "erkek" : "plain"}
+          eyebrow={<Badge tone={silo}>{L}</Badge>}
+          title={doc.title}
+          subtitle={siloSubtitle(silo)}
+          lead={<Lead doc={doc} />}
+          visual={img ? <HeroPhoto image={img} /> : <CroquisGroup silo={silo} />}
+        />
+      }
       ld={[itemListLd(getSettings(), gates.map((g) => ({ path: g.path, title: g.title })))]}
     >
-      <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <CategorySection silo={silo} more={hasRoute(`/${silo}/giyim`) ? { href: `/${silo}/giyim`, label: "Tüm giyim" } : undefined} />
+      <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
         {gates.map((g) => {
           const recent = listLive((d) => d.collection !== "sayfalar" && d.collection !== "hublar" && g.filter(d)).slice(0, 3);
           return (
@@ -150,9 +215,7 @@ function SiloHome({ doc }: { doc: DocMeta }) {
                 <ul className="mt-3 space-y-1 border-t border-line pt-3">
                   {recent.map((d) => (
                     <li key={d.key}>
-                      <Link href={d.path} className="flex min-h-11 items-center text-sm text-ink-2 hover:text-primary">
-                        {d.title}
-                      </Link>
+                      <ThumbLink doc={d} />
                     </li>
                   ))}
                 </ul>
@@ -161,16 +224,6 @@ function SiloHome({ doc }: { doc: DocMeta }) {
           );
         })}
       </div>
-      {hubs.length ? (
-        <section aria-labelledby="kategoriler" className="mt-12">
-          <SectionHeader id="kategoriler" title="Kategoriler" more={hasRoute(`/${silo}/giyim`) ? { href: `/${silo}/giyim`, label: "Tüm giyim" } : undefined} />
-          <CardGrid cols={6}>
-            {hubs.map((h) => (
-              <CategoryCard key={h.key} hub={h} label={(h.fm.menuLabel as string) ?? categoryLabel(silo, h.category!)} />
-            ))}
-          </CardGrid>
-        </section>
-      ) : null}
       <Body doc={doc} className="mt-12" />
       <Tail doc={doc} />
     </Shell>
@@ -183,8 +236,10 @@ function ClothingHub({ doc }: { doc: DocMeta }) {
   const L = SILO_LABEL[silo];
   const hubs = getHubs(silo);
   const sizes = sizeLinks(silo);
-  const featured = (doc.fm.featured as string[]).map((p) => getByPath(p)).filter((d): d is DocMeta => !!d);
-  const recent = listLive((d) => d.silo === silo && d.collection !== "sayfalar" && d.collection !== "hublar" && !featured.some((f) => f.key === d.key)).slice(0, 6);
+  const picked = (doc.fm.featured as string[]).map((p) => getByPath(p)).filter((d): d is DocMeta => !!d && d.collection !== "hublar");
+  const pool = listLive((d) => d.silo === silo && d.collection !== "sayfalar" && d.collection !== "hublar" && !picked.some((f) => f.key === d.key));
+  const featured = [...picked, ...pool.filter((d) => !!d.hub)].slice(0, 5);
+  const recent = pool.filter((d) => !featured.some((f) => f.key === d.key)).slice(0, 8);
   const mini = [
     { title: "Stil", href: `/${silo}/stil`, docs: listLive((d) => d.silo === silo && d.type === "STYLE_GUIDE").slice(0, 3) },
     { title: "Kombin", href: `/${silo}/kombinler`, docs: listLive((d) => d.silo === silo && d.type === "OUTFIT_GUIDE").slice(0, 3) },
@@ -195,34 +250,24 @@ function ClothingHub({ doc }: { doc: DocMeta }) {
     <Shell
       doc={doc}
       hero={
-        <PageHero
-          tone={siloTone(doc)}
+        <CompactHero
+          tone={silo === "erkek" ? "erkek" : "plain"}
           eyebrow={<Badge tone={silo}>{`${L} · Giyim`}</Badge>}
           title={doc.title}
+          subtitle={siloSubtitle(silo)}
           lead={<Lead doc={doc} />}
+          visual={<CroquisGroup silo={silo} />}
         />
       }
       ld={[itemListLd(getSettings(), hubs.map((h) => ({ path: h.path, title: h.title })))]}
     >
-      <div className="mt-6 max-w-prose">
-        <ShortAnswer doc={doc} />
-      </div>
-      {hubs.length ? (
-        <section aria-labelledby="kategoriler" className="mt-10">
-          <SectionHeader id="kategoriler" title="Kategoriler" />
-          <CardGrid cols={5}>
-            {hubs.map((h) => (
-              <CategoryCard key={h.key} hub={h} label={(h.fm.menuLabel as string) ?? categoryLabel(silo, h.category!)} count={getHubChildren(h.id).length} />
-            ))}
-          </CardGrid>
-        </section>
-      ) : null}
+      <CategorySection silo={silo} counts />
       {sizes.length ? (
-        <section aria-labelledby="bedenini-sec" className="mt-10 rounded-card bg-soft p-5 sm:p-6">
-          <h2 id="bedenini-sec" className="text-h3 font-bold text-ink">
+        <section aria-labelledby="bedenini-sec" className="mt-8 flex flex-col gap-3 rounded-card bg-soft p-4 sm:p-5 lg:flex-row lg:items-center lg:gap-6">
+          <h2 id="bedenini-sec" className="shrink-0 text-h3 font-bold text-ink">
             Bedenini seç
           </h2>
-          <ul className="mt-3 flex flex-wrap gap-2">
+          <ul className="flex flex-wrap gap-2">
             {sizes.map((s) => (
               <li key={s.label}>
                 <Link href={s.href} className="inline-flex min-h-11 items-center rounded-full border border-line-strong bg-white px-4 text-sm font-semibold hover:border-primary hover:text-primary">
@@ -232,23 +277,40 @@ function ClothingHub({ doc }: { doc: DocMeta }) {
             ))}
           </ul>
           {hasRoute(`/${silo}/beden-rehberi`) ? (
-            <ButtonLink href={`/${silo}/beden-rehberi`} className="mt-4">
+            <ButtonLink href={`/${silo}/beden-rehberi`} className="shrink-0 lg:ml-auto">
               {L} beden rehberi →
             </ButtonLink>
           ) : null}
         </section>
       ) : null}
-      <Body doc={doc} className="mt-10" />
-      {featured.length ? (
-        <section aria-labelledby="populer-rehberler" className="mt-12">
-          <SectionHeader id="populer-rehberler" title="Öne çıkan rehberler" />
-          <Grid docs={featured.slice(0, 4)} />
-        </section>
-      ) : null}
+      <div className="mt-10 lg:grid lg:grid-cols-[minmax(0,1fr)_320px] lg:gap-10">
+        <div className="min-w-0 max-w-prose">
+          <ShortAnswer doc={doc} />
+          <Body doc={doc} className="mt-8" />
+        </div>
+        {featured.length ? (
+          <aside aria-labelledby="populer-rehberler" className="mt-10 lg:mt-0">
+            <div className="lg:sticky lg:top-28">
+              <h2 id="populer-rehberler" className="mb-3 text-h3 font-bold text-ink">
+                Öne çıkan rehberler
+              </h2>
+              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
+                {featured.map((d) => (
+                  <CompactCard key={d.key} doc={d} showExcerpt={false} />
+                ))}
+              </div>
+            </div>
+          </aside>
+        ) : null}
+      </div>
       {recent.length ? (
         <section aria-labelledby="yeni-eklenenler" className="mt-12">
           <SectionHeader id="yeni-eklenenler" title="Yeni eklenenler" />
-          <Grid docs={recent} compact />
+          <CardGrid cols={4}>
+            {recent.map((d) => (
+              <EditorialCard key={d.key} doc={d} showExcerpt={false} />
+            ))}
+          </CardGrid>
         </section>
       ) : null}
       {mini.length ? (
@@ -259,9 +321,7 @@ function ClothingHub({ doc }: { doc: DocMeta }) {
               <ul className="mt-2 space-y-1">
                 {m.docs.map((d) => (
                   <li key={d.key}>
-                    <Link href={d.path} className="flex min-h-11 items-center text-sm text-ink-2 hover:text-primary">
-                      {d.label}
-                    </Link>
+                    <ThumbLink doc={d} label={d.label} />
                   </li>
                 ))}
               </ul>
@@ -376,7 +436,7 @@ function SplitLanding({ doc, type }: { doc: DocMeta; type: "STYLE_GUIDE" | "OUTF
     <Shell doc={doc} hero={<PageHero image={heroImage(doc)} eyebrow={<Badge tone="stil">{type === "STYLE_GUIDE" ? "Stil" : "Kombinler"}</Badge>} title={doc.title} lead={<Lead doc={doc} />} />} ld={[itemListLd(getSettings(), doors.map((d) => ({ path: d.path, title: `${SILO_LABEL[d.silo]} ${seg}` })))]}>
       <div className="mt-8 grid gap-5 md:grid-cols-2">
         {doors.map((d) => (
-          <section key={d.silo} className={`rounded-card p-6 ${d.silo === "erkek" ? "bg-primary text-white" : "bg-soft"}`}>
+          <section key={d.silo} className={`rounded-card p-6 ${d.silo === "erkek" ? "bg-[#1b2433] text-white" : "bg-[#f6f1ee]"}`}>
             <h2 className={`text-h2 font-extrabold ${d.silo === "erkek" ? "text-white" : "text-ink"}`}>
               {SILO_LABEL[d.silo]} {type === "STYLE_GUIDE" ? "stil rehberi" : "kombinleri"}
             </h2>
@@ -384,9 +444,7 @@ function SplitLanding({ doc, type }: { doc: DocMeta; type: "STYLE_GUIDE" | "OUTF
               <ul className="mt-3 space-y-1">
                 {d.docs.map((x) => (
                   <li key={x.key}>
-                    <Link href={x.path} className={`flex min-h-11 items-center text-[0.9375rem] hover:underline underline-offset-4 ${d.silo === "erkek" ? "text-white/90" : "text-ink-2"}`}>
-                      {x.title}
-                    </Link>
+                    <ThumbLink doc={x} dark={d.silo === "erkek"} />
                   </li>
                 ))}
               </ul>
@@ -483,17 +541,18 @@ function SharedSizeLanding({ doc }: { doc: DocMeta }) {
           <Grid docs={[...guides, ...articles]} />
         </section>
       ) : null}
-      <div className="mt-12 grid gap-5 md:grid-cols-2">
+      <div className="mt-12 grid gap-4 md:grid-cols-2">
         {(["kadin", "erkek"] as const)
           .filter((s) => hasRoute(`/${s}/beden-rehberi`))
           .map((s) => (
-            <section key={s} className={`rounded-card p-6 ${s === "erkek" ? "bg-primary text-white" : "bg-soft"}`}>
-              <h2 className={`text-h2 font-extrabold ${s === "erkek" ? "text-white" : "text-ink"}`}>{SILO_LABEL[s]} beden rehberi</h2>
-              <p className={`mt-2 text-sm ${s === "erkek" ? "text-white/85" : "text-ink-2"}`}>{s === "kadin" ? "Numara bedenler, göğüs–bel–basen ölçüleri" : "Harf bedenler, göğüs ve yaka ölçüleri"}</p>
-              <ButtonLink href={`/${s}/beden-rehberi`} variant={s === "erkek" ? "light" : "primary"} className="mt-4">
-                Bedeni keşfet →
-              </ButtonLink>
-            </section>
+            <SizeBandCard
+              key={s}
+              silo={s}
+              href={`/${s}/beden-rehberi`}
+              title={`${SILO_LABEL[s]} beden rehberi`}
+              text={s === "kadin" ? "Numara bedenler, göğüs–bel–basen ölçüleri" : "Harf bedenler, göğüs ve yaka ölçüleri"}
+              image={s === "kadin" ? getHomepage().sizeBand.kadinImage : getHomepage().sizeBand.erkekImage}
+            />
           ))}
       </div>
       <Body doc={doc} className="mt-12" />

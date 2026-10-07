@@ -8,9 +8,8 @@ import { itemListLd, organizationLd, websiteLd } from "@/lib/jsonld";
 import { simpleMetadata } from "@/lib/metadata";
 import { hasRoute } from "@/lib/routes";
 import { categoryLabel } from "@/lib/taxonomy";
-import { GarmentArt, MeasureArt, QuickIcon } from "@/components/media/Illustration";
-import { CardGrid, CategoryCard, CompactCard, EditorialCard, iconFor } from "@/components/ui/Cards";
-import { Cover } from "@/components/media/Media";
+import { GarmentArt, QuickIcon } from "@/components/media/Illustration";
+import { CardGrid, CategoryCard, CategoryGrid, CompactCard, EditorialCard, MiniCard, SizeBandCard } from "@/components/ui/Cards";
 import { ButtonLink, JsonLd, SectionHeader } from "@/components/ui/primitives";
 import { BodyTypeSwitch } from "@/components/content/BodyTypeTiles";
 
@@ -57,7 +56,7 @@ const QUICK = [
 function Section({ id, title, docs, more, compact = false }: { id: string; title: string; docs: DocMeta[]; more?: string; compact?: boolean }) {
   if (docs.length < 2) return null;
   return (
-    <section aria-labelledby={id} className="container-page mt-14">
+    <section aria-labelledby={id} className="container-page mt-9 md:mt-12 lg:mt-14">
       <SectionHeader id={id} title={title} more={more && hasRoute(more) ? { href: more, label: "Tümünü gör" } : undefined} />
       {compact ? (
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
@@ -95,10 +94,13 @@ export default function HomePage() {
   };
 
   const doors = (["kadin", "erkek"] as const).filter((x) => hasRoute(`/${x}`));
-  const popular = [
-    ...getHubs("kadin").slice(0, 3),
-    ...getHubs("erkek").slice(0, 3),
-  ];
+  // Mockup: Kadın Elbise / Pantolon / Tişört, Erkek Tişört / Pantolon / Gömlek (yayımlanmış olanlar; eksikse sıradakiler)
+  const prefer = (silo: "kadin" | "erkek", cats: string[]) => {
+    const hubs = getHubs(silo);
+    const first = cats.map((c) => hubs.find((h) => h.category === c)).filter((h): h is DocMeta => !!h);
+    return [...first, ...hubs.filter((h) => !first.includes(h))].slice(0, 3);
+  };
+  const popular = [...prefer("kadin", ["elbise", "pantolon", "tisort"]), ...prefer("erkek", ["tisort", "pantolon", "gomlek"])];
 
   const sections: { key: string; node: React.ReactNode }[] = [];
   for (const sec of h.sections) {
@@ -135,17 +137,12 @@ export default function HomePage() {
           sections.push({
             key: sec.key,
             node: (
-              <section aria-labelledby="temel-rehberler" className="container-page mt-14">
+              <section aria-labelledby="temel-rehberler" className="container-page mt-9 md:mt-12 lg:mt-14">
                 <SectionHeader id="temel-rehberler" title={t ?? "Temel Rehberler"} more={hasRoute("/rehberler") ? { href: "/rehberler", label: "Tüm rehberler" } : undefined} />
                 <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
                   {docs.map((d) => (
-                    <li key={d.key} className="group relative overflow-hidden rounded-card border border-line bg-surface">
-                      <Cover image={d.featuredImage} title={d.title} silo={d.silo} category={d.category} ratio="4/3" icon={iconFor(d)} sizes="(min-width: 1024px) 16vw, 50vw" />
-                      <h3 className="p-3 text-sm font-bold leading-snug text-ink">
-                        <Link href={d.path} className="after:absolute after:inset-0 group-hover:underline underline-offset-4">
-                          {d.title}
-                        </Link>
-                      </h3>
+                    <li key={d.key}>
+                      <MiniCard doc={d} />
                     </li>
                   ))}
                 </ul>
@@ -158,32 +155,13 @@ export default function HomePage() {
         sections.push({
           key: sec.key,
           node: (
-            <section aria-labelledby="bedenini-tani" className="container-page mt-14">
+            <section aria-labelledby="bedenini-tani" className="container-page mt-9 md:mt-12 lg:mt-14">
               <h2 id="bedenini-tani" className="sr-only">
                 Bedenini tanı
               </h2>
-              <div className="grid gap-4 lg:grid-cols-3">
-                {hasRoute("/kadin/beden-rehberi") ? (
-                  <div className="relative flex items-center gap-4 overflow-hidden rounded-card bg-soft p-6">
-                    <div className="min-w-0">
-                      <h3 className="text-h3 font-bold text-ink">Kadın Beden Rehberi</h3>
-                      <p className="mt-1 text-sm text-muted">Doğru bedeni bulun</p>
-                      <ButtonLink href="/kadin/beden-rehberi" className="mt-4">
-                        Bedeni Keşfet
-                      </ButtonLink>
-                    </div>
-                    {h.sizeBand.kadinImage ? (
-                      <div className="relative ml-auto h-36 w-28 shrink-0 overflow-hidden rounded-card">
-                        <Image src={h.sizeBand.kadinImage.src} alt={h.sizeBand.kadinImage.alt} fill sizes="112px" className="object-cover" />
-                      </div>
-                    ) : (
-                      <div className="ml-auto w-24 shrink-0" aria-hidden="true">
-                        <MeasureArt silo="kadin" show={["gogus", "bel", "basen"]} />
-                      </div>
-                    )}
-                  </div>
-                ) : null}
-                <div className="rounded-card border border-line p-6 text-center">
+              <div className="grid gap-4 md:grid-cols-3">
+                {hasRoute("/kadin/beden-rehberi") ? <SizeBandCard href="/kadin/beden-rehberi" title="Kadın Beden Rehberi" text="Numara bedenler, göğüs–bel–basen" image={h.sizeBand.kadinImage} silo="kadin" /> : null}
+                <div className="flex flex-col items-center justify-center rounded-card border border-line bg-soft p-6 text-center">
                   <h3 className="text-h3 font-bold text-ink">{h.manifesto?.title ?? "Her bedende doğru seçim"}</h3>
                   <p className="mt-2 text-sm text-ink-2">{h.manifesto?.text}</p>
                   {hasRoute("/hakkimizda") ? (
@@ -192,26 +170,7 @@ export default function HomePage() {
                     </ButtonLink>
                   ) : null}
                 </div>
-                {hasRoute("/erkek/beden-rehberi") ? (
-                  <div className="relative flex items-center gap-4 overflow-hidden rounded-card bg-primary p-6 text-white">
-                    <div className="min-w-0">
-                      <h3 className="text-h3 font-bold text-white">Erkek Beden Rehberi</h3>
-                      <p className="mt-1 text-sm text-white/80">Harf bedenler ve ölçüler</p>
-                      <ButtonLink href="/erkek/beden-rehberi" variant="light" className="mt-4">
-                        Bedeni Keşfet
-                      </ButtonLink>
-                    </div>
-                    {h.sizeBand.erkekImage ? (
-                      <div className="relative ml-auto h-36 w-28 shrink-0 overflow-hidden rounded-card">
-                        <Image src={h.sizeBand.erkekImage.src} alt={h.sizeBand.erkekImage.alt} fill sizes="112px" className="object-cover" />
-                      </div>
-                    ) : (
-                      <div className="ml-auto w-24 shrink-0 rounded-md bg-white/95 p-1" aria-hidden="true">
-                        <MeasureArt silo="erkek" show={["gogus", "bel"]} />
-                      </div>
-                    )}
-                  </div>
-                ) : null}
+                {hasRoute("/erkek/beden-rehberi") ? <SizeBandCard href="/erkek/beden-rehberi" title="Erkek Beden Rehberi" text="Harf bedenler, göğüs ve yaka ölçüleri" image={h.sizeBand.erkekImage} silo="erkek" /> : null}
               </div>
             </section>
           ),
@@ -235,7 +194,7 @@ export default function HomePage() {
               <Link
                 key={x}
                 href={`/${x}`}
-                className={`group relative flex min-h-[17rem] flex-col justify-end overflow-hidden rounded-card p-6 sm:min-h-[22rem] sm:p-8 lg:min-h-[27rem] ${x === "kadin" ? "bg-[#7a3550]" : "bg-primary"} text-white`}
+                className={`group relative flex min-h-[17rem] flex-col justify-end overflow-hidden rounded-card p-6 sm:min-h-[22rem] sm:p-8 lg:min-h-[25rem] ${x === "kadin" ? "bg-[#7a3550]" : "bg-primary"} text-white`}
               >
                 {c.image ? (
                   <>
@@ -274,7 +233,7 @@ export default function HomePage() {
         </p>
       </section>
 
-      <nav aria-label="Hızlı erişim" className="container-page mt-8">
+      <nav aria-label="Hızlı erişim" className="container-page mt-6 md:mt-8">
         <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
           {QUICK.filter((q) => hasRoute(q.path)).map((q) => (
             <li key={q.path}>
@@ -290,22 +249,22 @@ export default function HomePage() {
         </ul>
       </nav>
 
-      <BodyTypeSwitch />
-
       {sections.slice(0, 1).map((x) => (
         <div key={x.key}>{x.node}</div>
       ))}
 
       {popular.length >= 2 ? (
-        <section aria-labelledby="populer-kategoriler" className="container-page mt-14">
+        <section aria-labelledby="populer-kategoriler" className="container-page mt-9 md:mt-12 lg:mt-14">
           <SectionHeader id="populer-kategoriler" title="Popüler Kategoriler" />
-          <CardGrid cols={6}>
+          <CategoryGrid cols={6}>
             {popular.map((p) => (
-              <CategoryCard key={p.key} hub={p} label={`${p.silo === "kadin" ? "Kadın" : "Erkek"} ${categoryLabel(p.silo as "kadin" | "erkek", p.category!)}`} />
+              <CategoryCard key={p.key} hub={p} label={`${p.silo === "kadin" ? "Kadın" : "Erkek"} ${categoryLabel(p.silo as "kadin" | "erkek", p.category!)}`} sizes="(min-width: 1024px) 16vw, 33vw" />
             ))}
-          </CardGrid>
+          </CategoryGrid>
         </section>
       ) : null}
+
+      <BodyTypeSwitch />
 
       {sections.slice(1).map((x) => (
         <div key={x.key}>{x.node}</div>

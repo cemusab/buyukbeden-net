@@ -47,7 +47,7 @@ export function BodyTypeTiles({ silo, exclude, className = "", wide = true }: { 
   const tiles = bodyTypeTiles(silo).filter((t) => t.href !== exclude);
   if (!tiles.length) return null;
   return (
-    <ul className={`grid grid-cols-3 gap-2 sm:gap-3 ${!wide ? (tiles.length % 3 === 0 ? "" : "sm:grid-cols-4") : `sm:grid-cols-4 ${tiles.length >= 7 ? "lg:grid-cols-7" : tiles.length === 6 ? "lg:grid-cols-6" : "lg:grid-cols-5"}`} ${className}`}>
+    <ul className={`grid gap-2 sm:gap-3 ${wide ? "grid-cols-4" : "grid-cols-3"} ${!wide ? (tiles.length % 3 === 0 ? "" : "sm:grid-cols-4") : `sm:grid-cols-4 ${tiles.length >= 7 ? "lg:grid-cols-7" : tiles.length === 6 ? "lg:grid-cols-6" : "lg:grid-cols-5"}`} ${className}`}>
       {tiles.map((t) => (
         <li key={t.shape}>
           <Link
@@ -56,8 +56,8 @@ export function BodyTypeTiles({ silo, exclude, className = "", wide = true }: { 
             style={{ backgroundColor: bodyTypeSwatch(silo, t.shape).tile }}
           >
             <BodyTypeFigure silo={silo} shape={t.shape} tile={false} className="aspect-[1/2] h-auto w-full max-w-[8.5rem]" />
-            <span className="mt-1 text-center text-sm font-bold text-ink">{t.label}</span>
-            <span aria-hidden="true" className="mt-2 inline-flex h-7 w-7 items-center justify-center rounded-full bg-white text-sm text-ink shadow-sm group-hover:bg-primary group-hover:text-white">
+            <span className="mt-1 text-center text-xs font-bold leading-tight text-ink sm:text-sm">{t.label}</span>
+            <span aria-hidden="true" className="mt-2 hidden h-7 w-7 sm:inline-flex items-center justify-center rounded-full bg-white text-sm text-ink shadow-sm group-hover:bg-primary group-hover:text-white">
               →
             </span>
           </Link>
@@ -100,7 +100,7 @@ export function BodyTypeSwitch() {
   if (!silos.length) return null;
   const label = { kadin: "Kadın", erkek: "Erkek" } as const;
   return (
-    <section aria-labelledby={id} className="group/vt container-page mt-14" data-body-type-switch>
+    <section aria-labelledby={id} className="group/vt container-page mt-9 md:mt-12 lg:mt-14" data-body-type-switch>
       <div className="mb-5 flex flex-wrap items-end justify-between gap-x-6 gap-y-3">
         <div className="min-w-0">
           <h2 id={id} className="text-h2 font-bold text-ink">

@@ -1,12 +1,13 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { getAuthor, getBody, getDocByKey, getSettings } from "@/lib/content";
+import { getAuthor, getBody, getDocByKey, getSettings, listLive } from "@/lib/content";
 import type { DocMeta } from "@/lib/content-types";
 import { articleLd, faqLd } from "@/lib/jsonld";
 import { breadcrumbFor } from "@/lib/routes";
 import { OCCASIONS, SEASON_LABEL } from "@/lib/taxonomy";
 import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
 import { DocImage } from "@/components/media/Media";
+import { DocVisual } from "@/components/media/DocVisual";
 import { MarkdocContent } from "@/components/content/Markdoc";
 import { FaqList } from "@/components/content/Faq";
 import { RelatedShoppingCTA } from "@/components/content/RelatedShoppingCTA";
@@ -22,6 +23,7 @@ import {
   Toc,
 } from "@/components/content/DocParts";
 import { JsonLd } from "@/components/ui/primitives";
+import { CompactCard } from "@/components/ui/Cards";
 import { BodyTypeHero, BodyTypeTiles, BODY_TYPE_OVERVIEW, bodyTypeOf } from "@/components/content/BodyTypeTiles";
 
 const ROLE_LABEL: Record<string, string> = {
@@ -54,21 +56,38 @@ export async function DocShell({
   const parent = chain.length > 1 ? chain[chain.length - 2] : null;
   const ld: object[] = [articleLd(s, doc, getAuthor(doc.author), extraLd)];
   if (doc.faq.length >= 2) ld.push(faqLd(doc.faq));
+  // Yan sütun: aynı kategoriden / aynı bölümden içerikler (silo korunur; ilgili bloklarda tekrar edilmez)
+  const sameSilo = (d: DocMeta) => (doc.silo === "ortak" ? true : d.silo === doc.silo);
+  const rail = (
+    doc.hub
+      ? listLive((d) => d.hub === doc.hub && d.key !== doc.key && d.collection !== "hublar")
+      : listLive((d) => d.type === doc.type && d.key !== doc.key && sameSilo(d) && d.collection !== "sayfalar")
+  )
+    .filter((d) => d.status !== "archived")
+    .slice(0, 4);
+  // Kapak: fotoğraf → türe özgü çizim (vücut tipi figürleri vb.) → içeriğe uygun illüstrasyon karosu
+  const cover = doc.featuredImage ? (
+    <DocImage image={doc.featuredImage} sizes="(min-width: 1024px) 600px, (min-width: 768px) 55vw, 100vw" ratio="4/3" priority />
+  ) : (
+    (figure ?? <DocVisual doc={doc} ratio="4/3" priority />)
+  );
   return (
     <article className="container-page pb-16 pt-4" data-template={doc.type}>
       <Breadcrumbs path={doc.path} />
-      <div className="mt-4 lg:grid lg:grid-cols-[minmax(0,1fr)_280px] lg:gap-12">
+      <header className="mt-4 max-w-4xl space-y-3">
+        <DocEyebrow doc={doc} />
+        <h1 className="text-h1 font-extrabold text-ink">{doc.title}</h1>
+        <AuthorByline doc={doc} />
+      </header>
+      <div className="mt-5 grid items-start gap-5 md:grid-cols-[minmax(0,1.25fr)_minmax(0,1fr)] lg:max-w-5xl lg:gap-8" data-doc-top>
+        <div className="min-w-0">{cover}</div>
+        <Toc doc={doc} open />
+      </div>
+      <div className="mt-6 lg:grid lg:grid-cols-[minmax(0,1fr)_280px] lg:gap-12">
         <div className="min-w-0 max-w-prose">
-          <header className="space-y-3">
-            <DocEyebrow doc={doc} />
-            <h1 className="text-h1 font-extrabold text-ink">{doc.title}</h1>
-            <AuthorByline doc={doc} />
-          </header>
-          <div className="mt-5 space-y-5">
+          <div className="space-y-5">
             <ArchiveBanner doc={doc} />
             <ShortAnswer doc={doc} />
-            {doc.featuredImage ? <DocImage image={doc.featuredImage} sizes="(min-width: 1024px) 720px, 100vw" priority /> : (figure ?? null)}
-            <Toc doc={doc} className="lg:hidden" />
           </div>
           {beforeBody ? <div className="mt-8">{beforeBody}</div> : null}
           <div className="mt-8">
@@ -80,13 +99,22 @@ export async function DocShell({
           <SourcesList doc={doc} />
           <AuthorBox doc={doc} />
         </div>
-        <aside className="hidden lg:block" aria-label="Sayfa içi gezinme">
-          <div className="sticky top-28">
-            <Toc doc={doc} />
-          </div>
-        </aside>
+        {rail.length ? (
+          <aside className="mt-10 lg:mt-0" aria-labelledby="bu-bolumde">
+            <div className="lg:sticky lg:top-28">
+              <h2 id="bu-bolumde" className="mb-3 text-h3 font-bold text-ink">
+                Bu bölümde
+              </h2>
+              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
+                {rail.map((d) => (
+                  <CompactCard key={d.key} doc={d} showExcerpt={false} />
+                ))}
+              </div>
+            </div>
+          </aside>
+        ) : null}
       </div>
-      <RelatedBlocks doc={doc} />
+      <RelatedBlocks doc={doc} exclude={rail.map((d) => d.key)} />
       {parent && parent.path !== "/" ? <BackToParent href={parent.path} label={`${parent.label} rehberinin tamamı`} /> : null}
       <JsonLd data={ld} />
     </article>

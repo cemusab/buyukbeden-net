@@ -19,13 +19,13 @@ hero:
       aiGenerated: true
 sizeBand:
   kadinImage:
-    src: /images/stok/kapak-beden-rehberi-kadin/pexels-4622403.jpg
-    alt: Moda atölyesinde boynuna terzi mezurası asmış, haki örgü tişörtlü kişi
-    credit: "Fotoğraf: cottonbro studio / Pexels"
+    src: /images/stok/kapak-beden-rehberi/pexels-31144012.jpg
+    alt: Buruşuk beyaz kumaşın üzerinde kalp biçiminde duran mavi terzi mezurası
+    credit: "Fotoğraf: Beyzaa Yurtkuran / Pexels"
   erkekImage:
-    src: /images/stok/kapak-beden-rehberi-erkek/pexels-6766234.jpg
-    alt: Terzi atölyesinde bir terzinin müşterinin kol ve göğüs ölçüsünü mezurayla alması
-    credit: "Fotoğraf: Tima Miroshnichenko / Pexels"
+    src: /images/stok/terzi-araclari/pexels-6461504.jpg
+    alt: Beyaz zeminde yan yana dizilmiş terzi makası, kalem, küçük makas, iplik, söküm aleti, çengelli iğne ve düğme
+    credit: "Fotoğraf: Pavel Danilyuk / Pexels"
 manifesto:
   title: Her bedende doğru seçim mümkün
   text: Doğru beden, doğru kalıp ve doğru kumaş bir araya geldiğinde giyinmek kolaylaşır. Rehberlerimiz ölçüden başlar, markaların kendi tablolarına dayanır ve satış yapmaz.
