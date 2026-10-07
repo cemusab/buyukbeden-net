@@ -256,33 +256,70 @@ Proporsiyon kuralı: beden kiloya göre değil vücut ölçüsü ve boya göre b
 
 ## 6. Beden tablosu – `content/beden-tablolari/{id}.yaml`
 
+Her dosya **bir markanın tek bir tablosudur** (CLAUDE.md Beden Kuralları; `docs/beden-veri-migrasyonu.md`). Markalar arası karşılaştırma tablosu elle yazılmaz; `{% beden-karsilastirma %}` ile bu dosyalardan türetilir.
+
 ```yaml
-title: Ulla Popken kadın vücut ölçüleri
-caption: Ulla Popken kadın beden tablosu (vücut ölçüsü, cm)
-silo: kadin
-scope: genel                 # genel | ust-giyim | alt-giyim | elbise | ic-giyim | gomlek | jean
-kind: olcu-cm                # olcu-cm (ölçü tablosu) | donusum (beden çevirme)
-brand: ulla-popken           # opsiyonel (markalar'da varsa)
-columns:                     # 2–10 sütun; ilk sütun satır başlığı
-  - { key: beden, label: Beden }
-  - { key: gogus, label: Göğüs, unit: cm }
-  - { key: bel, label: Bel, unit: cm }
-  - { key: basen, label: Basen, unit: cm }
-rows:                        # her satır = sütun sayısı kadar hücre (metin)
-  - ["42", "99–102", "82–85", "105–108"]
-  - ["44", "103–106", "86–89", "109–112"]
-highlightColumn: gogus       # opsiyonel vurgulu sütun
-approximate: true            # true → "Yaklaşık değerler; markaya göre değişir" notu
-notes:
-  - Normal boy 167–174 cm için verilmiştir.
+title: Ulla Popken kadın vücut ölçüleri (42–68)
+caption: Ulla Popken kadın beden tablosu – vücut ölçüsü (cm)
+kind: olcu                   # olcu (marka başına ölçü tablosu) | donusum (beden çevirme, ölçü yok)
+gender: kadin                # kadin | erkek
+brand: ulla-popken           # opsiyonel: content/markalar/{id} varsa
+brandName: Ulla Popken       # tabloda görünen ad (generic tabloda referansın adı)
+productType: genel           # genel | ust-giyim | alt-giyim | elbise | pantolon | jean | gomlek | ceket | triko | tisort | ic-giyim
+countrySystem: DE            # numericSize'ın sistemi: TR | EU | DE | UK | US | IT | harf | marka
+measurementType: body        # ZORUNLU (olcu): body = vücut ölçüsü, garment = ürünün (giysinin) kendi ölçüsü
+measurementTypeVerified: true  # kaynak türü açıkça yazmıyorsa false + notes'ta açıklama; Beden Bulucu'ya girmez
+partialRows: false           # kaynağın yalnız bazı satırları aktarıldıysa true; Beden Bulucu'ya girmez
+sourceType: official_brand   # official_brand > manufacturer > distributor > generic (generic → notes'ta "genel/yaklaşık" zorunlu)
+sourceUrl: https://www.ullapopken.at/de/guides/size-guide   # sources içinde de olmalı
+unit: cm                     # kaynaktaki birim: cm | inch (inch saklanır, arayüz cm'ye çevirip "çeviri bizim" yazar)
+lastVerifiedAt: 2026-10-07   # 6 aydan eskiyse validate uyarır
+fitType: regular             # opsiyonel: regular | slim | comfort | relaxed | tall | short | curve
+heightNote: "Normal bedenler 167–174 cm boy içindir."      # opsiyonel
+heightRange: { min: 167, max: 174 }                          # opsiyonel; Beden Bulucu kısa/uzun boy notu
+fieldLabels: { hip: "Basen (alçak kalça)" }                  # opsiyonel: alan başlığını kaynağın terimiyle değiştirir
+highlight: bust              # opsiyonel vurgulu alan
+rows:                        # bedene göre küçükten büyüğe; her ölçü {min,max}, tek değer → min = max
+  - { numericSize: "48", letterSize: "M", equivalents: { kisa: "24", uzun: "96" }, bust: { min: 111, max: 116 }, waist: { min: 94, max: 99 }, hip: { min: 117, max: 122 } }
+notes: []
 sources:                     # en az 1 – kaynaksız tablo yok
-  - url: https://www.ullapopken.at/de/guides/size-guide
-    type: brand-official
-    label: Ulla Popken beden rehberi
-    checkedAt: 2026-10-07
+  - { url: https://www.ullapopken.at/de/guides/size-guide, type: brand-official, label: Ulla Popken beden rehberi, checkedAt: 2026-10-07 }
 ```
 
-Kullanım: gövdede `{% beden-tablosu id="kadin-ulla-popken-vucut" /%}` veya beden rehberinde `sizeCharts: [...]`. Vücut tablosu ile giysi (ürün) tablosu karıştırılmaz; `caption`'da hangisi olduğunu yazın.
+**Satır alanları:** `numericSize`, `letterSize`, `equivalents` (TR, EU, DE, UK, US, IT, jean, kisa, uzun, normal, marka), aralıklar `bust` (yalnız kadın), `chest` (yalnız erkek), `underbust`, `cupDifference`, `waist`, `hip`, `neck`, `shoulder`, `sleeve`, `inseam`, `upperArm`, `chestWidth` ve `length` (yalnız `garment`), jean etiketi `waistInch` / `lengthInch` (W/L, inç), `stretch` (none | low | high, kaynaklı), `note`.
+
+**Dönüşüm tablosu** (`kind: donusum`): ölçü içermez; `columns: [{key, label}]` ve `rows: [{ systems: { harf: "XL", lcw: "42", … } }]`.
+
+**Doğrulama:** min ≤ max; her ölçü satır satır küçülmez (kaynak gerçekten tutarsızsa `inconsistencyNote`); kadında `chest`, erkekte `bust` hata; `garment` alanları yalnız ürün tablosunda; `brand` ve `sourceUrl` geçerli olmalı.
+
+Kullanım: gövdede `{% beden-tablosu id="kadin-ulla-popken-vucut" /%}` veya beden rehberinde `sizeCharts: [...]`.
+
+### Türetilmiş karşılaştırma – `{% beden-karsilastirma %}`
+
+Aynı `measurementType`'taki marka tablolarının satırlarını toplar; her satırda marka ve kaynak numarası görünür, ortalama alınmaz. Vücut ve ürün ölçüsü aynı karşılaştırmada **asla** yer almaz (validate hata verir).
+
+```
+{% beden-karsilastirma gender="kadin" measurementType="body" olcu="bust,waist,hip" size="52" /%}
+{% beden-karsilastirma gender="erkek" measurementType="garment" olcu="chestWidth,length" size="4XL" productType="tisort" cevre=true /%}
+{% beden-karsilastirma gender="erkek" measurementType="body" olcu="neck" sizes="L,XL,2XL,3XL" charts="erkek-jp1880-ust,erkek-hm-vucut" /%}
+{% beden-karsilastirma gender="kadin" measurementType="body" olcu="bust" value=122 /%}
+{% beden-karsilastirma gender="erkek" measurementType="body" olcu="chest" values="107-112,117-122" /%}
+```
+
+| Öznitelik | Anlamı |
+|---|---|
+| `size` | Tek beden (numara EU/TR karşılığıyla ya da harf); satırlar markalar |
+| `sizes` | Beden listesi; satırlar bedenler, sütunlar markalar (tek `olcu`) |
+| `value` (+ `tolerans`, varsayılan 2 cm) | Bu ölçüye değen bedenler, marka marka |
+| `values` | Ölçü bantları; her bantta markaların o banda değen bedenleri |
+| `charts` | Yalnız bu tablo id'leri (aynı ölçü türünde olmalı) |
+| `productType`, `cevre`, `baslik` | Ürün tipi filtresi, giysi eni × 2 sütunu (bizim hesabımız), başlık |
+
+Beden rehberi frontmatter'ında aynı öznitelikler `sizeComparisons: [{ gender, measurementType, olcu, size … }]` ile sayfa üstüne konur. Sonuç boşsa validate hata verir.
+
+### Kesinlik dili
+
+`npm run validate`, `scripts/check-language.ts` ile içerikte "kesin olarak", "kesinlikle … beden", "her zaman … bedendir", "tam olarak … denk gelir", "mutlaka … beden" gibi ifadeleri dosya:satır olarak uyarır. Yerine "çoğu markada", "yaklaşık", "markaya göre değişir" yazın.
 
 ---
 
@@ -545,6 +582,7 @@ Markaya göre değişebilir; satın almadan önce markanın kendi tablosunu kont
 | `{% adimlar %}` | Numaralı adımlar | İçinde `1.` listesi |
 | `{% table %}` | Mobilde yatay kaydırılabilir tablo, ilk sütun sabit | Satırlar `---` ile ayrılır; `caption` önerilir |
 | `{% beden-tablosu id="…" /%}` | Kaynaklı beden tablosu + kaynak satırı | id `content/beden-tablolari/`'da olmalı |
+| `{% beden-karsilastirma … /%}` | Marka tablolarından türetilen karşılaştırma | Bkz. §6; boş sonuç ve karışık ölçü türü hata |
 | `{% ilgili yol="…" /%}` | İçerik kartı | Yol yayımlı olmalı |
 | `{% sss /%}` | `faq` alanını bu noktada gösterir | Yoksa sayfa sonunda |
 | `{% alisveris-cta /%}` | Alışveriş CTA konumu | Şimdilik kapalı; görünmez |

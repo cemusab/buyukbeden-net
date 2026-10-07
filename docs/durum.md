@@ -1,5 +1,25 @@
 # Durum notları
 
+## 2026-10-07 – Beden verisi migrasyonu (docs/beden-veri-migrasyonu.md uygulandı)
+
+### Yapılanlar
+- **Şema:** `src/content/schema.ts > SizeChartSchema` artık iki tür: `kind: olcu` (marka başına ölçü tablosu: `gender`, `brand?`, `brandName`, `productType`, `countrySystem`, zorunlu `measurementType: body | garment`, `measurementTypeVerified`, `partialRows`, `sourceType`, `sourceUrl`, `unit: cm | inch`, `lastVerifiedAt`, `fitType?`, `heightNote?`, `heightRange?`, yapılandırılmış satırlar `{min,max}`) ve `kind: donusum` (`rows[].systems`). Ortak saf mantık: `src/lib/size-core.ts` (biçimlendirme, inç → cm, harf normalleştirme, karşılaştırma türetme, Beden Bulucu eşleştirmesi).
+- **Veri:** 33 tablo script ile dönüştürülüp tek tek gözden geçirildi; elle yazılmış 8 markalar arası tablo (`kadin-48/52/54-56-beden-markalara-gore`, `*-ayni-gogus-farkli-etiket`, `erkek-4xl-*`, `erkek-gomlek-yaka-markalara-gore`) ve iki markalı `kadin-sutyen-kup-farki` silindi. Yalnız bu tablolarda duran değerler için mevcut kaynaklarından marka tabloları açıldı: LAURASØN, Bonprix (kadın/erkek), Simply Be, Lane Bryant, Torrid, Eloquii, Target (inç), DXL, KingSize (inç), Duke, Jacamo, ASOS erkek, EN 13402 harf kodları (generic), ZegSlacks / Büyüksünabi / ModeXL tişört (giysi), C&A ve Triumph kup. `erkek-ms-vucut` üçe (gömlek / üst / pantolon), `erkek-kigili-giysi` ikiye (gömlek / tişört) ayrıldı. Şu an 46 tablo.
+- **Türetilmiş karşılaştırma:** `{% beden-karsilastirma gender= measurementType= olcu= size|sizes|value|values= charts= /%}` ve beden rehberinde `sizeComparisons`. Yalnız aynı ölçü türündeki marka satırlarını toplar; her satır/sütunda marka ve numaralı kaynak; ortalama yok. İçerikteki elle yazılmış karşılaştırmalı ölçü tabloları (harf karşılıkları erkek göğüs, 4XL tişört, elbise 52, gömlek yaka ×2, tişört hub'ı, pantolon hub'ı, Türk markalarında 48) da bu etikete çevrildi; `hublar/erkek-gomlek` içindeki vücut + giysi karışık tablo ayrıldı.
+- **Görünüm:** `SizeChartTable` aralıkları "118–122 cm" yazar, "Vücut ölçüsü / Ürün (giysi) ölçüsü" rozeti, inç kaynakta cm çevirisi + "çeviri bizim" notu, altında kaynak türü ve son doğrulama tarihi; mobil kart görünümü korunuyor. Yeni `SizeComparisonTable` (liste ve matris, mobilde kart).
+- **Doğrulama (`npm run validate`):** min ≤ max, bedene göre artan ölçüler, kadında bust / erkekte chest, giysi alanları yalnız garment tablolarında, karşılaştırmada karışık ölçü türü ve boş sonuç hatası, `brand` ve `sourceUrl` referansı, generic kaynakta "genel/yaklaşık" notu, `lastVerifiedAt` 6 aydan eskiyse uyarı (tablolar + markalar). `scripts/check-language.ts` kesinlik dilini dosya:satır olarak uyarır (bulunan tek cümle düzeltildi).
+- **Beden Bulucu:** `/beden-rehberi` (kadın/erkek seçimli), `/kadin/beden-rehberi`, `/erkek/beden-rehberi`. Göğüs/bel/basen (erkekte kalça) cm → doğrulanmış vücut tablolarında marka marka yaklaşık beden aralığı + kaynak; yalnız boy/kilo → "Tahmini" etiketi, beden önerilmez, ölçü almaya yönlendirir. Depolama, çerez, ağ isteği yok (yasal metin değişikliği gerekmedi); JS kapalıyken açıklama + linkler. Playwright: `tests/beden-bulucu.spec.ts`.
+- **Keystatic:** tablo satırları ve tüm yeni alanlar panelde yapılandırılmış alanlar; `beden-karsilastirma` bileşeni ve `sizeComparisons` eklendi.
+
+### Gözden geçirmede bulunanlar
+- TuvidXXL tablosunun vücut mu giysi mi olduğu kaynakta yazmıyor → `measurementTypeVerified: false`, karşılaştırmalarda † ile işaretli, Beden Bulucu'da yok.
+- Eski erkek "aynı göğüs" tablosunun "JP1880 / Bonprix" sütunu yalnız JP1880 değerlerini taşıyordu; Bonprix erkek tablosu ayrı açıldı (değerler aynı dizi).
+- Tchibo satırları "44 (L)" biçiminde numara+harf karışıktı; ayrıldı. JP1880 tablosuna aynı kaynaktaki gömlek yaka değerleri eklendi.
+- LAURASØN ve Target tabloları kaynağın yalnız bazı satırlarını içeriyor (`partialRows: true`).
+
+### QA
+- 2026-10-07: `npm run qa` yeşil – validate (159 belge, 46 beden tablosu, 162 URL) + lint + build + Playwright (Beden Bulucu testleri dahil).
+
 ## 2026-10-07 – Frontend / platform (P1 + P2 + P4 altyapı)
 
 ### Yapılanlar
@@ -22,9 +42,8 @@
 
 ### Açık konular / bilinen boşluklar
 - **İletişim e-postası** site sahibinden bekleniyor; gelene kadar `/iletisim` yayımlanmıyor (menü/footer'da yok).
-- **Beden Bulucu** (cm ölçü → kaynaklı tablolarla karşılaştırma) yapılmadı; şart: kaynaklı tablolar yeterli, depolama/çerez/ağ yok, JS'siz açıklama. Sonraki iş.
 - Arama sonuçları JS gerektirir (statik site: `/arama?q=` sunucuda okunamaz); JS kapalıyken `<noscript>` açıklaması + rehber kapıları gösterilir. Header formu JS'siz `/arama?q=`'ya gider.
-- Keystatic prod (GitHub App) kurulumu site sahibinin onayıyla yapılacak (env değişkenleri). Bazı karmaşık alanlar (kombin parçaları, alışveriş kriterleri/seçimleri, marka künyesi, tablo satırları) panelde düzenlenemez, dosyadan düzenlenir.
+- Keystatic prod (GitHub App) kurulumu site sahibinin onayıyla yapılacak (env değişkenleri). Bazı karmaşık alanlar (kombin parçaları, alışveriş kriterleri/seçimleri, marka künyesi, tablo satırlarındaki karşılık sözlüğü) panelde düzenlenemez, dosyadan düzenlenir.
 - Lighthouse ölçümü (P5) ve axe a11y testi henüz eklenmedi (`@axe-core/playwright` kurulu).
 - Markdoc `{% table %}` tablolarında mobil kart görünümü yok (yatay kaydırma + yapışkan ilk sütun var); kart görünümü yalnız `beden-tablolari` tablolarında.
 - Hub kartı / hub hero fotoğrafları içerikte `image` alanıyla bağlanır (henüz çoğu hub'da yok → kıyafet çizimi gösteriliyor). Ana sayfa hero ve beden rehberi bandı stok fotoğraflarla bağlandı (`content/ayarlar/anasayfa.yaml`).
