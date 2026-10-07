@@ -2,12 +2,22 @@ import Markdoc, { type RenderableTreeNodes } from "@markdoc/markdoc";
 import Link from "next/link";
 import Image from "next/image";
 import React, { Children, isValidElement, type ReactElement, type ReactNode } from "react";
-import { getByPath, getSizeChart } from "@/lib/content";
+import { getByPath, getSizeChart, getSizeCharts } from "@/lib/content";
+import { buildComparison, specFromAttrs } from "@/lib/size-core";
 import type { DocMeta, Tree } from "@/lib/content-types";
 import { hasRoute } from "@/lib/routes";
 import { eyebrowFor } from "@/lib/present";
 import { Badge } from "@/components/ui/primitives";
 import { SizeChartTable } from "./SizeChartTable";
+import { SizeComparisonTable } from "./SizeComparisonTable";
+
+/** {% beden-karsilastirma %} ve beden rehberi `sizeComparisons` alanı: marka tablolarından türetilir. */
+export function SizeComparison({ headingLevel, ...attrs }: Record<string, unknown> & { headingLevel?: "h2" | "h3" }) {
+  const { spec } = specFromAttrs(attrs);
+  if (!spec) return null;
+  const { result } = buildComparison(getSizeCharts(), spec);
+  return result ? <SizeComparisonTable result={result} headingLevel={headingLevel} /> : null;
+}
 import { FaqList } from "./Faq";
 import { RelatedShoppingCTA } from "./RelatedShoppingCTA";
 
@@ -170,6 +180,7 @@ export function MarkdocContent({ tree, doc, inline = false }: { tree: Tree; doc?
       const chart = getSizeChart(id);
       return chart ? <SizeChartTable chart={chart} /> : null;
     },
+    SizeComparison,
     FaqSlot: () => (doc && doc.faq.length ? <FaqList doc={doc} /> : null),
     ShoppingCtaSlot: () => (doc ? <RelatedShoppingCTA doc={doc} /> : null),
   };

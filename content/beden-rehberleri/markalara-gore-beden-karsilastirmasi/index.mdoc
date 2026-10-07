@@ -4,7 +4,9 @@ breadcrumbTitle: Markalara Göre Karşılaştırma
 segment: markalara-gore-beden-karsilastirmasi
 silo: ortak
 sizeSystem: [TR, EU, UK, US, harf]
-sizeCharts: [erkek-ayni-gogus-farkli-etiket, kadin-ayni-gogus-farkli-etiket]
+sizeComparisons:
+  - { gender: erkek, measurementType: body, olcu: chest, values: "107-112,112-117,117-122,127-132,137-142,147-152,157-163,168-173", charts: "erkek-dxl-vucut,erkek-kingsize-vucut,erkek-jp1880-ust,erkek-bonprix-vucut,erkek-duke-vucut,erkek-jacamo-vucut,erkek-asos-vucut,erkek-defacto-vucut,erkek-lcw-vucut", baslik: "Erkek: aynı göğüs ölçüsü, markaya göre farklı harf" }
+  - { gender: kadin, measurementType: body, olcu: bust, value: 122, baslik: "Kadın: yaklaşık 122 cm göğüs, markaya göre farklı beden" }
 brands: [jp1880, ulla-popken, defacto, lc-waikiki, tuvidxxl, tchibo, asos-curve]
 excerpt: "Aynı göğüs ölçüsü Türkiye, Almanya, İngiltere ve ABD'deki markalarda hangi bedene denk geliyor? 20'den fazla resmi beden tablosundan derlenen kadın ve erkek karşılaştırması."
 shortAnswer: "Aynı vücut, markaya göre çok farklı bir etiket alır. Örneğin yaklaşık **117–122 cm göğüslü bir erkek** DXL'de 1XL, KingSize'da XL, JP1880 ve Bonprix'te XXL, ASOS'ta XXXL bedene denk gelir. Yaklaşık **122 cm göğüslü bir kadın** Avrupa'da 50–52, İngiltere'de UK 22, ABD'de US 18–20 giyer. Bu yüzden harfe değil, cm'ye ve markanın kendi tablosuna bakın."
@@ -67,7 +69,7 @@ Yaklaşık 117–122 cm göğüs çevresine sahip bir erkeği düşünün:
 - ABD'deki **DXL**'de 1XL,
 - ABD'deki **KingSize**'da XL,
 - Almanya'daki **JP1880** ve **Bonprix**'te XXL,
-- İngiltere'deki **Duke** ve **Jacamo**'da 1XL,
+- İngiltere'deki **Duke**'ta 1XL, **Jacamo**'da ölçünün aralıktaki yerine göre XL ya da 1XL,
 - **ASOS**'ta XXXL,
 - Türkiye'de **DeFacto**'da XXL (120–122 cm) bedene denk geliyor.
 
@@ -94,19 +96,7 @@ Kadında XL'in ne demek olduğu da tamamen markaya bağlı: Simply Be'de UK 16, 
 
 Numaralı bedenler harflerden daha tutarlı, ama Türk markaları arasında da fark var. Kadın 48 beden için vücut göğüs çevresi:
 
-{% table caption="Kadın 48 beden: Türk markalarında göğüs çevresi (vücut ölçüsü, cm)" %}
-* Marka
-* 48 bedenin göğüs değeri
----
-* Tchibo
-* 113–119
----
-* LC Waikiki
-* 118
----
-* TuvidXXL
-* 120–125
-{% /table %}
+{% beden-karsilastirma gender="kadin" measurementType="body" olcu="bust" size="48" charts="kadin-tchibo-vucut,kadin-lcw-vucut,kadin-tuvidxxl-vucut" baslik="Kadın 48 beden: Türk markalarında göğüs çevresi" /%}
 
 Aynı numarada yaklaşık 10 cm'lik bir fark var. Kadın 44 bedenin harfi ise TuvidXXL'de S, Tchibo'da L, LC Waikiki'de 2XL. Marka profilleri için [TuvidXXL](/marka/tuvidxxl), [Tchibo](/marka/tchibo) ve [LC Waikiki](/marka/lc-waikiki) sayfalarına bakabilirsiniz.
 

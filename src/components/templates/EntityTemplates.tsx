@@ -4,7 +4,7 @@ import type { DocMeta } from "@/lib/content-types";
 import { categoryLabel, CATEGORIES, SEASON_LABEL, type GenderSilo } from "@/lib/taxonomy";
 import { formatDate } from "@/lib/present";
 import { SizeChartTable } from "@/components/content/SizeChartTable";
-import { MarkdocContent } from "@/components/content/Markdoc";
+import { MarkdocContent, SizeComparison } from "@/components/content/Markdoc";
 import { ClickToLoadEmbed } from "@/components/content/ClickToLoadEmbed";
 import { MeasureArt } from "@/components/media/Illustration";
 import { CompactCard } from "@/components/ui/Cards";
@@ -23,16 +23,19 @@ const PART_LABEL: Record<string, string> = {
 
 /** Beden rehberi (mimari §14): tablolar + ölçü adımları + komşu bedenler. */
 export async function SizeGuideTemplate({ doc }: { doc: DocMeta }) {
-  const fm = doc.fm as { sizeCharts: string[]; measurementSteps: { part: string; text: string }[] };
+  const fm = doc.fm as { sizeCharts: string[]; sizeComparisons: Record<string, unknown>[]; measurementSteps: { part: string; text: string }[] };
   const charts = fm.sizeCharts.map((id) => getSizeChart(id)).filter((c): c is NonNullable<typeof c> => !!c);
   const silo: GenderSilo = doc.silo === "erkek" ? "erkek" : "kadin";
   const before = (
     <div className="space-y-8">
-      {charts.length ? (
+      {charts.length || fm.sizeComparisons.length ? (
         <section aria-labelledby="beden-tablolari">
           <h2 id="beden-tablolari" className="text-h2 font-bold text-ink">
             Beden tabloları
           </h2>
+          {fm.sizeComparisons.map((c, i) => (
+            <SizeComparison key={`k${i}`} {...c} headingLevel="h3" />
+          ))}
           {charts.map((c) => (
             <SizeChartTable key={c.id} chart={c} headingLevel="h3" />
           ))}

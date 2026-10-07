@@ -99,6 +99,25 @@ export const markdocConfig: Config = {
       selfClosing: true,
       attributes: { id: { type: String, required: true } },
     },
+    /** Marka tablolarından türetilen karşılaştırma (src/lib/size-core.ts > buildComparison). Elle tablo yazılmaz. */
+    "beden-karsilastirma": {
+      render: "SizeComparison",
+      selfClosing: true,
+      attributes: {
+        gender: { type: String, required: true, matches: ["kadin", "erkek"] },
+        measurementType: { type: String, required: true, matches: ["body", "garment"] },
+        olcu: { type: String, required: true },
+        size: { type: String },
+        sizes: { type: String },
+        value: { type: Number },
+        tolerans: { type: Number },
+        values: { type: String },
+        charts: { type: String },
+        productType: { type: String },
+        cevre: { type: Boolean },
+        baslik: { type: String },
+      },
+    },
   },
 };
 

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { getByPath, getHomepage, getHubs, getSettings, getSizeCharts, listLive } from "@/lib/content";
+import { isMeasure } from "@/lib/size-core";
 import type { DocMeta } from "@/lib/content-types";
 import { itemListLd, organizationLd, websiteLd } from "@/lib/jsonld";
 import { simpleMetadata } from "@/lib/metadata";
@@ -22,14 +23,16 @@ function rangeLine(): string | null {
   const parts: string[] = [];
   const charts = getSizeCharts();
   const kNums = charts
-    .filter((c) => c.silo === "kadin" && c.kind === "olcu-cm" && /^(beden|tr|eu)/i.test(c.columns[0].key))
-    .flatMap((c) => c.rows.map((r) => Number(r[0])))
+    .filter(isMeasure)
+    .filter((c) => c.gender === "kadin" && c.productType !== "ic-giyim" && ["TR", "EU", "DE"].includes(c.countrySystem))
+    .flatMap((c) => c.rows.map((r) => Number(r.numericSize)))
     .filter((n) => Number.isInteger(n) && n >= 32 && n <= 80);
   if (kNums.length && hasRoute("/kadin/beden-rehberi")) parts.push(`Kadın ${Math.min(...kNums)}–${Math.max(...kNums)}`);
   const order = ["XL", "XXL", "2XL", "3XL", "4XL", "5XL", "6XL", "7XL", "8XL", "9XL", "10XL"];
   const eLetters = charts
-    .filter((c) => c.silo === "erkek")
-    .flatMap((c) => c.rows.map((r) => r[0].toUpperCase()))
+    .filter(isMeasure)
+    .filter((c) => c.gender === "erkek")
+    .flatMap((c) => c.rows.map((r) => (r.letterSize ?? "").toUpperCase()))
     .filter((x) => order.includes(x))
     .sort((a, b) => order.indexOf(a) - order.indexOf(b));
   if (eLetters.length && hasRoute("/erkek/beden-rehberi")) parts.push(`Erkek ${eLetters[0]}–${eLetters[eLetters.length - 1]}`);
