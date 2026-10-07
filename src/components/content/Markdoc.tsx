@@ -4,6 +4,7 @@ import Image from "next/image";
 import React, { Children, isValidElement, type ReactElement, type ReactNode } from "react";
 import { getByPath, getSizeChart, getSizeCharts } from "@/lib/content";
 import { buildComparison, specFromAttrs } from "@/lib/size-core";
+import { buildMeasureView } from "@/lib/size-measure-view";
 import type { DocMeta, Tree } from "@/lib/content-types";
 import { hasRoute } from "@/lib/routes";
 import { eyebrowFor } from "@/lib/present";
@@ -12,11 +13,15 @@ import { SizeChartTable } from "./SizeChartTable";
 import { SizeComparisonTable } from "./SizeComparisonTable";
 
 /** {% beden-karsilastirma %} ve beden rehberi `sizeComparisons` alanı: marka tablolarından türetilir. */
-export function SizeComparison({ headingLevel, ...attrs }: Record<string, unknown> & { headingLevel?: "h2" | "h3" }) {
+export function SizeComparison({ headingLevel, gorunum, ...attrs }: Record<string, unknown> & { headingLevel?: "h2" | "h3"; gorunum?: string }) {
   const { spec } = specFromAttrs(attrs);
   if (!spec) return null;
-  const { result } = buildComparison(getSizeCharts(), spec);
-  return result ? <SizeComparisonTable result={result} headingLevel={headingLevel} /> : null;
+  const charts = getSizeCharts();
+  const { result } = buildComparison(charts, spec);
+  if (!result) return null;
+  // Varsayılan ölçü öncelikli; amacı marka karşılaştırması olan sayfalar gorunum="marka" ile marka öncelikli kalır.
+  const cards = gorunum === "marka" ? undefined : buildMeasureView(charts, result);
+  return <SizeComparisonTable result={result} cards={cards} headingLevel={headingLevel} />;
 }
 import { FaqList } from "./Faq";
 import { RelatedShoppingCTA } from "./RelatedShoppingCTA";

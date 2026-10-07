@@ -116,6 +116,8 @@ export const markdocConfig: Config = {
         productType: { type: String },
         cevre: { type: Boolean },
         baslik: { type: String },
+        /** "olcu" (varsayılan): ölçü öncelikli kartlar; "marka": marka öncelikli (amacı marka karşılaştırması olan sayfalar) */
+        gorunum: { type: String, matches: ["olcu", "marka"] },
       },
     },
   },

@@ -126,3 +126,85 @@ test.describe("beden tabloları ve türetilmiş karşılaştırmalar", () => {
     }
   });
 });
+
+/* Karşılaştırma görünümleri: varsayılan ölçü öncelikli, gorunum="marka" marka öncelikli. */
+test.describe("karşılaştırma görünümleri", () => {
+  const MEASURE_PAGE = "/beden-rehberi/harf-beden-karsiliklari";
+  const BRAND_PAGES = ["/beden-rehberi/markalara-gore-beden-karsilastirmasi", "/alisveris-rehberi/markalar-arasi-beden-farki"];
+
+  test("ölçü öncelikli kart: ölçü aralığı, dürüst toplam ve marka dökümü (mobil)", async ({ page }, info) => {
+    test.skip(info.project.name !== "mobile", "mobil");
+    test.skip(!has(MEASURE_PAGE), "sayfa yok");
+    await page.goto(MEASURE_PAGE);
+    const fig = page.locator('[data-size-comparison][data-view="olcu"]').first();
+    await expect(fig).toBeVisible();
+    const card = fig.locator("[data-measure-card]").first();
+    await expect(card).toBeVisible();
+    await expect(card).toContainText("Beden:");
+    const rows = card.locator("[data-measure-row]");
+    expect(await rows.count()).toBeGreaterThan(0);
+    await expect(rows.first().locator("[data-agg-note]")).toHaveText(/^(Kaynaklardaki aralık · (1 kaynak|\d+ marka|\d+ kaynak, \d+ marka)|Yalnız ölçü türü belirtilmemiş)/);
+    // Marka adı başlık değil: kartın görünür ilk satırı beden
+    await expect(card.locator("p").first()).toHaveText(/^Beden: /);
+
+    const det = card.locator("details[data-brand-breakdown]");
+    await expect(det).not.toHaveAttribute("open", /.*/);
+    const sum = det.locator("summary");
+    await expect(sum).toHaveText(/Markalara göre/);
+    expect((await sum.boundingBox())!.height).toBeGreaterThanOrEqual(44);
+    await sum.click();
+    await expect(det).toHaveAttribute("open", "");
+
+    // Toplam = † olmayan kaynakların en küçük alt – en büyük üst değeri
+    for (const row of await rows.all()) {
+      const f = await row.getAttribute("data-measure-row");
+      const vals = det.locator(`[data-breakdown-field="${f}"] [data-brand-value]`);
+      expect(await vals.count()).toBeGreaterThan(0);
+      const nums = await vals.evaluateAll((els) =>
+        els.filter((e) => !e.hasAttribute("data-uncertain")).map((e) => [Number(e.getAttribute("data-min")), Number(e.getAttribute("data-max"))]),
+      );
+      if (!nums.length) continue;
+      expect(Number(await row.getAttribute("data-min"))).toBeCloseTo(Math.min(...nums.map((n) => n[0])), 5);
+      expect(Number(await row.getAttribute("data-max"))).toBeCloseTo(Math.max(...nums.map((n) => n[1])), 5);
+    }
+    // Kaynak numaraları dökümde ve hedefleri sayfada
+    const refs = det.locator('a[href^="#karsilastirma-"]');
+    expect(await refs.count()).toBeGreaterThan(0);
+    for (const href of await refs.evaluateAll((as) => [...new Set(as.map((a) => a.getAttribute("href")!))])) await expect(page.locator(href), href).toHaveCount(1);
+
+    const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
+    expect(overflow).toBeLessThanOrEqual(1);
+  });
+
+  test("ölçü öncelikli tablo: satırlar beden, sütunlar ölçü; marka dökümü açılır (masaüstü)", async ({ page }, info) => {
+    test.skip(info.project.name !== "desktop", "masaüstü");
+    test.skip(!has(MEASURE_PAGE), "sayfa yok");
+    await page.goto(MEASURE_PAGE);
+    const fig = page.locator('[data-size-comparison][data-view="olcu"]').first();
+    const table = fig.locator('[data-view-part="measure-table"]');
+    await expect(table).toBeVisible();
+    await expect(fig.locator("[data-measure-card]").first()).toBeHidden();
+    await expect(table.locator("thead th").first()).toHaveText("Beden");
+    await expect(table.locator("thead th").nth(1)).toHaveText(/Göğüs/);
+    expect(await table.locator("tbody tr").count()).toBeGreaterThan(1);
+    await expect(table.locator("tbody td [data-agg-note]").first()).toContainText("Kaynaklardaki aralık");
+    const det = fig.locator(":scope > details[data-brand-breakdown]");
+    const brandTable = det.locator('[data-view-part="brand-table"]');
+    await expect(brandTable).toBeHidden();
+    await det.locator("summary").click();
+    await expect(brandTable).toBeVisible();
+    expect(await brandTable.locator('a[href^="#karsilastirma-"]').count()).toBeGreaterThan(0);
+  });
+
+  for (const p of BRAND_PAGES)
+    test(`gorunum="marka": ${p} marka öncelikli kalır`, async ({ page }, info) => {
+      test.skip(!has(p), "sayfa yok");
+      await page.goto(p);
+      const figs = page.locator("[data-size-comparison]");
+      expect(await figs.count()).toBeGreaterThan(0);
+      await expect(page.locator('[data-size-comparison][data-view="olcu"]')).toHaveCount(0);
+      await expect(page.locator("[data-measure-card]")).toHaveCount(0);
+      const part = info.project.name === "mobile" ? '[data-view-part="brand-cards"]' : '[data-view-part="brand-table"]';
+      await expect(figs.first().locator(part)).toBeVisible();
+    });
+});
