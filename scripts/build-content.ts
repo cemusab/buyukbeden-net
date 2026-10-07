@@ -505,6 +505,9 @@ for (const w of works) {
   // Metin yasakları
   const allText = fs.readFileSync(path.join(CONTENT, f.replace(/^content\//, "")), "utf8");
   for (const re of FORBIDDEN) if (re.test(allText)) err(f, `yasak ifade: ${re.source}`);
+  // Blok etiketler kendi satırında açılıp kapanmalı; aynı satırda kalırsa paragraf içine düşer (<p><aside>) → hydration hatası
+  if (/^\{% (not|arti-eksi|adimlar)\b[^%]*%\}[^\n]*\S/m.test(allText))
+    err(f, "blok etiket ({% not %}, {% arti-eksi %}, {% adimlar %}) açılışından sonra içerik yeni satırda başlamalı");
   const ctaFree = allText.replace(/shoppingCta:[\s\S]*?(?=\n\S|\n---)/, "");
   if (/buyukbedengiyim/i.test(ctaFree) && !settings?.shoppingCta?.enabled)
     err(f, `${shoppingDomain} adı içerikte geçemez (site sahibi açana kadar görünmez)`);
