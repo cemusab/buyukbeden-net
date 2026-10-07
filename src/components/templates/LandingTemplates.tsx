@@ -11,6 +11,8 @@ import { MarkdocContent } from "@/components/content/Markdoc";
 import { FaqList } from "@/components/content/Faq";
 import { AuthorBox, PageHero, ShortAnswer, SourcesList } from "@/components/content/DocParts";
 import { SizeChartTable } from "@/components/content/SizeChartTable";
+import { BedenBulucuSection } from "@/components/content/BedenBulucuSection";
+import { isMeasure } from "@/lib/size-core";
 import { FabricArt, MeasureArt, QuickIcon } from "@/components/media/Illustration";
 import { CardGrid, CategoryCard, CompactCard, EditorialCard } from "@/components/ui/Cards";
 import { Badge, ButtonLink, JsonLd, SectionHeader } from "@/components/ui/primitives";
@@ -298,6 +300,7 @@ function SectionLanding({ doc, type }: { doc: DocMeta; type: "SIZE_GUIDE" | "STY
           ))}
         </div>
       ) : null}
+      {type === "SIZE_GUIDE" ? <BedenBulucuSection gender={silo} /> : null}
       <div className="mt-10">
         {type === "SIZE_GUIDE" ? (
           docs.length ? (
@@ -366,10 +369,13 @@ function SplitLanding({ doc, type }: { doc: DocMeta; type: "STYLE_GUIDE" | "OUTF
   );
 }
 
-/** Bölümün ana ölçü tablosu: vücut ölçüsü (cm) tablosu, göğüs + bel sütunlu, en çok satırlı. */
+/** Bölümün ana ölçü tablosu: kaynaklı vücut ölçüsü (cm) tablosu, göğüs sütunlu, genel/üst giyim, en çok satırlı. */
 function primaryChart(silo: GenderSilo) {
-  const cands = getSizeCharts().filter((c) => c.silo === silo && c.kind === "olcu-cm" && c.columns.some((x) => x.key.startsWith("gogus")));
-  const pref = cands.filter((c) => c.scope === "genel" || c.scope === "ust-giyim");
+  const main = silo === "kadin" ? "bust" : "chest";
+  const cands = getSizeCharts()
+    .filter(isMeasure)
+    .filter((c) => c.gender === silo && c.measurementType === "body" && c.measurementTypeVerified && c.unit === "cm" && c.sourceType === "official_brand" && c.rows.some((r) => r[main]));
+  const pref = cands.filter((c) => c.productType === "genel" || c.productType === "ust-giyim");
   return (pref.length ? pref : cands).sort((a, b) => b.rows.length - a.rows.length)[0];
 }
 
@@ -430,6 +436,7 @@ function SharedSizeLanding({ doc }: { doc: DocMeta }) {
           </aside>
         </section>
       ) : null}
+      <BedenBulucuSection />
       {guides.length || articles.length ? (
         <section aria-labelledby="temel" className="mt-12">
           <SectionHeader id="temel" title="Temel beden rehberleri" />
