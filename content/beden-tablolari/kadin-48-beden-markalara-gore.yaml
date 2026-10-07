@@ -1,0 +1,35 @@
+title: "Kadın 48 beden: markalara göre vücut ölçüleri"
+caption: "Kadın 48 beden marka marka: vücut ölçüsü (cm)"
+silo: kadin
+scope: genel
+kind: olcu-cm
+columns:
+  - { key: kaynak, label: Marka }
+  - { key: harf, label: 48'in harf karşılığı }
+  - { key: gogus, label: Göğüs, unit: cm }
+  - { key: bel, label: Bel, unit: cm }
+  - { key: basen, label: Basen, unit: cm }
+rows:
+  - [ "H&M Türkiye", "XL (48–50)", "107–119", "93–105", "110,5–120,5" ]
+  - [ Miraggio, Numaralı, "110–115", "–", "120–125" ]
+  - [ Ulla Popken, "M (46/48)", "111–116", "94–99", "117–122" ]
+  - [ Tchibo, XL, "113–119", "99–106", "113–118 (kalça)" ]
+  - [ "Marks & Spencer (UK 20)", "XL (48–50)", "114", "98", "121" ]
+  - [ "ASOS Curve (UK 20)", Numaralı, "116", "98", "123,5" ]
+  - [ LC Waikiki, 4XL, "118", "102", "126" ]
+  - [ TuvidXXL, L, "120–125", "105–110", "130–135" ]
+highlightColumn: gogus
+approximate: true
+notes:
+  - "Satırlar göğüs değerine göre küçükten büyüğe sıralandı; ortalama alınmadı, her satır markanın kendi tablosudur."
+  - "Aynı 48 numarası göğüste yaklaşık 107 ile 125 cm arasına yayılıyor; harf karşılığı XL, M, L ve 4XL arasında değişiyor."
+  - "TuvidXXL değerlerinin vücut ölçüsü mü yoksa bolluk payı içeren giysi ölçüsü mü olduğu kaynakta belirtilmiyor."
+sources:
+  - { url: https://www2.hm.com/tr_tr/productpage.1350700004.html, type: brand-official, label: "H&M Türkiye kadın ürün sayfası beden rehberi", checkedAt: 2026-10-07 }
+  - { url: https://s13.gifyu.com/images/bmPGB.jpg, type: brand-official, label: Miraggio beden tablosu görseli, checkedAt: 2026-10-07 }
+  - { url: https://www.ullapopken.at/de/guides/size-guide, type: brand-official, label: Ulla Popken beden rehberi, checkedAt: 2026-10-07 }
+  - { url: https://www.tchibo.com.tr/c/rehber-kiyafet-kalibi-rehberi-kadinlar, type: brand-official, label: Tchibo kadın kıyafet kalıbı rehberi, checkedAt: 2026-10-07 }
+  - { url: https://www.marksandspencer.com/en-at/sizeguides/?cid=sizeguidewomens-general, type: brand-official, label: Marks & Spencer kadın genel beden rehberi, checkedAt: 2026-10-07 }
+  - { url: https://www.asos.com/discover/size-charts/women/dresses/, type: brand-official, label: ASOS kadın elbise beden tablosu, checkedAt: 2026-10-07 }
+  - { url: https://www.lcw.com/buyuk-beden-bisiklet-yaka-elbise-kahverengi-o-5340792, type: brand-official, label: LC Waikiki ürün sayfası beden rehberi, checkedAt: 2026-10-07 }
+  - { url: https://static.ticimax.cloud/33446/uploads/editoruploads/2.beden-tablosu-yeni-tasarim.jpg, type: brand-official, label: TuvidXXL beden tablosu görseli, checkedAt: 2026-10-07 }

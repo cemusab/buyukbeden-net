@@ -1,0 +1,36 @@
+title: Kadın harf bedenlerin numara karşılığı, markalara göre
+caption: "Kadın: aynı harf beden hangi numaraya denk geliyor? (marka marka, beden çevirme)"
+silo: kadin
+scope: genel
+kind: donusum
+columns:
+  - { key: harf, label: Harf }
+  - { key: lcw, label: LC Waikiki }
+  - { key: koton, label: Koton }
+  - { key: hm, label: H&M (EUR) }
+  - { key: ms, label: M&S (EU) }
+  - { key: ulla, label: Ulla Popken }
+  - { key: tuvid, label: TuvidXXL }
+rows:
+  - [ L, "40", "40", 44–46, 44–46, 50/52, "48" ]
+  - [ XL, "42", "42", 48–50, 48–50, 54/56, "50" ]
+  - [ 2XL, "44", "44", 52–54, 52–54, 58/60, "52" ]
+  - [ 3XL, "46", "46", 56–58, 54–56, 62/64, "54" ]
+  - [ 4XL, "48", "48", 60–62, –, –, – ]
+  - [ 5XL, "50", –, –, –, –, – ]
+  - [ 6XL, "52", –, –, –, –, – ]
+  - [ 7XL, "54", –, –, –, –, – ]
+highlightColumn: harf
+approximate: true
+notes:
+  - "“–”: markanın kaynak tablosunda bu harf yok."
+  - "İki ayrı sistem görülür: LC Waikiki ve Koton'da her ek X bir numara ekler (XL = 42); H&M ve M&S'de her harf iki numarayı kapsar (XL = 48–50). Ulla Popken ve TuvidXXL ölçeği kendi başlatır."
+  - M&S tablosunda EU 54 hem XXL hem XXXL satırında görünüyor; kaynaktaki haliyle verildi.
+  - Koton 2XL–4XL için cm vermiyor; bu satırlardaki numara Koton'un kendi eşlemesidir.
+sources:
+  - { url: https://www.lcw.com/buyuk-beden-bisiklet-yaka-elbise-kahverengi-o-5340792, type: brand-official, label: LC Waikiki büyük beden elbise ürün sayfası beden rehberi, checkedAt: 2026-10-07 }
+  - { url: https://www.koton.com/beden-tablosu/, type: brand-official, label: Koton beden tablosu yazısı, checkedAt: 2026-10-07 }
+  - { url: https://www2.hm.com/tr_tr/productpage.1350700004.html, type: brand-official, label: "H&M Türkiye kadın ürün sayfası beden rehberi (üstler, bluzlar)", checkedAt: 2026-10-07 }
+  - { url: https://www.marksandspencer.com/en-at/sizeguides/?cid=sizeguidewomens-general, type: brand-official, label: Marks & Spencer kadın genel beden rehberi, checkedAt: 2026-10-07 }
+  - { url: https://www.ullapopken.at/de/guides/size-guide, type: brand-official, label: Ulla Popken beden rehberi (Avusturya sitesi), checkedAt: 2026-10-07 }
+  - { url: https://www.tuvidxxl.com/buyuk-beden-112143-biyeli-elbise-kirmizi-7704, type: brand-official, label: TuvidXXL ürün sayfasındaki beden tablosu görseli, checkedAt: 2026-10-07 }

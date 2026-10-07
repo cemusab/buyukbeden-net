@@ -1,0 +1,25 @@
+title: H&M Türkiye kadın vücut ölçüleri (M–4XL)
+caption: H&M Türkiye kadın beden rehberi – vücut ölçüsü (cm), üstler ve bluzlar, normal kalıp
+silo: kadin
+scope: ust-giyim
+kind: olcu-cm
+columns:
+  - { key: harf, label: Harf }
+  - { key: eur, label: EUR }
+  - { key: gogus, label: Göğüs, unit: cm }
+  - { key: bel, label: Bel, unit: cm }
+  - { key: basen, label: Basen (alçak kalça), unit: cm }
+rows:
+  - [ M, 40–42, 90–98, "74–82,5", "97,5–103,5" ]
+  - [ L, 44–46, 98–107, "82,5–93", "103,5–110,5" ]
+  - [ XL, 48–50, 107–119, 93–105, "110,5–120,5" ]
+  - [ XXL, 52–54, 119–131, "105–117,5", "120,5–131" ]
+  - [ 3XL, 56–58, 131–143, "117,5–131,5", 131–143 ]
+  - [ 4XL, 60–62, 143–155, "131,5–145,5", 143–155 ]
+highlightColumn: gogus
+approximate: false
+notes:
+  - Petite bedenlerde (40P–62P) göğüs ve bel aynı, basen 3 cm daha düşüktür.
+  - Tablo bir ürün sayfasının beden rehberinden alınmıştır; ürün grubuna göre değişebilir.
+sources:
+  - { url: https://www2.hm.com/tr_tr/productpage.1350700004.html, type: brand-official, label: "H&M Türkiye kadın ürün sayfası beden rehberi (üstler, bluzlar)", checkedAt: 2026-10-07 }

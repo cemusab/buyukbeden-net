@@ -1,0 +1,32 @@
+title: Erkek gömlek yaka ölçüsü, markalara göre (L–8XL)
+caption: Erkek gömlek yaka ölçüsü marka marka (cm) – JP1880, M&S ve H&M vücut, Kiğılı giysi ölçüsü
+silo: erkek
+scope: gomlek
+kind: olcu-cm
+columns:
+  - { key: harf, label: Harf }
+  - { key: jp, label: JP1880 (vücut), unit: cm }
+  - { key: ms, label: M&S (vücut), unit: cm }
+  - { key: hm, label: H&M (vücut), unit: cm }
+  - { key: kigili, label: Kiğılı regular (giysi), unit: cm }
+rows:
+  - [ L, 41/42, –, 40–41, "42,5" ]
+  - [ XL, 43/44, "43", 42–43, "44,5" ]
+  - [ 2XL, 45/46, 44–46, 44–45, "46,5" ]
+  - [ 3XL, 47/48, 47–48, 46–47, "48,5" ]
+  - [ 4XL, 49/50, 49–50, –, "51" ]
+  - [ 5XL, 51/52, 52–53, –, "53" ]
+  - [ 6XL, 53/54, –, –, "55" ]
+  - [ 7XL, 55/56, –, –, "56,5" ]
+  - [ 8XL, 57/58, –, –, – ]
+highlightColumn: harf
+approximate: true
+notes:
+  - Her ek X yaklaşık 2 cm yaka ekler.
+  - Kiğılı değerleri gömleğin kendi yaka ölçüsüdür (giysi); vücut boyun çevresi bundan biraz küçük olur.
+  - "“–”: markanın kaynak tablosunda bu harf yok."
+sources:
+  - { url: https://www.jp1880.de/de/guides/groessenberater, type: brand-official, label: JP1880 beden danışmanı (erkek), checkedAt: 2026-10-07 }
+  - { url: https://www.marksandspencer.com/us/sizeguides/?cid=sizeguidemens-formalshirts, type: brand-official, label: Marks & Spencer erkek resmi gömlek beden rehberi, checkedAt: 2026-10-07 }
+  - { url: https://www2.hm.com/en_gb/productpage.1216851036.html, type: brand-official, label: H&M erkek Regular tişört ürün sayfası beden rehberi, checkedAt: 2026-10-07 }
+  - { url: https://www.kigili.com/pages/bedenini-bul, type: brand-official, label: Kiğılı – Bedenini bul, checkedAt: 2026-10-07 }

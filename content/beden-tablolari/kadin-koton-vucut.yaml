@@ -1,0 +1,24 @@
+title: Koton kadın beden tablosu (L–4XL)
+caption: Koton kadın beden tablosu – ortalama vücut ölçüsü (cm)
+silo: kadin
+scope: genel
+kind: olcu-cm
+columns:
+  - { key: harf, label: Harf }
+  - { key: beden, label: Beden }
+  - { key: gogus, label: Göğüs, unit: cm }
+  - { key: bel, label: Bel, unit: cm }
+  - { key: basen, label: Basen, unit: cm }
+rows:
+  - [ L, "40", "92", "76", "102" ]
+  - [ XL, "42", "96", "80", "106" ]
+  - [ 2XL, "44", Verilmiyor, Verilmiyor, Verilmiyor ]
+  - [ 3XL, "46", Verilmiyor, Verilmiyor, Verilmiyor ]
+  - [ 4XL, "48", Verilmiyor, Verilmiyor, Verilmiyor ]
+highlightColumn: beden
+approximate: false
+notes:
+  - Koton 2XL–4XL için cm yerine yalnız kilo aralığı yayımlıyor; kilo bedeni belirlemediği için bu sitede gösterilmez.
+  - Harf ile numara arasındaki tek adımlı eşleme Koton'un kendi tablosundandır.
+sources:
+  - { url: https://www.koton.com/beden-tablosu/, type: brand-official, label: Koton beden tablosu yazısı, checkedAt: 2026-10-07 }

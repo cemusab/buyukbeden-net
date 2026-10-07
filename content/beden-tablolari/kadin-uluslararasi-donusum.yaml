@@ -1,0 +1,32 @@
+title: Kadın uluslararası beden çevirme (UK, EU/TR, US, IT)
+caption: Kadın numaralı bedenlerde UK, EU/TR, US ve İtalyan karşılıkları (beden çevirme, ölçü değil)
+silo: kadin
+scope: genel
+kind: donusum
+columns:
+  - { key: uk, label: UK }
+  - { key: eu, label: EU / TR }
+  - { key: us, label: US }
+  - { key: it, label: İtalya (IT) }
+rows:
+  - [ "14", "42", "10", "46" ]
+  - [ "16", "44", "12", "48" ]
+  - [ "18", "46", "14", "50" ]
+  - [ "20", "48", "16", "52" ]
+  - [ "22", "50", "18", "54" ]
+  - [ "24", "52", "20", "56" ]
+  - [ "26", "54", "22", "58" ]
+  - [ "28", "56", "24", "60" ]
+  - [ "30", "58", "26", "62" ]
+highlightColumn: eu
+approximate: true
+notes:
+  - "Kural ASOS ve Marks & Spencer tablolarında tutarlıdır: EU = UK + 28, US = UK − 4 (kadın, numaralı bedenler)."
+  - İtalyan karşılığı yalnız ASOS tablosunda verilir (EU + 4).
+  - Bu tablo beden adlarını çevirir; vücut ölçüsü markadan markaya değişir. Satın almadan önce markanın cm tablosuna bakın.
+  - Simply Be'nin tablosu da aynı kuralı izler. Torrid'in kendi çevirme tablosu ise iki numara farklıdır (US 14 = UK 16 = EU 42); markalar arası çevirme bile tek kaynağa dayandırılmamalı.
+sources:
+  - { url: https://www.asos.com/discover/size-charts/women/dresses/, type: brand-official, label: ASOS kadın elbise beden tablosu (Curve dahil), checkedAt: 2026-10-07 }
+  - { url: https://www.marksandspencer.com/en-at/sizeguides/?cid=sizeguidewomens-general, type: brand-official, label: Marks & Spencer kadın genel beden rehberi, checkedAt: 2026-10-07 }
+  - { url: https://support.simplybe.co.uk/hc/en-gb/articles/360019571299-Women-s-size-chart, type: brand-official, label: Simply Be kadın beden tablosu, checkedAt: 2026-10-07 }
+  - { url: https://www.torrid.com/on/demandware.store/Sites-torrid-Site/default/Page-Include?cid=td-size-guide-apparel, type: brand-official, label: Torrid beden rehberi (inçten çevrildi), checkedAt: 2026-10-07 }

@@ -1,0 +1,28 @@
+title: LC Waikiki kadın büyük beden vücut ölçüleri (38–54)
+caption: LC Waikiki kadın beden rehberi – vücut ölçüsü (cm), büyük beden elbise ürünü
+silo: kadin
+scope: elbise
+kind: olcu-cm
+columns:
+  - { key: beden, label: Beden }
+  - { key: boy, label: Boy, unit: cm }
+  - { key: gogus, label: Göğüs, unit: cm }
+  - { key: bel, label: Bel, unit: cm }
+  - { key: basen, label: Basen, unit: cm }
+rows:
+  - [ 38 / M, 160–170, "90", "74", "98" ]
+  - [ 40 / L, 160–170, "95", "79", "103" ]
+  - [ 42 / XL, 160–170, "100", "84", "108" ]
+  - [ 44 / 2XL, 160–170, "106", "90", "114" ]
+  - [ 46 / 3XL, 160–170, "112", "96", "120" ]
+  - [ 48 / 4XL, 160–170, "118", "102", "126" ]
+  - [ 50 / 5XL, 160–170, "124", "109", "132" ]
+  - [ 52 / 6XL, 160–170, "130", "116", "138" ]
+  - [ 54 / 7XL, 160–170, "136", "123", "144" ]
+highlightColumn: gogus
+approximate: false
+notes:
+  - Tüm bedenler 160–170 cm boy için tanımlanmış; bu aralığın dışındaki boylarda uzunluk farklı oturabilir.
+  - "Aynı pencerede çift beden karşılıkları: XL–2XL = 42–44, 3XL–4XL = 46–48, 5XL–6XL = 50–52."
+sources:
+  - { url: https://www.lcw.com/buyuk-beden-bisiklet-yaka-elbise-kahverengi-o-5340792, type: brand-official, label: LC Waikiki büyük beden elbise ürün sayfası beden rehberi, checkedAt: 2026-10-07 }

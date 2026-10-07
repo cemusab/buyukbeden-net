@@ -1,0 +1,26 @@
+title: Marks & Spencer erkek vücut ölçüleri (XL–5XL)
+caption: "Marks & Spencer erkek beden rehberleri – vücut ölçüsü (cm): gömlek, üst giyim ve pantolon"
+silo: erkek
+scope: genel
+kind: olcu-cm
+columns:
+  - { key: harf, label: Harf }
+  - { key: yaka, label: Gömlek yaka, unit: cm }
+  - { key: gomlekgogus, label: Gömlek göğüs, unit: cm }
+  - { key: ustgogus, label: Üst giyim göğüs, unit: cm }
+  - { key: bel, label: Pantolon bel, unit: cm }
+rows:
+  - [ XL, "43", "117", 112–117, 99–104 ]
+  - [ 2XL, 44–46, 122–127, 119–125, 107–112 ]
+  - [ 3XL, 47–48, 132–137, 126–132, 114–119 ]
+  - [ 4XL, 49–50, 142–147, 132–137, 122–127 ]
+  - [ 5XL, 52–53, 152–157, –, 130–135 ]
+highlightColumn: harf
+approximate: false
+notes:
+  - M&S'nin gömlek ve üst giyim tabloları 3XL–4XL'de birbirinden farklıdır; aynı markada bile ürün grubuna göre tablo değişir.
+  - “Big & Tall – Longer” ürünlerde gövde ve kol 2 inç (yaklaşık 5 cm) daha uzundur.
+sources:
+  - { url: https://www.marksandspencer.com/us/sizeguides/?cid=sizeguidemens-formalshirts, type: brand-official, label: Marks & Spencer erkek resmi gömlek beden rehberi, checkedAt: 2026-10-07 }
+  - { url: https://www.marksandspencer.com/us/sizeguides/?cid=sizeguidemens-tops, type: brand-official, label: Marks & Spencer erkek üst giyim beden rehberi, checkedAt: 2026-10-07 }
+  - { url: https://www.marksandspencer.com/us/sizeguides/?cid=sizeguidemens-casualtrousers, type: brand-official, label: Marks & Spencer erkek günlük pantolon beden rehberi, checkedAt: 2026-10-07 }

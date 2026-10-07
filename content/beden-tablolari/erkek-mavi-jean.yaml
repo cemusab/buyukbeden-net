@@ -1,0 +1,27 @@
+title: Mavi erkek jean beden tablosu (34–50)
+caption: Mavi erkek jean – inç bel bedeni, TR karşılığı ve vücut bel/basen ölçüsü (cm)
+silo: erkek
+scope: jean
+kind: olcu-cm
+columns:
+  - { key: jean, label: Jean (inç) }
+  - { key: tr, label: TR }
+  - { key: bel, label: Bel, unit: cm }
+  - { key: basen, label: Basen, unit: cm }
+rows:
+  - [ "34", "44", "87", "109" ]
+  - [ "36", "46", "91", "113" ]
+  - [ "38", "48", "96", "118" ]
+  - [ "40", "50", "101", "123" ]
+  - [ "42", "52", "106", "128" ]
+  - [ "44", "54", "111", "133" ]
+  - [ "46", "56", "116", "138" ]
+  - [ "48", "58", "121", "143" ]
+  - [ "50", "60", "126", "148" ]
+highlightColumn: bel
+approximate: false
+notes:
+  - "Boy (paça) karşılıkları: 30 inç = 76 cm, 32 = 81, 34 = 86, 36 = 91, 38 = 96,5, 40 = 101,5 cm."
+  - Bu tabloda TR = jean bedeni + 10; DeFacto'nun eşlemesi farklıdır.
+sources:
+  - { url: https://www.mavi.com/beden-tablosu, type: brand-official, label: Mavi beden tablosu (erkek jean görseli), checkedAt: 2026-10-07 }

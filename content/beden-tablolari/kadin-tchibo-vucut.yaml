@@ -1,0 +1,24 @@
+title: Tchibo kadın vücut ölçüleri (44–54)
+caption: "Tchibo – kadın vücut ölçüsü (cm), kıyafet kalıbı rehberi"
+silo: kadin
+scope: genel
+kind: olcu-cm
+brand: tchibo
+columns:
+  - { key: beden, label: Beden }
+  - { key: gogus, label: Göğüs, unit: cm }
+  - { key: bel, label: Bel, unit: cm }
+  - { key: kalca, label: Kalça, unit: cm }
+rows:
+  - ["44 (L)", "102–107", "88–93", "105–109"]
+  - ["46", "107–113", "93–99", "109–113"]
+  - ["48 (XL)", "113–119", "99–106", "113–118"]
+  - ["50", "119–125", "106–112", "118–123"]
+  - ["52 (XXL)", "125–131", "112–119", "123–128"]
+  - ["54", "131–137", "119–126", "128–133"]
+highlightColumn: gogus
+approximate: false
+notes:
+  - "Tchibo harf bedenlerini çift numara grubuyla eşler: 44 = L, 48 = XL, 52 = XXL."
+sources:
+  - { url: https://www.tchibo.com.tr/c/rehber-kiyafet-kalibi-rehberi-kadinlar, type: brand-official, label: Tchibo kadın kıyafet kalıbı rehberi, checkedAt: 2026-10-07 }
