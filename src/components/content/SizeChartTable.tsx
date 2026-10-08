@@ -124,7 +124,7 @@ export function SizeChartTable({ chart, headingLevel }: { chart: Chart; headingL
   const wide = cols.length > 4;
   const measure = chart.kind === "olcu" ? chart : undefined;
   return (
-    <figure className="not-prose my-6" data-size-chart={chart.id} data-measurement-type={measure?.measurementType ?? "donusum"}>
+    <figure id={`tablo-${chart.id}`} className="not-prose my-6 scroll-mt-28" data-size-chart={chart.id} data-measurement-type={measure?.measurementType ?? "donusum"}>
       {H ? <H className="mb-2 text-h3 font-bold text-ink">{chart.title}</H> : null}
       <div className="mb-3 flex flex-wrap items-center gap-1.5 text-xs text-muted">
         {measure ? <MeasurementBadge type={measure.measurementType} verified={measure.measurementTypeVerified} /> : <span className="inline-flex items-center rounded-full border border-line bg-soft px-2.5 py-1 font-bold text-ink-2">Beden çevirme (ölçü değil)</span>}

@@ -6,7 +6,8 @@
  * Yalnız boy/kilo girilirse beden önerilmez; sonuç "Tahmini" etiketlenir ve ölçü almaya yönlendirilir.
  */
 import { useId, useState, useSyncExternalStore } from "react";
-import { CHART_SOURCE_TYPE_LABEL, fmtNum, PRODUCT_TYPE_LABEL, runFinder, type FinderChart, type FinderField, type Gender } from "@/lib/size-core";
+import { CHART_SOURCE_TYPE_LABEL, FINDER_WARNING, fmtNum, PRODUCT_TYPE_LABEL, runFinder, type FinderChart, type FinderField, type Gender } from "@/lib/size-core";
+import { ConfidenceBadge, ConfidenceLegend } from "./Confidence";
 
 const noop = () => () => {};
 const MONTHS = ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"];
@@ -22,7 +23,7 @@ function parse(v: string, min: number, max: number): number | undefined {
   return v.trim() && Number.isFinite(n) && n >= min && n <= max ? n : undefined;
 }
 
-export function BedenBulucu({ charts, gender: fixed, links }: { charts: FinderChart[]; gender?: Gender; links: Record<Gender, Links> }) {
+export function BedenBulucu({ charts, gender: fixed, links, directory }: { charts: FinderChart[]; gender?: Gender; links: Record<Gender, Links>; directory?: string }) {
   const mounted = useSyncExternalStore(noop, () => true, () => false);
   const uid = useId();
   const [gender, setGender] = useState<Gender>(fixed ?? "kadin");
@@ -110,15 +111,25 @@ export function BedenBulucu({ charts, gender: fixed, links }: { charts: FinderCh
               <p className="text-sm text-ink-2">
                 <strong className="text-ink">{results.filter((r) => !r.noFit).length} tabloda</strong> ölçünüze karşılık bulundu. Bunlar yaklaşık önerilerdir; beden markaya ve ürüne göre değişir, satın almadan önce ürünün kendi tablosuna bakın.
               </p>
+              <p className="mt-2 rounded-card border border-warn-line bg-warn px-4 py-3 text-sm font-semibold text-ink" data-bulucu-uyari>
+                {FINDER_WARNING}
+              </p>
               <ul className="mt-3 grid gap-3 md:grid-cols-2">
                 {results.map((r) => {
                   const rows = r.chart.rows;
                   const size = r.from === r.to ? rows[r.from].label : `${rows[r.from].label} – ${rows[r.to].label}`;
+                  const token = rows[r.from].token;
+                  const others = results.filter((o, i, all) => !o.noFit && o.chart.brandName !== r.chart.brandName && o.chart.links?.brand && all.findIndex((x) => x.chart.brandName === o.chart.brandName && !x.noFit && x.chart.links?.brand) === i);
+                  const lk = r.chart.links ?? {};
+                  const act = "inline-flex min-h-11 items-center rounded-full border border-line-strong px-3.5 text-sm font-semibold text-ink hover:border-primary hover:text-primary";
                   return (
-                    <li key={r.chart.id} className="rounded-card border border-line bg-surface p-4" data-bulucu-marka={r.chart.id}>
-                      <p className="font-bold text-ink">
-                        {r.chart.brandName} <span className="font-normal text-muted">· {PRODUCT_TYPE_LABEL[r.chart.productType as keyof typeof PRODUCT_TYPE_LABEL] ?? r.chart.productType}</span>
-                      </p>
+                    <li key={r.chart.id} className="flex flex-col rounded-card border border-line bg-surface p-4" data-bulucu-marka={r.chart.id}>
+                      <div className="flex flex-wrap items-start justify-between gap-2">
+                        <p className="font-bold text-ink">
+                          {r.chart.brandName} <span className="font-normal text-muted">· {PRODUCT_TYPE_LABEL[r.chart.productType as keyof typeof PRODUCT_TYPE_LABEL] ?? r.chart.productType}</span>
+                        </p>
+                        <ConfidenceBadge level={r.chart.confidence} />
+                      </div>
                       {r.noFit ? (
                         <p className="mt-1 text-ink">Bu markanın tablosu ölçünüzü kapsamıyor.</p>
                       ) : (
@@ -143,17 +154,75 @@ export function BedenBulucu({ charts, gender: fixed, links }: { charts: FinderCh
                       {r.outOfRange && !r.noFit ? <p className="mt-2 text-sm text-ink-2">Ölçülerinizden biri markanın tablosunun dışında kalıyor; bu markada uygun beden olmayabilir.</p> : null}
                       {r.matches.length > 1 && r.from !== r.to ? <p className="mt-2 text-sm text-ink-2">Ölçüleriniz farklı bedenlere düşüyor: üst giyimde göğse, alt giyimde basen/kalçaya ve bele göre seçin.</p> : null}
                       {r.heightHint ? <p className="mt-2 text-sm text-ink-2">{r.heightHint}</p> : null}
-                      <p className="mt-2 text-xs text-muted">
-                        Kaynak:{" "}
-                        <a href={r.chart.sourceUrl} rel="noopener noreferrer" className="underline underline-offset-2 hover:text-primary">
-                          {r.chart.sourceLabel}
-                        </a>{" "}
-                        ({CHART_SOURCE_TYPE_LABEL[r.chart.sourceType]}, son doğrulama {fmtDate(r.chart.lastVerifiedAt)}){r.chart.unit === "inch" ? "; inç tablosu, cm çevirisi bizim" : ""}
-                      </p>
+                      <dl className="mt-3 grid grid-cols-[auto_1fr] gap-x-3 gap-y-0.5 text-xs text-ink-2" data-bulucu-kanit>
+                        <dt className="text-muted">Veri türü</dt>
+                        <dd>Vücut ölçüsü tablosu</dd>
+                        <dt className="text-muted">Son kontrol</dt>
+                        <dd>
+                          <time dateTime={r.chart.lastVerifiedAt}>{fmtDate(r.chart.lastVerifiedAt)}</time>
+                        </dd>
+                        <dt className="text-muted">Kaynak</dt>
+                        <dd>
+                          <a href={r.chart.sourceUrl} rel="noopener noreferrer" className="underline underline-offset-2 hover:text-primary">
+                            {r.chart.sourceLabel}
+                          </a>{" "}
+                          ({CHART_SOURCE_TYPE_LABEL[r.chart.sourceType]}){r.chart.unit === "inch" ? "; inç tablosu, cm çevirisi bizim" : ""}
+                        </dd>
+                      </dl>
+                      {r.noFit ? null : (
+                        <ul className="mt-3 flex flex-wrap gap-2 border-t border-line pt-3" aria-label={`${r.chart.brandName} için bağlantılar`} data-bulucu-aksiyonlar>
+                          <li>
+                            {lk.chart ? (
+                              <a href={lk.chart} className={act}>
+                                Markanın beden tablosu
+                              </a>
+                            ) : (
+                              <a href={r.chart.sourceUrl} rel="noopener noreferrer" className={act}>
+                                Markanın beden tablosu ↗
+                              </a>
+                            )}
+                          </li>
+                          {lk.brand ? (
+                            <li>
+                              <a href={lk.brand} className={act}>
+                                Marka profili
+                              </a>
+                            </li>
+                          ) : null}
+                          {directory && token ? (
+                            <li>
+                              <a href={`${directory}?cinsiyet=${g}&beden=${encodeURIComponent(token)}`} className={act} data-ayni-beden>
+                                Aynı bedeni ({token}) sunan diğer markalar
+                              </a>
+                            </li>
+                          ) : null}
+                          {lk.hub ? (
+                            <li>
+                              <a href={lk.hub} className={act}>
+                                {lk.hubLabel ?? "İlgili kategori"}
+                              </a>
+                            </li>
+                          ) : null}
+                        </ul>
+                      )}
+                      {!r.noFit && others.length ? (
+                        <p className="mt-2 text-xs text-muted">
+                          Ölçünüze karşılık bulunan diğer markalar:{" "}
+                          {others.slice(0, 3).map((o, i) => (
+                            <span key={o.chart.id}>
+                              {i ? ", " : ""}
+                              <a href={o.chart.links!.brand} className="underline underline-offset-2 hover:text-primary">
+                                {o.chart.brandName}
+                              </a>
+                            </span>
+                          ))}
+                        </p>
+                      ) : null}
                     </li>
                   );
                 })}
               </ul>
+              <ConfidenceLegend className="mt-4" />
             </>
           ) : (
             <p className="text-sm text-ink-2">Girilen ölçüler kaynaklı tabloların hiçbirinde karşılık bulmadı. Ölçüyü yeniden alıp kontrol edin.</p>
