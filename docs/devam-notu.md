@@ -43,6 +43,9 @@
 - Hepsi bitince: `npm run qa` yeşil → TEK push → PR v2→main → merge → canlı smoke test (sitemap URL'leri 200).
 - Açık karar: `kadin-harf-numara-markalara-gore` dönüşüm tablosu kalsın mı (şimdilik kaldı).
 
+## BEKLEME (2026-10-08): Search Console indeks verisi bekleniyor
+Sahibiyle anlaşma: indeks sayısı ve ilk arama verisi gelince devam. Sahibi Search Console'dan şunları paylaşacak: Sayfa sayısı (dizine eklenen/eklenmeyen + nedenleri), Site haritaları durumu, Performans (sorgular, gösterim, tıklama, ortalama konum). Gelince: dizine eklenmeyen sayfaların nedenlerini düzelt, gösterim alan ama tıklanmayan sayfaların title/description'ını iyileştir, 4–20. sıradaki sorgular için içerik güçlendir. Bu arada hatırlat: veri sorumlusu bilgisi, API anahtarı yenileme, onay bekleyenler (Keystatic prod, legacy/ silme, logolar, erkek hero).
+
 ## 2026-10-08 – 5. dalga YAYINDA (PR #9): rakip SEO analizi uygulandı, 18 sayfa güncellendi, 3 yeni rehber; validate Türkiye saatine göre.
 
 ## (eski) 5. dalga planı
