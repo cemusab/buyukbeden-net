@@ -43,7 +43,9 @@
 - Hepsi bitince: `npm run qa` yeşil → TEK push → PR v2→main → merge → canlı smoke test (sitemap URL'leri 200).
 - Açık karar: `kadin-harf-numara-markalara-gore` dönüşüm tablosu kalsın mı (şimdilik kaldı).
 
-## 2026-10-08 – 5. dalga (çalışıyor): rakip SEO analizi
+## 2026-10-08 – 5. dalga YAYINDA (PR #9): rakip SEO analizi uygulandı, 18 sayfa güncellendi, 3 yeni rehber; validate Türkiye saatine göre.
+
+## (eski) 5. dalga planı
 Sahibi: "ilk 20 siteyi araştır, SEO'larını al". Kopya YOK (kopya içerik + telif) – yapı/kelime/eksik konu analizi, kendi metnimizle uygulama. Agent: `docs/rakip-seo-analizi.md` yazar, eşlenen sayfaların title/description/H2/SSS'ini günceller, gerekirse yeni boşluk sayfaları açar, qa yeşil, v2'ye commit. Sonra: tek PR → canlı kontrol.
 - **Durum (2026-10-08):** analiz `docs/rakip-seo-analizi.md` yazıldı (21 site sayfası incelendi, 15 baş terim). 18 sayfanın title/description/SSS'i güncellendi; 3 yeni sayfa: `/kadin/stil/nasil-giyinmeli`, `/kadin/kombinler/tesettur`, `/rehberler/buyuk-gelen-kiyafet-nasil-kucultulur`. v2'ye commit edildi, **push edilmedi**. Not: validate tarih kontrolü UTC kullanıyor; TR saatiyle gece yarısından sonra `updatedAt` bugünün tarihi verilirse "gelecekte" hatası verir.
 
