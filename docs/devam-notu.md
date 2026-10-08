@@ -43,6 +43,10 @@
 - Hepsi bitince: `npm run qa` yeşil → TEK push → PR v2→main → merge → canlı smoke test (sitemap URL'leri 200).
 - Açık karar: `kadin-harf-numara-markalara-gore` dönüşüm tablosu kalsın mı (şimdilik kaldı).
 
+## 2026-10-08 – 6. dalga (çalışıyor): dış SEO raporu uygulaması
+Spec: `docs/seo-analizi-2026-10-08.md`. Paralel: (1) platform – Beden Bulucu ana ürün + güven seviyesi/uyarı/aksiyonlar, marka özet kartı + kategori bazlı beden + changelog, /markalar beden/cinsiyet filtresi + `{% marka-filtresi %}` CTA, ana sayfa meta, kategori hub'larında doğrulanmış markalar, schema (WebPage/ProfilePage about, CollectionPage, WebApplication); (2) içerik – 5XL/6XL, 54–56 beden sayfaları, niyet ayrıştırma, rapor anahtar kelimeleri, alt metinler. Bitince qa → tek PR → canlı kontrol.
+Sahibine sorulacak: E-E-A-T için gerçek editoryal sorumlu (ad/rol) eklensin mi (ör. site sahibi)?
+
 ## BEKLEME (2026-10-08): Search Console indeks verisi bekleniyor
 Sahibiyle anlaşma: indeks sayısı ve ilk arama verisi gelince devam. Sahibi Search Console'dan şunları paylaşacak: Sayfa sayısı (dizine eklenen/eklenmeyen + nedenleri), Site haritaları durumu, Performans (sorgular, gösterim, tıklama, ortalama konum). Gelince: dizine eklenmeyen sayfaların nedenlerini düzelt, gösterim alan ama tıklanmayan sayfaların title/description'ını iyileştir, 4–20. sıradaki sorgular için içerik güçlendir. Bu arada hatırlat: veri sorumlusu bilgisi, API anahtarı yenileme, onay bekleyenler (Keystatic prod, legacy/ silme, logolar, erkek hero).
 
