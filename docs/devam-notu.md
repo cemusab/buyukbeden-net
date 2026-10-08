@@ -43,7 +43,9 @@
 - Hepsi bitince: `npm run qa` yeşil → TEK push → PR v2→main → merge → canlı smoke test (sitemap URL'leri 200).
 - Açık karar: `kadin-harf-numara-markalara-gore` dönüşüm tablosu kalsın mı (şimdilik kaldı).
 
-## 2026-10-08 – 6. dalga (çalışıyor): dış SEO raporu uygulaması
+## 2026-10-08 – 6. dalga YAYINDA (PR #10): Beden Bulucu sayfası + ana sayfa bandı, marka özet kartı, /markalar filtresi + CTA, kategori markaları, yeni şemalar, 5XL/6XL/54–56 sayfaları, alt metinler, BigBang yayın sorumlusu.
+
+## (eski) 6. dalga planı
 Spec: `docs/seo-analizi-2026-10-08.md`. Paralel: (1) platform – Beden Bulucu ana ürün + güven seviyesi/uyarı/aksiyonlar, marka özet kartı + kategori bazlı beden + changelog, /markalar beden/cinsiyet filtresi + `{% marka-filtresi %}` CTA, ana sayfa meta, kategori hub'larında doğrulanmış markalar, schema (WebPage/ProfilePage about, CollectionPage, WebApplication); (2) içerik – 5XL/6XL, 54–56 beden sayfaları, niyet ayrıştırma, rapor anahtar kelimeleri, alt metinler. Bitince qa → tek PR → canlı kontrol.
 Karar (sahibi): editoryal sorumlu **BigBang** (takma ad, kurucu ve yayın sorumlusu) – `content/yazarlar/bigbang.yaml` eklendi. YAPILACAK (agent'lar bitince): tüm belgelere `reviewedBy: bigbang`, bylline'da 'Kontrol eden: BigBang' görünürlüğü, /editoryal-ilkeler ve /hakkimizda'da yayın sorumlusu bölümü, Organization/Person JSON-LD (takma ad olduğu şeffaf).
 
