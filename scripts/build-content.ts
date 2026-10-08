@@ -39,7 +39,8 @@ const GENERATED = path.join(ROOT, "src", "generated");
 const PUBLIC = path.join(ROOT, "public");
 const CHECK_ONLY = process.argv.includes("--check");
 const QUIET = process.argv.includes("--quiet");
-const TODAY = new Date().toISOString().slice(0, 10);
+// Türkiye saatine göre bugünün tarihi (UTC kullanılırsa gece yarısından sonra "gelecek tarih" hatası verir)
+const TODAY = new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Istanbul" }).format(new Date());
 
 const errors: string[] = [];
 const warnings: string[] = [];
