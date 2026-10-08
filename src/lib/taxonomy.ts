@@ -199,6 +199,7 @@ export const RESERVED_SEGMENTS = [
   "sayfa",
   "etiket",
   "arama",
+  "beden-bulucu",
   "api",
   "keystatic",
   "giyim",

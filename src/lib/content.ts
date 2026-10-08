@@ -16,6 +16,11 @@ const byPath = new Map(index.docs.map((d) => [d.path, d]));
 const manifestByPath = new Map(index.manifest.map((e) => [e.path, e]));
 
 export const getSettings = () => index.settings;
+/** Build günü (Türkiye saati) */
+export const getToday = () => index.today;
+/** Yayımlanmış markalar (arşiv dahil değil), ada göre */
+export const getBrands = (): DocMeta[] =>
+  index.docs.filter((d) => d.collection === "markalar" && d.status !== "archived").sort((a, b) => a.label.localeCompare(b.label, "tr"));
 export const getHomepage = () => index.homepage;
 export const getManifest = (): RouteEntry[] => index.manifest;
 export const getRoute = (path: string) => manifestByPath.get(path);

@@ -43,7 +43,16 @@
 - Hepsi bitince: `npm run qa` yeşil → TEK push → PR v2→main → merge → canlı smoke test (sitemap URL'leri 200).
 - Açık karar: `kadin-harf-numara-markalara-gore` dönüşüm tablosu kalsın mı (şimdilik kaldı).
 
-## 2026-10-08 – 5. dalga (çalışıyor): rakip SEO analizi
+## 2026-10-08 – 6. dalga (çalışıyor): dış SEO raporu uygulaması
+Spec: `docs/seo-analizi-2026-10-08.md`. Paralel: (1) platform – Beden Bulucu ana ürün + güven seviyesi/uyarı/aksiyonlar, marka özet kartı + kategori bazlı beden + changelog, /markalar beden/cinsiyet filtresi + `{% marka-filtresi %}` CTA, ana sayfa meta, kategori hub'larında doğrulanmış markalar, schema (WebPage/ProfilePage about, CollectionPage, WebApplication); (2) içerik – 5XL/6XL, 54–56 beden sayfaları, niyet ayrıştırma, rapor anahtar kelimeleri, alt metinler. Bitince qa → tek PR → canlı kontrol.
+Karar (sahibi): editoryal sorumlu **BigBang** (takma ad, kurucu ve yayın sorumlusu) – `content/yazarlar/bigbang.yaml` eklendi. YAPILACAK (agent'lar bitince): tüm belgelere `reviewedBy: bigbang`, bylline'da 'Kontrol eden: BigBang' görünürlüğü, /editoryal-ilkeler ve /hakkimizda'da yayın sorumlusu bölümü, Organization/Person JSON-LD (takma ad olduğu şeffaf).
+
+## BEKLEME (2026-10-08): Search Console indeks verisi bekleniyor
+Sahibiyle anlaşma: indeks sayısı ve ilk arama verisi gelince devam. Sahibi Search Console'dan şunları paylaşacak: Sayfa sayısı (dizine eklenen/eklenmeyen + nedenleri), Site haritaları durumu, Performans (sorgular, gösterim, tıklama, ortalama konum). Gelince: dizine eklenmeyen sayfaların nedenlerini düzelt, gösterim alan ama tıklanmayan sayfaların title/description'ını iyileştir, 4–20. sıradaki sorgular için içerik güçlendir. Bu arada hatırlat: veri sorumlusu bilgisi, API anahtarı yenileme, onay bekleyenler (Keystatic prod, legacy/ silme, logolar, erkek hero).
+
+## 2026-10-08 – 5. dalga YAYINDA (PR #9): rakip SEO analizi uygulandı, 18 sayfa güncellendi, 3 yeni rehber; validate Türkiye saatine göre.
+
+## (eski) 5. dalga planı
 Sahibi: "ilk 20 siteyi araştır, SEO'larını al". Kopya YOK (kopya içerik + telif) – yapı/kelime/eksik konu analizi, kendi metnimizle uygulama. Agent: `docs/rakip-seo-analizi.md` yazar, eşlenen sayfaların title/description/H2/SSS'ini günceller, gerekirse yeni boşluk sayfaları açar, qa yeşil, v2'ye commit. Sonra: tek PR → canlı kontrol.
 - **Durum (2026-10-08):** analiz `docs/rakip-seo-analizi.md` yazıldı (21 site sayfası incelendi, 15 baş terim). 18 sayfanın title/description/SSS'i güncellendi; 3 yeni sayfa: `/kadin/stil/nasil-giyinmeli`, `/kadin/kombinler/tesettur`, `/rehberler/buyuk-gelen-kiyafet-nasil-kucultulur`. v2'ye commit edildi, **push edilmedi**. Not: validate tarih kontrolü UTC kullanıyor; TR saatiyle gece yarısından sonra `updatedAt` bugünün tarihi verilirse "gelecekte" hatası verir.
 

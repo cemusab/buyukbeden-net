@@ -1,7 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { getAuthor, getDocByKey, getManualRelated, getRelated, listLive } from "@/lib/content";
+import { getAuthor, getDocByKey, getManualRelated, getRelated, getSettings, listLive } from "@/lib/content";
+import type { AuthorEntry } from "@/lib/content-types";
 import type { DocMeta } from "@/lib/content-types";
 import { eyebrowFor, formatDate } from "@/lib/present";
 import { SOURCE_TYPE_LABEL } from "@/lib/taxonomy";
@@ -14,15 +15,35 @@ export function DocEyebrow({ doc }: { doc: DocMeta }) {
   return <Badge tone={eb.tone}>{eb.label}</Badge>;
 }
 
-/** Yazar · yayın · güncelleme · okuma süresi */
+/** Yayın sorumlusu: belgenin reviewedBy'ı, yoksa site ayarındaki defaultReviewer. Yalnız gerçek kişi; yazarla aynıysa gösterilmez. */
+export function reviewerOf(doc: Pick<DocMeta, "reviewedBy" | "author">): AuthorEntry | undefined {
+  const id = doc.reviewedBy ?? getSettings().defaultReviewer;
+  if (!id || id === doc.author) return undefined;
+  const r = getAuthor(id);
+  return r && !r.isTeam ? r : undefined;
+}
+
+/** Yazar · yayın sorumlusu · yayın · güncelleme · okuma süresi */
 export function AuthorByline({ doc }: { doc: DocMeta }) {
   const a = getAuthor(doc.author);
+  const r = reviewerOf(doc);
   return (
     <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-muted" data-byline>
       {a ? (
         <Link href={a.path} className="inline-flex min-h-11 items-center font-semibold text-ink-2 hover:text-primary hover:underline underline-offset-4">
           {a.name}
         </Link>
+      ) : null}
+      {r ? (
+        <>
+          <span aria-hidden="true">·</span>
+          <span data-yayin-sorumlusu>
+            Yayın sorumlusu:{" "}
+            <Link href={r.path} className="inline-flex min-h-11 items-center font-semibold text-ink-2 hover:text-primary hover:underline underline-offset-4">
+              {r.name}
+            </Link>
+          </span>
+        </>
       ) : null}
       <span aria-hidden="true">·</span>
       <span>
@@ -129,6 +150,7 @@ export function SourcesList({ doc }: { doc: DocMeta }) {
 
 export function AuthorBox({ doc }: { doc: DocMeta }) {
   const a = getAuthor(doc.author);
+  const r = reviewerOf(doc);
   if (!a) return null;
   return (
     <section aria-label="Yazar" className="my-10 rounded-card border border-line bg-soft p-5">
@@ -139,6 +161,15 @@ export function AuthorBox({ doc }: { doc: DocMeta }) {
         </Link>
       </p>
       <p className="mt-1 text-sm text-ink-2">{a.bio}</p>
+      {r ? (
+        <p className="mt-2 text-sm text-ink-2" data-yayin-sorumlusu>
+          Yayın sorumlusu:{" "}
+          <Link href={r.path} className="font-semibold text-ink hover:underline underline-offset-4">
+            {r.name}
+          </Link>
+          {r.role ? <span className="text-muted"> ({r.role})</span> : null}
+        </p>
+      ) : null}
       <p className="mt-2 text-xs text-muted">
         Son güncelleme: <time dateTime={doc.updatedAt}>{formatDate(doc.updatedAt)}</time>
       </p>

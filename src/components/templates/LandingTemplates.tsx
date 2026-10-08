@@ -1,12 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { getBody, getByPath, getHomepage, getHubChildren, getHubs, getSettings, getSizeCharts, listLive } from "@/lib/content";
+import { getBody, getByPath, getHomepage, getHubChildren, getHubs, getSettings, getSizeCharts, getToday, listLive } from "@/lib/content";
 import type { DocMeta } from "@/lib/content-types";
 import { faqLd, itemListLd } from "@/lib/jsonld";
 import { sizeLinks } from "@/lib/nav";
 import { hasRoute } from "@/lib/routes";
-import { categoryLabel, OCCASIONS, type GenderSilo } from "@/lib/taxonomy";
+import { CATEGORIES, categoryLabel, OCCASIONS, type GenderSilo } from "@/lib/taxonomy";
+import { brandCovers, brandGenders, brandHasCategory } from "@/lib/brand-sizes";
+import { BrandDirectoryList, type DirectoryBrand } from "@/components/content/BrandDirectoryList";
 import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
 import { MarkdocContent } from "@/components/content/Markdoc";
 import { FaqList } from "@/components/content/Faq";
@@ -14,7 +16,7 @@ import { AuthorBox, CompactHero, PageHero, ShortAnswer, SourcesList } from "@/co
 import { SizeChartTable } from "@/components/content/SizeChartTable";
 import { BedenBulucuSection } from "@/components/content/BedenBulucuSection";
 import { SizeRangeStrip } from "@/components/content/SizeRangeStrip";
-import { isMeasure } from "@/lib/size-core";
+import { finderCharts, isMeasure } from "@/lib/size-core";
 import { CroquisArt, croquisTile, FabricArt, hasCroquisArt, MeasureArt, QuickIcon } from "@/components/media/Illustration";
 import { CardGrid, CategoryCard, CategoryGrid, CompactCard, EditorialCard, FootwearCard, SizeBandCard, ThumbLink } from "@/components/ui/Cards";
 import { Badge, ButtonLink, JsonLd, SectionHeader } from "@/components/ui/primitives";
@@ -230,6 +232,29 @@ function SiloHome({ doc }: { doc: DocMeta }) {
   );
 }
 
+/** "Bedenimi Bul" bandı (giyim hub'ları): cinsiyeti sabit bulucuya (bölüm beden rehberi) ya da araç sayfasına gider. */
+function FinderCta({ silo }: { silo: GenderSilo }) {
+  const target = hasRoute(`/${silo}/beden-rehberi`) ? `/${silo}/beden-rehberi#beden-bulucu` : hasRoute("/beden-bulucu") ? "/beden-bulucu" : null;
+  if (!target) return null;
+  const n = new Set(finderCharts(getSizeCharts(), getToday()).filter((c) => c.gender === silo).map((c) => c.brandName)).size;
+  if (!n) return null;
+  return (
+    <section aria-labelledby="bedenimi-bul" className="mt-8 flex flex-col gap-3 rounded-card border border-primary/20 bg-primary-soft p-4 sm:flex-row sm:items-center sm:gap-5 sm:p-5" data-bedenimi-bul>
+      <div className="min-w-0 flex-1">
+        <h2 id="bedenimi-bul" className="text-h3 font-bold text-ink">
+          Bedenini ölçünle bul
+        </h2>
+        <p className="mt-0.5 text-sm text-ink-2">
+          {silo === "kadin" ? "Göğüs, bel ve basen" : "Göğüs, bel ve kalça"} ölçünü gir; {n} markanın kaynaklı {silo === "kadin" ? "kadın" : "erkek"} beden tablosuyla karşılaştır. Sonuçta beden aralığı, kaynak ve güven düzeyi görünür.
+        </p>
+      </div>
+      <ButtonLink href={target} className="shrink-0 self-start sm:self-center">
+        Bedenimi Bul <span aria-hidden="true">→</span>
+      </ButtonLink>
+    </section>
+  );
+}
+
 /* ---------------- /kadin/giyim, /erkek/giyim ---------------- */
 function ClothingHub({ doc }: { doc: DocMeta }) {
   const silo = doc.silo as GenderSilo;
@@ -262,6 +287,7 @@ function ClothingHub({ doc }: { doc: DocMeta }) {
       ld={[itemListLd(getSettings(), hubs.map((h) => ({ path: h.path, title: h.title })))]}
     >
       <CategorySection silo={silo} counts />
+      <FinderCta silo={silo} />
       {sizes.length ? (
         <section aria-labelledby="bedenini-sec" className="mt-8 flex flex-col gap-3 rounded-card bg-soft p-4 sm:p-5 lg:flex-row lg:items-center lg:gap-6">
           <h2 id="bedenini-sec" className="shrink-0 text-h3 font-bold text-ink">
@@ -618,42 +644,10 @@ function BrandDirectory({ doc }: { doc: DocMeta }) {
       {brands.length ? (
         <section aria-labelledby="marka-dizini" className="bf mt-10" data-brand-filter>
           <SectionHeader id="marka-dizini" title="Marka dizini" />
-          {filters.map((f) => (
-            <span key={f.id} id={f.id} className="bf-target block scroll-mt-28" />
-          ))}
-          {filters.length > 2 ? (
-            <nav aria-label="Marka filtresi" className="scroll-strip -mx-4 px-4">
-              <ul className="flex w-max gap-2 pb-1">
-                {filters.map((f) => (
-                  <li key={f.id}>
-                    <a href={`#${f.id}`} className={`bf-pill bf-pill-${f.id} inline-flex min-h-11 items-center whitespace-nowrap rounded-full border border-line-strong px-4 text-sm font-semibold`}>
-                      {f.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-          ) : null}
-          <ul className="mt-5 grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4">
-            {brands.map((b) => (
-              <li key={b.key} data-brand data-g={tagsOf(b).join(" ")}>
-                <article className="group relative flex h-full flex-col rounded-card border border-line bg-surface p-4 hover:border-primary/40">
-                  <div className="flex h-16 items-center justify-center rounded-md bg-soft px-2 text-center text-lg font-extrabold tracking-tight text-ink" aria-hidden="true">
-                    {b.label}
-                  </div>
-                  <h3 className="mt-3 font-bold text-ink">
-                    <Link href={b.path} className="after:absolute after:inset-0 group-hover:underline underline-offset-4">
-                      {b.label}
-                    </Link>
-                  </h3>
-                  <p className="mt-1 text-xs text-muted">
-                    {((b.fm.genders as string[]) ?? []).map((g) => (g === "kadin" ? "Kadın" : "Erkek")).join(" · ")}
-                    {b.fm.international ? " · Uluslararası" : ""}
-                  </p>
-                </article>
-              </li>
-            ))}
-          </ul>
+          <noscript>
+            <p className="mb-4 text-sm text-muted">Beden filtresi JavaScript ile çalışır; kapalıysa tüm markalar listelenir. Her markanın doğrulanmış beden aralığı kendi sayfasındaki özet kartındadır.</p>
+          </noscript>
+          <BrandDirectoryList brands={directoryData(brands)} filters={filters} categoryLabels={categoryLabels} />
         </section>
       ) : null}
       <Body doc={doc} className="mt-12" />
@@ -661,6 +655,27 @@ function BrandDirectory({ doc }: { doc: DocMeta }) {
     </Shell>
   );
 }
+const categoryLabels: Record<string, string> = Object.fromEntries((["kadin", "erkek"] as const).flatMap((g) => CATEGORIES[g].map((c) => [c.key, c.label])));
+
+/** İstemci filtresine giden veri: yalnız doğrulanmış kapsamlar ve kategoriler (src/lib/brand-sizes.ts). */
+function directoryData(brands: DocMeta[]): DirectoryBrand[] {
+  const charts = getSizeCharts();
+  const today = getToday();
+  return brands.map((b) => ({
+    id: b.id,
+    label: b.label,
+    path: b.path,
+    genders: brandGenders(b),
+    tags: tagsOf(b),
+    intl: !!b.fm.international,
+    covers: brandCovers(b, charts, today),
+    cats: {
+      kadin: CATEGORIES.kadin.map((c) => c.key).filter((c) => brandHasCategory(b, charts, c, "kadin")),
+      erkek: CATEGORIES.erkek.map((c) => c.key).filter((c) => brandHasCategory(b, charts, c, "erkek")),
+    },
+  }));
+}
+
 function tagsOf(b: DocMeta): string[] {
   return [...((b.fm.genders as string[]) ?? []), ...(b.fm.international ? ["intl"] : [])];
 }

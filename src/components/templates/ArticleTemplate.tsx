@@ -14,6 +14,7 @@ import { RelatedShoppingCTA } from "@/components/content/RelatedShoppingCTA";
 import {
   ArchiveBanner,
   AuthorBox,
+  reviewerOf,
   AuthorByline,
   BackToParent,
   DocEyebrow,
@@ -41,12 +42,15 @@ export async function DocShell({
   beforeBody,
   afterBody,
   extraLd,
+  ld: ldOverride,
   figure,
 }: {
   doc: DocMeta;
   beforeBody?: ReactNode;
   afterBody?: ReactNode;
   extraLd?: Record<string, unknown>;
+  /** Article yerine kullanılacak birincil JSON-LD (ör. marka sayfası WebPage) */
+  ld?: object[];
   /** Kapak görseli yoksa yerine gösterilen illüstrasyon */
   figure?: ReactNode;
 }) {
@@ -54,7 +58,7 @@ export async function DocShell({
   const body = await getBody(doc.key);
   const chain = breadcrumbFor(doc.path);
   const parent = chain.length > 1 ? chain[chain.length - 2] : null;
-  const ld: object[] = [articleLd(s, doc, getAuthor(doc.author), extraLd)];
+  const ld: object[] = ldOverride ? [...ldOverride] : [articleLd(s, doc, getAuthor(doc.author), extraLd, reviewerOf(doc))];
   if (doc.faq.length >= 2) ld.push(faqLd(doc.faq));
   // Yan sütun: aynı kategoriden / aynı bölümden içerikler (silo korunur; ilgili bloklarda tekrar edilmez)
   const sameSilo = (d: DocMeta) => (doc.silo === "ortak" ? true : d.silo === doc.silo);

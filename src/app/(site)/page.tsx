@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { getByPath, getHomepage, getHubs, getSettings, getSizeCharts, listLive } from "@/lib/content";
-import { isMeasure } from "@/lib/size-core";
+import { getByPath, getHomepage, getHubs, getSettings, getSizeCharts, getToday, listLive } from "@/lib/content";
+import { finderCharts, isMeasure } from "@/lib/size-core";
 import type { DocMeta } from "@/lib/content-types";
 import { itemListLd, organizationLd, websiteLd } from "@/lib/jsonld";
 import { simpleMetadata } from "@/lib/metadata";
@@ -18,7 +18,7 @@ export function generateMetadata(): Metadata {
   const s = getSettings();
   return simpleMetadata({
     title: `Büyük Beden Giyim, Beden ve Stil Rehberi | ${s.siteName}`,
-    description: "Büyük beden giyimde doğru beden, kalıp ve kumaş: kadın ve erkek için ölçüye dayalı beden tabloları, stil, kombin ve marka rehberleri. Satış yapmaz.",
+    description: "Büyük beden giyimde doğru bedeni ve markayı bulun. Kadın ve erkek için ölçü tabloları, beden karşılıkları, stil, kumaş ve kaynaklı marka rehberleri.",
     path: "/",
     absoluteTitle: true,
   });
@@ -71,6 +71,29 @@ function Section({ id, title, docs, more, compact = false }: { id: string; title
           ))}
         </CardGrid>
       )}
+    </section>
+  );
+}
+
+/** "Bedenimi Bul": sitenin ana aracı, hero'nun hemen üstünde (ilk ekranda). */
+function FinderBand() {
+  if (!hasRoute("/beden-bulucu")) return null;
+  const charts = finderCharts(getSizeCharts(), getToday());
+  const brands = new Set(charts.map((c) => c.brandName)).size;
+  return (
+    <section aria-labelledby="bedenimi-bul" className="mb-4 flex flex-col gap-3 rounded-card border border-primary/20 bg-primary-soft p-4 sm:flex-row sm:items-center sm:gap-5 sm:p-5" data-bedenimi-bul>
+      <QuickIcon name="beden-rehberi" className="hidden h-10 w-10 shrink-0 text-primary sm:block" />
+      <div className="min-w-0 flex-1">
+        <h2 id="bedenimi-bul" className="text-h3 font-bold text-ink">
+          Bedenini ölçünle bul
+        </h2>
+        <p className="mt-0.5 text-sm text-ink-2">
+          Göğüs, bel ve basen ölçünü gir; {brands} markanın kaynaklı beden tablosuyla karşılaştıralım. Sonuçta beden aralığı, kaynak, son kontrol tarihi ve güven düzeyi görünür. Ölçülerin kaydedilmez.
+        </p>
+      </div>
+      <ButtonLink href="/beden-bulucu" className="shrink-0 self-start sm:self-center">
+        Bedenimi Bul <span aria-hidden="true">→</span>
+      </ButtonLink>
     </section>
   );
 }
@@ -187,6 +210,7 @@ export default function HomePage() {
         <h1 id="anasayfa-baslik" className="mb-4 text-xl font-extrabold tracking-tight text-ink sm:text-2xl">
           {h.hero.title}
         </h1>
+        <FinderBand />
         <div className="grid gap-4 md:grid-cols-2">
           {doors.map((x) => {
             const c = h.hero[x];

@@ -7,6 +7,6 @@ export const manifest = index.manifest;
 export const SITE = index.settings.siteUrl;
 export const pagePaths = manifest.map((e) => e.path);
 export const indexable = manifest.filter((e) => e.index).map((e) => e.path);
-export const ALLOWED_LD = new Set(["Article", "BreadcrumbList", "Organization", "Person", "ItemList", "FAQPage", "WebSite", "Question", "Answer", "ListItem", "WebPage"]);
+export const ALLOWED_LD = new Set(["Article", "BreadcrumbList", "Organization", "Person", "ItemList", "FAQPage", "WebSite", "Question", "Answer", "ListItem", "WebPage", "CollectionPage", "WebApplication", "Brand"]);
 export const FORBIDDEN_LD = ["Product", "Offer", "AggregateRating", "Review"];
 export const byType = (t: string) => index.docs.filter((d) => d.type === t);

@@ -187,6 +187,7 @@ export default config({
         analytics: fields.ignored(),
         editorialEmail: fields.ignored(),
         defaultOgImage: fields.ignored(),
+        defaultReviewer: fields.relationship({ label: "Varsayılan yayın sorumlusu (gerçek kişi)", collection: "yazarlar" }),
       },
     }),
     anasayfa: singleton({
@@ -309,6 +310,13 @@ export default config({
       socialEmbeds: fields.ignored(),
       unverified: fields.array(fields.text({ label: "Alan adı" }), { label: "Doğrulanamayan alanlar", itemLabel: (p) => p.value }),
       lastVerifiedAt: fields.date({ label: "Son doğrulama" }),
+      changelog: fields.array(
+        fields.object({
+          date: fields.date({ label: "Tarih" }),
+          change: fields.text({ label: "Değişiklik (gerçek, doğrulanmış)", multiline: true }),
+        }),
+        { label: "Değişiklik kaydı", itemLabel: (p) => `${p.fields.date.value ?? ""} ${p.fields.change.value}` },
+      ),
     }),
     kumaslar: doc("Kumaşlar", "kumaslar", {
       ...base("kumaslar"),

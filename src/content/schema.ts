@@ -340,6 +340,8 @@ export const BrandSchema = z.strictObject({
     .default([]),
   unverified: z.array(z.string()).default([]),
   lastVerifiedAt: IsoDate,
+  /** Gerçek değişiklik kaydı (önceki kontrol, değişen alan); uydurma kayıt yazılmaz. Yeni → eski sıralanarak gösterilir. */
+  changelog: z.array(z.strictObject({ date: IsoDate, change: z.string().min(5).max(300) })).default([]),
 });
 
 export const FabricSchema = z.strictObject({
@@ -397,6 +399,8 @@ export const SiteSettingsSchema = z.strictObject({
   popularSearches: z.array(z.string()).max(8).default([]),
   analytics: z.object({ ga4Id: z.string().nullable().default(null) }).default({ ga4Id: null }),
   editorialEmail: z.email().nullable().default(null),
+  /** Belgede reviewedBy yoksa gösterilecek yayın sorumlusu (content/yazarlar/{id}; gerçek kişi, ekip hesabı olamaz) */
+  defaultReviewer: Slug.optional(),
 });
 
 export const HOME_SECTION_KEYS = [
