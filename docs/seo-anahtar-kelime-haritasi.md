@@ -48,7 +48,8 @@ Başlık kuralı: `seo.title` (yoksa `title`) şablonla `"%s | Buyukbeden.net"` 
 | büyük beden kadın tişört / gömlek / hırka / triko-kazak | T | ilgili `/kadin/giyim/{kategori}` hub'ı |
 | kadın beden rehberi | B | `/kadin/beden-rehberi` |
 | kadın beden tablosu | B | `/kadin/beden-rehberi/beden-tablosu` |
-| 52 beden kaç xl, 54 / 56 beden kaç xl | B | `/kadin/beden-rehberi/52-beden-kac-xl` |
+| 52 beden kaç xl | B | `/kadin/beden-rehberi/52-beden-kac-xl` |
+| 54 beden kaç xl, 56 beden kaç xl, 54/56 beden ölçüleri | B | `/kadin/beden-rehberi/54-56-beden-kac-xl` (2026-10-08; 52 sayfasındaki 54–56 bölümü kısaltılıp buraya bağlandı) |
 | sütyen bedeni nasıl ölçülür, büyük beden sütyen kaç numara | B | `/kadin/beden-rehberi/sutyen-beden-olcusu` |
 | büyük beden kadın kombinleri | K | `/kadin/kombinler` |
 | büyük beden tesettür kombin, tesettür kombin önerileri | B/K | `/kadin/kombinler/tesettur` |
@@ -75,6 +76,8 @@ Başlık kuralı: `seo.title` (yoksa `title`) şablonla `"%s | Buyukbeden.net"` 
 | erkek beden rehberi | B | `/erkek/beden-rehberi` |
 | erkek beden tablosu | B | `/erkek/beden-rehberi/beden-tablosu` |
 | 4xl kaç beden, 4xl kaç beden erkek | B | `/erkek/beden-rehberi/4xl-kac-beden` |
+| 5xl kaç beden (erkek), 5xl kaç numara, 5xl göğüs ölçüsü | B | `/erkek/beden-rehberi/5xl-kac-beden` (2026-10-08) |
+| 6xl kaç beden, 6xl göğüs ölçüsü, süper battal kaç xl, 8xl / 10xl erkek giyim | B | `/erkek/beden-rehberi/6xl-kac-beden` (2026-10-08) |
 | gömlek yaka ölçüsü | B | `/erkek/beden-rehberi/gomlek-yaka-kol-olcusu` |
 | göbekli erkek nasıl giyinmeli | B | `/erkek/stil/gobekli-erkek-nasil-giyinmeli` |
 | büyük beden erkek kombinleri | K | `/erkek/kombinler` |
@@ -85,7 +88,7 @@ Başlık kuralı: `seo.title` (yoksa `title`) şablonla `"%s | Buyukbeden.net"` 
 |---|---|---|
 | büyük beden kaç bedenden başlar, büyük beden kaçtan başlar, büyük beden kaç oluyor | B | `/beden-rehberi/buyuk-beden-kac-bedenden-baslar` |
 | büyük beden kaç kilodan başlar, kaç kilo kaç beden | B | `/beden-rehberi/boy-kilo-beden-neden-yaniltir` (kilo eşiği verilmez; ölçüye yönlendirir) |
-| xl kaç beden, xxl / xxxl kaç beden, 2xl / 3xl / 5xl kaç beden, en büyük beden kaç xl, 4xl kaç beden kadın | B | `/beden-rehberi/harf-beden-karsiliklari` |
+| xl kaç beden, xxl / xxxl kaç beden, 2xl / 3xl kaç beden (genel, kadın+erkek), en büyük beden kaç xl, 4xl kaç beden kadın | B | `/beden-rehberi/harf-beden-karsiliklari` (erkek 4XL/5XL/6XL tekil sayfalara bağlanır) |
 | beden çevirme tr eu uk us | B | `/beden-rehberi/beden-sistemleri` |
 | vücut ölçüsü nasıl alınır | B | `/beden-rehberi/olcu-alma-rehberi` |
 | beden neden markadan markaya değişir, markalara göre beden farkı | B | `/beden-rehberi/beden-neden-markadan-markaya-degisir`, `/alisveris-rehberi/markalar-arasi-beden-farki` |

@@ -7,7 +7,7 @@ hero:
     cta: Kadın Bölümüne Git
     image:
       src: /images/ai/hero-kadin/hero-kadin.jpg
-      alt: İstanbul'da taş döşeli bir sokakta kiremit rengi kruvaze midi elbise ve bej trençkot giymiş, gülümseyen kadın
+      alt: "Büyük beden kadın günlük kombini: kiremit rengi kruvaze midi elbise, omuzda bej trençkot ve ten rengi babetlerle İstanbul'da taş döşeli bir sokakta"
       aiGenerated: true
   erkek:
     title: Büyük Beden Erkek Giyim
@@ -15,16 +15,16 @@ hero:
     cta: Erkek Bölümüne Git
     image:
       src: /images/ai/hero-erkek/hero-erkek.jpg
-      alt: Boğaz kıyısında lacivert ceket, beyaz tişört ve gri pantolon giymiş, sakallı, gülümseyen adam
+      alt: "Büyük beden erkek smart casual kombini: lacivert ceket, beyaz tişört, gri kumaş pantolon ve kahverengi deri ayakkabıyla Boğaz kıyısında"
       aiGenerated: true
 sizeBand:
   kadinImage:
     src: /images/stok/kapak-beden-rehberi/pexels-31144012.jpg
-    alt: Buruşuk beyaz kumaşın üzerinde kalp biçiminde duran mavi terzi mezurası
+    alt: "Kadın beden ölçüsü için buruşuk beyaz kumaş üzerinde kalp biçiminde duran mavi terzi mezurası"
     credit: "Fotoğraf: Beyzaa Yurtkuran / Pexels"
   erkekImage:
     src: /images/stok/terzi-araclari/pexels-6461504.jpg
-    alt: Beyaz zeminde yan yana dizilmiş terzi makası, kalem, küçük makas, iplik, söküm aleti, çengelli iğne ve düğme
+    alt: "Erkek beden ölçüsü için beyaz zeminde dizilmiş terzi makası, kalem, iplik, söküm aleti, çengelli iğne ve düğme"
     credit: "Fotoğraf: Pavel Danilyuk / Pexels"
 manifesto:
   title: Her bedende doğru seçim mümkün
