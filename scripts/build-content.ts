@@ -22,6 +22,7 @@ import { checkLanguage } from "./check-language";
 import { Markdoc, markdocConfig, nodeText, transformMarkdoc } from "../src/content/markdoc.config";
 import type { AuthorEntry, ContentIndex, DocMeta, RouteEntry, TocItem } from "../src/lib/content-types";
 import { buildRouteManifest, computePath } from "../src/lib/routes-core";
+import { brandsForSize, parseSizeQuery } from "../src/lib/brand-sizes";
 import { normalizeTr } from "../src/lib/search-normalize";
 import {
   CATEGORIES,
@@ -389,6 +390,7 @@ for (const collection of Object.keys(COLLECTIONS) as Collection[]) {
       headingIds,
       hasFaqSlot,
       hasCtaSlot,
+      chartRefs: w.chartRefs,
       inline,
       fm: { ...rest, segment, section },
       relatedAuto: [],
@@ -550,6 +552,12 @@ function hasTechnicalFabricValues(fm: Record<string, unknown>) {
 }
 
 const publishedPaths = new Set(manifest.map((e) => e.path));
+const brandInputs = docs.filter((d) => d.collection === "markalar" && d.status !== "archived");
+if (settings?.defaultReviewer) {
+  const r = authors.find((a) => a.id === settings.defaultReviewer);
+  if (!r) err("content/ayarlar/site.yaml", `defaultReviewer "${settings.defaultReviewer}" content/yazarlar/ içinde yok`);
+  else if (r.isTeam) err("content/ayarlar/site.yaml", "defaultReviewer yalnız gerçek kişi olabilir (ekip hesabı değil)");
+}
 const childrenOfHub = new Map<string, DocMeta[]>();
 for (const d of docs) if (d.hub && d.collection !== "hublar") childrenOfHub.set(d.hub, [...(childrenOfHub.get(d.hub) ?? []), d]);
 
@@ -613,6 +621,21 @@ for (const w of works) {
   // Beden tabloları
   const charts = [...((fm.sizeCharts as string[] | undefined) ?? []), ...w.chartRefs];
   for (const c of charts) if (!chartIds.has(c)) err(f, `beden tablosu "${c}" content/beden-tablolari/ içinde yok`);
+  // Tablo sayfada anchor (#tablo-{id}) taşır: aynı tablo bir sayfada iki kez gösterilemez
+  for (const c of new Set(charts)) if (charts.filter((x) => x === c).length > 1) err(f, `beden tablosu "${c}" sayfada iki kez gösteriliyor (sizeCharts + gövde ya da gövdede iki kez)`);
+  // {% marka-filtresi %}: build'de en az bir doğrulanmış marka eşleşmeli (boş CTA yayımlanmaz)
+  for (const n of w.ast.walk()) {
+    if (n.type !== "tag" || n.tag !== "marka-filtresi") continue;
+    const a = n.attributes as { cinsiyet?: "kadin" | "erkek"; beden?: string; kategori?: string };
+    const where = `gövde satır ${(n.lines?.[0] ?? 0) + 1}: {% marka-filtresi %}`;
+    if (!a.beden || !parseSizeQuery(a.beden, a.cinsiyet)) {
+      err(f, `${where}: beden "${a.beden ?? ""}" tanınmadı (ör. 52, 4XL)`);
+      continue;
+    }
+    if (a.kategori && !CATEGORIES[a.cinsiyet ?? "kadin"].some((c) => c.key === a.kategori)) err(f, `${where}: kategori "${a.kategori}" ${a.cinsiyet} taksonomisinde yok`);
+    if (!brandsForSize(brandInputs, sizeCharts, { size: a.beden, gender: a.cinsiyet, kategori: a.kategori }, TODAY).length)
+      err(f, `${where}: ${a.cinsiyet} ${a.beden} bedenini doğrulanmış veriyle kapsayan marka yok`);
+  }
   // Türetilmiş karşılaştırmalar: aynı ölçü türü, kaynaklı satır, boş olmamalı
   const comparisons = [
     ...((fm.sizeComparisons as Record<string, unknown>[] | undefined) ?? []).map((attrs, i) => ({ attrs, where: `sizeComparisons[${i}]` })),
@@ -913,6 +936,7 @@ if (!CHECK_ONLY) {
   );
   const index: ContentIndex = {
     generatedAt: new Date().toISOString(),
+    today: TODAY,
     settings,
     homepage,
     docs,

@@ -59,6 +59,8 @@ export type DocMeta = {
   headingIds: string[];
   hasFaqSlot: boolean;
   hasCtaSlot: boolean;
+  /** Gövdede {% beden-tablosu %} ile gömülen tablo id'leri */
+  chartRefs: string[];
   /** Satır içi Markdoc alanları (shortAnswer, intro, whyItWorks, plusSizeNotes) render ağacı olarak */
   inline: Record<string, Tree>;
   /** Türe özgü frontmatter alanları (zod çıktısı) */
@@ -71,6 +73,8 @@ export type AuthorEntry = Author & { id: string; path: string };
 
 export type ContentIndex = {
   generatedAt: string;
+  /** Build günü (YYYY-AA-GG, Türkiye saati); güven/tazelik hesapları bununla yapılır */
+  today: string;
   settings: SiteSettings;
   homepage: Homepage;
   docs: DocMeta[];

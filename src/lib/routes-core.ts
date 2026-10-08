@@ -110,6 +110,9 @@ export function buildRouteManifest(docs: DocMeta[], authors: AuthorEntry[]): Rou
   entries.push({ path: "/arama", parent: "/", label: "Arama", group: "utility", kind: "utility", silo: "ortak", index: false });
 
   const paths = new Set(entries.map((e) => e.path));
+  // Beden Bulucu: koddan üretilen araç sayfası (src/app/(site)/beden-bulucu); veri kaynaklı beden tablolarıdır.
+  entries.push({ path: "/beden-bulucu", parent: paths.has("/beden-rehberi") ? "/beden-rehberi" : "/", label: "Beden Bulucu", group: "size-guides", kind: "utility", silo: "ortak", index: true });
+  paths.add("/beden-bulucu");
   for (const e of entries) {
     if (e.path === "/" || e.parent) continue;
     e.parent = parentOf(e.path, paths);

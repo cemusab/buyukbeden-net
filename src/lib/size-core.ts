@@ -198,7 +198,7 @@ export function normLetter(s: string, gender: Gender): string {
 }
 
 /** "48–50", "46/48", "48" → [48, 50] / [46, 48] / [48] */
-function numericParts(s: string): number[] {
+export function numericParts(s: string): number[] {
   return s
     .split(/[–\-/]/)
     .map((p) => Number(p.trim().replace(",", ".")))
@@ -206,7 +206,7 @@ function numericParts(s: string): number[] {
 }
 
 /** Satırın EU/TR numerik karşılığı (yalnız kaynak verdiyse). */
-function euNumber(chart: Pick<MeasureChart, "countrySystem">, row: ChartRow): string | undefined {
+export function euNumber(chart: Pick<MeasureChart, "countrySystem">, row: ChartRow): string | undefined {
   if (["TR", "EU", "DE"].includes(chart.countrySystem)) return row.numericSize;
   return row.equivalents?.EU ?? row.equivalents?.TR ?? row.equivalents?.DE;
 }
@@ -473,6 +473,37 @@ export function buildComparison(all: ChartWithId[], spec: ComparisonSpec): { res
 }
 
 /* ------------------------------------------------------------------ */
+/* Güven düzeyi (şeffaf kural; Beden Bulucu, marka özeti, kategori ve marka dizini aynı kuralı kullanır) */
+/* ------------------------------------------------------------------ */
+
+export const CONFIDENCE_LEVELS = ["yuksek", "orta", "dusuk"] as const;
+export type Confidence = (typeof CONFIDENCE_LEVELS)[number];
+export const CONFIDENCE_LABEL: Record<Confidence, string> = { yuksek: "Yüksek", orta: "Orta", dusuk: "Düşük" };
+/** Kural metni: arayüzdeki açıklama (lejant / ipucu) bununla birebir aynıdır. */
+export const CONFIDENCE_RULE: Record<Confidence, string> = {
+  yuksek: "Markanın resmi vücut ölçüsü tablosu; tablonun tamamı aktarılmış ve son 6 ay içinde kaynağından kontrol edilmiş.",
+  orta: "Tablonun yalnız bir bölümü aktarılmış, kaynak üretici ya da satıcı, tablo ürün (giysi) ölçüsü veriyor, son kontrol 6 aydan eski ya da yalnız markanın beden aralığı biliniyor (tablo yok).",
+  dusuk: "Genel / yaklaşık bir referans tablo ya da kaynak ölçünün vücut mu ürün mü olduğunu açıkça yazmıyor.",
+};
+
+const daysBetween = (from: string, to: string) => (Date.parse(to) - Date.parse(from)) / 864e5;
+
+/** Bir beden tablosunun güven düzeyi. `today` YYYY-AA-GG (build günü, Türkiye saati). */
+export function chartConfidence(c: ChartWithId, today: string): Confidence {
+  if (c.sourceType === "generic") return "dusuk";
+  if (c.kind === "olcu" && !c.measurementTypeVerified) return "dusuk";
+  const fresh = daysBetween(c.lastVerifiedAt, today) <= FRESHNESS_DAYS;
+  if (c.kind === "olcu" && c.sourceType === "official_brand" && c.measurementType === "body" && !c.partialRows && fresh) return "yuksek";
+  return "orta";
+}
+
+/** Beden Bulucu sonuç uyarısı (docs/seo-analizi-2026-10-08.md P0-1) */
+export const FINDER_WARNING = "Bu sonuç markanın genel beden tablosuna dayanır; her ürün ve kategori aynı beden aralığını sunmayabilir.";
+
+/** Tablo türü etiketi (sonuç kartları ve özetlerde) */
+export const CHART_KIND_LABEL: Record<MeasurementType, string> = { body: "Vücut ölçüsü tablosu", garment: "Ürün ölçüsü tablosu" };
+
+/* ------------------------------------------------------------------ */
 /* Beden Bulucu (istemci): ölçüyü kaynaklı vücut tablolarıyla karşılaştırır */
 /* ------------------------------------------------------------------ */
 
@@ -489,11 +520,15 @@ export type FinderChart = {
   sourceLabel: string;
   sourceType: ChartSourceType;
   lastVerifiedAt: string;
-  rows: { label: string; m: Partial<Record<FinderField, Range>>; kisa?: string; uzun?: string }[];
+  confidence: Confidence;
+  /** Satır: etiket, ölçüler; `token` marka dizini filtresi için beden (TR/EU numara ya da harf) */
+  rows: { label: string; m: Partial<Record<FinderField, Range>>; kisa?: string; uzun?: string; token?: string }[];
+  /** Sunucuda (manifest'e göre) eklenen iç linkler; yalnız sayfa varsa */
+  links?: { brand?: string; chart?: string; hub?: string; hubLabel?: string };
 };
 
 /** Bulucuya yalnız doğrulanmış vücut ölçüsü tabloları girer (ürün ölçüsü ve ölçü türü belirsiz tablolar hariç). */
-export function finderCharts(all: ChartWithId[]): FinderChart[] {
+export function finderCharts(all: ChartWithId[], today: string): FinderChart[] {
   const out: FinderChart[] = [];
   for (const c of all) {
     if (!isMeasure(c) || c.measurementType !== "body" || !c.measurementTypeVerified || c.partialRows || c.productType === "ic-giyim" || isFootwear(c)) continue;
@@ -504,6 +539,7 @@ export function finderCharts(all: ChartWithId[]): FinderChart[] {
         m: Object.fromEntries(fields.filter((f) => r[f]).map((f) => [f, rangeCm(r[f]!, c.unit)])) as FinderChart["rows"][number]["m"],
         kisa: r.equivalents?.kisa,
         uzun: r.equivalents?.uzun,
+        token: rowToken(c, r),
       }))
       .filter((r) => Object.keys(r.m).length > 0);
     if (!rows.length) continue;
@@ -520,10 +556,20 @@ export function finderCharts(all: ChartWithId[]): FinderChart[] {
       sourceLabel: src.label,
       sourceType: c.sourceType,
       lastVerifiedAt: c.lastVerifiedAt,
+      confidence: chartConfidence(c, today),
       rows,
     });
   }
   return out;
+}
+
+/** Satırın marka dizini filtresinde kullanılacak bedeni: kadında TR/EU numara, erkekte harf öncelikli. */
+function rowToken(c: MeasureChart, r: ChartRow): string | undefined {
+  const num = euNumber(c, r);
+  const n = num ? numericParts(num)[0] : undefined;
+  const letter = r.letterSize ? normLetter(r.letterSize, c.gender) : undefined;
+  const okLetter = letter && /^(XS|S|M|L|XL|\d{1,2}XL)$/.test(letter) ? letter : undefined;
+  return c.gender === "kadin" ? (n ? String(n) : okLetter) : (okLetter ?? (n ? String(n) : undefined));
 }
 
 export type FieldMatch = { field: FinderField; from: number; to: number; status: "in" | "between" | "below" | "above" };

@@ -121,6 +121,19 @@ export const markdocConfig: Config = {
         gorunum: { type: String, matches: ["olcu", "marka"] },
       },
     },
+    /**
+     * Filtreli marka dizini CTA'sı: "52 bedeni doğrulanmış markaları gör" + build'de hesaplanan en çok 5 marka önizlemesi.
+     * {% marka-filtresi cinsiyet="kadin" beden="52" kategori="elbise" /%}
+     */
+    "marka-filtresi": {
+      render: "BrandFilterCta",
+      selfClosing: true,
+      attributes: {
+        cinsiyet: { type: String, required: true, matches: ["kadin", "erkek"] },
+        beden: { type: String, required: true },
+        kategori: { type: String },
+      },
+    },
     /** Pantolon kalıbı çizimi + etiket (src/components/illustrations/fits.tsx). */
     kalip: {
       render: "FitFigure",
