@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { getBody, getByPath, getDocByKey, getHubChildren, getSettings, listLive } from "@/lib/content";
 import type { DocMeta } from "@/lib/content-types";
-import { faqLd, itemListLd } from "@/lib/jsonld";
+import { collectionPageLd, faqLd } from "@/lib/jsonld";
+import { CategoryBrands } from "@/components/content/BrandSizeParts";
 import type { GenderSilo } from "@/lib/taxonomy";
 import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
 import { MarkdocContent } from "@/components/content/Markdoc";
@@ -68,7 +69,7 @@ export async function HubTemplate({ doc }: { doc: DocMeta }) {
   const extra = children.length < 4 ? outfits.slice(0, 4 - children.length) : [];
   const outfitsRest = outfits.filter((o) => !extra.includes(o));
   const relatedHubs = fm.relatedHubs.map((id) => getDocByKey(`hublar/${id}`)).filter((d): d is DocMeta => !!d);
-  const ld: object[] = [itemListLd(s, children.map((c) => ({ path: c.path, title: c.title })))];
+  const ld: object[] = [collectionPageLd(s, doc, children.map((c) => ({ path: c.path, title: c.title })))];
   if (doc.faq.length >= 2) ld.push(faqLd(doc.faq));
 
   return (
@@ -152,6 +153,8 @@ export async function HubTemplate({ doc }: { doc: DocMeta }) {
           </div>
         </aside>
       </div>
+
+      <CategoryBrands silo={silo} category={cat} />
 
       <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
         <MiniList id="ilgili-beden-rehberleri" title="İlgili beden rehberleri" docs={sizeGuides} more={getByPath(`/${silo}/beden-rehberi`) ? { href: `/${silo}/beden-rehberi`, label: "Beden rehberi" } : undefined} />

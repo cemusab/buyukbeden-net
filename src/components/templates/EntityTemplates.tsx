@@ -1,7 +1,11 @@
 import Link from "next/link";
-import { getDocByKey, getHubs, getSizeChart, listLive } from "@/lib/content";
+import { getAuthor, getDocByKey, getHubs, getSettings, getSizeChart, getSizeCharts, listLive } from "@/lib/content";
+import { brandCharts } from "@/lib/brand-sizes";
+import { brandPageLd, itemListLd } from "@/lib/jsonld";
+import { reviewerOf } from "@/components/content/DocParts";
+import { BrandSummaryCard } from "@/components/content/BrandSizeParts";
 import type { DocMeta } from "@/lib/content-types";
-import { categoryLabel, CATEGORIES, SEASON_LABEL, type GenderSilo } from "@/lib/taxonomy";
+import { categoryLabel, SEASON_LABEL, type GenderSilo } from "@/lib/taxonomy";
 import { formatDate } from "@/lib/present";
 import { SizeChartTable } from "@/components/content/SizeChartTable";
 import { MarkdocContent, SizeComparison } from "@/components/content/Markdoc";
@@ -209,50 +213,24 @@ export async function BrandTemplate({ doc }: { doc: DocMeta }) {
     lastVerifiedAt: string;
     socialEmbeds: { platform: "instagram" | "youtube"; url: string; title?: string }[];
     international: boolean;
+    changelog: { date: string; change: string }[];
   };
   const hide = new Set(fm.unverified);
-  const cats = fm.genders.flatMap((g) =>
-    getHubs(g)
-      .filter((h) => fm.categories.includes(h.category!))
-      .map((h) => ({ path: h.path, label: `${g === "kadin" ? "Kadın" : "Erkek"} ${categoryLabel(g, h.category!).toLocaleLowerCase("tr")}` })),
-  );
-  const unlinkedCats = fm.categories.filter((c) => !cats.some((x) => x.path.endsWith(`/${c}`)));
   const avail = [
     fm.availabilityTR.online === true && !hide.has("availabilityTR") ? "Online satış" : null,
     fm.availabilityTR.stores === true && !hide.has("stores") ? "Mağaza" : null,
   ].filter(Boolean);
+  const linkedCharts = brandCharts(doc, getSizeCharts());
+  const notInBody = linkedCharts.filter((c) => !doc.chartRefs.includes(c.id));
   const before = (
     <div className="space-y-6">
+      <BrandSummaryCard doc={doc} />
       <Facts
         rows={[
           ["Ülke", !hide.has("country") ? fm.country : null],
-          ["Kime", fm.genders.map((g) => (g === "kadin" ? "Kadın" : "Erkek")).join(" ve ")],
-          [
-            "Beden aralığı",
-            fm.sizeRange && !hide.has("sizeRange")
-              ? Object.entries(fm.sizeRange)
-                  .map(([g, r]) => `${g === "kadin" ? "Kadın" : "Erkek"}: ${r.from}–${r.to}`)
-                  .join(" · ")
-              : null,
-          ],
           ["Fiyat segmenti", fm.priceSegment && !hide.has("priceSegment") ? PRICE[fm.priceSegment] : null],
-          [
-            "Kategoriler",
-            cats.length || unlinkedCats.length ? (
-              <span className="flex flex-wrap gap-x-2 gap-y-1">
-                {cats.map((c) => (
-                  <Link key={c.path} href={c.path} className="text-primary underline underline-offset-2">
-                    {c.label}
-                  </Link>
-                ))}
-                {unlinkedCats.map((c) => (
-                  <span key={c}>{CATEGORIES.kadin.find((x) => x.key === c)?.label ?? CATEGORIES.erkek.find((x) => x.key === c)?.label ?? c}</span>
-                ))}
-              </span>
-            ) : null,
-          ],
           ["Kalıp karakteri", !hide.has("fitNotes") ? fm.fitNotes : null],
-          ["Türkiye'de erişim", avail.length ? avail.join(", ") + (fm.availabilityTR.notes ? ` (${fm.availabilityTR.notes})` : "") : null],
+          ["Türkiye'de erişim notu", avail.length && fm.availabilityTR.notes ? fm.availabilityTR.notes : null],
           [
             "Resmi site",
             fm.website && !hide.has("website") ? (
@@ -261,7 +239,6 @@ export async function BrandTemplate({ doc }: { doc: DocMeta }) {
               </a>
             ) : null,
           ],
-          ["Son doğrulama", formatDate(fm.lastVerifiedAt)],
         ]}
       />
       {fm.unverified.length ? <p className="text-sm text-muted">Bazı bilgiler doğrulanıyor; doğrulanana kadar gösterilmez.</p> : null}
@@ -306,8 +283,36 @@ export async function BrandTemplate({ doc }: { doc: DocMeta }) {
     ...fm.relatedGuides.map((p) => listLive((d) => d.path === p)[0]),
     ...listLive((d) => d.brands.includes(doc.id) && d.key !== doc.key),
   ].filter((d, i, arr): d is DocMeta => !!d && arr.findIndex((x) => x?.key === d.key) === i);
+  const changelog = [...fm.changelog].sort((a, b) => b.date.localeCompare(a.date));
   const after = (
     <>
+      {notInBody.length ? (
+        <section aria-labelledby="markanin-beden-tablolari" className="mt-10">
+          <h2 id="markanin-beden-tablolari" className="text-h3 font-bold text-ink">
+            Markanın beden tabloları
+          </h2>
+          {notInBody.map((c) => (
+            <SizeChartTable key={c.id} chart={c} headingLevel="h3" />
+          ))}
+        </section>
+      ) : null}
+      {changelog.length ? (
+        <section aria-labelledby="degisiklik-kaydi" className="mt-10" data-degisiklik-kaydi>
+          <h2 id="degisiklik-kaydi" className="text-h3 font-bold text-ink">
+            Değişiklik kaydı
+          </h2>
+          <ol className="mt-3 space-y-2 border-l-2 border-line pl-4 text-sm text-ink-2">
+            {changelog.map((c, i) => (
+              <li key={`${c.date}-${i}`}>
+                <time dateTime={c.date} className="font-semibold text-ink">
+                  {formatDate(c.date)}
+                </time>{" "}
+                – {c.change}
+              </li>
+            ))}
+          </ol>
+        </section>
+      ) : null}
       {fm.socialEmbeds.length ? (
         <section aria-labelledby="resmi-hesaplar" className="mt-10">
           <h2 id="resmi-hesaplar" className="text-h3 font-bold text-ink">
@@ -346,12 +351,18 @@ export async function BrandTemplate({ doc }: { doc: DocMeta }) {
       ) : null}
     </>
   );
-  return (
-    <DocShell
-      doc={doc}
-      beforeBody={before}
-      afterBody={after}
-      extraLd={{ about: { "@type": "Organization", name: fm.name, ...(fm.website ? { url: fm.website } : {}) } }}
-    />
-  );
+  const s = getSettings();
+  const lists = [
+    linkedCharts.length ? { name: `${fm.name} beden tabloları`, items: linkedCharts.map((c) => ({ path: `${doc.path}#tablo-${c.id}`, title: c.title })) } : null,
+    alternatives.length ? { name: "Alternatif markalar", items: alternatives.map((d) => ({ path: d.path, title: d.label })) } : null,
+  ].filter((x): x is NonNullable<typeof x> => !!x);
+  const ld = [
+    brandPageLd(s, doc, getAuthor(doc.author), reviewerOf(doc), {
+      "@type": "Brand",
+      name: fm.name,
+      ...(fm.website && !hide.has("website") ? { url: fm.website } : {}),
+    }),
+    ...lists.map((l) => ({ ...itemListLd(s, l.items), name: l.name })),
+  ];
+  return <DocShell doc={doc} beforeBody={before} afterBody={after} ld={ld} />;
 }

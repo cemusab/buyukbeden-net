@@ -11,6 +11,7 @@ import { eyebrowFor } from "@/lib/present";
 import { Badge } from "@/components/ui/primitives";
 import { SizeChartTable } from "./SizeChartTable";
 import { SizeComparisonTable } from "./SizeComparisonTable";
+import { BrandFilterCta } from "./BrandSizeParts";
 import { FitSilhouette } from "@/components/illustrations/fits";
 import { fitLabel, fitSummary } from "@/components/illustrations/fit-keys";
 
@@ -235,6 +236,7 @@ export function MarkdocContent({ tree, doc, inline = false }: { tree: Tree; doc?
       return chart ? <SizeChartTable chart={chart} /> : null;
     },
     SizeComparison,
+    BrandFilterCta,
     FitFigure,
     FitGrid,
     FaqSlot: () => (doc && doc.faq.length ? <FaqList doc={doc} /> : null),
