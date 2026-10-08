@@ -43,7 +43,13 @@
 - Hepsi bitince: `npm run qa` yeşil → TEK push → PR v2→main → merge → canlı smoke test (sitemap URL'leri 200).
 - Açık karar: `kadin-harf-numara-markalara-gore` dönüşüm tablosu kalsın mı (şimdilik kaldı).
 
-## 2026-10-08 – 4. dalga (çalışıyor)
+## 2026-10-08 – 5. dalga (çalışıyor): rakip SEO analizi
+Sahibi: "ilk 20 siteyi araştır, SEO'larını al". Kopya YOK (kopya içerik + telif) – yapı/kelime/eksik konu analizi, kendi metnimizle uygulama. Agent: `docs/rakip-seo-analizi.md` yazar, eşlenen sayfaların title/description/H2/SSS'ini günceller, gerekirse yeni boşluk sayfaları açar, qa yeşil, v2'ye commit. Sonra: tek PR → canlı kontrol.
+- **Durum (2026-10-08):** analiz `docs/rakip-seo-analizi.md` yazıldı (21 site sayfası incelendi, 15 baş terim). 18 sayfanın title/description/SSS'i güncellendi; 3 yeni sayfa: `/kadin/stil/nasil-giyinmeli`, `/kadin/kombinler/tesettur`, `/rehberler/buyuk-gelen-kiyafet-nasil-kucultulur`. v2'ye commit edildi, **push edilmedi**. Not: validate tarih kontrolü UTC kullanıyor; TR saatiyle gece yarısından sonra `updatedAt` bugünün tarihi verilirse "gelecekte" hatası verir.
+
+## 2026-10-08 – 4. dalga YAYINDA (PR #8): 14 yeni marka, toptan hub + Merter/Laleli; 233 URL hepsi 200.
+
+## (eski) 4. dalga planı
 Paralel: (1) ~15–25 yeni marka sayfası (content/markalar + marka listesi rehberleri); (2) toptan genişletme: /alisveris-rehberi/toptan-buyuk-beden-nereden-alinir + Merter/Laleli/Osmanbey sayfaları + doğrulanmış toptancı tabloları (tavsiye değil uyarısıyla). Bitince: qa → tek PR → canlı kontrol. Sahibi: PR'ı kendisi oluşturmayacak, ben yapıyorum.
 
 ## 2026-10-08 – 3. dalga YAYINDA (PR #7)
