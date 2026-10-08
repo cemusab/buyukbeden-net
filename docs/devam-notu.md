@@ -43,6 +43,9 @@
 - Hepsi bitince: `npm run qa` yeşil → TEK push → PR v2→main → merge → canlı smoke test (sitemap URL'leri 200).
 - Açık karar: `kadin-harf-numara-markalara-gore` dönüşüm tablosu kalsın mı (şimdilik kaldı).
 
+## 2026-10-08 – IndexNow YAYINDA (PR #11)
+Anahtar `public/5a3db966ab96c7215ed5bc55d65c8c1c.txt` (silme), `scripts/indexnow.mjs`, `.github/workflows/indexnow.yml` (main yayınından 4 dk sonra 241 URL'yi Bing/Yandex'e bildirir). İlk Action 403 aldı (anahtar yeni, doğrulama gecikmesi); elle tekrar gönderim 200 – sonraki çalıştırmalar normal olmalı. Sahibinden beklenen: GSC'de 10 sayfa için "Dizine eklenmesini iste", Bing Webmaster (GSC'den içe aktar), Yandex Webmaster doğrulama kodu (bana gönderecek → siteye eklenecek), sosyal profil linkleri.
+
 ## 2026-10-08 – 6. dalga YAYINDA (PR #10): Beden Bulucu sayfası + ana sayfa bandı, marka özet kartı, /markalar filtresi + CTA, kategori markaları, yeni şemalar, 5XL/6XL/54–56 sayfaları, alt metinler, BigBang yayın sorumlusu.
 
 ## (eski) 6. dalga planı
