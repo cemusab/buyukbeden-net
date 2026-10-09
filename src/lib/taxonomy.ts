@@ -54,6 +54,7 @@ export const CATEGORIES: Record<GenderSilo, readonly CategoryDef[]> = {
     { key: "sort-deniz-sortu", label: "Şort ve Deniz Şortu" },
     { key: "spor-giyim", label: "Spor Giyim" },
     { key: "ic-giyim", label: "İç Giyim" },
+    { key: "ev-giyimi", label: "Pijama ve Ev Giyimi" },
   ],
 };
 
