@@ -48,6 +48,11 @@ Türkiye'nin büyük beden moda, beden, stil, kombin, kumaş ve marka rehberi. *
 - Yayın akışı: lokal qa yeşil → v2 push → PR → main merge (tek production build). Gereksiz PR/merge zinciri yapılmaz; acil düzeltmeler de mümkünse bir sonraki toplu yayına eklenir.
 - Vercel hesabında ayar değişikliği veya eski deployment silme yalnız site sahibinin açık onayıyla.
 
+## Üç site stratejisi (site sahibi, 2026-10-09)
+- **buyukbeden.net** ve **buyuk-beden.com**: bağımsız bilgi/blog siteleri; trafik (hit) alır, otorite kurar. **buyukbedengiyim.com**: kurulacak ticari site; iki bilgi sitesi zamanı gelince ona doğal linklerle destek verir.
+- Google'ın bağlantı planı (link scheme) politikası nedeniyle: her site kendi başına değerli olmalı; linkler yalnız konuyla ilgili ve okura faydalı yerlerde, editoryal metin içinde; site geneli (footer/sidebar) toplu link yok; anchor metinleri çeşitli, tam eşleşme ticari anchor tekrarı yok; aynı sahiplik okura şeffaf ("kardeş sitemiz" gibi) belirtilir; içerik iki sitede kopyalanmaz.
+- buyukbedengiyim.com bağlantıları sahibi "aç" diyene kadar kapalı (feature flag) – değişmedi.
+
 ## Kardeş site: buyuk-beden.com (2026-10-09)
 - Site sahibinin ikinci sitesi **buyuk-beden.com** (ayrı proje/oturum). İş bölümü: **buyukbeden.net öğretir** (beden, ölçü, kalıp, stil, kumaş, bakım, beden verisi, Beden Bulucu); **"nereden alınır" ve marka alışveriş/karşılaştırma rehberleri buyuk-beden.com'da**. Taşınan sayfalar `src/lib/external-redirects.ts` ile 308; aynı içerik iki alan adında tutulmaz, metin kopyalanmaz.
 - Marka sayfaları her iki sitede var: .net'teki marka sayfaları **beden verisi ve ölçü** odaklı kalır (tablolar, özet kart, Beden Bulucu); alışveriş/nereden alınır anlatımı buyuk-beden.com'a bırakılır. Aynı sorguyu iki sitede hedeflemekten kaçınılır.
