@@ -46,6 +46,8 @@
 ## 2026-10-09 – Kardeş siteye taşıma (v2, lokal commit; PUSH EDİLMEDİ)
 Strateji: .net öğretir, buyuk-beden.com marka / nereden alınır / karşılaştırma sahibidir. 5 alışveriş rehberi silindi ve 308 ile .com'a yönlendirildi: `src/lib/external-redirects.ts` (next.config.ts redirects'e eklenir; build-content kaynak yolun yeniden yayımlanmasını engeller; tests/seo.spec.ts 308 + Location doğrular). İç linkler .net eğitim sayfalarına (`/kadin/giyim/elbise/52-beden`, `/erkek/giyim/tisort/4xl`, `/markalar`, `markalar-arasi-beden-farki`) ya da doğal cümleyle "kardeş sitemiz buyuk-beden.com" dış linkine çevrildi. Sonraki toplu yayına girer. Açık soru (sahibine): .net'in kendi `/markalar` dizini, `/marka/*` profilleri, `{% marka-filtresi %}` CTA'sı ve Beden Bulucu'nun marka önerisi .com ile çakışıyor mu?
 
+## SAHİBİ KARARI (2026-10-09): veri sorumlusu (şirket olacak) ve sosyal medya klasörü EN SONA bırakıldı – hatırlatma yapma, proje sonunda ele al.
+
 ## 2026-10-09 – Saatlik dalga YAYINDA (PR #12): 7 nasıl seçilir rehberi (boş hub'lar), 8 yeni kombin. Not: `docs/sosyal-medya/` klasörü başka bir oturumdan geldi, commit edilmedi (sahibine soruldu).
 
 ## 2026-10-08 – IndexNow YAYINDA (PR #11)
