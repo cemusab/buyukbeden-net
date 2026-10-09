@@ -1,0 +1,27 @@
+title: "Nike kadın üst giyim 0X–4X vücut ölçüleri"
+caption: "Nike kadın üst giyim (tops) – 0X–4X vücut ölçüsü (cm)"
+kind: olcu
+gender: kadin
+brand: nike
+brandName: "Nike"
+productType: ust-giyim
+countrySystem: harf
+measurementType: body
+sourceType: official_brand
+sourceUrl: "https://www.nike.com/size-fit/womens-tops-alpha"
+unit: cm
+lastVerifiedAt: 2026-10-09
+fitType: curve
+highlight: bust
+rows:
+  - { letterSize: "0X", equivalents: { US: "16W", UK: "22", EU: "50" }, bust: { min: 112, max: 119 }, waist: { min: 101.5, max: 108.5 }, hip: { min: 122.5, max: 129.5 } }
+  - { letterSize: "1X", equivalents: { US: "18W–20W", UK: "24–26", EU: "52–54" }, bust: { min: 119, max: 126 }, waist: { min: 108.5, max: 115.5 }, hip: { min: 129.5, max: 136.5 } }
+  - { letterSize: "2X", equivalents: { US: "22W–24W", UK: "28–30", EU: "56–58" }, bust: { min: 126, max: 133 }, waist: { min: 115.5, max: 124 }, hip: { min: 136.5, max: 145 } }
+  - { letterSize: "3X", equivalents: { US: "26W–28W", UK: "32–34", EU: "60–62" }, bust: { min: 133, max: 140 }, waist: { min: 124, max: 134 }, hip: { min: 145, max: 155 } }
+  - { letterSize: "4X", equivalents: { US: "30W–32W", UK: "36–38", EU: "64–68" }, bust: { min: 140, max: 147 }, waist: { min: 134, max: 144 }, hip: { min: 155, max: 165 } }
+notes:
+  - "Nike sayfası bu ölçülerin vücut ölçüsü olduğunu açıkça yazıyor. Santimetre değerleri sayfanın kendi metrik görünümünden alındı (çeviri bizim değil)."
+  - "Tablo Nike'ın ABD sitesindendir. Nike, göğüs ve bel farklı bedene düşerse göğüs ölçüsüne göre seçmeyi öneriyor."
+  - "0X–4X tablosu standart XXS–XXL tablosundan ayrıdır; standart tabloda XXL göğüs 114–124 cm."
+sources:
+  - { url: "https://www.nike.com/size-fit/womens-tops-alpha", type: "brand-official", label: "Nike kadın üst giyim beden tablosu (ABD)", checkedAt: "2026-10-09" }

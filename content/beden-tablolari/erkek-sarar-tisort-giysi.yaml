@@ -1,0 +1,32 @@
+title: "Sarar erkek tişört ölçüleri (XS–5XL)"
+caption: "Sarar tişört – göğüs, bel ve ön boy (cm); ölçü türünü marka belirtmiyor"
+kind: olcu
+gender: erkek
+brand: sarar
+brandName: "Sarar"
+productType: tisort
+countrySystem: harf
+measurementType: garment
+measurementTypeVerified: false
+sourceType: official_brand
+sourceUrl: "https://sarar.com/xyztck"
+unit: cm
+lastVerifiedAt: 2026-10-09
+fieldLabels: { chest: "Göğüs çevresi", waist: "Bel çevresi", length: "Ön boy" }
+highlight: chest
+inconsistencyNote: "Kaynak tabloda S bedenin bel değeri (83,5 cm) XS'ten (89,5 cm) küçük yazılmış; büyük olasılıkla yazım hatası. Değer kaynaktaki gibi bırakıldı."
+rows:
+  - { letterSize: "XS", chest: { min: 90, max: 90 }, waist: { min: 89.5, max: 89.5 }, length: { min: 66.5, max: 66.5 } }
+  - { letterSize: "S", chest: { min: 94, max: 94 }, waist: { min: 83.5, max: 83.5 }, length: { min: 68.5, max: 68.5 } }
+  - { letterSize: "M", chest: { min: 98, max: 98 }, waist: { min: 98.5, max: 98.5 }, length: { min: 70.5, max: 70.5 } }
+  - { letterSize: "L", chest: { min: 102, max: 102 }, waist: { min: 101.5, max: 101.5 }, length: { min: 72.5, max: 72.5 } }
+  - { letterSize: "XL", chest: { min: 108, max: 108 }, waist: { min: 107.5, max: 107.5 }, length: { min: 74.5, max: 74.5 } }
+  - { letterSize: "2XL", chest: { min: 114, max: 114 }, waist: { min: 113.5, max: 113.5 }, length: { min: 76.5, max: 76.5 } }
+  - { letterSize: "3XL", chest: { min: 122, max: 122 }, waist: { min: 121.5, max: 121.5 }, length: { min: 78.5, max: 78.5 } }
+  - { letterSize: "4XL", chest: { min: 130, max: 130 }, waist: { min: 129.5, max: 129.5 }, length: { min: 80.5, max: 80.5 } }
+  - { letterSize: "5XL", chest: { min: 138, max: 138 }, waist: { min: 137.5, max: 137.5 }, length: { min: 82.5, max: 82.5 } }
+notes:
+  - "Sarar tabloda değerlerin vücut ölçüsü mü ürün ölçüsü mü olduğunu yazmıyor. Ön boy satırı giysiye ait olduğu için ürün ölçüsü olarak işaretledik; Beden Bulucu'da kullanılmaz."
+  - "Göğüs ve bel değerleri çevre olarak yazılmış (tek kat en değil)."
+sources:
+  - { url: "https://sarar.com/xyztck", type: "brand-official", label: "Sarar beden tablosu sayfası", checkedAt: "2026-10-09" }

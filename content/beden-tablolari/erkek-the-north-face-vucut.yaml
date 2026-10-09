@@ -1,0 +1,28 @@
+title: "The North Face erkek mont ve üst giyim vücut ölçüleri (XS–3XL)"
+caption: "The North Face erkek montlar ve üstler – vücut ölçüsü (cm)"
+kind: olcu
+gender: erkek
+brand: the-north-face
+brandName: "The North Face"
+productType: ust-giyim
+countrySystem: harf
+measurementType: body
+sourceType: official_brand
+sourceUrl: "https://www.thenorthface.com.tr/erkek-montlar-ustler"
+unit: cm
+lastVerifiedAt: 2026-10-09
+fieldLabels: { sleeve: "Kol uzunluğu (ense–bilek)" }
+highlight: chest
+rows:
+  - { letterSize: "XS", chest: { min: 84, max: 86 }, waist: { min: 66, max: 71 }, hip: { min: 81, max: 86 }, sleeve: { min: 84, max: 84 } }
+  - { letterSize: "S", chest: { min: 91, max: 96 }, waist: { min: 74, max: 79 }, hip: { min: 89, max: 94 }, sleeve: { min: 85, max: 85 } }
+  - { letterSize: "M", chest: { min: 99, max: 104 }, waist: { min: 81, max: 86 }, hip: { min: 97, max: 102 }, sleeve: { min: 86, max: 86 } }
+  - { letterSize: "L", chest: { min: 107, max: 112 }, waist: { min: 89, max: 95 }, hip: { min: 104, max: 109 }, sleeve: { min: 88, max: 88 } }
+  - { letterSize: "XL", chest: { min: 114, max: 122 }, waist: { min: 96, max: 104 }, hip: { min: 112, max: 117 }, sleeve: { min: 90, max: 90 } }
+  - { letterSize: "XXL", chest: { min: 124, max: 135 }, waist: { min: 107, max: 114 }, hip: { min: 119, max: 124 }, sleeve: { min: 92, max: 92 } }
+  - { letterSize: "3XL", chest: { min: 137, max: 147 }, waist: { min: 117, max: 124 }, hip: { min: 127, max: 132 }, sleeve: { min: 95, max: 95 } }
+notes:
+  - "Markanın Türkiye sitesindeki tablo, ölçünün vücuttan nasıl alınacağını anlatıyor; vücut ölçüsü olarak aktarıldı."
+  - "Kol uzunluğu, kol hafif bükülüyken boyun tabanından dirseğe, oradan bileğe kadar ölçülür."
+sources:
+  - { url: "https://www.thenorthface.com.tr/erkek-montlar-ustler", type: "brand-official", label: "The North Face Türkiye – Erkek montlar ve üstler beden tablosu", checkedAt: "2026-10-09" }

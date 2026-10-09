@@ -1,0 +1,28 @@
+title: "The North Face kadın mont ve üst giyim vücut ölçüleri (XS–XXL)"
+caption: "The North Face kadın montlar ve üstler – vücut ölçüsü (cm), standart harf bedenler"
+kind: olcu
+gender: kadin
+brand: the-north-face
+brandName: "The North Face"
+productType: ust-giyim
+countrySystem: harf
+measurementType: body
+sourceType: official_brand
+sourceUrl: "https://www.thenorthface.com.tr/kadin-montlar-ve-ustler"
+unit: cm
+lastVerifiedAt: 2026-10-09
+fieldLabels: { sleeve: "Kol uzunluğu (ense–bilek)" }
+highlight: bust
+rows:
+  - { letterSize: "XS", bust: { min: 78, max: 81 }, waist: { min: 61, max: 64 }, hip: { min: 81, max: 86 }, sleeve: { min: 80, max: 80 } }
+  - { letterSize: "S", bust: { min: 84, max: 89 }, waist: { min: 66, max: 71 }, hip: { min: 89, max: 91 }, sleeve: { min: 81, max: 81 } }
+  - { letterSize: "M", bust: { min: 91, max: 94 }, waist: { min: 74, max: 76 }, hip: { min: 94, max: 99 }, sleeve: { min: 83, max: 83 } }
+  - { letterSize: "L", bust: { min: 99, max: 102 }, waist: { min: 81, max: 84 }, hip: { min: 102, max: 109 }, sleeve: { min: 88, max: 88 } }
+  - { letterSize: "XL", bust: { min: 107, max: 112 }, waist: { min: 89, max: 94 }, hip: { min: 109, max: 119 }, sleeve: { min: 89, max: 89 } }
+  - { letterSize: "XXL", bust: { min: 117, max: 119 }, waist: { min: 99, max: 102 }, hip: { min: 119, max: 127 }, sleeve: { min: 91, max: 91 } }
+notes:
+  - "Markanın Türkiye sitesindeki tablo, ölçünün vücuttan nasıl alınacağını (göğüs, bel, kalça, kol) anlatıyor; bu yüzden vücut ölçüsü olarak aktarıldı."
+  - "Kol uzunluğu, kol hafif bükülüyken boyun tabanından dirseğe, oradan bileğe kadar ölçülür."
+  - "1X–4X bedenler aynı sayfada ayrı bir tabloda verilir (bkz. The North Face kadın 1X–4X tablosu)."
+sources:
+  - { url: "https://www.thenorthface.com.tr/kadin-montlar-ve-ustler", type: "brand-official", label: "The North Face Türkiye – Kadın montlar ve üstler beden tablosu", checkedAt: "2026-10-09" }
