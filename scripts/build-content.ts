@@ -24,6 +24,7 @@ import type { AuthorEntry, ContentIndex, DocMeta, RouteEntry, TocItem } from "..
 import { buildRouteManifest, computePath } from "../src/lib/routes-core";
 import { brandsForSize, parseSizeQuery } from "../src/lib/brand-sizes";
 import { normalizeTr } from "../src/lib/search-normalize";
+import { EXTERNAL_REDIRECTS } from "../src/lib/external-redirects";
 import {
   CATEGORIES,
   categoryLabel,
@@ -767,6 +768,12 @@ for (const h of hubs.values()) {
 }
 for (const r of redirects) if (redirectSources.has(r.destination)) errors.push(`redirect zinciri: ${r.source} → ${r.destination}`);
 for (const r of redirects) if (!byPath.has(r.destination)) errors.push(`redirect hedefi yayımlı değil: ${r.source} → ${r.destination}`);
+// Kardeş siteye taşınan yollar yeniden yayımlanamaz, iç yönlendirmeyle çakışamaz (bu yollara iç link zaten "kırık iç link" hatası verir)
+for (const r of EXTERNAL_REDIRECTS) {
+  if (!/^https:\/\/[^/]+\./.test(r.destination)) errors.push(`dış yönlendirme hedefi https dış URL olmalı: ${r.source} → ${r.destination}`);
+  if (byPath.has(r.source)) errors.push(`dış yönlendirme kaynağı ${r.source} yayımlı bir sayfayla çakışıyor`);
+  if (redirectSources.has(r.source)) errors.push(`dış yönlendirme kaynağı ${r.source} iç yönlendirmeyle çakışıyor`);
+}
 
 // Rota aileleri ve statik sayfa içerikleri
 const appDir = path.join(ROOT, "src", "app", "(site)");

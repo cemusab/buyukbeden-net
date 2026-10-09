@@ -43,6 +43,9 @@
 - Hepsi bitince: `npm run qa` yeşil → TEK push → PR v2→main → merge → canlı smoke test (sitemap URL'leri 200).
 - Açık karar: `kadin-harf-numara-markalara-gore` dönüşüm tablosu kalsın mı (şimdilik kaldı).
 
+## 2026-10-09 – Kardeş siteye taşıma (v2, lokal commit; PUSH EDİLMEDİ)
+Strateji: .net öğretir, buyuk-beden.com marka / nereden alınır / karşılaştırma sahibidir. 5 alışveriş rehberi silindi ve 308 ile .com'a yönlendirildi: `src/lib/external-redirects.ts` (next.config.ts redirects'e eklenir; build-content kaynak yolun yeniden yayımlanmasını engeller; tests/seo.spec.ts 308 + Location doğrular). İç linkler .net eğitim sayfalarına (`/kadin/giyim/elbise/52-beden`, `/erkek/giyim/tisort/4xl`, `/markalar`, `markalar-arasi-beden-farki`) ya da doğal cümleyle "kardeş sitemiz buyuk-beden.com" dış linkine çevrildi. Sonraki toplu yayına girer. Açık soru (sahibine): .net'in kendi `/markalar` dizini, `/marka/*` profilleri, `{% marka-filtresi %}` CTA'sı ve Beden Bulucu'nun marka önerisi .com ile çakışıyor mu?
+
 ## 2026-10-08 – IndexNow YAYINDA (PR #11)
 Anahtar `public/5a3db966ab96c7215ed5bc55d65c8c1c.txt` (silme), `scripts/indexnow.mjs`, `.github/workflows/indexnow.yml` (main yayınından 4 dk sonra 241 URL'yi Bing/Yandex'e bildirir). İlk Action 403 aldı (anahtar yeni, doğrulama gecikmesi); elle tekrar gönderim 200 – sonraki çalıştırmalar normal olmalı. Sahibinden beklenen: GSC'de 10 sayfa için "Dizine eklenmesini iste", Bing Webmaster (GSC'den içe aktar), Yandex Webmaster doğrulama kodu (bana gönderecek → siteye eklenecek), sosyal profil linkleri.
 

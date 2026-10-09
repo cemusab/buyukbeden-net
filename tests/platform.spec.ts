@@ -217,7 +217,7 @@ test.describe("{% marka-filtresi %} CTA'sı ve kategori bloğu", () => {
   const withTag = index.docs.filter((d) => d.collection !== "markalar").map((d) => d.path);
 
   test("CTA: filtreli dizine link ve en çok 5 marka önizlemesi", async ({ page }) => {
-    const targets = ["/alisveris-rehberi/52-beden-elbise-nereden-alinir", "/alisveris-rehberi/4xl-erkek-tisort-nereden-alinir"].filter((p) => withTag.includes(p));
+    const targets = ["/kadin/giyim/elbise/52-beden", "/erkek/giyim/tisort/4xl"].filter((p) => withTag.includes(p));
     test.skip(!targets.length, "sayfa yok");
     for (const p of targets) {
       await page.goto(p);
