@@ -1,0 +1,27 @@
+title: "The North Face kadın 1X–4X vücut ölçüleri (mont ve üst giyim)"
+caption: "The North Face kadın montlar ve üstler – 1X–4X vücut ölçüsü (cm)"
+kind: olcu
+gender: kadin
+brand: the-north-face
+brandName: "The North Face"
+productType: ust-giyim
+countrySystem: harf
+measurementType: body
+sourceType: official_brand
+sourceUrl: "https://www.thenorthface.com.tr/kadin-montlar-ve-ustler"
+unit: cm
+lastVerifiedAt: 2026-10-09
+fitType: curve
+fieldLabels: { sleeve: "Kol uzunluğu (ense–bilek)" }
+highlight: bust
+rows:
+  - { letterSize: "1X", equivalents: { US: "16–18", UK: "20–22", IT: "48–50", DE: "46–48" }, bust: { min: 106, max: 114 }, waist: { min: 88, max: 96 }, hip: { min: 114, max: 122 }, sleeve: { min: 80, max: 80 } }
+  - { letterSize: "2X", equivalents: { US: "20–22", UK: "24–26", IT: "52–54", DE: "50–52" }, bust: { min: 116, max: 124 }, waist: { min: 98, max: 106 }, hip: { min: 124, max: 132 }, sleeve: { min: 82, max: 82 } }
+  - { letterSize: "3X", equivalents: { US: "24–26", UK: "28–30", IT: "56–58", DE: "54–56" }, bust: { min: 126, max: 134 }, waist: { min: 108, max: 116 }, hip: { min: 134, max: 142 }, sleeve: { min: 84, max: 84 } }
+  - { letterSize: "4X", equivalents: { US: "28–30", UK: "32–34", IT: "60–62", DE: "58–60" }, bust: { min: 136, max: 144 }, waist: { min: 118, max: 126 }, hip: { min: 144, max: 152 }, sleeve: { min: 85, max: 85 } }
+notes:
+  - "1X–4X, standart XS–XXL tablosundan ayrı bir tablodur; 1X'in göğüs aralığı XL ile XXL arasına düşer. Harf adı yerine santimetreye bakın."
+  - "US, UK, IT ve Almanya karşılıkları markanın aynı tablosundandır."
+  - "Tablonun Türkiye sitesinde yer alması, bu bedenlerdeki her modelin Türkiye'de satıldığı anlamına gelmez; ürün sayfasındaki beden listesini kontrol edin."
+sources:
+  - { url: "https://www.thenorthface.com.tr/kadin-montlar-ve-ustler", type: "brand-official", label: "The North Face Türkiye – Kadın montlar ve üstler beden tablosu", checkedAt: "2026-10-09" }

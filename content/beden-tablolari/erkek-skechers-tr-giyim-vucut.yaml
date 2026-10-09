@@ -1,0 +1,26 @@
+title: "Skechers Türkiye erkek giyim ölçüleri (S–2XL)"
+caption: "Skechers Türkiye – erkek giyim beden tablosu (cm); ölçü türünü marka belirtmiyor"
+kind: olcu
+gender: erkek
+brand: skechers
+brandName: "Skechers"
+productType: genel
+countrySystem: EU
+measurementType: body
+measurementTypeVerified: false
+sourceType: official_brand
+sourceUrl: "https://www.skechers.com.tr/beden-tablosu"
+unit: cm
+lastVerifiedAt: 2026-10-09
+fieldLabels: { inseam: "İç bacak uzunluğu" }
+highlight: chest
+rows:
+  - { numericSize: "44–46", letterSize: "S", chest: { min: 88, max: 96 }, waist: { min: 73, max: 81 }, hip: { min: 88, max: 96 }, inseam: { min: 82.5, max: 82.5 } }
+  - { numericSize: "48–50", letterSize: "M", chest: { min: 96, max: 104 }, waist: { min: 81, max: 89 }, hip: { min: 96, max: 104 }, inseam: { min: 83, max: 83 } }
+  - { numericSize: "52–54", letterSize: "L", chest: { min: 104, max: 112 }, waist: { min: 89, max: 97 }, hip: { min: 104, max: 112 }, inseam: { min: 83.5, max: 83.5 } }
+  - { numericSize: "56–58", letterSize: "XL", chest: { min: 112, max: 124 }, waist: { min: 97, max: 109 }, hip: { min: 112, max: 120 }, inseam: { min: 84, max: 84 } }
+  - { numericSize: "60–62", letterSize: "2XL", chest: { min: 124, max: 136 }, waist: { min: 109, max: 121 }, hip: { min: 120, max: 128 }, inseam: { min: 84.5, max: 84.5 } }
+notes:
+  - "Tablo aralık olarak verildiği için vücut ölçüsü olarak aktarıldı; ancak sayfa giyim tablosu için ölçü türünü açıkça yazmıyor. Bu nedenle Beden Bulucu'da kullanılmaz."
+sources:
+  - { url: "https://www.skechers.com.tr/beden-tablosu", type: "brand-official", label: "Skechers Türkiye beden tablosu", checkedAt: "2026-10-09" }

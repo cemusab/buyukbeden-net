@@ -1,0 +1,33 @@
+title: "Skechers Türkiye erkek ayakkabı numaraları ve ayak uzunluğu (US 11–17)"
+caption: "Skechers Türkiye – erkek spor ve günlük ayakkabı numara tablosu, ayak uzunluğu (vücut ölçüsü, cm), EU 45 ve üstü"
+kind: olcu
+gender: erkek
+brand: skechers
+brandName: "Skechers"
+productType: ayakkabi
+countrySystem: US
+measurementType: body
+partialRows: true
+sourceType: official_brand
+sourceUrl: "https://www.skechers.com.tr/beden-tablosu"
+unit: cm
+lastVerifiedAt: 2026-10-09
+highlight: footLength
+rows:
+  - { numericSize: "11", equivalents: { UK: "10", EU: "45" }, footLength: { min: 29, max: 29 } }
+  - { numericSize: "11.5", equivalents: { UK: "10.5", EU: "45.5" }, footLength: { min: 29.5, max: 29.5 } }
+  - { numericSize: "12", equivalents: { UK: "11", EU: "46" }, footLength: { min: 30, max: 30 } }
+  - { numericSize: "12.5", equivalents: { UK: "11", EU: "47" }, footLength: { min: 30.5, max: 30.5 } }
+  - { numericSize: "13", equivalents: { UK: "12", EU: "47.5" }, footLength: { min: 31, max: 31 } }
+  - { numericSize: "13.5", equivalents: { UK: "12.5", EU: "48" }, footLength: { min: 31.5, max: 31.5 } }
+  - { numericSize: "14", equivalents: { UK: "13", EU: "48.5" }, footLength: { min: 32, max: 32 } }
+  - { numericSize: "15", equivalents: { UK: "14", EU: "49.5" }, footLength: { min: 33, max: 33 } }
+  - { numericSize: "16", equivalents: { UK: "15", EU: "50.5" }, footLength: { min: 34, max: 34 } }
+  - { numericSize: "17", equivalents: { UK: "16", EU: "51.5" }, footLength: { min: 35, max: 35 } }
+notes:
+  - "Sayfa ölçümü “en uzun parmaktan topuğa” olarak tarif ediyor; CM sütunu ayak uzunluğu olarak aktarıldı."
+  - "Kaynak tablonun yalnız EU 45 ve üstü satırları aktarıldı (tablo US 6.5 / EU 39'dan başlar)."
+  - "Kaynakta US 12 ve US 12.5'in ikisi de UK 11 olarak yazılmış; kaynaktaki gibi bırakıldı."
+  - "Aynı sayfadaki “Erkek klasik” sekmesinde EU karşılıkları yarım numara farklıdır (ör. US 17 = EU 51); model türüne göre tabloyu kontrol edin."
+sources:
+  - { url: "https://www.skechers.com.tr/beden-tablosu", type: "brand-official", label: "Skechers Türkiye beden tablosu", checkedAt: "2026-10-09" }
