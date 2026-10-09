@@ -48,5 +48,11 @@ Türkiye'nin büyük beden moda, beden, stil, kombin, kumaş ve marka rehberi. *
 - Yayın akışı: lokal qa yeşil → v2 push → PR → main merge (tek production build). Gereksiz PR/merge zinciri yapılmaz; acil düzeltmeler de mümkünse bir sonraki toplu yayına eklenir.
 - Vercel hesabında ayar değişikliği veya eski deployment silme yalnız site sahibinin açık onayıyla.
 
+## Kardeş site: buyuk-beden.com (2026-10-09)
+- Site sahibinin ikinci sitesi **buyuk-beden.com** (ayrı proje/oturum). İş bölümü: **buyukbeden.net öğretir** (beden, ölçü, kalıp, stil, kumaş, bakım, beden verisi, Beden Bulucu); **"nereden alınır" ve marka alışveriş/karşılaştırma rehberleri buyuk-beden.com'da**. Taşınan sayfalar `src/lib/external-redirects.ts` ile 308; aynı içerik iki alan adında tutulmaz, metin kopyalanmaz.
+- Marka sayfaları her iki sitede var: .net'teki marka sayfaları **beden verisi ve ölçü** odaklı kalır (tablolar, özet kart, Beden Bulucu); alışveriş/nereden alınır anlatımı buyuk-beden.com'a bırakılır. Aynı sorguyu iki sitede hedeflemekten kaçınılır.
+- buyuk-beden.com'a link yalnız doğal ve faydalıysa; her sayfaya zorunlu link yok. (buyukbedengiyim.com kuralı ayrıdır ve hâlâ geçerlidir.)
+- **İki oturum aynı repoda çalışmasın:** buyuk-beden.com oturumu bu repoya değişiklik yaparsa ayrı dalda + PR ile yapar; `v2` dalına doğrudan commit edilmez. Yayından önce `git log origin/main..v2` ile beklenmeyen commit kontrol edilir.
+
 ## Teknoloji
 Next.js 16 App Router + TypeScript + Tailwind v4, tüm sayfalar build'de statik: `cacheComponents` açık olduğu için `dynamicParams` kullanılmaz; `(site)/layout.tsx` içinde `ensureStatic = "navigation"`, `generateStaticParams` + bilinmeyen slug için `notFound()` (bkz. mimari.md K1–K2). İçerik dosya tabanlı, zod ile doğrulanır; erişim yalnız `src/lib/content.ts` üzerinden. Dev server arka planda çalıştırılır, beklenmez.
