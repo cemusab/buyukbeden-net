@@ -1,5 +1,6 @@
 import { expect, test } from "@playwright/test";
 import { index, indexable, SITE } from "./helpers";
+import { EXTERNAL_REDIRECTS } from "../src/lib/external-redirects";
 
 test.describe("SEO altyapısı", () => {
   test.beforeEach(({}, info) => test.skip(info.project.name !== "desktop", "yalnız masaüstü"));
@@ -56,6 +57,18 @@ test.describe("SEO altyapısı", () => {
       expect(new URL(r.headers()["location"], "http://x").pathname, from).toBe(to);
       const final = await request.get(to, { maxRedirects: 0 });
       expect(final.status(), to).toBe(200);
+    }
+  });
+
+  test("kardeş siteye taşınan sayfalar tek 308 ile buyuk-beden.com'a gider; manifest ve sitemap'te yok", async ({ request }) => {
+    expect(EXTERNAL_REDIRECTS.length).toBeGreaterThan(0);
+    const sitemap = await (await request.get("/sitemap-index.xml")).text();
+    for (const { source, destination } of EXTERNAL_REDIRECTS) {
+      expect(index.manifest.some((e) => e.path === source), source).toBe(false);
+      const r = await request.get(source, { maxRedirects: 0 });
+      expect(r.status(), source).toBe(308);
+      expect(r.headers()["location"], source).toBe(destination);
+      expect(sitemap.includes(source), source).toBe(false);
     }
   });
 

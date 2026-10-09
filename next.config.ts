@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import type { NextConfig } from "next";
+import { EXTERNAL_REDIRECTS } from "./src/lib/external-redirects";
 
 /** İçerikten üretilen yönlendirmeler (redirectFrom + hub kısa yolları) – scripts/build-content.ts yazar. */
 function contentRedirects(): { source: string; destination: string }[] {
@@ -41,6 +42,7 @@ const nextConfig: NextConfig = {
     return [
       ...LEGACY.map(([source, destination]) => ({ source, destination, permanent: true })),
       ...contentRedirects().map((r) => ({ source: r.source, destination: r.destination, permanent: true })),
+      ...EXTERNAL_REDIRECTS.map((r) => ({ source: r.source, destination: r.destination, permanent: true })),
     ];
   },
   async headers() {
