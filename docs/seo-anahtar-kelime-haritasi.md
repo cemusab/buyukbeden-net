@@ -140,3 +140,112 @@ Yedek veri olarak Google'ın herkese açık otomatik tamamlama (`suggestqueries.
 
 - Validate, landing sayfalarında "büyük beden" yoğunluğunu frontmatter dahil sayar; kısa gövdeli landing'lerde terim yalnız `title` + `primaryKeyword` + açıklamada kalmalı, `shortAnswer`'da tekrar edilmez.
 - Baş terimli anchor her linkte kullanılmaz; aynı hedefe giden linklerin küçük bir kısmı terimli, çoğu betimleyici olmalı.
+
+## 8. 500 kelime eşlemesi (2026-10-09)
+
+> Kaynak: site sahibinin 500 kelimelik listesi, sınıflandırma `docs/anahtar-kelimeler-500.md`. Her küme **tek** kanonik URL'ye gider; varyantlar (modelleri, çeşitleri, türleri, kadın/bayan) aynı sayfada H2/H3 veya SSS olarak karşılanır, ayrı sayfa açılmaz. "Yeni sayfa – agent B" yazan kümeler o sayfa yayımlanana kadar hedeflenmez; mevcut sayfalarda yalnız bağlam içinde geçer, link verilmez (yayımlanmamış hedefe link yasak).
+>
+> Not: Tablo 1–2'deki `/alisveris-rehberi/kadin-giyim-markalari`, `/alisveris-rehberi/erkek-giyim-markalari`, `/alisveris-rehberi/turkiyedeki-buyuk-beden-markalari` şu an yayımlı değil; marka kümeleri o sayfalar gelene kadar `/markalar`'a eşlenir.
+
+### 8.1 Grup A – Kadın
+
+| Küme (örnek kelimeler) | Kanonik URL |
+|---|---|
+| büyük beden kadın/bayan giyim, büyük beden kadın kıyafet(leri), 44–62 beden giyim | `/kadin/giyim` |
+| büyük beden elbise, elbise modelleri, günlük/yazlık/kışlık/uzun/midi elbise | `/kadin/giyim/elbise` |
+| büyük beden elbise nasıl seçilir, elbise kombini | `/kadin/giyim/elbise/nasil-secilir` |
+| 52 beden elbise | `/kadin/giyim/elbise/52-beden` |
+| büyük beden tunik, uzun/salaş/viskon/penye tunik, tunik modelleri | `/kadin/giyim/tunik` |
+| tunik kombin, tunik nasıl seçilir | `/kadin/giyim/tunik/nasil-secilir` |
+| büyük beden gömlek (kadın), beyaz/kot/uzun gömlek | `/kadin/giyim/gomlek` |
+| büyük beden bluz, bluz modelleri | `/kadin/giyim/bluz` |
+| büyük beden pantolon (kadın), palazzo, geniş paça, dar paça, yüksek bel, kumaş pantolon | `/kadin/giyim/pantolon` |
+| pantolon kalıpları (mom, wide leg, bootcut) | `/kadin/giyim/pantolon/kalip-rehberi` |
+| büyük beden jean / kot pantolon (kadın) | `/kadin/giyim/jean` |
+| büyük beden etek, kalem/pileli/midi/uzun/kot etek | `/kadin/giyim/etek` |
+| büyük beden ceket, blazer ceket | `/kadin/giyim/ceket` |
+| büyük beden hırka | `/kadin/giyim/hirka` |
+| büyük beden kazak, triko | `/kadin/giyim/triko` |
+| büyük beden sweatshirt (kadın) | `/kadin/giyim/sweatshirt` |
+| büyük beden mont, şişme mont (kadın) | `/kadin/giyim/mont` |
+| büyük beden kaban (kadın) | `/kadin/giyim/kaban` |
+| trençkot, yağmurluk, yelek (kadın) | yeni sayfa – agent B (kadın dış giyim türleri) |
+| büyük beden abiye, abiye modelleri; düğün/nişan/söz/kına/mezuniyet abiyesi; uzun/kısa abiye | `/kadin/giyim/abiye` (düğün → `/kadin/giyim/abiye/dugun`) |
+| şifon/dantel/saten/taşlı/payetli abiye | yeni sayfa – agent B (abiye kumaş/süsleme) |
+| büyük beden tesettür giyim, tesettür elbise/tunik | `/kadin/giyim/tesettur` |
+| ferace, kap, pardesü (tesettür) | yeni sayfa – agent B (ferace–kap rehberi) |
+| büyük beden iç giyim, sütyen, sütyen takımı | `/kadin/giyim/ic-giyim` (takım → `/kadin/giyim/ic-giyim/sutyen-kulot-takimi`) |
+| büyük beden tayt, eşofman, spor giyim, mayo/haşema, pijama | ilgili hub (`/kadin/giyim/{tayt,esofman,spor-giyim,mayo-hasema,ev-giyimi}`) |
+| kadın beden tablosu, büyük beden ölçü tablosu | `/kadin/beden-rehberi/beden-tablosu` |
+| büyük beden ölçü nasıl alınır (kadın) | `/kadin/beden-rehberi/olcu-nasil-alinir` |
+| 52 / 54 / 56 beden kaç XL | `/kadin/beden-rehberi/52-beden-kac-xl`, `/kadin/beden-rehberi/54-56-beden-kac-xl` |
+| büyük beden kombin (kadın), günlük/şık/ofis/yaz/kış kombin | `/kadin/kombinler` → ilgili kombin (`gunluk`, `ofis`, `yaz`, `kis`, `spor-sik`) |
+| tesettür kombin, düğün kombini, mezuniyet kombini, nişan/kına kombini | `/kadin/kombinler/{tesettur,dugun-davet,mezuniyet,nisan-kina}` |
+| büyük beden kadın nasıl giyinmeli, stil önerileri | `/kadin/stil/nasil-giyinmeli` |
+| vücut tipine göre giyim | `/kadin/stil/vucut-tipleri` |
+| büyük beden trendler (kadın) | `/trendler/kadin-2026-sonbahar-kis` |
+| bayram kombini (kadın) | yeni sayfa – agent B |
+
+### 8.2 Grup A – Erkek
+
+| Küme (örnek kelimeler) | Kanonik URL |
+|---|---|
+| büyük beden / battal beden erkek giyim, erkek kıyafet | `/erkek/giyim` |
+| büyük beden erkek tişört; basic, V yaka, oversize, uzun kollu, termal tişört | `/erkek/giyim/tisort` |
+| polo yaka tişört | `/erkek/giyim/polo` |
+| büyük beden erkek gömlek; keten, oduncu, kot, klasik, spor gömlek | `/erkek/giyim/gomlek` |
+| büyük beden erkek pantolon; chino, kargo, jogger, kanvas, keten pantolon | `/erkek/giyim/pantolon` (kalıp adları → `/erkek/giyim/pantolon/kalip-rehberi`) |
+| büyük beden erkek kot / jean | `/erkek/giyim/jean` |
+| büyük beden erkek şort, bermuda, deniz şortu | `/erkek/giyim/sort-deniz-sortu` |
+| büyük beden erkek sweatshirt, kapüşonlu, fermuarlı, polar | `/erkek/giyim/sweatshirt` |
+| büyük beden erkek kazak, triko | `/erkek/giyim/triko` |
+| büyük beden erkek hırka | `/erkek/giyim/hirka` |
+| büyük beden erkek mont | `/erkek/giyim/mont` |
+| mont türleri (şişme, parka, deri, kaban) | yeni sayfa – agent B (erkek mont türleri) |
+| büyük beden erkek iç giyim, boxer, atlet, termal içlik | `/erkek/giyim/ic-giyim` (boxer → `/erkek/giyim/ic-giyim/boxer-secimi`) |
+| büyük beden takım elbise, slim fit takım | `/erkek/giyim/takim-elbise` |
+| düğün / nişan takım elbisesi | `/erkek/giyim/takim-elbise/dugun` |
+| damatlık, smokin | yeni sayfa – agent B |
+| ceket, blazer, yelek (erkek) | `/erkek/giyim/takim-elbise` (ceket–yelek bölümü) |
+| eşofman takımı | `/erkek/giyim/esofman` |
+| spor / fitness / yürüyüş kıyafeti | `/erkek/giyim/spor-giyim` |
+| pijama, ev giyimi (erkek) | yeni sayfa – agent B (erkek ev giyimi hub'ı) |
+| erkek beden tablosu, ölçü nasıl alınır | `/erkek/beden-rehberi/beden-tablosu`, `/erkek/beden-rehberi/olcu-nasil-alinir` |
+| 4XL / 5XL / 6XL kaç beden, battal beden nedir | `/erkek/beden-rehberi/{4xl,5xl,6xl}-kac-beden`, `/erkek/beden-rehberi/battal-beden` |
+| erkek 44–62 numerik beden | yeni sayfa – agent B (veri varsa) |
+| erkek kombin, günlük/ofis/yaz/kış/düğün kombini | `/erkek/kombinler` → `/erkek/kombinler/{gunluk,ofis,yaz,kis,dugun-davetlisi}` |
+| bayram kombini (erkek) | yeni sayfa – agent B |
+| göbekli/kilolu erkek nasıl giyinmeli | `/erkek/stil/gobekli-erkek-nasil-giyinmeli` |
+| erkek trendler | `/trendler/erkek-2026-sonbahar-kis` |
+
+### 8.3 Grup A – Ortak (beden, marka, toptan)
+
+| Küme | Kanonik URL |
+|---|---|
+| büyük beden kaç bedenden başlar / kaçtan başlar | `/beden-rehberi/buyuk-beden-kac-bedenden-baslar` |
+| büyük beden kıyafet hangi bedene kadar, en büyük beden kaç XL | `/beden-rehberi/harf-beden-karsiliklari` (SSS) |
+| büyük beden ölçü nasıl alınır (genel) | `/beden-rehberi/olcu-alma-rehberi` |
+| büyük beden markaları, yerli markalar, en iyi markalar | `/markalar` (objektif dizin; "en iyi" sıralaması yapılmaz) |
+| büyük beden toptan, toptancı, üretici | `/alisveris-rehberi/toptan-buyuk-beden-pazari` (nereden → `/alisveris-rehberi/toptan-buyuk-beden-nereden-alinir`) |
+| güvenilir büyük beden sitesi nasıl anlaşılır | yeni sayfa – agent B |
+
+### 8.4 Grup B – Yeniden çerçevelenen
+
+| Aranan ifade | Nasıl karşılanır | URL |
+|---|---|---|
+| zayıf gösteren kıyafetler / elbise / kombin (kadın) | "dengeli siluet, dikey çizgi, oran" dili | yeni sayfa – agent B; o gelene kadar `/kadin/stil/nasil-giyinmeli` |
+| zayıf gösteren kıyafet (erkek) | aynı dil | yeni sayfa – agent B; o gelene kadar `/erkek/stil/gobekli-erkek-nasil-giyinmeli` |
+| büyük bedene hangi kıyafet yakışır | stil rehberi SSS | `/kadin/stil/nasil-giyinmeli`, `/erkek/stil` |
+| renk seçimi | stil | yeni sayfa – agent B |
+
+### 8.5 Grup C – Hariç (hedeflenmez)
+
+| Kelime tipi | Neden |
+|---|---|
+| fiyat(ları), indirim, outlet, kampanya, sezon sonu, uygun fiyatlı, ucuz | Satış niyeti; site satış yapmaz, fiyat verisi yok. |
+| satın al, sipariş ver, online satın al, kapıda ödeme, taksitli | İşlem niyeti; sepet/ödeme yok. |
+| ücretsiz / hızlı kargo | Lojistik niyeti; doğrulanabilir veri yok. |
+| İstanbul/Ankara/İzmir/Bursa/Antalya/Adana mağazası, yakınımdaki | Doğrulanmış mağaza verisi olmadan sayfa açılmaz (ileride şehir rehberi). |
+| "… yorumları" | Uydurma yorum yok; alıcı temaları hub'larda kendi cümlemizle özetli. |
+| "güvenilir site" (liste niyeti) | Liste yapılmaz; yalnız "nasıl anlaşılır" bilgi rehberi (agent B). |
+| tekrar/bozuk ifadeler ("büyük beden büyük beden abiye elbise", "büyük beden erkek büyük beden kaban") | Doğal dil değil; asıl kümenin sayfası zaten karşılar. |
