@@ -49,6 +49,7 @@ Başlık kuralı: `seo.title` (yoksa `title`) şablonla `"%s | Buyukbeden.net"` 
 | kadın beden rehberi | B | `/kadin/beden-rehberi` |
 | kadın beden tablosu | B | `/kadin/beden-rehberi/beden-tablosu` |
 | 52 beden kaç xl | B | `/kadin/beden-rehberi/52-beden-kac-xl` |
+| 48 beden kaç xl, 50 beden kaç xl (kadın), 48/50 beden ölçüleri | B | `/kadin/beden-rehberi/48-50-beden-kac-xl` (2026-10-09) |
 | 54 beden kaç xl, 56 beden kaç xl, 54/56 beden ölçüleri | B | `/kadin/beden-rehberi/54-56-beden-kac-xl` (2026-10-08; 52 sayfasındaki 54–56 bölümü kısaltılıp buraya bağlandı) |
 | sütyen bedeni nasıl ölçülür, büyük beden sütyen kaç numara | B | `/kadin/beden-rehberi/sutyen-beden-olcusu` |
 | büyük beden kadın kombinleri | K | `/kadin/kombinler` |
@@ -78,6 +79,7 @@ Başlık kuralı: `seo.title` (yoksa `title`) şablonla `"%s | Buyukbeden.net"` 
 | 4xl kaç beden, 4xl kaç beden erkek | B | `/erkek/beden-rehberi/4xl-kac-beden` |
 | 5xl kaç beden (erkek), 5xl kaç numara, 5xl göğüs ölçüsü | B | `/erkek/beden-rehberi/5xl-kac-beden` (2026-10-08) |
 | 6xl kaç beden, 6xl göğüs ölçüsü, süper battal kaç xl, 8xl / 10xl erkek giyim | B | `/erkek/beden-rehberi/6xl-kac-beden` (2026-10-08) |
+| erkek pantolon beden tablosu, jean beden tablosu (erkek), W38 L32 ne demek, pantolon 40 beden kaç cm, bel 110 cm kaç beden (erkek), kot pantolon bedenleri erkek | B | `/erkek/beden-rehberi/pantolon-beden-tablosu` (2026-10-09) |
 | gömlek yaka ölçüsü | B | `/erkek/beden-rehberi/gomlek-yaka-kol-olcusu` |
 | göbekli erkek nasıl giyinmeli | B | `/erkek/stil/gobekli-erkek-nasil-giyinmeli` |
 | büyük beden erkek kombinleri | K | `/erkek/kombinler` |
@@ -89,7 +91,7 @@ Başlık kuralı: `seo.title` (yoksa `title`) şablonla `"%s | Buyukbeden.net"` 
 | büyük beden kaç bedenden başlar, büyük beden kaçtan başlar, büyük beden kaç oluyor | B | `/beden-rehberi/buyuk-beden-kac-bedenden-baslar` |
 | büyük beden kaç kilodan başlar, kaç kilo kaç beden | B | `/beden-rehberi/boy-kilo-beden-neden-yaniltir` (kilo eşiği verilmez; ölçüye yönlendirir) |
 | xl kaç beden, xxl / xxxl kaç beden, 2xl / 3xl kaç beden (genel, kadın+erkek), en büyük beden kaç xl, 4xl kaç beden kadın | B | `/beden-rehberi/harf-beden-karsiliklari` (erkek 4XL/5XL/6XL tekil sayfalara bağlanır) |
-| beden çevirme tr eu uk us | B | `/beden-rehberi/beden-sistemleri` |
+| beden çevirme tr eu uk us, eu 50 / uk 20 / us 16 kaç beden (SSS) | B | `/beden-rehberi/beden-sistemleri` (ayrı "uluslararası beden çevirici" sayfası açılmadı: aynı niyet) |
 | vücut ölçüsü nasıl alınır | B | `/beden-rehberi/olcu-alma-rehberi` |
 | beden neden markadan markaya değişir, markalara göre beden farkı | B | `/beden-rehberi/beden-neden-markadan-markaya-degisir`, `/alisveris-rehberi/markalar-arasi-beden-farki` |
 | oversize ne demek | B | `/stil/oversize-ne-demek` |
@@ -249,3 +251,11 @@ Yedek veri olarak Google'ın herkese açık otomatik tamamlama (`suggestqueries.
 | "… yorumları" | Uydurma yorum yok; alıcı temaları hub'larda kendi cümlemizle özetli. |
 | "güvenilir site" (liste niyeti) | Liste yapılmaz; yalnız "nasıl anlaşılır" bilgi rehberi (agent B). |
 | tekrar/bozuk ifadeler ("büyük beden büyük beden abiye elbise", "büyük beden erkek büyük beden kaban") | Doğal dil değil; asıl kümenin sayfası zaten karşılar. |
+
+## 9. Beden long-tail turu (2026-10-09)
+
+Google otomatik tamamlama (`hl=tr&gl=tr`) ile kontrol edildi. "48/50 beden kaç xl" (kadın/erkek, kaç kilo, kaç numara), "jean/kot pantolon beden tablosu", "erkek pantolon beden tablosu/numaraları", "pantolon 40 beden neye denk gelir", "34 beden kot hangi beden", "110 cm bel kaç beden" önerileri belirgin.
+
+- Yeni: `/kadin/beden-rehberi/48-50-beden-kac-xl`, `/erkek/beden-rehberi/pantolon-beden-tablosu` (W/L + numara + harf + bel cm bantları).
+- SSS olarak eklendi: "L beden kaç numara?" (harf karşılıkları), "EU 50 kaç beden?", "US 16 kaç beden?" (beden sistemleri).
+- Açılmadı: ayrı uluslararası çevirici (beden-sistemleri ile aynı niyet), kadın XXL sayfası (harf karşılıkları kapsıyor), kadın jean W/L sayfası (resmi kaynaklı kadın jean inç tablosu yok; Mavi görselleri erişilemedi, ABD perakendeci tabloları birbirini tutmuyor). Kadın jean verisi bulunursa erkek pantolon sayfasının kadın karşılığı açılabilir.
