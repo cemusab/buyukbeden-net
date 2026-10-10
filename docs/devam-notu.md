@@ -49,7 +49,7 @@ Strateji: .net öğretir, buyuk-beden.com marka / nereden alınır / karşılaş
 ## 2026-10-09 – 500 kelime YAYINDA (PR #14): 16 sayfa güncellendi + 15 yeni sayfa; 266 URL hepsi 200. Kardeş site koordinasyonu: buyuk-beden.com oturumu brief'e uydu, PR #13 (docs/kardes-site-talepleri.md) incelendi ve birleştirildi. Sonraki: Search Console verisi (1–2 hafta) → gösterim/tıklama optimizasyonu.
 
 ## YARIN İLK İŞ (2026-10-10'dan itibaren)
-Airlife ve Cottonhill YAYINDA (PR #16, 2026-10-10); 294 URL 200. Yayın bekleyen yok. Ayrıca: Search Console kontrolü (Chrome eklentisi bağlıysa okuma; "Sayfa sayısı" raporu dolmuş olmalı), indeks/performans verisine göre optimizasyon.
+Airlife ve Cottonhill YAYINDA (PR #16). Tayt kümesi YAYINDA (PR #17, 2026-10-10): Vogsign, Banega, Tommylife + tayt türleri + transparan olmayan tayt. Yayın bekleyen yok. Bulunamayan tayt markaları (resmi site yok/erişilemedi): Tutku, Dagi, Penti tayt, LCW, Jilly Jo, Momslab, Mitay, Roniwear, Form Time. Ayrıca: Search Console kontrolü (Chrome eklentisi bağlıysa okuma; "Sayfa sayısı" raporu dolmuş olmalı), indeks/performans verisine göre optimizasyon.
 
 ## 2026-10-09 – 2 saatlik dalga YAYINDA (PR #15): 17 rehber (global konular + bakım), 48–50 beden, erkek pantolon beden, 7 marka + 8 tablo; 292 URL 200. Lokalde yayın bekleyen: Airlife marka sayfası (`content/markalar/airlife`, erkek 3XL–5XL spor) – sonraki toplu yayınla.
 
