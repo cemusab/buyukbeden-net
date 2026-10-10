@@ -1,0 +1,28 @@
+title: "Tommylife yüksek bel toparlayıcı battal tayt giysi ölçüleri (XL–4XL)"
+caption: "Tommylife yüksek bel toparlayıcı battal tayt (94650) – ÜRÜN (giysi) ölçüsü, gerilmeden (cm)"
+kind: olcu
+gender: kadin
+brand: tommylife
+brandName: Tommylife
+productType: alt-giyim
+countrySystem: harf
+measurementType: garment
+sourceType: official_brand
+sourceUrl: "https://www.tommylife.com.tr/siyah-yuksek-bel-toparlayici-battal-buyuk-beden-kadin-tayt-94650"
+unit: cm
+lastVerifiedAt: 2026-10-10
+fitType: slim
+fieldLabels: { waist: "Bel bandı eni (tek kat)", hip: "Basen eni (tek kat)", length: "Yan boy (bel bandı dahil)" }
+highlight: hip
+rows:
+  - { letterSize: "XL", waist: { min: 43, max: 43 }, hip: { min: 49, max: 49 }, length: { min: 89, max: 89 } }
+  - { letterSize: "2XL", waist: { min: 45, max: 45 }, hip: { min: 51, max: 51 }, length: { min: 89, max: 89 } }
+  - { letterSize: "3XL", waist: { min: 47, max: 47 }, hip: { min: 53, max: 53 }, length: { min: 90, max: 90 } }
+  - { letterSize: "4XL", waist: { min: 49, max: 49 }, hip: { min: 55.5, max: 55.5 }, length: { min: 90, max: 90 } }
+notes:
+  - "Kaynak tablo \"Alt Beden Ölçüleri\" başlığıyla bitmiş ürünün ölçülerini veriyor (bitmiş korsaj, paça genişliği). Bel ve basen değerlerinin tek kat en mi çevre mi olduğu yazmıyor; büyüklükleri tek kat en olduğunu gösteriyor (bizim yorumumuz). Tayt esnek olduğu için bu değerler vücut ölçüsüyle doğrudan karşılaştırılmaz; Beden Bulucu'da kullanılmaz."
+  - "Aynı tabloda baldır eni 29 cm'den (XL) 32,25 cm'ye (4XL), paça eni 11,4 cm'den 12,6 cm'ye çıkıyor."
+  - "Ürüne özel tablodur (%86 polyester, %14 elastan, mikro interlok 70 denye). Aynı markanın standart fit battal taytında (94652) yan boy 1 cm daha uzun, 4XL basen eni 55,6 cm."
+sources:
+  - { url: "https://www.tommylife.com.tr/siyah-yuksek-bel-toparlayici-battal-buyuk-beden-kadin-tayt-94650", type: "brand-official", label: "Tommylife yüksek bel toparlayıcı battal tayt 94650 ürün sayfası ve beden tablosu", checkedAt: "2026-10-10" }
+  - { url: "https://www.tommylife.com.tr/siyah-esnek-standart-fit-performans-battal-buyuk-beden-kadin-tayt-94652", type: "brand-official", label: "Tommylife standart fit battal tayt 94652 ürün sayfası ve beden tablosu", checkedAt: "2026-10-10" }
